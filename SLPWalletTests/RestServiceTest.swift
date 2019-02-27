@@ -10,6 +10,7 @@ import SLPWallet
 import Nimble
 import Quick
 import RxBlocking
+import BitcoinKit
 
 class RestServiceTest: QuickSpec {
     override func spec() {
@@ -36,6 +37,39 @@ class RestServiceTest: QuickSpec {
                     
                     expect(txs).notTo(beNil())
                     expect(txs[0].vout).to(haveCount(4))
+                    
+                    txs.forEach({ tx in
+                        let script = Script(hex: tx.vout[0].scriptPubKey.hex)
+
+                        guard var chunks = script?.scriptChunks
+                            , chunks.removeFirst().opCode == .OP_RETURN else {
+                            return
+                        }
+                        
+                        // 0 : lokad id 4 bytes ASCII
+                        guard let lokadId = String(data: chunks[0].chunkData, encoding: String.Encoding.ascii) else {
+                            return
+                        }
+                        print("lokadId: \(lokadId)")
+                        
+                        // 1 : token_type 1 bytes Integer
+                        let tokenType = chunks[1].chunkData.uint8
+                        print("tokenType: \(tokenType)")
+                        
+                        // 2 : transaction_type 4 bytes ASCII
+                        guard let transactionType = String(data: chunks[2].chunkData, encoding: String.Encoding.ascii) else {
+                            return
+                        }
+                        print("transactionType: \(transactionType)")
+                        
+                        // 3 : token_id 32 bytes  hex
+                        let tokenId = chunks[3].chunkData.hex
+                        print("tokenId: \(tokenId)")
+                        
+                        // 4 : token_output_quantity
+                        let tokenOutputQuantity = chunks[4].chunkData.uint8
+                        print("tokenOutputQuantity: \(tokenOutputQuantity)")
+                    })
                 }
             }
         }

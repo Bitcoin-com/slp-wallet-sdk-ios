@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B7FE8D02226842300CB5755 /* StoreUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */; };
+		3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B0662226251B00A1B599 /* SLPWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B99B0582226251B00A1B599 /* SLPWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUTXO.swift; sourceTree = "<group>"; };
+		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0582226251B00A1B599 /* SLPWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPWallet.h; sourceTree = "<group>"; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		3B99B06F2226290100A1B599 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */,
 				3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
@@ -369,6 +372,7 @@
 				3B7FE8D02226842300CB5755 /* StoreUTXO.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B99B0802226290100A1B599 /* RestService.swift in Sources */,
+				3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */,
 				3B99B0832226290100A1B599 /* Config.swift in Sources */,
 				3B99B0842226290100A1B599 /* TokenType1.swift in Sources */,
 			);

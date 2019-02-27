@@ -12,6 +12,7 @@ import BitcoinKit
 import Moya
 
 class TokenType1 {
+    static let bag = DisposeBag()
 }
 
 // External API
@@ -20,8 +21,6 @@ extension TokenType1 {
     
     public static func create(_ name: String, symbol: String, quantity: Int, fundingWif: String, fundingAddress: String) -> Single<String> {
         return Single<String>.create(subscribe: { (observer) -> Disposable in
-            
-            let bag = DisposeBag()
             
             // Fetch UTXOs
             RestService.fetchUTXOs(fundingAddress)
@@ -42,8 +41,6 @@ extension TokenType1 {
     
     public static func send(_ name: String, symbol: String, quantity: Int, fundingWif: String, fundingAddress: String) -> Single<String> {
         return Single<String>.create(subscribe: { (observer) -> Disposable in
-            
-            let bag = DisposeBag()
             
             RestService.fetchUTXOs(fundingAddress)
                 .subscribe(onSuccess: { utxos in

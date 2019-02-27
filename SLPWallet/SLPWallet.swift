@@ -43,31 +43,4 @@ public class SLPWallet {
         // List of tokens
         self.tokens = [SLPToken]()
     }
-
-//    func getTokens() -> Single<String> {
-//        return Single<String>.create { single -> Disposable in
-//            print(self.cashAddress)
-//            RestService
-//                .fetchUTXOs(self.cashAddress)
-//                .subscribe(onSuccess: { utxos in
-//                    let txids = utxos
-//                        .flatMap { $0.utxos }
-//                        .flatMap { $0.txid }
-//                        .description
-//                    
-//                    RestService
-//                        .fetchTxDetails(txids)
-//                        .subscribe(onSuccess: { txs in
-//                            print(txs)
-//                            single(.success("test"))
-//                        }, onError: { error in
-//                            single(.error(error))
-//                        })
-//                }, onError: { error in
-//                    single(.error(error))
-//                })
-//            
-//            return Disposables.create()
-//        }
-//    }
 }
