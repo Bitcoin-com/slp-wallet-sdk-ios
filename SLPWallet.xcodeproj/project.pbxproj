@@ -95,8 +95,12 @@
 		3B99B0572226251B00A1B599 /* SLPWallet */ = {
 			isa = PBXGroup;
 			children = (
-				3B99B089222629F200A1B599 /* Common */,
 				3B99B07B2226290100A1B599 /* TokenType1.swift */,
+				3B99B07A2226290100A1B599 /* Config.swift */,
+				3B99B0732226290100A1B599 /* Entities */,
+				3B99B06F2226290100A1B599 /* Extensions */,
+				3B99B0772226290100A1B599 /* Networks */,
+				3B99B0752226290100A1B599 /* Services */,
 				3B99B0582226251B00A1B599 /* SLPWallet.h */,
 				3B99B0592226251B00A1B599 /* Info.plist */,
 			);
@@ -142,18 +146,6 @@
 				3B99B0782226290100A1B599 /* RestNetwork.swift */,
 			);
 			path = Networks;
-			sourceTree = "<group>";
-		};
-		3B99B089222629F200A1B599 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				3B99B07A2226290100A1B599 /* Config.swift */,
-				3B99B0732226290100A1B599 /* Entities */,
-				3B99B06F2226290100A1B599 /* Extensions */,
-				3B99B0772226290100A1B599 /* Networks */,
-				3B99B0752226290100A1B599 /* Services */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		561E32CD2B29AD18B67F82FE /* Frameworks */ = {
