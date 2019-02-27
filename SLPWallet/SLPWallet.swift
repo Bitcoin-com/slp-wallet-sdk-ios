@@ -7,6 +7,12 @@
 //
 
 import BitcoinKit
+import RxSwift
+
+public struct SLPToken {
+    public var tokenId: String
+    public var amount: Int
+}
 
 public class SLPWallet {
     
@@ -15,6 +21,8 @@ public class SLPWallet {
     
     public let cashAddress: String
     public let slpAddress: String
+    
+    public var tokens: [SLPToken]
     
     init(_ mnemonic: String, network: Network) {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
@@ -31,5 +39,34 @@ public class SLPWallet {
         
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self.slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
+        
+        // List of tokens
+        self.tokens = [SLPToken]()
+    }
+
+    func getTokens() -> Single<String> {
+        return Single<String>.create { single -> Disposable in
+            print(self.cashAddress)
+            RestService
+                .fetchUTXOs(self.cashAddress)
+                .subscribe(onSuccess: { utxos in
+                    let txids = utxos
+                        .flatMap { $0.txid }
+                        .description
+                    
+                    RestService
+                        .fetchTxDetails(txids)
+                        .subscribe(onSuccess: { txs in
+                            print(txs)
+                            single(.success("test"))
+                        }, onError: { error in
+                            single(.error(error))
+                        })
+                }, onError: { error in
+                    single(.error(error))
+                })
+            
+            return Disposables.create()
+        }
     }
 }

@@ -6,13 +6,11 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import Foundation
-
-struct ResponseUTXO: Codable {
-    let txid: String
-    let vout: Int
-    let satoshis: Int
-    let address: String
-    let confirmations: Int
-    let scriptPubKey: String
+public struct ResponseUTXO: Codable {
+    public let txid: String
+    public let vout: Int
+    public let satoshis: Int
+    public let address: String
+    public let confirmations: Int
+    public let scriptPubKey: String
 }

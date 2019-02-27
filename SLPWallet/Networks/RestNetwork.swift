@@ -11,18 +11,21 @@ import Moya
 enum RestNetwork {
     case fetchUTXOs(String)
     case fetchTxs(String)
+    case fetchTxDetails(String)
     case broadcast(String)
 }
 
 extension RestNetwork: TargetType {
     public var baseURL: URL {
-        return Config.shared.restUrl
+        return URL(string: "https://rest.bitcoin.com/v2")!
     }
     
     public var path: String {
         switch self {
         case .fetchUTXOs(let address):
-            return "/addrs/\(address)/utxo"
+            return "/address/utxo/\(address)"
+        case .fetchTxDetails:
+            return "/transaction/details/"
         case .fetchTxs(let address):
             return "/addrs/\(address)"
         case .broadcast: return "/tx/send"
@@ -33,6 +36,7 @@ extension RestNetwork: TargetType {
         switch self {
         case .fetchUTXOs: return .get
         case .fetchTxs: return .get
+        case .fetchTxDetails: return .post
         case .broadcast: return .post
         }
     }
@@ -45,6 +49,12 @@ extension RestNetwork: TargetType {
         switch self {
         case .broadcast(let rawTx):
             let str = "{\"rawtx\":\"\(rawTx)\"}"
+            if let data = str.data(using: .utf8) {
+                return .requestData(data)
+            }
+            return .requestPlain
+        case .fetchTxDetails(let txids):
+            let str = "{\"txids\":\"\(txids)\"}"
             if let data = str.data(using: .utf8) {
                 return .requestData(data)
             }
