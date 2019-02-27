@@ -1,1 +1,1 @@
-# slp-sdk-ios
+# wallet-slp-sdk-ios
