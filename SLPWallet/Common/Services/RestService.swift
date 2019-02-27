@@ -24,12 +24,13 @@ class RestService {
             let provider = MoyaProvider<RestNetwork>()
             provider.rx
                 .request(.fetchUTXOs(address))
+                .retry(3)
                 .map([ResponseUTXO].self)
                 .asObservable()
                 .subscribe ({ (event) in
                     switch event {
-                    case .next(let response):
-                        observer(.success(response))
+                    case .next(let utxos):
+                        observer(.success(utxos))
                     case .error(_):
                         observer(.error(RestError.REST_UTXOS))
                     default: break
