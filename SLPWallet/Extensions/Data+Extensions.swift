@@ -43,7 +43,7 @@ public extension Data {
         }
     }
     
-    public var uint16: UInt16 {
+    public var uint16LE: UInt16 {
         get {
             let i16array = self.withUnsafeBytes {
                 UnsafeBufferPointer<UInt16>(start: $0, count: self.count/2).map(UInt16.init(littleEndian:))
@@ -52,10 +52,28 @@ public extension Data {
         }
     }
     
-    public var uint32: UInt32 {
+    public var uint32LE: UInt32 {
         get {
             let i32array = self.withUnsafeBytes {
                 UnsafeBufferPointer<UInt32>(start: $0, count: self.count/2).map(UInt32.init(littleEndian:))
+            }
+            return i32array[0]
+        }
+    }
+    
+    public var uint16BE: UInt16 {
+        get {
+            let i16array = self.withUnsafeBytes {
+                UnsafeBufferPointer<UInt16>(start: $0, count: self.count/2).map(UInt16.init(bigEndian:))
+            }
+            return i16array[0]
+        }
+    }
+    
+    public var uint32BE: UInt32 {
+        get {
+            let i32array = self.withUnsafeBytes {
+                UnsafeBufferPointer<UInt32>(start: $0, count: self.count/2).map(UInt32.init(bigEndian:))
             }
             return i32array[0]
         }

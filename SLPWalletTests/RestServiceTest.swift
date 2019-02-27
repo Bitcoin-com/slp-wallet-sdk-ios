@@ -47,28 +47,54 @@ class RestServiceTest: QuickSpec {
                         }
                         
                         // 0 : lokad id 4 bytes ASCII
+                        // Good
                         guard let lokadId = String(data: chunks[0].chunkData, encoding: String.Encoding.ascii) else {
                             return
                         }
                         print("lokadId: \(lokadId)")
                         
                         // 1 : token_type 1 bytes Integer
+                        // Good
                         let tokenType = chunks[1].chunkData.uint8
                         print("tokenType: \(tokenType)")
                         
                         // 2 : transaction_type 4 bytes ASCII
+                        // Good
                         guard let transactionType = String(data: chunks[2].chunkData, encoding: String.Encoding.ascii) else {
                             return
                         }
                         print("transactionType: \(transactionType)")
                         
                         // 3 : token_id 32 bytes  hex
+                        // Good
                         let tokenId = chunks[3].chunkData.hex
                         print("tokenId: \(tokenId)")
                         
-                        // 4 : token_output_quantity
-                        let tokenOutputQuantity = chunks[4].chunkData.uint8
-                        print("tokenOutputQuantity: \(tokenOutputQuantity)")
+                        // 4 : token_output_quantity 1
+                        // Wrong
+                        let tokenOutputQuantity1 = chunks[4].string
+                        print("tokenOutputQuantity1: \(tokenOutputQuantity1)")
+                        
+                        // 5 : token_output_quantity 2
+                        // Wrong
+                        let tokenOutputQuantity2 = chunks[5].string
+                        print("tokenOutputQuantity2: \(tokenOutputQuantity2)")
+                        
+//                      TODO: How does it work with the quantity?
+//
+//                        token.int32.unsafeMultiplied(by: Int32(expo))
+                        
+//                        (
+//                            new BigNumber(
+//                                chunk.readUInt32BE(0).toString()
+//                            )
+//                        )
+//                        .multipliedBy(2**32)
+//                        .plus(
+//                            new BigNumber(
+//                                chunk.readUInt32BE(4).toString()
+//                            )
+//                        )
                     })
                 }
             }
