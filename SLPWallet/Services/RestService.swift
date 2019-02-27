@@ -10,23 +10,40 @@ import Moya
 import RxSwift
 
 public class RestService {
+    static let bag = DisposeBag()
     
     enum RestError: Error {
         case REST_UTXOS
         case REST_TX_DETAILS
     }
+}
+
+// Fetch UTXOs
+//
+extension RestService {
     
-    // Fetch UTXO
-    static public func fetchUTXOs(_ address: String) -> Single<[ResponseUTXO]> {
-        return Single<[ResponseUTXO]>.create(subscribe: { (observer) -> Disposable in
+    public struct ResponseUTXOs: Codable {
+        public let utxos: [ResponseUTXO]
+        public let scriptPubKey: String
+    }
+    
+    public struct ResponseUTXO: Codable {
+        public let txid: String
+        public let vout: Int
+        public let satoshis: Int
+        public let confirmations: Int
+    }
+    
+    static public func fetchUTXOs(_ address: String) -> Single<ResponseUTXOs> {
+        
+        return Single<ResponseUTXOs>.create(subscribe: { (observer) -> Disposable in
             // Get a utxo
             //
-            let bag = DisposeBag()
             let provider = MoyaProvider<RestNetwork>()
             provider.rx
                 .request(.fetchUTXOs(address))
                 .retry(3)
-                .map([ResponseUTXO].self)
+                .map(ResponseUTXOs.self)
                 .asObservable()
                 .subscribe ({ (event) in
                     switch event {
@@ -40,17 +57,46 @@ public class RestService {
                     default: break
                     }
                 })
-                .disposed(by: bag)
+                .disposed(by: RestService.bag)
             return Disposables.create()
         })
     }
+}
+
+// Fetch TxDetails
+//
+extension RestService {
     
-    // Fetch UTXO
-    static func fetchTxDetails(_ txids: String) -> Single<[ResponseTx]> {
+    public struct ResponseTx: Codable {
+        public let txid: String
+        public let vin: [ResponseInput]
+        public let vout: [ResponseOutput]
+        public let confirmations: Int
+        public let time: Int
+        public let fees: Double
+        
+        public struct ResponseInput: Codable {
+            public let cashAddress: String
+            public let value: Int
+        }
+        
+        public struct ResponseOutput: Codable {
+            public let value: String
+            public let n: Int
+            public let scriptPubKey: ResponseScriptPubKey
+        }
+        
+        public struct ResponseScriptPubKey: Codable {
+            public let addresses: [String]?
+            public let hex: String
+            public let asm: String
+        }
+    }
+    
+    public static func fetchTxDetails(_ txids: String) -> Single<[ResponseTx]> {
         return Single<[ResponseTx]>.create(subscribe: { (observer) -> Disposable in
             // Get tx details
             //
-            let bag = DisposeBag()
             let provider = MoyaProvider<RestNetwork>()
             provider.rx
                 .request(.fetchTxDetails(txids))
@@ -67,7 +113,7 @@ public class RestService {
                     default: break
                     }
                 })
-                .disposed(by: bag)
+                .disposed(by: RestService.bag)
             return Disposables.create()
         })
     }

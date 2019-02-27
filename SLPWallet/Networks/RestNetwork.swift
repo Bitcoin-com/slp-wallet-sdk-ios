@@ -54,7 +54,7 @@ extension RestNetwork: TargetType {
             }
             return .requestPlain
         case .fetchTxDetails(let txids):
-            let str = "{\"txids\":\"\(txids)\"}"
+            let str = "{\"txids\":[\"\(txids)\"]}"
             if let data = str.data(using: .utf8) {
                 return .requestData(data)
             }
@@ -65,11 +65,6 @@ extension RestNetwork: TargetType {
     }
     
     public var headers: [String : String]? {
-        switch self {
-        default:
-            return [
-                "Content-Type": "application/json"
-            ]
-        }
+        return ["Content-Type": "application/json"]
     }
 }

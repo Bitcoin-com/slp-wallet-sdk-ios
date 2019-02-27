@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C5E5DD945C4AA274386A1AF /* Pods_SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B29D8E16C1298700B9822C9 /* Pods_SLPWallet.framework */; };
-		3B7319E0222645BA00BC15AB /* ResponseTx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7319DF222645BA00BC15AB /* ResponseTx.swift */; };
+		3B7FE8D02226842300CB5755 /* StoreUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B0662226251B00A1B599 /* SLPWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B99B0582226251B00A1B599 /* SLPWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
@@ -16,11 +15,11 @@
 		3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0782226290100A1B599 /* RestNetwork.swift */; };
 		3B99B0832226290100A1B599 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07A2226290100A1B599 /* Config.swift */; };
 		3B99B0842226290100A1B599 /* TokenType1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07B2226290100A1B599 /* TokenType1.swift */; };
-		3B99B0862226292E00A1B599 /* ResponseUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0852226292E00A1B599 /* ResponseUTXO.swift */; };
 		3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B08A22262DC700A1B599 /* SLPWallet.swift */; };
 		3BE242AC22266165003432CE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BE242AB22266165003432CE /* Podfile */; };
 		3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE242AD222667F2003432CE /* RestServiceTest.swift */; };
-		E3BF8958E1F7A09B667D51CC /* Pods_SLPWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E02C9B7EC8F29CD896EA129 /* Pods_SLPWalletTests.framework */; };
+		954D6D3D74746C210E1A75F8 /* Pods_SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C21B26E418730E5AF70A19 /* Pods_SLPWallet.framework */; };
+		CE30C9DDB2B075F35194E442 /* Pods_SLPWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4BBD5348167122E65CB0D1E /* Pods_SLPWalletTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B29D8E16C1298700B9822C9 /* Pods_SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E02C9B7EC8F29CD896EA129 /* Pods_SLPWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B7319DF222645BA00BC15AB /* ResponseTx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTx.swift; sourceTree = "<group>"; };
+		3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUTXO.swift; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0582226251B00A1B599 /* SLPWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPWallet.h; sourceTree = "<group>"; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,13 +44,14 @@
 		3B99B0782226290100A1B599 /* RestNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestNetwork.swift; sourceTree = "<group>"; };
 		3B99B07A2226290100A1B599 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3B99B07B2226290100A1B599 /* TokenType1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenType1.swift; sourceTree = "<group>"; };
-		3B99B0852226292E00A1B599 /* ResponseUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseUTXO.swift; sourceTree = "<group>"; };
 		3B99B08A22262DC700A1B599 /* SLPWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWallet.swift; sourceTree = "<group>"; };
-		3BE242AB22266165003432CE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		3BE242AB22266165003432CE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3BE242AD222667F2003432CE /* RestServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceTest.swift; sourceTree = "<group>"; };
 		7E62E6DFF8D209572DA88DE7 /* Pods-SLPWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
 		85E9430EC3039AE31ABA1AA6 /* Pods-SLPWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWallet/Pods-SLPWallet.debug.xcconfig"; sourceTree = "<group>"; };
 		BAB0985DA0B486B5E95994DC /* Pods-SLPWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWallet/Pods-SLPWallet.release.xcconfig"; sourceTree = "<group>"; };
+		E1C21B26E418730E5AF70A19 /* Pods_SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4BBD5348167122E65CB0D1E /* Pods_SLPWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA888C968B522C3174F0EB3F /* Pods-SLPWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C5E5DD945C4AA274386A1AF /* Pods_SLPWallet.framework in Frameworks */,
+				954D6D3D74746C210E1A75F8 /* Pods_SLPWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */,
-				E3BF8958E1F7A09B667D51CC /* Pods_SLPWalletTests.framework in Frameworks */,
+				CE30C9DDB2B075F35194E442 /* Pods_SLPWalletTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +133,7 @@
 		3B99B0732226290100A1B599 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				3B99B0852226292E00A1B599 /* ResponseUTXO.swift */,
-				3B7319DF222645BA00BC15AB /* ResponseTx.swift */,
+				3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -160,8 +157,8 @@
 		561E32CD2B29AD18B67F82FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B29D8E16C1298700B9822C9 /* Pods_SLPWallet.framework */,
-				2E02C9B7EC8F29CD896EA129 /* Pods_SLPWalletTests.framework */,
+				E1C21B26E418730E5AF70A19 /* Pods_SLPWallet.framework */,
+				F4BBD5348167122E65CB0D1E /* Pods_SLPWalletTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,7 +215,7 @@
 				3B99B05A2226251B00A1B599 /* Sources */,
 				3B99B05B2226251B00A1B599 /* Frameworks */,
 				3B99B05C2226251B00A1B599 /* Resources */,
-				6CFF263B77B55ACF2D5A14E8 /* [CP] Embed Pods Frameworks */,
+				1636525CC74F534E45410B66 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,25 +301,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		53AABF248E41EDAC03200391 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SLPWalletTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6CFF263B77B55ACF2D5A14E8 /* [CP] Embed Pods Frameworks */ = {
+		1636525CC74F534E45410B66 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,6 +339,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		53AABF248E41EDAC03200391 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SLPWalletTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -369,11 +366,10 @@
 			files = (
 				3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */,
 				3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */,
+				3B7FE8D02226842300CB5755 /* StoreUTXO.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
-				3B99B0862226292E00A1B599 /* ResponseUTXO.swift in Sources */,
 				3B99B0802226290100A1B599 /* RestService.swift in Sources */,
 				3B99B0832226290100A1B599 /* Config.swift in Sources */,
-				3B7319E0222645BA00BC15AB /* ResponseTx.swift in Sources */,
 				3B99B0842226290100A1B599 /* TokenType1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
