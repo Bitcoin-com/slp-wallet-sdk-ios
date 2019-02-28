@@ -6,6 +6,8 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
+import Foundation
+
 public class SLPUTXO {
     public var txid: String
     public var satoshis: Int

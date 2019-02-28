@@ -6,6 +6,8 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
+import Foundation
+
 public extension NSData {
     
     public func readUInt32BE(position : Int) -> UInt32 {

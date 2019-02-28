@@ -12,8 +12,8 @@
 		3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */; };
 		3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */; };
 		3B7FE9022227BFA600CB5755 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */; };
+		3B7FE90722283C2B00CB5755 /* SLPWallet.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
-		3B99B0662226251B00A1B599 /* SLPWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B99B0582226251B00A1B599 /* SLPWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
 		3B99B0802226290100A1B599 /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0762226290100A1B599 /* RestService.swift */; };
 		3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0782226290100A1B599 /* RestNetwork.swift */; };
@@ -42,8 +42,8 @@
 		3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTest.swift; sourceTree = "<group>"; };
 		3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SLPWallet.podspec; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B99B0582226251B00A1B599 /* SLPWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPWallet.h; sourceTree = "<group>"; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLPWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0652226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +87,7 @@
 		3B99B04B2226251B00A1B599 = {
 			isa = PBXGroup;
 			children = (
+				3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */,
 				3BE242AB22266165003432CE /* Podfile */,
 				3B99B0572226251B00A1B599 /* SLPWallet */,
 				3B99B0622226251B00A1B599 /* SLPWalletTests */,
@@ -115,7 +116,6 @@
 				3B99B06F2226290100A1B599 /* Extensions */,
 				3B99B0772226290100A1B599 /* Networks */,
 				3B99B0752226290100A1B599 /* Services */,
-				3B99B0582226251B00A1B599 /* SLPWallet.h */,
 				3B99B0592226251B00A1B599 /* Info.plist */,
 			);
 			path = SLPWallet;
@@ -193,7 +193,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B99B0662226251B00A1B599 /* SLPWallet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BE242AC22266165003432CE /* Podfile in Resources */,
+				3B7FE90722283C2B00CB5755 /* SLPWallet.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

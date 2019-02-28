@@ -12,6 +12,16 @@ import RxSwift
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
+    fileprivate lazy var timer: DispatchSourceTimer = {
+        let t = DispatchSource.makeTimerSource()
+        t.schedule(deadline: .now(), repeating: 10)
+        t.setEventHandler(handler: { [weak self] in
+            self?.fetchTokens()
+                .subscribe()
+                .disposed(by: SLPWallet.bag)
+        })
+        return t
+    }()
     
     fileprivate let privKey: PrivateKey
     fileprivate let network: Network
@@ -43,10 +53,7 @@ public class SLPWallet {
         self.tokens = [String:SLPToken]()
         
         // TODO: Change fields to be observable to notify our users when tokens are ready or when there is new one.
-        // TODO: Add a scheduler to refresh all of this :)
-        self.fetchTokens()
-            .subscribe()
-            .disposed(by: SLPWallet.bag)
+        timer.resume()
     }
     
     public func fetchTokens() -> Single<[String:SLPToken]> {
