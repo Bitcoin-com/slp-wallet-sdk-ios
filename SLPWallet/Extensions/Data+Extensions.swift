@@ -35,6 +35,12 @@ public extension NSData {
 
 public extension Data {
     
+    func clean() -> Data {
+        var newData = self
+        newData.removeFirst()
+        return newData
+    }
+    
     public var uint8: UInt8 {
         get {
             var number: UInt8 = 0

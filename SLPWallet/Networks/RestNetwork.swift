@@ -11,7 +11,7 @@ import Moya
 enum RestNetwork {
     case fetchUTXOs(String)
     case fetchTxs(String)
-    case fetchTxDetails(String)
+    case fetchTxDetails([String])
     case broadcast(String)
 }
 
@@ -54,11 +54,12 @@ extension RestNetwork: TargetType {
             }
             return .requestPlain
         case .fetchTxDetails(let txids):
-            let str = "{\"txids\":[\"\(txids)\"]}"
-            if let data = str.data(using: .utf8) {
-                return .requestData(data)
-            }
-            return .requestPlain
+//            let str = "{\"txids\":[\"\(txids)\"]}"
+//            if let data = str.data(using: .utf8) {
+//                return .requestData(data)
+//            }
+//            return .requestPlain
+            return .requestParameters(parameters: ["txids": txids], encoding: JSONEncoding.default)
         default:
             return .requestPlain
         }

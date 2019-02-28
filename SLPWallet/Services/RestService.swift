@@ -93,7 +93,7 @@ extension RestService {
         }
     }
     
-    public static func fetchTxDetails(_ txids: String) -> Single<[ResponseTx]> {
+    public static func fetchTxDetails(_ txids: [String]) -> Single<[ResponseTx]> {
         return Single<[ResponseTx]>.create(subscribe: { (observer) -> Disposable in
             // Get tx details
             //
