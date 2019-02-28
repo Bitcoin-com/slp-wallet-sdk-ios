@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B7FE8D02226842300CB5755 /* StoreUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */; };
 		3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */; };
-		3B7FE8FC22276D5A00CB5755 /* BigNumber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7FE8F822276C3900CB5755 /* BigNumber.framework */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B0662226251B00A1B599 /* SLPWallet.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B99B0582226251B00A1B599 /* SLPWallet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
@@ -25,41 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3B7FE8F122276C3900CB5755 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F64629231FF015E40074A180;
-			remoteInfo = MathGround;
-		};
-		3B7FE8F322276C3900CB5755 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F64629541FF017E90074A180;
-			remoteInfo = BigNumber;
-		};
-		3B7FE8F522276C3900CB5755 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F646295C1FF017EA0074A180;
-			remoteInfo = BigNumberTests;
-		};
-		3B7FE8F722276C3900CB5755 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AE8388A6203F1CAF00FAC88F;
-			remoteInfo = "BigNumber-iOS";
-		};
-		3B7FE8F922276C3900CB5755 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AE8388AE203F1CB000FAC88F;
-			remoteInfo = "BigNumber-iOSTests";
-		};
 		3B99B0602226251B00A1B599 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3B99B04C2226251B00A1B599 /* Project object */;
@@ -72,7 +36,6 @@
 /* Begin PBXFileReference section */
 		3B7FE8CF2226842300CB5755 /* StoreUTXO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreUTXO.swift; sourceTree = "<group>"; };
 		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
-		3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Swift-BigNumber.xcodeproj"; path = "../../../../Downloads/Swift-Big-Integer-master/Swift-BigNumber.xcodeproj"; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0582226251B00A1B599 /* SLPWallet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLPWallet.h; sourceTree = "<group>"; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B7FE8FC22276D5A00CB5755 /* BigNumber.framework in Frameworks */,
 				954D6D3D74746C210E1A75F8 /* Pods_SLPWallet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,23 +78,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B7FE8EA22276C3900CB5755 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3B7FE8F222276C3900CB5755 /* MathGround */,
-				3B7FE8F422276C3900CB5755 /* BigNumber.framework */,
-				3B7FE8F622276C3900CB5755 /* BigNumberTests.xctest */,
-				3B7FE8F822276C3900CB5755 /* BigNumber.framework */,
-				3B7FE8FA22276C3900CB5755 /* BigNumber-iOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3B99B04B2226251B00A1B599 = {
 			isa = PBXGroup;
 			children = (
 				3BE242AB22266165003432CE /* Podfile */,
-				3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */,
 				3B99B0572226251B00A1B599 /* SLPWallet */,
 				3B99B0622226251B00A1B599 /* SLPWalletTests */,
 				3B99B0562226251B00A1B599 /* Products */,
@@ -310,12 +259,6 @@
 			mainGroup = 3B99B04B2226251B00A1B599;
 			productRefGroup = 3B99B0562226251B00A1B599 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3B7FE8EA22276C3900CB5755 /* Products */;
-					ProjectRef = 3B7FE8E922276C3900CB5755 /* Swift-BigNumber.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3B99B0542226251B00A1B599 /* SLPWallet */,
@@ -323,44 +266,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3B7FE8F222276C3900CB5755 /* MathGround */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.executable";
-			path = MathGround;
-			remoteRef = 3B7FE8F122276C3900CB5755 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B7FE8F422276C3900CB5755 /* BigNumber.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BigNumber.framework;
-			remoteRef = 3B7FE8F322276C3900CB5755 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B7FE8F622276C3900CB5755 /* BigNumberTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = BigNumberTests.xctest;
-			remoteRef = 3B7FE8F522276C3900CB5755 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B7FE8F822276C3900CB5755 /* BigNumber.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BigNumber.framework;
-			remoteRef = 3B7FE8F722276C3900CB5755 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3B7FE8FA22276C3900CB5755 /* BigNumber-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "BigNumber-iOSTests.xctest";
-			remoteRef = 3B7FE8F922276C3900CB5755 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3B99B0532226251B00A1B599 /* Resources */ = {

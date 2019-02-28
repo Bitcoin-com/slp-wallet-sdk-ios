@@ -11,7 +11,6 @@ import Nimble
 import Quick
 import RxBlocking
 import BitcoinKit
-import BigNumber
 
 class RestServiceTest: QuickSpec {
     override func spec() {
