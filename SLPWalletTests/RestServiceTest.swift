@@ -11,6 +11,7 @@ import Nimble
 import Quick
 import RxBlocking
 import BitcoinKit
+import BigNumber
 
 class RestServiceTest: QuickSpec {
     override func spec() {
@@ -71,16 +72,30 @@ class RestServiceTest: QuickSpec {
                         print("tokenId: \(tokenId)")
                         
                         // 4 : token_output_quantity 1
-                        // Wrong
+                        // Good (need to manage to comma)
+                        var chunk = chunks[4].chunkData
+                        var first = chunk.removeFirst()
+                        
+                        print(chunk.count)
+                        print(Int(chunk.hex, radix: 16))
+                        print(chunk.uint32BE)
+                        
                         let tokenOutputQuantity1 = chunks[4].string
                         print("tokenOutputQuantity1: \(tokenOutputQuantity1)")
                         
                         // 5 : token_output_quantity 2
-                        // Wrong
+                        // Good (need to manage to comma)
+                        chunk = chunks[5].chunkData
+                        first = chunk.removeFirst()
+                        
+                        print(chunk.count)
+                        print(Int(chunk.hex, radix: 16))
+                        print(chunk.uint32BE)
+                        
                         let tokenOutputQuantity2 = chunks[5].string
                         print("tokenOutputQuantity2: \(tokenOutputQuantity2)")
                         
-//                      TODO: How does it work with the quantity?
+//                      TODO: How does it work with the quantity? DONE
 //
 //                        token.int32.unsafeMultiplied(by: Int32(expo))
                         
