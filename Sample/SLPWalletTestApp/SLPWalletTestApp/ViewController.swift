@@ -11,10 +11,11 @@ import SLPWallet
 import RxSwift
 
 class ViewController: UIViewController {
-    
     fileprivate let bag = DisposeBag()
     
-    fileprivate var wallet = SLPWallet("Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune Pluto", network: .mainnet)
+    fileprivate var wallet: SLPWallet = SLPWallet("Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune Pluto", network: .mainnet)
+    fileprivate var tokens = [String:SLPToken]()
+    fileprivate var selectedToken: SLPToken?
     
     @IBOutlet weak var cashAddressLabel: UILabel!
     @IBOutlet weak var slpAddressLabel: UILabel!
@@ -26,36 +27,56 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tokenSegmentControl.removeAllSegments()
         
-        cashAddressLabel.text = wallet.cashAddress
-        slpAddressLabel.text = wallet.slpAddress
+        wallet.delegate = self
         
-        wallet.fetchTokens()
-            .subscribe(onSuccess: { tokens in
-                tokens.forEach({ key, token in
-                    self.tokenSegmentControl.insertSegment(withTitle: token.tokenTicker, at: 0, animated: true)
-                })
-            }).disposed(by: bag)
+        setupWallet()
     }
     
-    @IBAction func didSelectToken(_ sender: Any) {
-        let keys = Array(wallet.tokens.keys)
-        
-        guard tokenSegmentControl.selectedSegmentIndex < keys.count
-            , keys.count > 0 else {
-            return
-        }
-        
-        let tokenId = keys[tokenSegmentControl.selectedSegmentIndex]
-        guard let token = wallet.tokens[tokenId] else {
-            return
-        }
-        
+    func setupWallet() {
+        self.tokenSegmentControl.removeAllSegments()
+        cashAddressLabel.text = wallet.cashAddress
+        slpAddressLabel.text = wallet.slpAddress
+    }
+    
+    func onUpdatedSelectedToken(_ token: SLPToken) {
         balanceLabel.text = token.getBalance().description
         gasLabel.text = token.getGas().description
     }
     
+    @IBAction func didSelectToken(_ sender: Any) {
+        guard tokens.keys.count > tokenSegmentControl.selectedSegmentIndex else {
+            return
+        }
+        
+        let keys = Array(tokens.keys)
+        selectedToken = self.tokens[keys[tokenSegmentControl.selectedSegmentIndex]]
+        onUpdatedSelectedToken(selectedToken!)
+    }
     
+    func onNewToken(_ token:  SLPToken) {
+        self.tokens[token.tokenId] = token
+        self.tokenSegmentControl.insertSegment(withTitle: token.tokenTicker, at: 0, animated: true)
+    }
+}
+
+extension ViewController: SLPWalletDelegate {
+    
+    func onUpdatedToken(_ tokens: [String:SLPToken]) {
+        tokens.forEach({ tokenId, token in
+            if self.tokens[tokenId] == nil {
+                onNewToken(token)
+            } else if self.tokens[tokenId]!.getBalance() != tokens[tokenId]!.getBalance() {
+                self.tokens[tokenId] = token
+                
+                if let selectedToken = self.selectedToken
+                    , selectedToken.tokenId == tokenId {
+                    self.selectedToken = token
+                    onUpdatedSelectedToken(token)
+                }
+            }
+            
+        })
+    }
 }
 
