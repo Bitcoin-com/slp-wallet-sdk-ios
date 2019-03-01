@@ -10,10 +10,6 @@ import BitcoinKit
 import RxSwift
 import RxCocoa
 
-public protocol SLPWalletDelegate {
-    func onTokens(_ tokens: [String:SLPToken])
-}
-
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()

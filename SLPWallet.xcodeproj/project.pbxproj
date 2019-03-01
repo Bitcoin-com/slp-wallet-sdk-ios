@@ -13,6 +13,7 @@
 		3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */; };
 		3B7FE9022227BFA600CB5755 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */; };
 		3B7FE90722283C2B00CB5755 /* SLPWallet.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */; };
+		3B7FE90D2229103900CB5755 /* SLPWalletDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE90C2229103900CB5755 /* SLPWalletDelegate.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
 		3B99B0802226290100A1B599 /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0762226290100A1B599 /* RestService.swift */; };
@@ -43,6 +44,7 @@
 		3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SLPWallet.podspec; sourceTree = "<group>"; };
+		3B7FE90C2229103900CB5755 /* SLPWalletDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletDelegate.swift; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLPWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 			children = (
 				3B99B07B2226290100A1B599 /* TokenType1.swift */,
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
+				3B7FE90C2229103900CB5755 /* SLPWalletDelegate.swift */,
 				3B99B07A2226290100A1B599 /* Config.swift */,
 				3B99B0732226290100A1B599 /* Entities */,
 				3B99B06F2226290100A1B599 /* Extensions */,
@@ -381,6 +384,7 @@
 				3B7FE8D02226842300CB5755 /* Entities.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B7FE9022227BFA600CB5755 /* Double+Extensions.swift in Sources */,
+				3B7FE90D2229103900CB5755 /* SLPWalletDelegate.swift in Sources */,
 				3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */,
 				3B99B0802226290100A1B599 /* RestService.swift in Sources */,
 				3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */,
