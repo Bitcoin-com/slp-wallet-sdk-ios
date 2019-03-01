@@ -40,6 +40,11 @@ public class SLPWallet {
         return t
     }()
     
+    public convenience init(_ network: Network) {
+        let mnemonic = try! Mnemonic.generate()
+        self.init(mnemonic.joined(separator: ","), network: network)
+    }
+    
     public init(_ mnemonic: String, network: Network) {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
