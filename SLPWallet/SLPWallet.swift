@@ -10,6 +10,25 @@ import BitcoinKit
 import RxSwift
 import RxCocoa
 
+public protocol SLPWalletDelegate {
+    func onNewTokens(_ tokens: [SLPToken])
+    func onUpdatedToken(_ token: SLPToken)
+}
+
+enum SLPTransactionType: String {
+    case GENESIS
+    case SEND
+}
+
+struct SLPTransaction {
+    let tokenId: String?
+    let tokenTicker: String?
+    let tokenName: String?
+    let type: SLPTransactionType
+    let decimal: Int
+    let tokens: [TokenUTXO]?
+}
+
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
@@ -38,10 +57,12 @@ public class SLPWallet {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
         
-        print(hdPrivKey.privateKey().toWIF())
         
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 0).derived(at: 0)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
+        
+        
+        print(privKey.toWIF())
         
         self.mnemonic = mnemonic
         self.privKey = privKey
@@ -75,7 +96,7 @@ public class SLPWallet {
                                 switch event {
                                 case .success(let txs):
                                     
-                                    var newTokens = [String:SLPToken]()
+                                    var newTokens = [SLPToken]()
                                     
                                     txs.forEach({ tx in
                                         
@@ -118,14 +139,7 @@ public class SLPWallet {
                                             }
                                             
                                             // TODO: Dirty, need a clean up
-                                            token = self.tokens[tokenId]
-                                            if token == nil {
-                                                token = newTokens[tokenId]
-                                                if token == nil {
-                                                    token = SLPToken(tokenId)
-                                                    newTokens[tokenId] = token! // TODO: Remove the forcewrap
-                                                }
-                                            }
+                                            token = SLPToken(tokenId)
                                         }
                                         
                                         
@@ -138,13 +152,13 @@ public class SLPWallet {
                                         // else
                                         // Save the utxo in my wallet
                                         
-                                        for i in 0...tx.vout.count - 1 {
+                                        for i in 1...tx.vout.count - 1 {
                                             let vout = tx.vout[i]
                                             let script = Script(hex: vout.scriptPubKey.hex)
                                             
                                             // If OP_RETURN, I drop this UTXO
-                                            if script?.scriptChunks[0].opCode == .OP_RETURN {
-                                                continue
+                                            if script?.scriptChunks[i].opCode == .OP_RETURN {
+                                                break
                                             }
                                             
                                             // If my UTXO
@@ -154,22 +168,48 @@ public class SLPWallet {
                                                 , token != nil
                                                 {
                                                     let rawTokenQty = voutToTokenQty[i - 1]
-                                                    let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, rawTokenQty: rawTokenQty)
+                                                    let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
                                                     token?.utxos.append(tokenUTXO)
                                                 }
                                             }
                                         }
                                     })
                                     
+                                    newTokens = newTokens.compactMap({ token in
+                                        // If new token, keep it
+                                        if let oldToken = self.tokens[token.tokenId] {
+                                            var hasChanged = false
+                                            
+                                            token.utxos.forEach({ utxo in
+                                                if hasChanged || oldToken.utxos
+                                                    .filter({ return $0.txid == utxo.txid && $0.index == utxo.index })
+                                                    .count == 0 {
+                                                    hasChanged = true
+                                                    return
+                                                }
+                                            })
+                                            
+                                            if hasChanged {
+                                                self.delegate?.onUpdatedToken(token)
+                                            }
+                                        }
+                                        
+                                        return token
+//                                        if token.utxos.filter({ utxo -> Bool in
+//                                            return utxo.txid == tx.txid && utxo.index == i
+//                                        }).count == 0 {
+                                    })
+                                    
                                     Observable
-                                        .zip(newTokens.map { self.addToken($1).asObservable() })
+                                        .zip(newTokens.map { self.addToken($0).asObservable() })
                                         .subscribe({ event in
                                             switch event {
                                             case .next(let _):
                                                 // Nothing interesting to do for now here
                                                 break
                                             case .completed:
-                                                self.delegate?.onTokens(self.tokens)
+                                                // Notify new token
+                                                self.delegate?.onNewTokens(self.tokens)
                                                 single(.success(self.tokens))
                                             case .error(let error):
                                                 single(.error(error))

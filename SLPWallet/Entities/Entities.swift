@@ -13,12 +13,14 @@ public class SLPUTXO {
     public var satoshis: Int
     public var cashAddress: String
     public var scriptPubKey: String
+    public var index: Int
     
-    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String) {
+    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int) {
         self.txid = txid
         self.satoshis = satoshis
         self.cashAddress = cashAddress
         self.scriptPubKey = scriptPubKey
+        self.index = index
     }
 }
 
@@ -26,9 +28,9 @@ public class TokenUTXO: SLPUTXO {
     public var rawTokenQty: Int
     public var tokenQty: Float?
     
-    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, rawTokenQty: Int) {
+    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int, rawTokenQty: Int) {
         self.rawTokenQty = rawTokenQty
-        super.init(txid, satoshis: satoshis, cashAddress: cashAddress, scriptPubKey: scriptPubKey)
+        super.init(txid, satoshis: satoshis, cashAddress: cashAddress, scriptPubKey: scriptPubKey, index: index)
     }
 }
 
