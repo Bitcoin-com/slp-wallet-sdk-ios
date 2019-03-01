@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 public protocol SLPWalletDelegate {
-    public func onTokens(_ tokens: [String:SLPToken])
+    func onTokens(_ tokens: [String:SLPToken])
 }
 
 public class SLPWallet {
