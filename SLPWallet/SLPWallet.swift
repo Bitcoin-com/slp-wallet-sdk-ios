@@ -14,24 +14,22 @@ public protocol SLPWalletDelegate {
     func onUpdatedToken(_ token: [String:SLPToken])
 }
 
-enum SLPTransactionType: String {
-    case GENESIS
-    case SEND
-}
-
-struct SLPTransaction {
-    let tokenId: String?
-    let tokenTicker: String?
-    let tokenName: String?
-    let type: SLPTransactionType
-    let decimal: Int
-    let tokens: [TokenUTXO]?
-}
-
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
-    fileprivate lazy var timer: DispatchSourceTimer = {
+    
+    fileprivate let privKey: PrivateKey
+    fileprivate let network: Network
+    fileprivate var tokens: [String:SLPToken]
+    fileprivate var utxos: [SLPUTXO]
+    
+    public let mnemonic: String
+    public let cashAddress: String
+    public let slpAddress: String
+    
+    public var delegate: SLPWalletDelegate?
+    
+    public lazy var scheduler: DispatchSourceTimer = {
         let t = DispatchSource.makeTimerSource()
         t.schedule(deadline: .now(), repeating: 10)
         t.setEventHandler(handler: { [weak self] in
@@ -41,16 +39,6 @@ public class SLPWallet {
         })
         return t
     }()
-    
-    fileprivate let privKey: PrivateKey
-    fileprivate let network: Network
-    fileprivate var tokens: [String:SLPToken]
-    
-    public let mnemonic: String
-    public let cashAddress: String
-    public let slpAddress: String
-    
-    public var delegate: SLPWalletDelegate?
     
     public init(_ mnemonic: String, network: Network) {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
@@ -73,9 +61,7 @@ public class SLPWallet {
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self.slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self.tokens = [String:SLPToken]()
-        
-        // TODO: Change fields to be observable to notify our users when tokens are ready or when there is new one.
-        timer.resume()
+        self.utxos = [SLPUTXO]()
     }
     
     public func fetchTokens() -> Single<[String:SLPToken]> {
@@ -104,7 +90,7 @@ public class SLPWallet {
                                         
                                         var voutToTokenQty = [Int]()
                                         var tokenId: String = ""
-                                        var token: SLPToken?
+                                        var currentToken: SLPToken?
                                         
                                         if var chunks = script?.scriptChunks
                                             , chunks.removeFirst().opCode == .OP_RETURN {
@@ -115,71 +101,115 @@ public class SLPWallet {
                                                 return
                                             }
                                             
-                                            // 1 : token_type 1 bytes Integer
-                                            // Good
-                                            let tokenType = chunks[1].chunkData.clean().uint8
-                                            
-                                            // 2 : transaction_type 4 bytes ASCII
-                                            // Good
-                                            guard let transactionType = String(data: chunks[2].chunkData.clean(), encoding: String.Encoding.ascii) else {
-                                                return
-                                            }
-                                            
-                                            // 3 : token_id 32 bytes  hex
-                                            // Good
-                                            tokenId = chunks[3].chunkData.clean().hex
-                                            
-                                            // 4 to .. : token_output_quantity 1..19
-                                            for i in 4...chunks.count - 1 {
-                                                guard let balance = Int(chunks[i].chunkData.clean().hex, radix: 16) else {
+                                            if lokadId == "SLP" {
+                                                var newToken = SLPToken()
+                                                
+                                                // 1 : token_type 1 bytes Integer
+                                                // Good
+                                                let tokenType = chunks[1].chunkData.clean().uint8
+                                                
+                                                // 2 : transaction_type 4 bytes ASCII
+                                                // Good
+                                                guard let transactionType = String(data: chunks[2].chunkData.clean(), encoding: String.Encoding.ascii) else {
                                                     return
                                                 }
-                                                voutToTokenQty.append(balance)
-                                            }
-                                            
-                                            // TODO: Dirty, need a clean up
-                                            token = self.tokens[tokenId]
-                                            if token == nil {
-                                                token = newTokens[tokenId]
-                                                if token == nil {
-                                                    token = SLPToken(tokenId)
-                                                    newTokens[tokenId] = token! // TODO: Remove the forcewrap
+
+                                                if transactionType == SLPTransactionType.GENESIS.rawValue {
+                                                    
+                                                    // Genesis => Txid
+                                                    newToken.tokenId = tx.txid
+                                                    
+                                                    // 3 : token_ticker UTF8
+                                                    // Good
+                                                    guard let tokenTicker = String(data: chunks[3].chunkData.clean(), encoding: String.Encoding.utf8) else {
+                                                        return
+                                                    }
+                                                    newToken.tokenTicker = tokenTicker
+                                                    
+                                                    // 4 : token_name UTF8
+                                                    // Good
+                                                    guard let tokenName = String(data: chunks[4].chunkData.clean(), encoding: String.Encoding.utf8) else {
+                                                        return
+                                                    }
+                                                    newToken.tokenName = tokenName
+                                                    
+                                                    // 8 : decimal 1 Byte
+                                                    // Good
+                                                    guard let decimal = Int(chunks[7].chunkData.clean().hex, radix: 16) else {
+                                                        return
+                                                    }
+                                                    newToken.decimal = decimal
+                                                    
+                                                    // 3 : token_id 32 bytes  hex
+                                                    // Good
+                                                    guard let balance = Int(chunks[9].chunkData.clean().hex, radix: 16) else {
+                                                        return
+                                                    }
+                                                    voutToTokenQty.append(balance)
+                                                    
+                                                } else if transactionType == SLPTransactionType.SEND.rawValue {
+                                                    
+                                                    // 3 : token_id 32 bytes  hex
+                                                    // Good
+                                                    newToken.tokenId = chunks[3].chunkData.clean().hex
+                                                    
+                                                    // 4 to .. : token_output_quantity 1..19
+                                                    for i in 4...chunks.count - 1 {
+                                                        guard let balance = Int(chunks[i].chunkData.clean().hex, radix: 16) else {
+                                                            return
+                                                        }
+                                                        voutToTokenQty.append(balance)
+                                                    }
+                                                }
+                                                
+                                                // Set the good current token & add the new token if it is needed :)
+                                                if let tId = newToken.tokenId {
+                                                    if let t = self.tokens[tId] {
+                                                        currentToken = t
+                                                    } else {
+                                                        newTokens[tId] = newToken
+                                                        currentToken = newToken
+                                                    }
                                                 }
                                             }
                                         }
                                         
                                         
                                         
-                                        // TODO: Logic to implement
                                         // Loop the UTXO
                                         // If my utxos
                                         // If UTXO owns token
                                         // Save the utxo in the Token + Amount of token
                                         // else
                                         // Save the utxo in my wallet
-                                        
-                                        for i in 1...tx.vout.count - 1 {
+                                        for i in 0...tx.vout.count - 1 {
                                             let vout = tx.vout[i]
                                             let script = Script(hex: vout.scriptPubKey.hex)
                                             
                                             // If OP_RETURN, I drop this UTXO
                                             if script?.scriptChunks[i].opCode == .OP_RETURN {
-                                                break
+                                                continue
                                             }
                                             
                                             // If my UTXO
                                             if utxo.scriptPubKey == vout.scriptPubKey.hex {
                                                 // If UTXO owns Token
                                                 if voutToTokenQty.count + 1 > i
-                                                    , token != nil
+                                                    , currentToken != nil
                                                 {
-                                                    let rawTokenQty = voutToTokenQty[i - 1]
-                                                    let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
-                                                    
-                                                    if token?.utxos.filter({ utxo -> Bool in
+                                                    if currentToken?.utxos.filter({ utxo -> Bool in
                                                         return utxo.txid == tx.txid && utxo.index == i
                                                     }).count == 0 {
-                                                        token?.utxos.append(tokenUTXO)
+                                                        let rawTokenQty = voutToTokenQty[i - 1]
+                                                        let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
+                                                        currentToken?.utxos.append(tokenUTXO)
+                                                    }
+                                                } else {
+                                                    if self.utxos.filter({ utxo -> Bool in
+                                                        return utxo.txid == tx.txid && utxo.index == i
+                                                    }).count == 0 {
+                                                        let utxo = SLPUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i)
+                                                        self.utxos.append(utxo)
                                                     }
                                                 }
                                             }
@@ -215,10 +245,18 @@ public class SLPWallet {
         }
     }
     
+    enum SLPWalletError : Error {
+        case TOKEN_ID
+    }
+    
     public func addToken(_ token: SLPToken) -> Single<SLPToken> {
         return Single<SLPToken>.create { single in
+            guard let tokenId = token.tokenId else {
+                single(.error(SLPWalletError.TOKEN_ID))
+                return Disposables.create()
+            }
             RestService
-                .fetchTxDetails([token.tokenId])
+                .fetchTxDetails([tokenId])
                 .subscribe({ response in
                     switch response {
                     case.success(let txs):
@@ -264,7 +302,7 @@ public class SLPWallet {
                         })
                         
                         // Add the token in the list
-                        self.tokens[token.tokenId] = token
+                        self.tokens[tokenId] = token
                         
                         single(.success(token))
                     case .error(let error):

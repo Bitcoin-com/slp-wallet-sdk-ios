@@ -29,21 +29,13 @@ class SLPWalletTest: QuickSpec {
                     .fetchTokens()
                     .toBlocking()
                     .single()
+                
                 tokens.forEach({ key, token in
                     expect(token.tokenTicker).to(equal("UIOP2"))
                     expect(token.tokenName).to(equal("The UIOP V2"))
                     expect(token.decimal).to(equal(4))
                     expect(token.getBalance()).toNot(beNil())
                     expect(token.getGas()).toNot(beNil())
-                    
-//                    Check the output
-//                    print("------------")
-//                    print("TokenId: \(token.tokenId)")
-//                    print("TokenTicker: \(token.tokenTicker ?? "-")")
-//                    print("TokenName: \(token.tokenName ?? "-")")
-//                    print("TokenDecimal: \(token.decimal ?? 0)")
-//                    print("Balance: \(token.getBalance())")
-//                    print("Gas: \(token.getGas())")
                 })
             }
             

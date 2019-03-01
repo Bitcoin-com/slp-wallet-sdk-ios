@@ -8,6 +8,21 @@
 
 import Foundation
 
+    
+enum SLPTransactionType: String {
+    case GENESIS
+    case SEND
+}
+
+struct SLPTransaction {
+    let tokenId: String?
+    let tokenTicker: String?
+    let tokenName: String?
+    let type: SLPTransactionType
+    let decimal: Int
+    let tokens: [TokenUTXO]?
+}
+
 public class SLPTransactionParser {
 //    func parse(script: Script) -> SLPTransaction? {
 //        var chunks = script.scriptChunks

@@ -35,7 +35,7 @@ public class TokenUTXO: SLPUTXO {
 }
 
 public class SLPToken {
-    public var tokenId: String
+    public var tokenId: String?
     public var tokenTicker: String?
     public var tokenName: String?
     public var utxos = [TokenUTXO]()
@@ -49,8 +49,7 @@ public class SLPToken {
         }
     }
     
-    public init(_ tokenId: String) {
-        self.tokenId = tokenId
+    public init() {
     }
     
     public func getGas() -> Int {
