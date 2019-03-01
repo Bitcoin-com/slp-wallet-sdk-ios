@@ -165,7 +165,7 @@ public class SLPWallet {
                                             if utxo.scriptPubKey == vout.scriptPubKey.hex {
                                                 // If UTXO owns Token
                                                 if voutToTokenQty.count + 1 > i
-                                                , token != nil
+                                                    , token != nil
                                                 {
                                                     let rawTokenQty = voutToTokenQty[i - 1]
                                                     let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
@@ -185,31 +185,27 @@ public class SLPWallet {
                                                     .filter({ return $0.txid == utxo.txid && $0.index == utxo.index })
                                                     .count == 0 {
                                                     hasChanged = true
-                                                    return
                                                 }
                                             })
                                             
                                             if hasChanged {
+                                                self.tokens[token.tokenId] = token
                                                 self.delegate?.onUpdatedToken(token)
                                             }
                                         }
                                         
                                         return token
-//                                        if token.utxos.filter({ utxo -> Bool in
-//                                            return utxo.txid == tx.txid && utxo.index == i
-//                                        }).count == 0 {
                                     })
                                     
                                     Observable
                                         .zip(newTokens.map { self.addToken($0).asObservable() })
                                         .subscribe({ event in
                                             switch event {
-                                            case .next(let _):
+                                            case .next(let tokens):
                                                 // Nothing interesting to do for now here
+                                                self.delegate?.onNewTokens(tokens)
                                                 break
                                             case .completed:
-                                                // Notify new token
-                                                self.delegate?.onNewTokens(self.tokens)
                                                 single(.success(self.tokens))
                                             case .error(let error):
                                                 single(.error(error))
@@ -242,7 +238,7 @@ public class SLPWallet {
                             let script = Script(hex: tx.vout[0].scriptPubKey.hex)
                             guard var chunks = script?.scriptChunks
                                 , chunks.removeFirst().opCode == .OP_RETURN else {
-                                return
+                                    return
                             }
                             
                             // 2 : transaction_type 4 bytes ASCII
@@ -250,7 +246,7 @@ public class SLPWallet {
                             var chunk = chunks[2].chunkData.clean()
                             guard let transactionType = String(data: chunk, encoding: String.Encoding.ascii)
                                 , transactionType == "GENESIS" else {
-                                return
+                                    return
                             }
                             
                             // 3 : token_ticker UTF8
