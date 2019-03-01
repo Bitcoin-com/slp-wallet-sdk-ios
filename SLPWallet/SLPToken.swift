@@ -26,6 +26,10 @@ public class SLPToken {
     public init() {
     }
     
+    public init(_ tokenId: String) {
+        self.tokenId = tokenId
+    }
+    
     public func getGas() -> Int {
         return utxos.reduce(0, { $0 + $1.satoshis })
     }

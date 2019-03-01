@@ -49,12 +49,8 @@ public class SLPWallet {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
         
-        
-        let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 0).derived(at: 0)
+        let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
-        
-        
-        print(privKey.toWIF())
         
         self.mnemonic = mnemonic
         self.privKey = privKey
