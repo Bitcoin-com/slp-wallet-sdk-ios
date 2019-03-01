@@ -196,7 +196,7 @@ public class SLPWallet {
                                         
                                         return token
                                     })
-                                    
+                                
                                     Observable
                                         .zip(newTokens.map { self.addToken($0).asObservable() })
                                         .subscribe({ event in
@@ -212,6 +212,7 @@ public class SLPWallet {
                                             }
                                         })
                                         .disposed(by: SLPWallet.bag)
+                                    
                                 case .error(let error):
                                     single(.error(error))
                                 }
@@ -273,6 +274,8 @@ public class SLPWallet {
                             }
                             token.decimal = decimal
                         })
+                        
+                        print(token)
                         
                         // Add the token in the list
                         self.tokens[token.tokenId] = token
