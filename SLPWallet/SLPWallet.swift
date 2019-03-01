@@ -31,7 +31,7 @@ public class SLPWallet {
     public let cashAddress: String
     public let slpAddress: String
     
-    fileprivate var tokens: BehaviorRelay<[String:SLPToken]>
+    public var tokens: BehaviorRelay<[String:SLPToken]>
     public var tokensObs: Observable<[String:SLPToken]> {
         return tokens.asObservable()
     }
