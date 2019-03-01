@@ -10,6 +10,10 @@ import BitcoinKit
 import RxSwift
 import RxCocoa
 
+public protocol SLPWalletDelegate {
+    public func onTokens(_ tokens: [String:SLPToken])
+}
+
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
@@ -26,15 +30,13 @@ public class SLPWallet {
     
     fileprivate let privKey: PrivateKey
     fileprivate let network: Network
+    fileprivate var tokens: [String:SLPToken]
     
     public let mnemonic: String
     public let cashAddress: String
     public let slpAddress: String
     
-    public var tokens: BehaviorRelay<[String:SLPToken]>
-    public var tokensObs: Observable<[String:SLPToken]> {
-        return tokens.asObservable()
-    }
+    public var delegate: SLPWalletDelegate?
     
     public init(_ mnemonic: String, network: Network) {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
@@ -54,8 +56,7 @@ public class SLPWallet {
         
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self.slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
-        
-        tokens = BehaviorRelay(value: [String:SLPToken]())
+        self.tokens = [String:SLPToken]()
         
         // TODO: Change fields to be observable to notify our users when tokens are ready or when there is new one.
         timer.resume()
@@ -121,7 +122,7 @@ public class SLPWallet {
                                             }
                                             
                                             // TODO: Dirty, need a clean up
-                                            token = self.tokens.value[tokenId]
+                                            token = self.tokens[tokenId]
                                             if token == nil {
                                                 token = newTokens[tokenId]
                                                 if token == nil {
@@ -172,7 +173,8 @@ public class SLPWallet {
                                                 // Nothing interesting to do for now here
                                                 break
                                             case .completed:
-                                                single(.success(self.tokens.value))
+                                                self.delegate?.onTokens(self.tokens)
+                                                single(.success(self.tokens))
                                             case .error(let error):
                                                 single(.error(error))
                                             }
@@ -241,9 +243,7 @@ public class SLPWallet {
                         })
                         
                         // Add the token in the list
-                        var tokens = self.tokens.value
-                        tokens[token.tokenId] = token
-                        self.tokens.accept(tokens)
+                        self.tokens[token.tokenId] = token
                         
                         single(.success(token))
                     case .error(let error):
