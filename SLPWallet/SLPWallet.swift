@@ -206,7 +206,7 @@ public class SLPWallet {
                                                         return utxo.txid == tx.txid && utxo.index == i
                                                     }).count == 0 {
                                                         let rawTokenQty = voutToTokenQty[i - 1]
-                                                        let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
+                                                        let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
                                                         currentToken?.utxos.append(tokenUTXO)
                                                     }
                                                 } else {

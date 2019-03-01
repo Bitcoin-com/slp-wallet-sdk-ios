@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B7FE8D02226842300CB5755 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8CF2226842300CB5755 /* Entities.swift */; };
 		3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */; };
 		3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */; };
 		3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */; };
@@ -15,12 +14,14 @@
 		3B7FE90722283C2B00CB5755 /* SLPWallet.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */; };
 		3B7FE9292229225200CB5755 /* SLPTransactionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */; };
 		3B7FE92B2229892F00CB5755 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE92A2229892E00CB5755 /* README.md */; };
+		3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92C222990FB00CB5755 /* SLPToken.swift */; };
+		3B7FE92F2229913100CB5755 /* SLPUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92E2229913100CB5755 /* SLPUTXO.swift */; };
+		3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
 		3B99B0802226290100A1B599 /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0762226290100A1B599 /* RestService.swift */; };
 		3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0782226290100A1B599 /* RestNetwork.swift */; };
 		3B99B0832226290100A1B599 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07A2226290100A1B599 /* Config.swift */; };
-		3B99B0842226290100A1B599 /* TokenType1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07B2226290100A1B599 /* TokenType1.swift */; };
 		3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B08A22262DC700A1B599 /* SLPWallet.swift */; };
 		3BE242AC22266165003432CE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BE242AB22266165003432CE /* Podfile */; };
 		3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE242AD222667F2003432CE /* RestServiceTest.swift */; };
@@ -39,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B7FE8CF2226842300CB5755 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTest.swift; sourceTree = "<group>"; };
 		3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -47,6 +47,9 @@
 		3B7FE90622283C2B00CB5755 /* SLPWallet.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SLPWallet.podspec; sourceTree = "<group>"; };
 		3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionParser.swift; sourceTree = "<group>"; };
 		3B7FE92A2229892E00CB5755 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3B7FE92C222990FB00CB5755 /* SLPToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPToken.swift; sourceTree = "<group>"; };
+		3B7FE92E2229913100CB5755 /* SLPUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPUTXO.swift; sourceTree = "<group>"; };
+		3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTokenUTXO.swift; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLPWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,7 +58,6 @@
 		3B99B0762226290100A1B599 /* RestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
 		3B99B0782226290100A1B599 /* RestNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestNetwork.swift; sourceTree = "<group>"; };
 		3B99B07A2226290100A1B599 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		3B99B07B2226290100A1B599 /* TokenType1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenType1.swift; sourceTree = "<group>"; };
 		3B99B08A22262DC700A1B599 /* SLPWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWallet.swift; sourceTree = "<group>"; };
 		3BE242AB22266165003432CE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3BE242AD222667F2003432CE /* RestServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceTest.swift; sourceTree = "<group>"; };
@@ -114,15 +116,16 @@
 		3B99B0572226251B00A1B599 /* SLPWallet */ = {
 			isa = PBXGroup;
 			children = (
-				3B99B07B2226290100A1B599 /* TokenType1.swift */,
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
 				3B99B07A2226290100A1B599 /* Config.swift */,
-				3B99B0732226290100A1B599 /* Entities */,
 				3B99B06F2226290100A1B599 /* Extensions */,
 				3B99B0772226290100A1B599 /* Networks */,
 				3B99B0752226290100A1B599 /* Services */,
 				3B99B0592226251B00A1B599 /* Info.plist */,
 				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
+				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
+				3B7FE92E2229913100CB5755 /* SLPUTXO.swift */,
+				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
 			);
 			path = SLPWallet;
 			sourceTree = "<group>";
@@ -146,14 +149,6 @@
 				3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3B99B0732226290100A1B599 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				3B7FE8CF2226842300CB5755 /* Entities.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		3B99B0752226290100A1B599 /* Services */ = {
@@ -385,15 +380,16 @@
 			files = (
 				3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */,
 				3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */,
-				3B7FE8D02226842300CB5755 /* Entities.swift in Sources */,
+				3B7FE92F2229913100CB5755 /* SLPUTXO.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B7FE9022227BFA600CB5755 /* Double+Extensions.swift in Sources */,
 				3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */,
+				3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */,
 				3B99B0802226290100A1B599 /* RestService.swift in Sources */,
 				3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */,
 				3B7FE9292229225200CB5755 /* SLPTransactionParser.swift in Sources */,
 				3B99B0832226290100A1B599 /* Config.swift in Sources */,
-				3B99B0842226290100A1B599 /* TokenType1.swift in Sources */,
+				3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

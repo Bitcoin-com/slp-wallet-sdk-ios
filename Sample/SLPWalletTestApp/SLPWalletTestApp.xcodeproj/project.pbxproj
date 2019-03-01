@@ -56,7 +56,7 @@
 		3B7FE889222679F500CB5755 /* SLPWalletTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTestAppUITests.swift; sourceTree = "<group>"; };
 		3B7FE88B222679F500CB5755 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7FE90322283AD700CB5755 /* SLPWallet.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = SLPWallet.xcworkspace; path = ../../SLPWallet.xcworkspace; sourceTree = "<group>"; };
-		3B7FE90A2228FFDF00CB5755 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		3B7FE90A2228FFDF00CB5755 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		60EA490FC3FA674621F3648B /* Pods_SLPWalletTestAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A1A22BACC538EE8024672A /* Pods_SLPWalletTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A811A6AB93C0FE75B9C0A874 /* Pods-SLPWalletTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTestAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTestAppTests/Pods-SLPWalletTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
