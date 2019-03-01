@@ -8,6 +8,7 @@
 
 import BitcoinKit
 import RxSwift
+import RxCocoa
 
 public class SLPWallet {
     
@@ -30,11 +31,16 @@ public class SLPWallet {
     public let cashAddress: String
     public let slpAddress: String
     
-    public var tokens: [String:SLPToken]
+    fileprivate var tokens: BehaviorRelay<[String:SLPToken]>
+    public var tokensObs: Observable<[String:SLPToken]> {
+        return tokens.asObservable()
+    }
     
     public init(_ mnemonic: String, network: Network) {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
+        
+        print(hdPrivKey.privateKey().toWIF())
         
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 0).derived(at: 0)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
@@ -49,8 +55,7 @@ public class SLPWallet {
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self.slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         
-        // List of tokens
-        self.tokens = [String:SLPToken]()
+        tokens = BehaviorRelay(value: [String:SLPToken]())
         
         // TODO: Change fields to be observable to notify our users when tokens are ready or when there is new one.
         timer.resume()
@@ -116,7 +121,7 @@ public class SLPWallet {
                                             }
                                             
                                             // TODO: Dirty, need a clean up
-                                            token = self.tokens[tokenId]
+                                            token = self.tokens.value[tokenId]
                                             if token == nil {
                                                 token = newTokens[tokenId]
                                                 if token == nil {
@@ -167,7 +172,7 @@ public class SLPWallet {
                                                 // Nothing interesting to do for now here
                                                 break
                                             case .completed:
-                                                single(.success(self.tokens))
+                                                single(.success(self.tokens.value))
                                             case .error(let error):
                                                 single(.error(error))
                                             }
@@ -236,7 +241,9 @@ public class SLPWallet {
                         })
                         
                         // Add the token in the list
-                        self.tokens[token.tokenId] = token
+                        var tokens = self.tokens.value
+                        tokens[token.tokenId] = token
+                        self.tokens.accept(tokens)
                         
                         single(.success(token))
                     case .error(let error):
