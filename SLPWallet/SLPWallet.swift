@@ -11,8 +11,7 @@ import RxSwift
 import RxCocoa
 
 public protocol SLPWalletDelegate {
-    func onNewTokens(_ tokens: [SLPToken])
-    func onUpdatedToken(_ token: SLPToken)
+    func onUpdatedToken(_ token: [String:SLPToken])
 }
 
 enum SLPTransactionType: String {
@@ -96,7 +95,7 @@ public class SLPWallet {
                                 switch event {
                                 case .success(let txs):
                                     
-                                    var newTokens = [SLPToken]()
+                                    var newTokens = [String:SLPToken]()
                                     
                                     txs.forEach({ tx in
                                         
@@ -139,7 +138,14 @@ public class SLPWallet {
                                             }
                                             
                                             // TODO: Dirty, need a clean up
-                                            token = SLPToken(tokenId)
+                                            token = self.tokens[tokenId]
+                                            if token == nil {
+                                                token = newTokens[tokenId]
+                                                if token == nil {
+                                                    token = SLPToken(tokenId)
+                                                    newTokens[tokenId] = token! // TODO: Remove the forcewrap
+                                                }
+                                            }
                                         }
                                         
                                         
@@ -169,43 +175,25 @@ public class SLPWallet {
                                                 {
                                                     let rawTokenQty = voutToTokenQty[i - 1]
                                                     let tokenUTXO = TokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
-                                                    token?.utxos.append(tokenUTXO)
+                                                    
+                                                    if token?.utxos.filter({ utxo -> Bool in
+                                                        return utxo.txid == tx.txid && utxo.index == i
+                                                    }).count == 0 {
+                                                        token?.utxos.append(tokenUTXO)
+                                                    }
                                                 }
                                             }
                                         }
                                     })
                                     
-                                    newTokens = newTokens.compactMap({ token in
-                                        // If new token, keep it
-                                        if let oldToken = self.tokens[token.tokenId] {
-                                            var hasChanged = false
-                                            
-                                            token.utxos.forEach({ utxo in
-                                                if hasChanged || oldToken.utxos
-                                                    .filter({ return $0.txid == utxo.txid && $0.index == utxo.index })
-                                                    .count == 0 {
-                                                    hasChanged = true
-                                                }
-                                            })
-                                            
-                                            if hasChanged {
-                                                self.tokens[token.tokenId] = token
-                                                self.delegate?.onUpdatedToken(token)
-                                            }
-                                        }
-                                        
-                                        return token
-                                    })
-                                
                                     Observable
-                                        .zip(newTokens.map { self.addToken($0).asObservable() })
+                                        .zip(newTokens.map { self.addToken($1).asObservable() })
                                         .subscribe({ event in
                                             switch event {
-                                            case .next(let tokens):
+                                            case .next(let _): break
                                                 // Nothing interesting to do for now here
-                                                self.delegate?.onNewTokens(tokens)
-                                                break
                                             case .completed:
+                                                self.delegate?.onUpdatedToken(self.tokens)
                                                 single(.success(self.tokens))
                                             case .error(let error):
                                                 single(.error(error))
@@ -274,8 +262,6 @@ public class SLPWallet {
                             }
                             token.decimal = decimal
                         })
-                        
-                        print(token)
                         
                         // Add the token in the list
                         self.tokens[token.tokenId] = token
