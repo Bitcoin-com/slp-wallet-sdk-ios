@@ -22,14 +22,26 @@ public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
     
+    fileprivate let _mnemonic: String
+    fileprivate let _cashAddress: String
+    fileprivate let _slpAddress: String
     fileprivate let privKey: PrivateKey
     fileprivate let network: Network
-    fileprivate var tokens: [String:SLPToken]
     fileprivate var utxos: [SLPUTXO]
+    fileprivate var _tokens: [String:SLPToken]
     
-    public let mnemonic: String
-    public let cashAddress: String
-    public let slpAddress: String
+    public var mnemonic: String {
+        get { return _mnemonic }
+    }
+    public var cashAddress: String {
+        get { return _cashAddress }
+    }
+    public var slpAddress: String {
+        get { return _slpAddress }
+    }
+    public var token: [String:SLPToken] {
+        get { return _tokens }
+    }
     
     public var delegate: SLPWalletDelegate?
     
@@ -61,16 +73,17 @@ public class SLPWallet {
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self.mnemonic = mnemonic
         self.privKey = privKey
         self.network = network
-        self.cashAddress = privKey.publicKey().toCashaddr().cashaddr
+        
+        self._mnemonic = mnemonic
+        self._cashAddress = privKey.publicKey().toCashaddr().cashaddr
         
         let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
         
         // Quick way to do it, @angel is working on building it in BitcoinKit
-        self.slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
-        self.tokens = [String:SLPToken]()
+        self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
+        self._tokens = [String:SLPToken]()
         self.utxos = [SLPUTXO]()
     }
     
@@ -225,7 +238,7 @@ public class SLPWallet {
                                     // Check which one is new and need to get the info from Genesis
                                     var newTokens = [SLPToken]()
                                     updatedTokens.forEach({ tokenId, token in
-                                        guard let t = self.tokens[tokenId] else {
+                                        guard let t = self._tokens[tokenId] else {
                                             newTokens.append(token)
                                             return
                                         }
@@ -239,8 +252,8 @@ public class SLPWallet {
                                             case .next(_): break
                                                 // Nothing interesting to do for now here
                                             case .completed:
-                                                self.delegate?.onUpdatedToken(self.tokens)
-                                                single(.success(self.tokens))
+                                                self.delegate?.onUpdatedToken(self._tokens)
+                                                single(.success(self._tokens))
                                             case .error(let error):
                                                 single(.error(error))
                                             }
@@ -314,7 +327,7 @@ public class SLPWallet {
                         })
                         
                         // Add the token in the list
-                        self.tokens[tokenId] = token
+                        self._tokens[tokenId] = token
                         
                         single(.success(token))
                     case .error(let error):
