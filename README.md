@@ -80,7 +80,7 @@ wallet.scheduler.suspend()
 // Change the interval
 wallet.schedulerInterval = 10 // in seconds
 ```
-### WalletDelegate called when my scheduler is started
+### WalletDelegate called when the scheduler is started
 
 ```swift
 class MyViewController: SLPWalletDelegate {
