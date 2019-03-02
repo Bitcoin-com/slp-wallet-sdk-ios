@@ -18,23 +18,19 @@ class RestServiceTest: QuickSpec {
             
             it("Fetch UTXO") {
                 let utxos = try! RestService
-                    .fetchUTXOs("bitcoincash:qrkn34tllug35tfs655e649asx4udw4dccaygv6wcr")
+                    .fetchUTXOs("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
                     .toBlocking()
                     .single()
-                
                 expect(utxos).notTo(beNil())
-                expect(utxos.scriptPubKey).to(equal("76a914ed38d57fff111a2d30d5299d54bd81abc6baadc688ac"))
-                expect(utxos.utxos).to(haveCount(2))
+                expect(utxos.scriptPubKey).to(equal("76a914ac554d6f334d82809124a91b947271db67c0b80088ac"))
             }
             
             it("Fetch TxDetails") {
                     let txs = try! RestService
-                        .fetchTxDetails(["52126b7cb58da053a88ddafacdb6fb97223c0661331a5099a1a04153aace265f"])
+                        .fetchTxDetails(["ce7f87ac5d086ad1c736c472ce5bc75f020bf22d3e2ed8603c675a6517b9c1cd"])
                         .toBlocking()
                         .single()
-                    
                     expect(txs).notTo(beNil())
-                    expect(txs[0].vout).to(haveCount(4))
             }
         }
     }

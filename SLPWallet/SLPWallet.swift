@@ -98,20 +98,21 @@ public class SLPWallet {
                                             
                                             // 0 : lokad id 4 bytes ASCII
                                             // Good
-                                            guard let lokadId = String(data: chunks[0].chunkData.clean(), encoding: String.Encoding.ascii) else {
+                                            guard let lokadId = String(data: chunks[0].chunkData.removeLeft().removeRight(), encoding: String.Encoding.ascii) else {
                                                 return
                                             }
                                             
                                             if lokadId == "SLP" {
+                                                
                                                 var newToken = SLPToken()
                                                 
                                                 // 1 : token_type 1 bytes Integer
                                                 // Good
-                                                let tokenType = chunks[1].chunkData.clean().uint8
+                                                let tokenType = chunks[1].chunkData.removeLeft().uint8
                                                 
                                                 // 2 : transaction_type 4 bytes ASCII
                                                 // Good
-                                                guard let transactionType = String(data: chunks[2].chunkData.clean(), encoding: String.Encoding.ascii) else {
+                                                guard let transactionType = String(data: chunks[2].chunkData.removeLeft(), encoding: String.Encoding.ascii) else {
                                                     return
                                                 }
 
@@ -122,28 +123,28 @@ public class SLPWallet {
                                                     
                                                     // 3 : token_ticker UTF8
                                                     // Good
-                                                    guard let tokenTicker = String(data: chunks[3].chunkData.clean(), encoding: String.Encoding.utf8) else {
+                                                    guard let tokenTicker = String(data: chunks[3].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
                                                         return
                                                     }
                                                     newToken.tokenTicker = tokenTicker
                                                     
                                                     // 4 : token_name UTF8
                                                     // Good
-                                                    guard let tokenName = String(data: chunks[4].chunkData.clean(), encoding: String.Encoding.utf8) else {
+                                                    guard let tokenName = String(data: chunks[4].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
                                                         return
                                                     }
                                                     newToken.tokenName = tokenName
                                                     
                                                     // 8 : decimal 1 Byte
                                                     // Good
-                                                    guard let decimal = Int(chunks[7].chunkData.clean().hex, radix: 16) else {
+                                                    guard let decimal = Int(chunks[7].chunkData.removeLeft().hex, radix: 16) else {
                                                         return
                                                     }
                                                     newToken.decimal = decimal
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
-                                                    guard let balance = Int(chunks[9].chunkData.clean().hex, radix: 16) else {
+                                                    guard let balance = Int(chunks[9].chunkData.removeLeft().hex, radix: 16) else {
                                                         return
                                                     }
                                                     voutToTokenQty.append(balance)
@@ -152,11 +153,11 @@ public class SLPWallet {
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
-                                                    newToken.tokenId = chunks[3].chunkData.clean().hex
+                                                    newToken.tokenId = chunks[3].chunkData.removeLeft().hex
                                                     
                                                     // 4 to .. : token_output_quantity 1..19
                                                     for i in 4...chunks.count - 1 {
-                                                        guard let balance = Int(chunks[i].chunkData.clean().hex, radix: 16) else {
+                                                        guard let balance = Int(chunks[i].chunkData.removeLeft().hex, radix: 16) else {
                                                             return
                                                         }
                                                         voutToTokenQty.append(balance)
@@ -217,6 +218,9 @@ public class SLPWallet {
                                         }
                                     })
                                     
+                                    print("NEW_TOKEN")
+                                    print(newTokens)
+                                    
                                     Observable
                                         .zip(newTokens.map { self.addToken($1).asObservable() })
                                         .subscribe({ event in
@@ -271,7 +275,7 @@ public class SLPWallet {
                             
                             // 2 : transaction_type 4 bytes ASCII
                             // Good
-                            var chunk = chunks[2].chunkData.clean()
+                            var chunk = chunks[2].chunkData.removeLeft()
                             guard let transactionType = String(data: chunk, encoding: String.Encoding.ascii)
                                 , transactionType == "GENESIS" else {
                                     return
@@ -279,7 +283,7 @@ public class SLPWallet {
                             
                             // 3 : token_ticker UTF8
                             // Good
-                            chunk = chunks[3].chunkData.clean()
+                            chunk = chunks[3].chunkData.removeLeft()
                             guard let tokenTicker = String(data: chunk, encoding: String.Encoding.utf8) else {
                                 return
                             }
@@ -287,7 +291,7 @@ public class SLPWallet {
                             
                             // 4 : token_name UTF8
                             // Good
-                            chunk = chunks[4].chunkData.clean()
+                            chunk = chunks[4].chunkData.removeLeft()
                             guard let tokenName = String(data: chunk, encoding: String.Encoding.utf8) else {
                                 return
                             }
@@ -295,7 +299,7 @@ public class SLPWallet {
                             
                             // 8 : decimal 1 Byte
                             // Good
-                            chunk = chunks[7].chunkData.clean()
+                            chunk = chunks[7].chunkData.removeLeft()
                             guard let decimal = Int(chunk.hex, radix: 16) else {
                                 return
                             }

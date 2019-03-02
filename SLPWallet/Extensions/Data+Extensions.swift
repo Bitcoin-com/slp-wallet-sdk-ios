@@ -37,9 +37,15 @@ public extension NSData {
 
 public extension Data {
     
-    func clean() -> Data {
+    func removeLeft() -> Data {
         var newData = self
         newData.removeFirst()
+        return newData
+    }
+    
+    func removeRight() -> Data {
+        var newData = self
+        newData.removeLast()
         return newData
     }
     
