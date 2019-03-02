@@ -35,6 +35,8 @@ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer/
 
 ### Creating new wallet with/without mnemonic
 
+The wallet is working with only 1 address using the SLP recommanded path 44'/245'/0' + m/0/0.
+
 ```swift
 let wallet = SLPWallet("my mnemonic", network: .testnet) // .mainnet or .testnet
 // Or generate mnemonic + create wallet
