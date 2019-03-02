@@ -37,6 +37,9 @@ class SLPWalletTest: QuickSpec {
                     expect(token.decimal).toNot(beNil())
                     expect(token.getBalance()).toNot(beNil())
                     expect(token.getGas()).toNot(beNil())
+                    print(token.tokenName)
+                    print(token.getBalance())
+                    print(token.utxos.count)
                 })
             }
             

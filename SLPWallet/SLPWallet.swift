@@ -65,6 +65,10 @@ public class SLPWallet {
         self.utxos = [SLPUTXO]()
     }
     
+    public func getGas() -> Int {
+        return utxos.reduce(0, { $0 + $1.satoshis })
+    }
+    
     public func fetchTokens() -> Single<[String:SLPToken]> {
         return Single<[String:SLPToken]>.create { single in
             RestService
@@ -81,8 +85,8 @@ public class SLPWallet {
                             .subscribe({ event in
                                 switch event {
                                 case .success(let txs):
-                                    
-                                    var newTokens = [String:SLPToken]()
+                                
+                                    var updatedTokens = [String:SLPToken]()
                                     
                                     txs.forEach({ tx in
                                         
@@ -90,8 +94,7 @@ public class SLPWallet {
                                         let script = Script(hex: tx.vout[0].scriptPubKey.hex)
                                         
                                         var voutToTokenQty = [Int]()
-                                        var tokenId: String = ""
-                                        var currentToken: SLPToken?
+                                        var currentToken = SLPToken()
                                         
                                         if var chunks = script?.scriptChunks
                                             , chunks.removeFirst().opCode == .OP_RETURN {
@@ -103,8 +106,6 @@ public class SLPWallet {
                                             }
                                             
                                             if lokadId == "SLP" {
-                                                
-                                                var newToken = SLPToken()
                                                 
                                                 // 1 : token_type 1 bytes Integer
                                                 // Good
@@ -119,28 +120,28 @@ public class SLPWallet {
                                                 if transactionType == SLPTransactionType.GENESIS.rawValue {
                                                     
                                                     // Genesis => Txid
-                                                    newToken.tokenId = tx.txid
+                                                    currentToken.tokenId = tx.txid
                                                     
                                                     // 3 : token_ticker UTF8
                                                     // Good
                                                     guard let tokenTicker = String(data: chunks[3].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
                                                         return
                                                     }
-                                                    newToken.tokenTicker = tokenTicker
+                                                    currentToken.tokenTicker = tokenTicker
                                                     
                                                     // 4 : token_name UTF8
                                                     // Good
                                                     guard let tokenName = String(data: chunks[4].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
                                                         return
                                                     }
-                                                    newToken.tokenName = tokenName
+                                                    currentToken.tokenName = tokenName
                                                     
                                                     // 8 : decimal 1 Byte
                                                     // Good
                                                     guard let decimal = Int(chunks[7].chunkData.removeLeft().hex, radix: 16) else {
                                                         return
                                                     }
-                                                    newToken.decimal = decimal
+                                                    currentToken.decimal = decimal
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
@@ -153,7 +154,14 @@ public class SLPWallet {
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
-                                                    newToken.tokenId = chunks[3].chunkData.removeLeft().hex
+                                                    let tokenId = chunks[3].chunkData.removeLeft().hex
+                                                    
+                                                    // If the token is already found, continue to work on it
+                                                    if let token = updatedTokens[tokenId] {
+                                                        currentToken = token
+                                                    } else { // else work on this one
+                                                        currentToken.tokenId = tokenId
+                                                    }
                                                     
                                                     // 4 to .. : token_output_quantity 1..19
                                                     for i in 4...chunks.count - 1 {
@@ -165,14 +173,12 @@ public class SLPWallet {
                                                 }
                                                 
                                                 // Set the good current token & add the new token if it is needed :)
-                                                if let tId = newToken.tokenId {
-                                                    if let t = self.tokens[tId] {
-                                                        currentToken = t
-                                                    } else {
-                                                        newTokens[tId] = newToken
-                                                        currentToken = newToken
-                                                    }
-                                                }
+//                                                if let tId = newToken.tokenId {
+//                                                    if let t = updatedTokens[tId] {
+//                                                        currentToken = updatedTokens[newTokens]
+//                                                    }
+//                                                    currentToken = newToken
+//                                                }
                                             }
                                         }
                                         
@@ -197,14 +203,14 @@ public class SLPWallet {
                                             if utxo.scriptPubKey == vout.scriptPubKey.hex {
                                                 // If UTXO owns Token
                                                 if voutToTokenQty.count + 1 > i
-                                                    , currentToken != nil
+                                                    , currentToken.tokenId != nil
                                                 {
-                                                    if currentToken?.utxos.filter({ utxo -> Bool in
+                                                    if currentToken.utxos.filter({ utxo -> Bool in
                                                         return utxo.txid == tx.txid && utxo.index == i
                                                     }).count == 0 {
                                                         let rawTokenQty = voutToTokenQty[i - 1]
                                                         let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: i, rawTokenQty: rawTokenQty)
-                                                        currentToken?.utxos.append(tokenUTXO)
+                                                        currentToken.utxos.append(tokenUTXO)
                                                     }
                                                 } else {
                                                     if self.utxos.filter({ utxo -> Bool in
@@ -216,10 +222,26 @@ public class SLPWallet {
                                                 }
                                             }
                                         }
+                                        
+                                        // If first time, map the token in updatedTokens
+                                        if let tId = currentToken.tokenId,
+                                            updatedTokens[tId] == nil {
+                                            updatedTokens[tId] = currentToken
+                                        }
+                                    })
+                                    
+                                    // Check which one is new and need to get the info from Genesis
+                                    var newTokens = [SLPToken]()
+                                    updatedTokens.forEach({ tokenId, token in
+                                        guard let t = self.tokens[tokenId] else {
+                                            newTokens.append(token)
+                                            return
+                                        }
+                                        t.utxos = token.utxos
                                     })
                                     
                                     Observable
-                                        .zip(newTokens.map { self.addToken($1).asObservable() })
+                                        .zip(newTokens.map { self.addToken($0).asObservable() })
                                         .subscribe({ event in
                                             switch event {
                                             case .next(let _): break
