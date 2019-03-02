@@ -35,11 +35,7 @@ public class SLPWallet {
     
     public var schedulerInterval: Double = 20 {
         didSet {
-            if !scheduler.isCancelled {
-                scheduler.suspend()
-                scheduler.schedule(deadline: .now(), repeating: schedulerInterval)
-                scheduler.resume()
-            }
+            scheduler.schedule(deadline: .now(), repeating: schedulerInterval)
         }
     }
     public lazy var scheduler: DispatchSourceTimer = {
