@@ -21,7 +21,7 @@ end
 
 ```bash
 $ brew install autoconf automake // Required with BitcoinKit
-$ brew install libtool
+$ brew install libtool // Required with BitcoinKit
 $ pod install
 ```
 
