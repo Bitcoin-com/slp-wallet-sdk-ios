@@ -117,15 +117,15 @@
 			isa = PBXGroup;
 			children = (
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
+				3B7FE92E2229913100CB5755 /* SLPUTXO.swift */,
+				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
+				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
+				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
 				3B99B07A2226290100A1B599 /* Config.swift */,
 				3B99B06F2226290100A1B599 /* Extensions */,
 				3B99B0772226290100A1B599 /* Networks */,
 				3B99B0752226290100A1B599 /* Services */,
 				3B99B0592226251B00A1B599 /* Info.plist */,
-				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
-				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
-				3B7FE92E2229913100CB5755 /* SLPUTXO.swift */,
-				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
 			);
 			path = SLPWallet;
 			sourceTree = "<group>";

@@ -218,9 +218,6 @@ public class SLPWallet {
                                         }
                                     })
                                     
-                                    print("NEW_TOKEN")
-                                    print(newTokens)
-                                    
                                     Observable
                                         .zip(newTokens.map { self.addToken($1).asObservable() })
                                         .subscribe({ event in

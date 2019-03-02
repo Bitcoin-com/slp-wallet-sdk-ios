@@ -19,7 +19,7 @@ public class SLPToken {
                 return
             }
             // If decimal == 0, replace per the rawTokenQty
-            utxos.forEach { $0.tokenQty = (newValue > 0 ? (Float($0.rawTokenQty) / pow(Float(10), Float(newValue))) : Float($0.rawTokenQty)) }
+            utxos.forEach { $0.tokenQty = (newValue > 0 ? (Double($0.rawTokenQty) / pow(Double(10), Double(newValue))) : Double($0.rawTokenQty)) }
         }
     }
     
@@ -34,7 +34,7 @@ public class SLPToken {
         return utxos.reduce(0, { $0 + $1.satoshis })
     }
     
-    public func getBalance() -> Float {
+    public func getBalance() -> Double {
         return utxos.reduce(0, { $0 + ($1.tokenQty ?? 0) })
     }
 }
