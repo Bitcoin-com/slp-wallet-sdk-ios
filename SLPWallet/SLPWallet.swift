@@ -78,14 +78,6 @@ public class SLPWallet {
         self.utxos = [SLPUTXO]()
     }
     
-    deinit {
-        scheduler.setEventHandler {}
-        scheduler.cancel()
-    }
-}
-
-extension SLPWallet {
-    
     public func getGas() -> Int {
         return utxos.reduce(0, { $0 + $1.satoshis })
     }
