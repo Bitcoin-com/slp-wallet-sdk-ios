@@ -7,17 +7,20 @@
 //
 
 import Foundation
+import RxSwift
 
 public class SLPToken {
     public var tokenId: String?
     public var tokenTicker: String?
     public var tokenName: String?
-    public var utxos = [SLPTokenUTXO]()
-    public var decimal: Int? {
+    public var utxos = [SLPTokenUTXO]() {
         willSet {
-            guard let newValue = newValue else {
-                return
-            }
+            // If decimal == 0, replace per the rawTokenQty
+            newValue.forEach { $0.tokenQty = (decimal > 0 ? (Double($0.rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0.rawTokenQty)) }
+        }
+    }
+    public var decimal: Int = 0 {
+        willSet {
             // If decimal == 0, replace per the rawTokenQty
             utxos.forEach { $0.tokenQty = (newValue > 0 ? (Double($0.rawTokenQty) / pow(Double(10), Double(newValue))) : Double($0.rawTokenQty)) }
         }
@@ -28,6 +31,15 @@ public class SLPToken {
     
     public init(_ tokenId: String) {
         self.tokenId = tokenId
+    }
+    
+    func addUTXO(_ utxo: SLPTokenUTXO) {
+        utxo.tokenQty = decimal > 0 ? (Double(utxo.rawTokenQty) / pow(Double(10), Double(decimal))) : Double(utxo.rawTokenQty)
+        utxos.append(utxo)
+    }
+    
+    func addUTXOs(_ utxos: [SLPTokenUTXO]) {
+        utxos.forEach({ self.addUTXO($0) })
     }
     
     public func getGas() -> Int {

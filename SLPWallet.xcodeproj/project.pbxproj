@@ -17,6 +17,7 @@
 		3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92C222990FB00CB5755 /* SLPToken.swift */; };
 		3B7FE92F2229913100CB5755 /* SLPUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92E2229913100CB5755 /* SLPUTXO.swift */; };
 		3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */; };
+		3B7FE933222A895E00CB5755 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE932222A895E00CB5755 /* Array+Extensions.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
 		3B99B0802226290100A1B599 /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0762226290100A1B599 /* RestService.swift */; };
@@ -50,6 +51,7 @@
 		3B7FE92C222990FB00CB5755 /* SLPToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPToken.swift; sourceTree = "<group>"; };
 		3B7FE92E2229913100CB5755 /* SLPUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPUTXO.swift; sourceTree = "<group>"; };
 		3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTokenUTXO.swift; sourceTree = "<group>"; };
+		3B7FE932222A895E00CB5755 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B99B0592226251B00A1B599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SLPWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +149,7 @@
 				3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */,
 				3B7FE8FF2227BF8300CB5755 /* String+Extensions.swift */,
 				3B7FE9012227BFA600CB5755 /* Double+Extensions.swift */,
+				3B7FE932222A895E00CB5755 /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */,
 				3B99B0802226290100A1B599 /* RestService.swift in Sources */,
 				3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */,
+				3B7FE933222A895E00CB5755 /* Array+Extensions.swift in Sources */,
 				3B7FE9292229225200CB5755 /* SLPTransactionParser.swift in Sources */,
 				3B99B0832226290100A1B599 /* Config.swift in Sources */,
 				3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */,
