@@ -71,8 +71,12 @@ wallet
 ### Auto update wallet/tokens (balances + gas)
 
 ```swift
+// Start & stop
 wallet.scheduler.resume()
 wallet.scheduler.suspend()
+
+// Change the interval
+wallet.schedulerInterval = 10 // in seconds
 ```
 ### WalletDelegate called when my scheduler is started
 
