@@ -6,7 +6,8 @@ xcode_destination: platform=iOS Simulator,OS=10.0,name=iPhone 5s
 before_install:
   - pod repo update
 install:
-  - travis_wait pod install
+  - travis_wait 30 pod repo update > /dev/null 2>&1
+  - travis_wait 30 pod install > /dev/null 2>&1
 branches:
   only:
   - master
