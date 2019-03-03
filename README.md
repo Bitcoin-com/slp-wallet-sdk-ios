@@ -113,6 +113,10 @@ class MyViewController: SLPWalletDelegate {
 - [jbdtky](https://github.com/jbdtky)
 - [holemcross](https://github.com/holemcross)
 
+## References
+- [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
+- [Simple Ledger Protocol (SLP)](https://github.com/simpleledger/slp-specifications/blob/master/slp-token-type-1.md)
+
 ## License
 
 SLPWallet iOS SDK is available under the MIT license. See the LICENSE file for more info.
