@@ -16,13 +16,13 @@ public class SLPToken {
     public var utxos = [SLPTokenUTXO]() {
         willSet {
             // If decimal == 0, replace per the rawTokenQty
-            newValue.forEach { $0.tokenQty = (decimal > 0 ? (Double($0.rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0.rawTokenQty)) }
+            newValue.forEach { $0._tokenQty = (decimal > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0._rawTokenQty)) }
         }
     }
     public var decimal: Int = 0 {
         willSet {
             // If decimal == 0, replace per the rawTokenQty
-            utxos.forEach { $0.tokenQty = (newValue > 0 ? (Double($0.rawTokenQty) / pow(Double(10), Double(newValue))) : Double($0.rawTokenQty)) }
+            utxos.forEach { $0._tokenQty = (newValue > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(newValue))) : Double($0.rawTokenQty)) }
         }
     }
     
@@ -34,7 +34,7 @@ public class SLPToken {
     }
     
     func addUTXO(_ utxo: SLPTokenUTXO) {
-        utxo.tokenQty = decimal > 0 ? (Double(utxo.rawTokenQty) / pow(Double(10), Double(decimal))) : Double(utxo.rawTokenQty)
+        utxo._tokenQty = decimal > 0 ? (Double(utxo._rawTokenQty) / pow(Double(10), Double(decimal))) : Double(utxo._rawTokenQty)
         utxos.append(utxo)
     }
     

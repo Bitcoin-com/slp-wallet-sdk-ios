@@ -9,11 +9,14 @@
 import Foundation
 
 public class SLPTokenUTXO: SLPUTXO {
-    public var rawTokenQty: Int
-    public var tokenQty: Double?
+    var _rawTokenQty: Int
+    var _tokenQty: Double?
+    
+    public var rawTokenQty: Int { get { return _rawTokenQty } }
+    public var tokenQty: Double? { get { return _tokenQty } }
     
     public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int, rawTokenQty: Int) {
-        self.rawTokenQty = rawTokenQty
+        self._rawTokenQty = rawTokenQty
         super.init(txid, satoshis: satoshis, cashAddress: cashAddress, scriptPubKey: scriptPubKey, index: index)
     }
 }

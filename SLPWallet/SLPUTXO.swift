@@ -9,17 +9,23 @@
 import Foundation
 
 public class SLPUTXO {
-    public var txid: String
-    public var satoshis: Int
-    public var cashAddress: String
-    public var scriptPubKey: String
-    public var index: Int
+    fileprivate var _txid: String
+    fileprivate var _satoshis: Int
+    fileprivate var _cashAddress: String
+    fileprivate var _scriptPubKey: String
+    fileprivate var _index: Int
+    
+    public var txid: String { get { return _txid } }
+    public var satoshis: Int { get { return _satoshis } }
+    public var cashAddress: String { get { return _cashAddress } }
+    public var scriptPubKey: String { get { return _scriptPubKey } }
+    public var index: Int { get { return _index } }
     
     public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int) {
-        self.txid = txid
-        self.satoshis = satoshis
-        self.cashAddress = cashAddress
-        self.scriptPubKey = scriptPubKey
-        self.index = index
+        self._txid = txid
+        self._satoshis = satoshis
+        self._cashAddress = cashAddress
+        self._scriptPubKey = scriptPubKey
+        self._index = index
     }
 }
