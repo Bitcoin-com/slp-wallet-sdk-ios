@@ -1,12 +1,11 @@
 language: objective-c
 osx_image: xcode10.1
-xcode_project: SLPWallet.xcworkspace
-xcode_scheme: SLPWallet
-xcode_destination: platform=iOS Simulator,OS=10.0,name=iPhone 5s
 before_install:
-  - travis_wait 30 pod repo update
+  - pod repo update
 install:
   - travis_wait 30 pod install
+script:
+  - xcodebuild -workspace SLPWallet.xcworkspace -scheme SLPWallet -destination platform\=iOS\ Simulator,OS\=10.2,name\=iPhone\ 5s build
 branches:
   only:
   - master
