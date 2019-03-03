@@ -39,7 +39,7 @@ public class SLPWallet {
     public var slpAddress: String {
         get { return _slpAddress }
     }
-    public var token: [String:SLPToken] {
+    public var tokens: [String:SLPToken] {
         get { return _tokens }
     }
     
