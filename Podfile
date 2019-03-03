@@ -6,15 +6,16 @@ target 'SLPWallet' do
     use_frameworks!
 
     # Pods for SLPWallet
-    pod 'BitcoinKit', :git => 'https://github.com/Bitcoin-com/BitcoinKit.git', :branch => 'master'
     pod 'RxSwift',      '~> 4.0'
     pod 'RxCocoa',      '~> 4.0'
     pod 'Moya/RxSwift', '~> 11.0'
+    pod 'BitcoinKit',   :git => 'https://github.com/Bitcoin-com/BitcoinKit.git', :branch => 'master'
 
     target 'SLPWalletTests' do
         inherit! :search_paths
-        # Pods for testing
-	    pod 'RxBlocking'
+
+        # Pods for SLPWalletTests
+        pod 'RxBlocking'
         pod 'RxTest'
         pod 'Quick'
         pod 'Nimble'
