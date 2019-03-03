@@ -54,6 +54,18 @@ class SLPWalletTest: QuickSpec {
                 expect(newToken.getBalance()).toNot(beNil())
                 expect(newToken.getGas()).toNot(beNil())
             }
+            
+            it("Send token") {
+                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let tokens = try! wallet
+                    .fetchTokens()
+                    .toBlocking()
+                    .single()
+                
+                if let token = tokens.first?.value {
+                    wallet.sendToken(token, amount: 1000)
+                }
+            }
         }
     }
 }

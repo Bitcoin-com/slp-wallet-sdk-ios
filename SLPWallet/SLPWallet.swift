@@ -117,6 +117,10 @@ public class SLPWallet {
                                         // TODO: Parse the tx in another place
                                         let script = Script(hex: tx.vout[0].scriptPubKey.hex)
                                         
+                                        if let s = script {
+                                            print(s.string)
+                                        }
+                                        
                                         var voutToTokenQty = [Int]()
                                         voutToTokenQty.append(0) // To have the same mapping with the vouts
                                         
@@ -271,6 +275,67 @@ public class SLPWallet {
                 })
                 .disposed(by: SLPWallet.bag)
             return Disposables.create()
+        }
+    }
+    
+    public func sendToken(_ token: SLPToken, amount: Double) {
+        
+        print("BUILD OP_RETURN")
+        print(token.getBalance())
+        print(amount)
+        guard amount < token.getBalance() else {
+            // Throw exception -> Insuffisant balance
+            print("1")
+            return
+        }
+        
+        // change amount
+        let rawAmount = TokenQtyConverter.convertToRawQty(amount, decimal: token.decimal)
+        let rawChange = TokenQtyConverter.convertToRawQty(token.getBalance() - amount, decimal: token.decimal)
+        
+        guard let tokenId = token.tokenId
+            , let tokenIdInData = Data(hex: tokenId)
+            , let lokadIdInData = Data(hex: "534c5000")
+            , let tokenTypeInData = Data(hex: "01")
+            , let actionInData = "SEND".data(using: String.Encoding.ascii) else {
+            // Throw exception
+            print("2")
+            return
+        }
+        
+        guard let amountInData = TokenQtyConverter.convertToData(rawAmount) else {
+            // throw an exception
+            print("3")
+            return
+        }
+        
+        do {
+            let newScript = try Script()
+                .append(.OP_RETURN)
+                .appendData(lokadIdInData)
+                .appendData(tokenTypeInData)
+                .appendData(actionInData)
+                .appendData(tokenIdInData)
+                .appendData(amountInData)
+            
+            if rawChange > 0 {
+                guard let changeInData = TokenQtyConverter.convertToData(rawChange) else {
+                    // throw an exception
+                    print("4")
+                    return
+                }
+                
+                try newScript.appendData(changeInData)
+            }
+            
+            // I can start to create my transaction here :)
+            print(newScript.string)
+            
+            
+        } catch {
+            print("5")
+            // Error
+            // throw an exception
         }
     }
     
