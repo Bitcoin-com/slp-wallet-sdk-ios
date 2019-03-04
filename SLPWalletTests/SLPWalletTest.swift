@@ -62,8 +62,17 @@ class SLPWalletTest: QuickSpec {
                     .toBlocking()
                     .single()
                 
-                if let token = tokens.first?.value {
-                    wallet.sendToken(token, amount: 1000)
+                if let token = tokens.first?.value
+                 , let tokenId = token.tokenId {
+                    do {
+                        let rawTx = try wallet
+                            .sendToken(tokenId, amount: 500, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
+                            .toBlocking()
+                            .single()
+                        print(rawTx)
+                    } catch {
+                        fail()
+                    }
                 }
             }
         }

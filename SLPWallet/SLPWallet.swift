@@ -18,6 +18,7 @@ public class SLPWallet {
     
     enum SLPWalletError : Error {
         case TOKEN_ID_REQUIRED
+        case SLP_TRANSACTION_BUILDER
     }
     
     fileprivate static let bag = DisposeBag()
@@ -25,10 +26,19 @@ public class SLPWallet {
     fileprivate let _mnemonic: String
     fileprivate let _cashAddress: String
     fileprivate let _slpAddress: String
-    fileprivate let privKey: PrivateKey
-    fileprivate let network: Network
-    fileprivate var utxos: [SLPUTXO]
     fileprivate var _tokens: [String:SLPToken]
+    fileprivate let _privKey: PrivateKey
+    
+    fileprivate let network: Network
+    fileprivate var _utxos: [SLPUTXO]
+    
+    var privKey: PrivateKey {
+        get { return _privKey }
+    }
+    
+    var utxos: [SLPUTXO] {
+        get { return _utxos }
+    }
     
     public var mnemonic: String {
         get { return _mnemonic }
@@ -73,10 +83,10 @@ public class SLPWallet {
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self.privKey = privKey
         self.network = network
         
         self._mnemonic = mnemonic
+        self._privKey = privKey
         self._cashAddress = privKey.publicKey().toCashaddr().cashaddr
         
         let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
@@ -84,11 +94,11 @@ public class SLPWallet {
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
-        self.utxos = [SLPUTXO]()
+        self._utxos = [SLPUTXO]()
     }
     
     public func getGas() -> Int {
-        return utxos.reduce(0, { $0 + $1.satoshis })
+        return _utxos.reduce(0, { $0 + $1.satoshis })
     }
     
     public func fetchTokens() -> Single<[String:SLPToken]> {
@@ -237,7 +247,7 @@ public class SLPWallet {
                                     })
                                     
                                     // Update the UTXOs used as gas :)
-                                    self.utxos = updatedUTXOs
+                                    self._utxos = updatedUTXOs
                                     
                                     // Check which one is new and need to get the info from Genesis
                                     var newTokens = [SLPToken]()
@@ -278,64 +288,16 @@ public class SLPWallet {
         }
     }
     
-    public func sendToken(_ token: SLPToken, amount: Double) {
-        
-        print("BUILD OP_RETURN")
-        print(token.getBalance())
-        print(amount)
-        guard amount < token.getBalance() else {
-            // Throw exception -> Insuffisant balance
-            print("1")
-            return
-        }
-        
-        // change amount
-        let rawAmount = TokenQtyConverter.convertToRawQty(amount, decimal: token.decimal)
-        let rawChange = TokenQtyConverter.convertToRawQty(token.getBalance() - amount, decimal: token.decimal)
-        
-        guard let tokenId = token.tokenId
-            , let tokenIdInData = Data(hex: tokenId)
-            , let lokadIdInData = Data(hex: "534c5000")
-            , let tokenTypeInData = Data(hex: "01")
-            , let actionInData = "SEND".data(using: String.Encoding.ascii) else {
-            // Throw exception
-            print("2")
-            return
-        }
-        
-        guard let amountInData = TokenQtyConverter.convertToData(rawAmount) else {
-            // throw an exception
-            print("3")
-            return
-        }
-        
-        do {
-            let newScript = try Script()
-                .append(.OP_RETURN)
-                .appendData(lokadIdInData)
-                .appendData(tokenTypeInData)
-                .appendData(actionInData)
-                .appendData(tokenIdInData)
-                .appendData(amountInData)
-            
-            if rawChange > 0 {
-                guard let changeInData = TokenQtyConverter.convertToData(rawChange) else {
-                    // throw an exception
-                    print("4")
-                    return
-                }
-                
-                try newScript.appendData(changeInData)
+    public func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
+        return Single<String>.create { single in
+            do {
+                let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
+                single(.success(rawTx))
+            } catch {
+                single(.error(SLPWalletError.SLP_TRANSACTION_BUILDER))
             }
             
-            // I can start to create my transaction here :)
-            print(newScript.string)
-            
-            
-        } catch {
-            print("5")
-            // Error
-            // throw an exception
+            return Disposables.create()
         }
     }
     

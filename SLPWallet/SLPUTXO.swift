@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import BitcoinKit
 
 public class SLPUTXO {
     fileprivate var _txid: String
@@ -27,5 +28,13 @@ public class SLPUTXO {
         self._cashAddress = cashAddress
         self._scriptPubKey = scriptPubKey
         self._index = index
+    }
+    
+    func asUnspentTransaction() -> UnspentTransaction {
+        let transactionOutput = TransactionOutput(value: UInt64(_satoshis), lockingScript: Data(hex: _scriptPubKey)!)
+        let txid: Data = Data(hex: String(_txid))!
+        let txHash: Data = Data(txid.reversed())
+        let transactionOutpoint = TransactionOutPoint(hash: txHash, index: UInt32(_index))
+        return UnspentTransaction(output: transactionOutput, outpoint: transactionOutpoint)
     }
 }
