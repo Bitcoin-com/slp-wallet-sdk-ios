@@ -140,8 +140,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="address" destination="GXx-xe-BoO" id="HId-sc-cl2"/>
-                        <outlet property="amount" destination="jit-Wy-jew" id="7yc-r0-QsG"/>
+                        <outlet property="addressLabel" destination="GXx-xe-BoO" id="Xwx-Sx-3sM"/>
+                        <outlet property="amountLabel" destination="jit-Wy-jew" id="SVm-9X-JCt"/>
                         <outlet property="balanceLabel" destination="ooW-Zl-Cl4" id="A3C-gj-d7m"/>
                         <outlet property="cashAddressLabel" destination="umH-GI-cMV" id="hKJ-Cj-clb"/>
                         <outlet property="gasLabel" destination="9Un-GD-zcJ" id="qqR-aB-sOU"/>
