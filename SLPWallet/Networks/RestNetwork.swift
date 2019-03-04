@@ -28,7 +28,7 @@ extension RestNetwork: TargetType {
             return "/transaction/details/"
         case .fetchTxs(let address):
             return "/addrs/\(address)"
-        case .broadcast: return "/tx/send"
+        case .broadcast(let rawTx): return "/rawtransactions/sendRawTransaction/\(rawTx)"
         }
     }
     
@@ -37,7 +37,7 @@ extension RestNetwork: TargetType {
         case .fetchUTXOs: return .get
         case .fetchTxs: return .get
         case .fetchTxDetails: return .post
-        case .broadcast: return .post
+        case .broadcast: return .get
         }
     }
     
@@ -48,10 +48,10 @@ extension RestNetwork: TargetType {
     public var task: Task {
         switch self {
         case .broadcast(let rawTx):
-            let str = "{\"rawtx\":\"\(rawTx)\"}"
-            if let data = str.data(using: .utf8) {
-                return .requestData(data)
-            }
+//            let str = "{\"rawtx\":\"\(rawTx)\"}"
+//            if let data = str.data(using: .utf8) {
+//                return .requestData(data)
+//            }
             return .requestPlain
         case .fetchTxDetails(let txids):
 //            let str = "{\"txids\":[\"\(txids)\"]}"

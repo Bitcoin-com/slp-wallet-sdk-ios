@@ -27,6 +27,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var gasLabel: UILabel!
     
+    @IBOutlet weak var addressLabel: UITextField!
+    @IBOutlet weak var amountLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +50,21 @@ class ViewController: UIViewController {
         balanceLabel.text = token.getBalance().description
         gasLabel.text = (wallet.getGas() + token.getGas()).description
         tokenNameLabel.text = token.tokenName
+    }
+    
+    @IBAction func sendToken(_ sender: Any) {
+        guard let toAddress = addressLabel.text
+            , let amountStr = amountLabel.text
+            , let amount = Double(amountStr)
+            , let tokenId = selectedTokenId else {
+            return
+        }
+        wallet
+            .sendToken(tokenId, amount: amount, toAddress: toAddress)
+            .subscribe(onSuccess: { txid in
+                self.addressLabel.text = ""
+                self.amountLabel.text = ""
+            })
     }
     
     @IBAction func didSelectToken(_ sender: Any) {

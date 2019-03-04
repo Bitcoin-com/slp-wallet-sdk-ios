@@ -98,21 +98,50 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="de6-oH-u79">
+                                <rect key="frame" x="8" y="553" width="359" height="106"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GXx-xe-BoO">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jit-Wy-jew">
+                                        <rect key="frame" x="0.0" y="38" width="359" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-zd-5VR">
+                                        <rect key="frame" x="0.0" y="76" width="359" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendToken:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dTX-Pb-Uou"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="de6-oH-u79" secondAttribute="trailing" constant="8" id="1uJ-8y-aRK"/>
                             <constraint firstItem="aoX-f6-f6V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3hx-3v-sG7"/>
                             <constraint firstItem="6D2-yW-JF9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="8pf-LW-V4K"/>
                             <constraint firstItem="6D2-yW-JF9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="9vw-hm-IL9"/>
+                            <constraint firstItem="de6-oH-u79" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="LAj-pA-vHF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6D2-yW-JF9" secondAttribute="trailing" constant="8" id="dxN-xu-BT0"/>
                             <constraint firstItem="aoX-f6-f6V" firstAttribute="top" secondItem="6D2-yW-JF9" secondAttribute="bottom" constant="16" id="jtf-XJ-wpg"/>
                             <constraint firstItem="lBO-zT-UL2" firstAttribute="top" secondItem="aoX-f6-f6V" secondAttribute="bottom" constant="16" id="pAJ-9k-tYW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="de6-oH-u79" secondAttribute="bottom" constant="8" id="rJC-E7-NXs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lBO-zT-UL2" secondAttribute="trailing" constant="8" id="v4x-bi-ag7"/>
                             <constraint firstItem="lBO-zT-UL2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="yOh-Oh-cYU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="GXx-xe-BoO" id="Xwx-Sx-3sM"/>
+                        <outlet property="amountLabel" destination="jit-Wy-jew" id="SVm-9X-JCt"/>
                         <outlet property="balanceLabel" destination="ooW-Zl-Cl4" id="A3C-gj-d7m"/>
                         <outlet property="cashAddressLabel" destination="umH-GI-cMV" id="hKJ-Cj-clb"/>
                         <outlet property="gasLabel" destination="9Un-GD-zcJ" id="qqR-aB-sOU"/>

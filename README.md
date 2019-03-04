@@ -72,6 +72,17 @@ wallet
         // ...
     })
 ```
+### Send token
+
+```swift
+wallet
+    .sendToken(tokenId, amount, toAddress) // toAddress can be a slp / cash address or legacy
+    .subscribe(onSuccess: { txid in // RxSwift => Single<String>
+        // ...
+    }, onError: { error in
+        // ...
+    })
+```
 ### Auto update wallet/tokens (balances + gas)
 
 ```swift

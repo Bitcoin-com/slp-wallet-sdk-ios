@@ -54,6 +54,20 @@ class SLPWalletTest: QuickSpec {
                 expect(newToken.getBalance()).toNot(beNil())
                 expect(newToken.getGas()).toNot(beNil())
             }
+            
+            it("Send token Bitcoin.com Coin") {
+                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                do {
+                    let txid = try wallet
+                        .sendToken("542fd54a9fc047d99f9be6dab870f74d0920559a77ed0e5e74a622ef3b7c32c7", amount: 850, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                        .toBlocking()
+                        .single()
+                    expect(txid).toNot(beNil())
+                } catch {
+                    fail()
+                }
+                
+            }
         }
     }
 }
