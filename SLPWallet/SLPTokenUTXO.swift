@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SLPTokenUTXO: SLPUTXO {
+public class SLPTokenUTXO: SLPWalletUTXO {
     var _rawTokenQty: Int
     var _tokenQty: Double?
     

@@ -30,13 +30,13 @@ public class SLPWallet {
     fileprivate let _privKey: PrivateKey
     
     fileprivate let network: Network
-    fileprivate var _utxos: [SLPUTXO]
+    fileprivate var _utxos: [SLPWalletUTXO]
     
     var privKey: PrivateKey {
         get { return _privKey }
     }
     
-    var utxos: [SLPUTXO] {
+    var utxos: [SLPWalletUTXO] {
         get { return _utxos }
     }
     
@@ -94,7 +94,7 @@ public class SLPWallet {
         // Quick way to do it, @angel is working on building it in BitcoinKit
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
-        self._utxos = [SLPUTXO]()
+        self._utxos = [SLPWalletUTXO]()
     }
     
     public func getGas() -> Int {
@@ -108,19 +108,25 @@ public class SLPWallet {
                 .subscribe({ event in
                     switch event {
                     case .success(let utxo):
-                        let txids = utxo
+                        let requests = utxo
                             .utxos
                             .compactMap { $0.txid }
                             .removeDuplicates()
+                            .chunk(20)
                         
-                        RestService
-                            .fetchTxDetails(txids)
+                        Observable
+                            .zip(requests
+                                .map { RestService
+                                    .fetchTxDetails($0)
+                                    .asObservable() })
                             .subscribe({ event in
                                 switch event {
-                                case .success(let txs):
+                                case .next(let response):
+                                    
+                                    let txs = response.flatMap({ $0 })
                                 
                                     var updatedTokens = [String:SLPToken]()
-                                    var updatedUTXOs = [SLPUTXO]()
+                                    var updatedUTXOs = [SLPWalletUTXO]()
                                     
                                     txs.forEach({ tx in
                                         
@@ -223,7 +229,7 @@ public class SLPWallet {
                                             
                                             guard vout.n < voutToTokenQty.count else {
                                                 // UTXO without token
-                                                let utxo = SLPUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
                                                 updatedUTXOs.append(utxo)
                                                 return
                                             }
@@ -272,6 +278,7 @@ public class SLPWallet {
                                     
                                 case .error(let error):
                                     single(.error(error))
+                                case .completed: break
                                 }
                             })
                             .disposed(by: SLPWallet.bag)
@@ -286,23 +293,29 @@ public class SLPWallet {
     
     public func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
         return Single<String>.create { single in
-            do {
-                let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
-                
-                RestService
-                    .broadcast(rawTx)
-                    .subscribe({ response in
-                        switch response {
-                        case.success(let txid):
-                            single(.success(txid))
-                        case .error(let error):
-                            single(.error(error))
-                        }
-                    })
-                    .disposed(by: SLPWallet.bag)
-            } catch {
-                single(.error(SLPWalletError.SLP_TRANSACTION_BUILDER))
-            }
+            self.fetchTokens()
+                .subscribe(onSuccess: { _ in
+                    do {
+                        let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
+                        
+                        RestService
+                            .broadcast(rawTx)
+                            .subscribe({ response in
+                                switch response {
+                                case.success(let txid):
+                                    single(.success(txid))
+                                case .error(let error):
+                                    single(.error(error))
+                                }
+                            })
+                            .disposed(by: SLPWallet.bag)
+                    } catch {
+                        single(.error(SLPWalletError.SLP_TRANSACTION_BUILDER))
+                    }
+                }, onError: { error in
+                    single(.error(error))
+                })
+                .disposed(by: SLPWallet.bag)
             
             return Disposables.create()
         }

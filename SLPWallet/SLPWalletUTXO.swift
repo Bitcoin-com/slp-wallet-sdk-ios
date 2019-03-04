@@ -9,7 +9,7 @@
 import Foundation
 import BitcoinKit
 
-public class SLPUTXO {
+public class SLPWalletUTXO {
     fileprivate var _txid: String
     fileprivate var _satoshis: Int
     fileprivate var _cashAddress: String

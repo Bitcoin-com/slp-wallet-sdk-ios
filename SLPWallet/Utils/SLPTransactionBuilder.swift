@@ -29,7 +29,6 @@ class SLPTransactionBuilder {
         
         // change amount
         let rawTokenAmount = TokenQtyConverter.convertToRawQty(amount, decimal: token.decimal)
-        let rawTokenChange = TokenQtyConverter.convertToRawQty(token.getBalance() - amount, decimal: token.decimal)
         
         guard let tokenId = token.tokenId
             , let tokenIdInData = Data(hex: tokenId)
@@ -55,17 +54,6 @@ class SLPTransactionBuilder {
             .appendData(tokenIdInData)
             .appendData(amountInData)
         
-        if rawTokenChange > 0 {
-            guard let changeInData = TokenQtyConverter.convertToData(rawTokenChange) else {
-                // throw an exception
-                print("4")
-                return ""
-            }
-            
-            try newScript.appendData(changeInData)
-            satoshisRequired += 546
-        }
-        
         // I can start to create my transaction here :)
         
         // UTXOs selection from SLPTokenUTXOs
@@ -80,6 +68,18 @@ class SLPTransactionBuilder {
                 return true
             }
             .compactMap { $0 }
+        
+        let rawTokenChange = sum - rawTokenAmount
+        if rawTokenChange > 0 {
+            guard let changeInData = TokenQtyConverter.convertToData(rawTokenChange) else {
+                // throw an exception
+                print("4")
+                return ""
+            }
+            
+            try newScript.appendData(changeInData)
+            satoshisRequired += 546
+        }
         
         var selectedUTXOs = selectedTokenUTXOs.map({ utxo -> UnspentTransaction in
             return utxo.asUnspentTransaction()
@@ -119,7 +119,7 @@ class SLPTransactionBuilder {
         // If there is not enough gas, lets grab utxos from the wallet to refill
         if change < 0 {
             var sum = Int(change)
-            let gasTokenUTXOs: [SLPUTXO] = wallet.utxos
+            let gasTokenUTXOs: [SLPWalletUTXO] = wallet.utxos
                 .filter { utxo -> Bool in
                     if sum >= 0 {
                         return false

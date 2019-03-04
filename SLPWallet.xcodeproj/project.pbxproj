@@ -16,7 +16,7 @@
 		3B7FE9292229225200CB5755 /* SLPTransactionParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */; };
 		3B7FE92B2229892F00CB5755 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE92A2229892E00CB5755 /* README.md */; };
 		3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92C222990FB00CB5755 /* SLPToken.swift */; };
-		3B7FE92F2229913100CB5755 /* SLPUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92E2229913100CB5755 /* SLPUTXO.swift */; };
+		3B7FE92F2229913100CB5755 /* SLPWalletUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */; };
 		3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */; };
 		3B7FE933222A895E00CB5755 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE932222A895E00CB5755 /* Array+Extensions.swift */; };
 		3B99B05F2226251B00A1B599 /* SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B99B0552226251B00A1B599 /* SLPWallet.framework */; };
@@ -52,7 +52,7 @@
 		3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionParser.swift; sourceTree = "<group>"; };
 		3B7FE92A2229892E00CB5755 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3B7FE92C222990FB00CB5755 /* SLPToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPToken.swift; sourceTree = "<group>"; };
-		3B7FE92E2229913100CB5755 /* SLPUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPUTXO.swift; sourceTree = "<group>"; };
+		3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletUTXO.swift; sourceTree = "<group>"; };
 		3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTokenUTXO.swift; sourceTree = "<group>"; };
 		3B7FE932222A895E00CB5755 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		3B99B0552226251B00A1B599 /* SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,8 +121,8 @@
 			children = (
 				3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */,
 				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
-				3B99B07A2226290100A1B599 /* Config.swift */,
 				3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */,
+				3B99B07A2226290100A1B599 /* Config.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
-				3B7FE92E2229913100CB5755 /* SLPUTXO.swift */,
+				3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */,
 				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
 				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
 				3B288C4A222C388500C1AC81 /* Utils */,
@@ -398,7 +398,7 @@
 				3BC2880B222D022F00EB3375 /* SLPTransactionBuilder.swift in Sources */,
 				3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */,
 				3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */,
-				3B7FE92F2229913100CB5755 /* SLPUTXO.swift in Sources */,
+				3B7FE92F2229913100CB5755 /* SLPWalletUTXO.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B7FE9022227BFA600CB5755 /* Double+Extensions.swift in Sources */,
 				3B288C49222C387700C1AC81 /* TokenQtyConverter.swift in Sources */,
