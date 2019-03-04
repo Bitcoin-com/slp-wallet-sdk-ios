@@ -127,10 +127,6 @@ public class SLPWallet {
                                         // TODO: Parse the tx in another place
                                         let script = Script(hex: tx.vout[0].scriptPubKey.hex)
                                         
-                                        if let s = script {
-                                            print(s.string)
-                                        }
-                                        
                                         var voutToTokenQty = [Int]()
                                         voutToTokenQty.append(0) // To have the same mapping with the vouts
                                         
@@ -292,7 +288,18 @@ public class SLPWallet {
         return Single<String>.create { single in
             do {
                 let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
-                single(.success(rawTx))
+                
+                RestService
+                    .broadcast(rawTx)
+                    .subscribe({ response in
+                        switch response {
+                        case.success(let txid):
+                            single(.success(txid))
+                        case .error(let error):
+                            single(.error(error))
+                        }
+                    })
+                    .disposed(by: SLPWallet.bag)
             } catch {
                 single(.error(SLPWalletError.SLP_TRANSACTION_BUILDER))
             }

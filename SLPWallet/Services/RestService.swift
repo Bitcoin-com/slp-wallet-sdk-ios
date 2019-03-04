@@ -15,6 +15,7 @@ public class RestService {
     enum RestError: Error {
         case REST_UTXOS
         case REST_TX_DETAILS
+        case REST_SEND_RAW_TX
     }
 }
 
@@ -110,6 +111,34 @@ extension RestService {
                     case .error(let error):
                         print(error)
                         observer(.error(RestError.REST_TX_DETAILS))
+                    default: break
+                    }
+                })
+                .disposed(by: RestService.bag)
+            return Disposables.create()
+        })
+    }
+}
+
+// broadcast
+//
+extension RestService {
+    
+    public static func broadcast(_ rawTx: String) -> Single<String> {
+        return Single<String>.create(subscribe: { (observer) -> Disposable in
+            let provider = MoyaProvider<RestNetwork>()
+            provider.rx
+                .request(.broadcast(rawTx))
+                .retry(3)
+                .mapJSON()
+                .asObservable()
+                .subscribe ({ (event) in
+                    switch event {
+                    case .next(let txid):
+                        observer(.success(txid as! String))
+                    case .error(let error):
+                        print(error)
+                        observer(.error(RestError.REST_SEND_RAW_TX))
                     default: break
                     }
                 })

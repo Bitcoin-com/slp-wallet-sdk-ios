@@ -21,16 +21,11 @@ class SLPTransactionBuilder {
                 return ""
         }
         
-        print(token.getBalance())
-        print(amount)
-        
         guard token.getBalance() >= amount else {
             // Insuffisant balance
             print("1")
             return ""
         }
-        
-        print("BUILD OP_RETURN")
         
         // change amount
         let rawTokenAmount = TokenQtyConverter.convertToRawQty(amount, decimal: token.decimal)
@@ -60,8 +55,6 @@ class SLPTransactionBuilder {
             .appendData(tokenIdInData)
             .appendData(amountInData)
         
-        print("WORKS________________")
-        
         if rawTokenChange > 0 {
             guard let changeInData = TokenQtyConverter.convertToData(rawTokenChange) else {
                 // throw an exception
@@ -73,10 +66,7 @@ class SLPTransactionBuilder {
             satoshisRequired += 546
         }
         
-        print("WORKS________________")
-        
         // I can start to create my transaction here :)
-        print(newScript.string)
         
         // UTXOs selection from SLPTokenUTXOs
         var sum = 0
@@ -96,7 +86,7 @@ class SLPTransactionBuilder {
         })
         
         let fromAddress = try AddressFactory.create(wallet.cashAddress)
-        let toAddress = try AddressFactory.create(wallet.cashAddress)
+        let toAddress = try AddressFactory.create(toAddress)
         
         let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
         
