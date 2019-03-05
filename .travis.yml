@@ -6,6 +6,3 @@ install:
   - travis_wait 30 pod install
 script:
   - xcodebuild -workspace SLPWallet.xcworkspace -scheme SLPWallet -destination platform\=iOS\ Simulator,OS\=10.2,name\=iPhone\ 5s build
-branches:
-  only:
-  - master
