@@ -23,7 +23,7 @@ public class SLPWallet {
         case MNEMONIC_NOT_FOUND
     }
     
-    fileprivate static let keychain = Keychain(service: "com.bitcoin")
+    fileprivate static let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
     fileprivate static let bag = DisposeBag()
     
     fileprivate let _mnemonic: [String]
@@ -81,23 +81,25 @@ public class SLPWallet {
             // Get in keychain
             guard let mnemonic = try SLPWallet.keychain.get("mnemonic") else {
                 try self.init(network)
+                return
             }
-            self.init(mnemonic, network: network)
+            try self.init(mnemonic, network: network)
         }
     }
     
     public convenience init(_ network: Network) throws {
         let mnemonic = try Mnemonic.generate()
-        
         let mnemonicStr = mnemonic.joined(separator: " ")
         
-        // Store in keychain
-        try SLPWallet.keychain.set(mnemonicStr, key: "mnemonic")
-        
-        self.init(mnemonicStr, network: network)
+        try self.init(mnemonicStr, network: network)
     }
     
-    public init(_ mnemonic: String, network: Network) {
+    public init(_ mnemonic: String, network: Network) throws {
+        
+        // Store in keychain
+        try SLPWallet.keychain.set(mnemonic, key: "mnemonic")
+        
+        // Then go forward
         let arrayOfwords = mnemonic.components(separatedBy: " ")
         
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: " "))
