@@ -40,5 +40,6 @@ Pod::Spec.new do |s|
   s.dependency "RxSwift", "~> 4.0"
   s.dependency "RxCocoa", "~> 4.0"
   s.dependency "Moya/RxSwift", "~> 11.0"
+  s.dependency "KeychainAccess", "~> 3.1.2"
 
 end
