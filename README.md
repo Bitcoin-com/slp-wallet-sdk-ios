@@ -40,18 +40,31 @@ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer/
 The wallet is working with only 1 address using the SLP recommanded path 44'/245'/0' + m/0/0.
 
 ```swift
-let wallet = SLPWallet("my mnemonic", network: .testnet) // .mainnet or .testnet
-// Or generate mnemonic + create wallet
+// Generate/Restore a wallet + Save/Get in Keychain
+// If mnemonic in Keychain
+// Restore wallet
+// else 
+// Generate mnemonic
 let wallet = SLPWallet(.testnet) // .mainnet or .testnet
+
+// Restore a wallet from Mnemonic + Save in Keychain
+let wallet = SLPWallet("My Mnemonic", network: .testnet) // .mainnet or .testnet
+
+// Generate a wallet
+// If force == true 
+//  Generate everytime a new wallet
+// else 
+//  Generate once a new wallet + Save in Keychain then restore the wallet when generate again from Keychain
+let wallet = SLPWallet(.testnet, force: Bool)  // .mainnet or .testnet
 ```
 
 ### Addresses + tokens
 
 ```swift
-wallet.mnemonic
-wallet.slpAddress
-wallet.cashAddress
-wallet.tokens // Tokens accessible if you fetch it already once or you started the scheduler
+wallet.mnemonic // [String]
+wallet.slpAddress // String
+wallet.cashAddress // String
+wallet.tokens // [String:SLPToken] Tokens accessible if you fetch it already once or you started the scheduler
 ```
 ### Fetch my tokens
 

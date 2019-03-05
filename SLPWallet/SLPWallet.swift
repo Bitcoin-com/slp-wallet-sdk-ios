@@ -9,6 +9,7 @@
 import BitcoinKit
 import RxSwift
 import RxCocoa
+import KeychainAccess
 
 public protocol SLPWalletDelegate {
     func onUpdatedToken(_ token: [String:SLPToken])
@@ -19,11 +20,13 @@ public class SLPWallet {
     enum SLPWalletError : Error {
         case TOKEN_ID_REQUIRED
         case SLP_TRANSACTION_BUILDER
+        case MNEMONIC_NOT_FOUND
     }
     
+    fileprivate static let keychain = Keychain(service: "com.bitcoin")
     fileprivate static let bag = DisposeBag()
     
-    fileprivate let _mnemonic: String
+    fileprivate let _mnemonic: [String]
     fileprivate let _cashAddress: String
     fileprivate let _slpAddress: String
     fileprivate var _tokens: [String:SLPToken]
@@ -40,7 +43,7 @@ public class SLPWallet {
         get { return _utxos }
     }
     
-    public var mnemonic: String {
+    public var mnemonic: [String] {
         get { return _mnemonic }
     }
     public var cashAddress: String {
@@ -71,13 +74,33 @@ public class SLPWallet {
         return t
     }()
     
-    public convenience init(_ network: Network) {
-        let mnemonic = try! Mnemonic.generate()
-        self.init(mnemonic.joined(separator: ","), network: network)
+    public convenience init(_ network: Network, force: Bool = false) throws {
+        if force {
+            try self.init(network)
+        } else {
+            // Get in keychain
+            guard let mnemonic = try SLPWallet.keychain.get("mnemonic") else {
+                try self.init(network)
+            }
+            self.init(mnemonic, network: network)
+        }
+    }
+    
+    public convenience init(_ network: Network) throws {
+        let mnemonic = try Mnemonic.generate()
+        
+        let mnemonicStr = mnemonic.joined(separator: " ")
+        
+        // Store in keychain
+        try SLPWallet.keychain.set(mnemonicStr, key: "mnemonic")
+        
+        self.init(mnemonicStr, network: network)
     }
     
     public init(_ mnemonic: String, network: Network) {
-        let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: ","))
+        let arrayOfwords = mnemonic.components(separatedBy: " ")
+        
+        let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: " "))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
         
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
@@ -85,7 +108,7 @@ public class SLPWallet {
         
         self.network = network
         
-        self._mnemonic = mnemonic
+        self._mnemonic = arrayOfwords
         self._privKey = privKey
         self._cashAddress = privKey.publicKey().toCashaddr().cashaddr
         
@@ -96,6 +119,9 @@ public class SLPWallet {
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
     }
+}
+
+public extension SLPWallet {
     
     public func getGas() -> Int {
         return _utxos.reduce(0, { $0 + $1.satoshis })
@@ -124,7 +150,7 @@ public class SLPWallet {
                                 case .next(let response):
                                     
                                     let txs = response.flatMap({ $0 })
-                                
+                                    
                                     var updatedTokens = [String:SLPToken]()
                                     var updatedUTXOs = [SLPWalletUTXO]()
                                     
@@ -158,7 +184,7 @@ public class SLPWallet {
                                                 guard let transactionType = String(data: chunks[2].chunkData.removeLeft(), encoding: String.Encoding.ascii) else {
                                                     return
                                                 }
-
+                                                
                                                 if transactionType == SLPTransactionType.GENESIS.rawValue {
                                                     
                                                     // Genesis => Txid
@@ -266,7 +292,7 @@ public class SLPWallet {
                                         .subscribe({ event in
                                             switch event {
                                             case .next(_): break
-                                                // Nothing interesting to do for now here
+                                            // Nothing interesting to do for now here
                                             case .completed:
                                                 self.delegate?.onUpdatedToken(self._tokens)
                                                 single(.success(self._tokens))

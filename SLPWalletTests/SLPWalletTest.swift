@@ -18,7 +18,7 @@ class SLPWalletTest: QuickSpec {
             it("Create wallet") {
                 let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 
-                expect(wallet.mnemonic).to(equal("machine cannon man rail best deliver draw course time tape violin tone"))
+                expect(wallet.mnemonic).to(equal(["machine", "cannon", "man", "rail", "best", "deliver", "draw", "course", "time", "tape", "violin", "tone"]))
                 expect(wallet.cashAddress).to(equal("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6"))
                 expect(wallet.slpAddress).to(equal("simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny"))
             }
@@ -29,7 +29,7 @@ class SLPWalletTest: QuickSpec {
                     .fetchTokens()
                     .toBlocking()
                     .single()
-            
+                
                 tokens.forEach({ tokenId, token in
                     expect(token.tokenId).toNot(beNil())
                     expect(token.tokenTicker).toNot(beNil())
@@ -59,7 +59,7 @@ class SLPWalletTest: QuickSpec {
                 let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 do {
                     let txid = try wallet
-                        .sendToken("542fd54a9fc047d99f9be6dab870f74d0920559a77ed0e5e74a622ef3b7c32c7", amount: 850, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                        .sendToken("3257135d7c351f8b2f46ab2b5e610620beb7a957f3885ce1787cffa90582f503", amount: 300, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
                         .toBlocking()
                         .single()
                     expect(txid).toNot(beNil())
