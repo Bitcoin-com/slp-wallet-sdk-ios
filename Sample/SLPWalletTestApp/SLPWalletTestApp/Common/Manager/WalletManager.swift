@@ -15,7 +15,7 @@ class WalletManager: SLPWalletDelegate {
     
     init() {
         do {
-            wallet = try SLPWallet(.mainnet)
+            wallet = try SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
             wallet.delegate = self
             wallet.scheduler.resume()
         } catch {
