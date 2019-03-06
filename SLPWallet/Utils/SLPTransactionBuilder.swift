@@ -100,12 +100,12 @@ class SLPTransactionBuilder {
             throw SLPTransactionBuilderError.SCRIPT_TO
         }
         
-        let minSatoshisForToken = UInt64(546) // -> TODO: Calculate the right one
+        let minSatoshisForToken = UInt64(546)
         let toOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTo.data)
         
         var outputs: [TransactionOutput] = [opOutput, toOutput]
         
-        if rawTokenChange > 0 { // Todo: Clean all these fee calculation and move it
+        if rawTokenChange > 0 {
             guard let lockScriptTokenChange = Script(address: fromAddress) else {
                 // throw exception
                 throw SLPTransactionBuilderError.SCRIPT_TOKEN_CHANGE
@@ -116,7 +116,7 @@ class SLPTransactionBuilder {
         }
         
         let totalAmount: UInt64 = selectedUTXOs.reduce(0) { $0 + $1.output.value }
-        let txFee = UInt64(selectedUTXOs.count * 146 + outputs.count * 33 + 300) // -> TODO: Calculate the right one
+        let txFee = UInt64(selectedUTXOs.count * 146 + outputs.count * 33 + 300)
         var change: Int64 = Int64(totalAmount) - Int64(satoshisRequired) - Int64(txFee)
         
         // If there is not enough gas, lets grab utxos from the wallet to refill
