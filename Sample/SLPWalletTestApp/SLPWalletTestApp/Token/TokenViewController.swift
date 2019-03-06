@@ -46,12 +46,11 @@ class TokenViewController: UITableViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "View on explorer", style: .default, handler: { _ in
-            alert.dismiss(animated: true, completion: {
-                guard let url = URL(string: "https://explorer.bitcoin.com/bch/tx/\(txid)") else {
-                    return
-                }
-                UIApplication.shared.open(url)
-            })
+            guard let url = URL(string: "https://explorer.bitcoin.com/bch/tx/\(txid)") else {
+                return
+            }
+            UIApplication.shared.open(url)
+            alert.dismiss(animated: true, completion: nil)
         }))
         
         present(alert, animated: true, completion: nil)
