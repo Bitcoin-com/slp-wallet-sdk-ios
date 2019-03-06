@@ -11,7 +11,7 @@ import SLPWallet
 
 class ViewController: UIViewController {
     
-    fileprivate var wallet: SLPWallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+    fileprivate var wallet: SLPWallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
     fileprivate var tokens = [SLPToken]()
     
     fileprivate var tokenIds = [String]()
@@ -32,6 +32,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(wallet.slpAddress)
         
         wallet.delegate = self
         wallet.scheduler.resume()

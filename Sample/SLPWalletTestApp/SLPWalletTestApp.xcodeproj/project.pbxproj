@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE866222679F400CB5755 /* AppDelegate.swift */; };
 		3B7FE869222679F400CB5755 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE868222679F400CB5755 /* ViewController.swift */; };
 		3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE86A222679F400CB5755 /* Main.storyboard */; };
@@ -16,6 +17,26 @@
 		3B7FE87F222679F500CB5755 /* SLPWalletTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE87E222679F500CB5755 /* SLPWalletTestAppTests.swift */; };
 		3B7FE88A222679F500CB5755 /* SLPWalletTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE889222679F500CB5755 /* SLPWalletTestAppUITests.swift */; };
 		3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE90A2228FFDF00CB5755 /* Podfile */; };
+		3BA87522222EE8AA008A3B1D /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87521222EE8AA008A3B1D /* TokensViewController.swift */; };
+		3BA87524222EE8D9008A3B1D /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87523222EE8D9008A3B1D /* TokenViewController.swift */; };
+		3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */; };
+		3BA87529222EE982008A3B1D /* TokenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87528222EE982008A3B1D /* TokenPresenter.swift */; };
+		3BA8752B222EE99E008A3B1D /* TokenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8752A222EE99E008A3B1D /* TokenBuilder.swift */; };
+		3BA8752D222EE9CD008A3B1D /* Token.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8752C222EE9CD008A3B1D /* Token.storyboard */; };
+		3BA8752F222EEA03008A3B1D /* TokensBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8752E222EEA03008A3B1D /* TokensBuilder.swift */; };
+		3BA87531222EEA3D008A3B1D /* Tokens.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87530222EEA3D008A3B1D /* Tokens.storyboard */; };
+		3BA87533222EEAA3008A3B1D /* TokensRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87532222EEAA3008A3B1D /* TokensRouter.swift */; };
+		3BA87536222EEB46008A3B1D /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87535222EEB46008A3B1D /* BaseRouter.swift */; };
+		3BA87538222EECB0008A3B1D /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87537222EECB0008A3B1D /* WalletManager.swift */; };
+		3BA8753B222EFB22008A3B1D /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8753A222EFB22008A3B1D /* ReceiveViewController.swift */; };
+		3BA8753D222EFB6E008A3B1D /* ReceivePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8753C222EFB6E008A3B1D /* ReceivePresenter.swift */; };
+		3BA8753F222EFBDC008A3B1D /* ReceiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8753E222EFBDC008A3B1D /* ReceiveBuilder.swift */; };
+		3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87540222EFCB7008A3B1D /* Receive.storyboard */; };
+		3BA87543222F01A8008A3B1D /* FetchTokensInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */; };
+		3BA87546222F049A008A3B1D /* MnemonicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */; };
+		3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87547222F051B008A3B1D /* MnemonicViewController.swift */; };
+		3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87549222F054E008A3B1D /* Mnemonic.storyboard */; };
+		3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */; };
 		4681887681D82BE0557E5D29 /* Pods_SLPWalletTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A1A22BACC538EE8024672A /* Pods_SLPWalletTestApp.framework */; };
 		6A0668F1E6D317A193E623C6 /* Pods_SLPWalletTestAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E501C9D9F6F26C6FC3D5D714 /* Pods_SLPWalletTestAppTests.framework */; };
 		88F239E9C82411DD8C6E8BBE /* Pods_SLPWalletTestAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EA490FC3FA674621F3648B /* Pods_SLPWalletTestAppUITests.framework */; };
@@ -41,6 +62,7 @@
 /* Begin PBXFileReference section */
 		2D4186124EA8614CB5D1F86D /* Pods-SLPWalletTestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTestApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTestApp/Pods-SLPWalletTestApp.debug.xcconfig"; sourceTree = "<group>"; };
 		305417696599D4CCCA88F840 /* Pods-SLPWalletTestAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTestAppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTestAppUITests/Pods-SLPWalletTestAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B7FE863222679F400CB5755 /* SLPWalletTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FE866222679F400CB5755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B7FE868222679F400CB5755 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +79,26 @@
 		3B7FE88B222679F500CB5755 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7FE90322283AD700CB5755 /* SLPWallet.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = SLPWallet.xcworkspace; path = ../../SLPWallet.xcworkspace; sourceTree = "<group>"; };
 		3B7FE90A2228FFDF00CB5755 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3BA87521222EE8AA008A3B1D /* TokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
+		3BA87523222EE8D9008A3B1D /* TokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
+		3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensPresenter.swift; sourceTree = "<group>"; };
+		3BA87528222EE982008A3B1D /* TokenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenPresenter.swift; sourceTree = "<group>"; };
+		3BA8752A222EE99E008A3B1D /* TokenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBuilder.swift; sourceTree = "<group>"; };
+		3BA8752C222EE9CD008A3B1D /* Token.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Token.storyboard; sourceTree = "<group>"; };
+		3BA8752E222EEA03008A3B1D /* TokensBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensBuilder.swift; sourceTree = "<group>"; };
+		3BA87530222EEA3D008A3B1D /* Tokens.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tokens.storyboard; sourceTree = "<group>"; };
+		3BA87532222EEAA3008A3B1D /* TokensRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensRouter.swift; sourceTree = "<group>"; };
+		3BA87535222EEB46008A3B1D /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		3BA87537222EECB0008A3B1D /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		3BA8753A222EFB22008A3B1D /* ReceiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
+		3BA8753C222EFB6E008A3B1D /* ReceivePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivePresenter.swift; sourceTree = "<group>"; };
+		3BA8753E222EFBDC008A3B1D /* ReceiveBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveBuilder.swift; sourceTree = "<group>"; };
+		3BA87540222EFCB7008A3B1D /* Receive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Receive.storyboard; sourceTree = "<group>"; };
+		3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTokensInteractor.swift; sourceTree = "<group>"; };
+		3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicPresenter.swift; sourceTree = "<group>"; };
+		3BA87547222F051B008A3B1D /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
+		3BA87549222F054E008A3B1D /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
+		3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicBuilder.swift; sourceTree = "<group>"; };
 		60EA490FC3FA674621F3648B /* Pods_SLPWalletTestAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A1A22BACC538EE8024672A /* Pods_SLPWalletTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A811A6AB93C0FE75B9C0A874 /* Pods-SLPWalletTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTestAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTestAppTests/Pods-SLPWalletTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +149,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3B4CE3AD222F0F87003B326F /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */,
+				3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		3B4CE3AE222F0FA3003B326F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87537222EECB0008A3B1D /* WalletManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		3B4CE3AF222F0FAF003B326F /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87535222EEB46008A3B1D /* BaseRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		3B7FE85A222679F400CB5755 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +200,11 @@
 		3B7FE865222679F400CB5755 /* SLPWalletTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				3BA87534222EEB3D008A3B1D /* Common */,
+				3BA87544222F047E008A3B1D /* Mnemonic */,
+				3BA87539222EFB09008A3B1D /* Receive */,
+				3BA87525222EE8E4008A3B1D /* Token */,
+				3BA87520222EE875008A3B1D /* Tokens */,
 				3B7FE866222679F400CB5755 /* AppDelegate.swift */,
 				3B7FE868222679F400CB5755 /* ViewController.swift */,
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
@@ -171,6 +243,61 @@
 				60EA490FC3FA674621F3648B /* Pods_SLPWalletTestAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BA87520222EE875008A3B1D /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87521222EE8AA008A3B1D /* TokensViewController.swift */,
+				3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */,
+				3BA8752E222EEA03008A3B1D /* TokensBuilder.swift */,
+				3BA87532222EEAA3008A3B1D /* TokensRouter.swift */,
+				3BA87530222EEA3D008A3B1D /* Tokens.storyboard */,
+			);
+			path = Tokens;
+			sourceTree = "<group>";
+		};
+		3BA87525222EE8E4008A3B1D /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87523222EE8D9008A3B1D /* TokenViewController.swift */,
+				3BA87528222EE982008A3B1D /* TokenPresenter.swift */,
+				3BA8752A222EE99E008A3B1D /* TokenBuilder.swift */,
+				3BA8752C222EE9CD008A3B1D /* Token.storyboard */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		3BA87534222EEB3D008A3B1D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				3B4CE3AF222F0FAF003B326F /* Router */,
+				3B4CE3AE222F0FA3003B326F /* Manager */,
+				3B4CE3AD222F0F87003B326F /* Interactor */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		3BA87539222EFB09008A3B1D /* Receive */ = {
+			isa = PBXGroup;
+			children = (
+				3BA8753A222EFB22008A3B1D /* ReceiveViewController.swift */,
+				3BA8753C222EFB6E008A3B1D /* ReceivePresenter.swift */,
+				3BA8753E222EFBDC008A3B1D /* ReceiveBuilder.swift */,
+				3BA87540222EFCB7008A3B1D /* Receive.storyboard */,
+			);
+			path = Receive;
+			sourceTree = "<group>";
+		};
+		3BA87544222F047E008A3B1D /* Mnemonic */ = {
+			isa = PBXGroup;
+			children = (
+				3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */,
+				3BA87547222F051B008A3B1D /* MnemonicViewController.swift */,
+				3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */,
+				3BA87549222F054E008A3B1D /* Mnemonic.storyboard */,
+			);
+			path = Mnemonic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,7 +408,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */,
 				3B7FE874222679F500CB5755 /* LaunchScreen.storyboard in Resources */,
+				3BA8752D222EE9CD008A3B1D /* Token.storyboard in Resources */,
+				3BA87531222EEA3D008A3B1D /* Tokens.storyboard in Resources */,
+				3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */,
 				3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */,
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
@@ -332,6 +463,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SLPWalletTestApp/Pods-SLPWalletTestApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -343,6 +475,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
@@ -398,9 +531,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA87536222EEB46008A3B1D /* BaseRouter.swift in Sources */,
+				3BA87546222F049A008A3B1D /* MnemonicPresenter.swift in Sources */,
+				3BA8753B222EFB22008A3B1D /* ReceiveViewController.swift in Sources */,
+				3BA87522222EE8AA008A3B1D /* TokensViewController.swift in Sources */,
 				3B7FE869222679F400CB5755 /* ViewController.swift in Sources */,
+				3BA8753D222EFB6E008A3B1D /* ReceivePresenter.swift in Sources */,
+				3BA8753F222EFBDC008A3B1D /* ReceiveBuilder.swift in Sources */,
+				3BA87524222EE8D9008A3B1D /* TokenViewController.swift in Sources */,
 				3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */,
+				3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */,
+				3BA87538222EECB0008A3B1D /* WalletManager.swift in Sources */,
+				3BA8752B222EE99E008A3B1D /* TokenBuilder.swift in Sources */,
+				3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */,
+				3BA87533222EEAA3008A3B1D /* TokensRouter.swift in Sources */,
+				3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */,
+				3BA87529222EE982008A3B1D /* TokenPresenter.swift in Sources */,
+				3BA8752F222EEA03008A3B1D /* TokensBuilder.swift in Sources */,
 				3B7FE86F222679F400CB5755 /* SLPWalletTestApp.xcdatamodeld in Sources */,
+				3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */,
+				3BA87543222F01A8008A3B1D /* FetchTokensInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
