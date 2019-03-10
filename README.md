@@ -1,6 +1,7 @@
 # SLPWallet iOS SDK
 
-[![Build Status](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios.svg?token=PAo6Ye6VXq8pszqjtpHk&branch=master)](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios)
+[![Build Status](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios.svg?token=PAo6Ye6VXq8pszqjtpHk&branch=master)](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios) 
+[![codecov](https://codecov.io/gh/bitcoin-portal/slp-wallet-sdk-ios/branch/master/graph/badge.svg?token=FRvZH4tttT)](https://codecov.io/gh/bitcoin-portal/slp-wallet-sdk-ios)
 
 ## Installation
 
