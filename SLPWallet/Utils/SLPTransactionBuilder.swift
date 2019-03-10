@@ -11,20 +11,30 @@ import BitcoinKit
 
 class SLPTransactionBuilder {
     
+    enum SLPTransactionBuilderError: Error {
+        case TOKEN_NOT_FOUND
+        case INSUFFISANT_FUNDS
+        case CONVERSION_METADATA
+        case CONVERSION_AMOUNT
+        case CONVERSION_CHANGE
+        case SCRIPT_TO
+        case SCRIPT_TOKEN_CHANGE
+        case GAS_INSUFFISANT
+        case SCRIPT_CHANGE
+    }
+    
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
         
         var satoshisRequired: UInt64 = 546
         
         guard let token = wallet.tokens[tokenId] else {
                 // Token doesn't exist
-                print("0")
-                return ""
+                throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
         }
         
         guard token.getBalance() >= amount else {
             // Insuffisant balance
-            print("1")
-            return ""
+            throw SLPTransactionBuilderError.INSUFFISANT_FUNDS
         }
         
         // change amount
@@ -35,15 +45,11 @@ class SLPTransactionBuilder {
             , let lokadIdInData = Data(hex: "534c5000")
             , let tokenTypeInData = Data(hex: "01")
             , let actionInData = "SEND".data(using: String.Encoding.ascii) else {
-                // Throw exception
-                print("2")
-                return ""
+                throw SLPTransactionBuilderError.CONVERSION_METADATA
         }
         
         guard let amountInData = TokenQtyConverter.convertToData(rawTokenAmount) else {
-            // throw an exception
-            print("3")
-            return ""
+            throw SLPTransactionBuilderError.CONVERSION_AMOUNT
         }
         
         let newScript = try Script()
@@ -73,8 +79,7 @@ class SLPTransactionBuilder {
         if rawTokenChange > 0 {
             guard let changeInData = TokenQtyConverter.convertToData(rawTokenChange) else {
                 // throw an exception
-                print("4")
-                return ""
+                throw SLPTransactionBuilderError.CONVERSION_CHANGE
             }
             
             try newScript.appendData(changeInData)
@@ -92,20 +97,18 @@ class SLPTransactionBuilder {
         
         guard let lockScriptTo = Script(address: toAddress) else {
             // throw exception
-            print("5")
-            return ""
+            throw SLPTransactionBuilderError.SCRIPT_TO
         }
         
-        let minSatoshisForToken = UInt64(546) // -> TODO: Calculate the right one
+        let minSatoshisForToken = UInt64(546)
         let toOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTo.data)
         
         var outputs: [TransactionOutput] = [opOutput, toOutput]
         
-        if rawTokenChange > 0 { // Todo: Clean all these fee calculation and move it
+        if rawTokenChange > 0 {
             guard let lockScriptTokenChange = Script(address: fromAddress) else {
                 // throw exception
-                print("6")
-                return ""
+                throw SLPTransactionBuilderError.SCRIPT_TOKEN_CHANGE
             }
             
             let tokenChangeOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTokenChange.data)
@@ -113,7 +116,7 @@ class SLPTransactionBuilder {
         }
         
         let totalAmount: UInt64 = selectedUTXOs.reduce(0) { $0 + $1.output.value }
-        let txFee = UInt64(selectedUTXOs.count * 146 + outputs.count * 33 + 300) // -> TODO: Calculate the right one
+        let txFee = UInt64(selectedUTXOs.count * 146 + outputs.count * 33 + 300)
         var change: Int64 = Int64(totalAmount) - Int64(satoshisRequired) - Int64(txFee)
         
         // If there is not enough gas, lets grab utxos from the wallet to refill
@@ -140,7 +143,7 @@ class SLPTransactionBuilder {
             
             if change < 0 {
                 // Throw exception not enough gas
-                return ""
+                throw SLPTransactionBuilderError.GAS_INSUFFISANT
             }
             
             // Add my gasUTXOs in my selectedUTXOs
@@ -152,8 +155,7 @@ class SLPTransactionBuilder {
         if change > 546 { // Minimum for expensable utxo
             guard let lockScriptChange = Script(address: fromAddress) else {
                 // throw exception
-                print("7")
-                return ""
+                throw SLPTransactionBuilderError.SCRIPT_CHANGE
             }
             
             let changeOutput = TransactionOutput(value: UInt64(change), lockingScript: lockScriptChange.data)

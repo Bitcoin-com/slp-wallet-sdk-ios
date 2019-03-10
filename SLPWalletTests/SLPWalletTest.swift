@@ -16,20 +16,20 @@ class SLPWalletTest: QuickSpec {
     override func spec() {
         describe("SLPWallet") {
             it("Create wallet") {
-                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 
-                expect(wallet.mnemonic).to(equal("machine cannon man rail best deliver draw course time tape violin tone"))
+                expect(wallet.mnemonic).to(equal(["machine", "cannon", "man", "rail", "best", "deliver", "draw", "course", "time", "tape", "violin", "tone"]))
                 expect(wallet.cashAddress).to(equal("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6"))
                 expect(wallet.slpAddress).to(equal("simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny"))
             }
             
             it("Fetch tokens") {
-                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 let tokens = try! wallet
                     .fetchTokens()
                     .toBlocking()
                     .single()
-            
+                
                 tokens.forEach({ tokenId, token in
                     expect(token.tokenId).toNot(beNil())
                     expect(token.tokenTicker).toNot(beNil())
@@ -41,7 +41,7 @@ class SLPWalletTest: QuickSpec {
             }
             
             it("Add token") {
-                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 let token = SLPToken("ce7f87ac5d086ad1c736c472ce5bc75f020bf22d3e2ed8603c675a6517b9c1cd")
                 let newToken = try! wallet
                     .addToken(token)
@@ -56,17 +56,23 @@ class SLPWalletTest: QuickSpec {
             }
             
             it("Send token Bitcoin.com Coin") {
-                let wallet = SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 do {
                     let txid = try wallet
-                        .sendToken("542fd54a9fc047d99f9be6dab870f74d0920559a77ed0e5e74a622ef3b7c32c7", amount: 850, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                        .sendToken("3257135d7c351f8b2f46ab2b5e610620beb7a957f3885ce1787cffa90582f503", amount: 10, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
                         .toBlocking()
                         .single()
                     expect(txid).toNot(beNil())
                 } catch {
                     fail()
                 }
-                
+            }
+            
+            it("Secure storage") {
+                let createdWallet = try! SLPWallet(.mainnet, force: true)
+                let restoredWallet = try! SLPWallet(.mainnet)
+                expect(restoredWallet.cashAddress).to(equal(createdWallet.cashAddress))
+                expect(restoredWallet.slpAddress).to(equal(createdWallet.slpAddress))
             }
         }
     }

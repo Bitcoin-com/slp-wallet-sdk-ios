@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Receive View Controller-->
+        <scene sceneID="PfC-13-LnK">
+            <objects>
+                <viewController storyboardIdentifier="ReceiveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8F-Q6-fgK" customClass="ReceiveViewController" customModule="SLPWalletTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O2y-pV-jfN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZm-UC-5ue">
+                                <rect key="frame" x="16" y="36" width="343" height="343"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XZK-fz-2gc">
+                                <rect key="frame" x="90" y="423" width="195" height="29"/>
+                                <segments>
+                                    <segment title="SLP address"/>
+                                    <segment title="Cash address"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didSelectType:" destination="j8F-Q6-fgK" eventType="valueChanged" id="vZ4-Tp-Dfw"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxk-vK-cIr">
+                                <rect key="frame" x="16" y="395" width="343" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XZK-fz-2gc" firstAttribute="top" secondItem="wxk-vK-cIr" secondAttribute="bottom" constant="16" id="4DK-j4-Nbz"/>
+                            <constraint firstItem="wxk-vK-cIr" firstAttribute="leading" secondItem="ege-P8-m1r" secondAttribute="leading" constant="16" id="Esb-yl-vMH"/>
+                            <constraint firstItem="eZm-UC-5ue" firstAttribute="centerX" secondItem="O2y-pV-jfN" secondAttribute="centerX" id="EwR-dS-juE"/>
+                            <constraint firstItem="XZK-fz-2gc" firstAttribute="centerX" secondItem="O2y-pV-jfN" secondAttribute="centerX" id="FDZ-iY-8l9"/>
+                            <constraint firstItem="ege-P8-m1r" firstAttribute="trailing" secondItem="wxk-vK-cIr" secondAttribute="trailing" constant="16" id="Gv3-2R-L9B"/>
+                            <constraint firstItem="wxk-vK-cIr" firstAttribute="top" secondItem="eZm-UC-5ue" secondAttribute="bottom" constant="16" id="MlX-J8-xjf"/>
+                            <constraint firstItem="wxk-vK-cIr" firstAttribute="centerX" secondItem="O2y-pV-jfN" secondAttribute="centerX" id="U0f-rV-gAL"/>
+                            <constraint firstItem="ege-P8-m1r" firstAttribute="trailing" secondItem="eZm-UC-5ue" secondAttribute="trailing" constant="16" id="U6d-Se-9Ql"/>
+                            <constraint firstItem="eZm-UC-5ue" firstAttribute="leading" secondItem="ege-P8-m1r" secondAttribute="leading" constant="16" id="f1w-fm-ItN"/>
+                            <constraint firstItem="eZm-UC-5ue" firstAttribute="width" secondItem="eZm-UC-5ue" secondAttribute="height" multiplier="1:1" id="hMV-YD-6IX"/>
+                            <constraint firstItem="eZm-UC-5ue" firstAttribute="top" secondItem="ege-P8-m1r" secondAttribute="top" constant="16" id="zwh-B3-U0j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ege-P8-m1r"/>
+                    </view>
+                    <connections>
+                        <outlet property="QRCodeImageView" destination="eZm-UC-5ue" id="4uf-kf-vRO"/>
+                        <outlet property="addressLabel" destination="wxk-vK-cIr" id="RdN-wC-Qap"/>
+                        <outlet property="segmentAddressType" destination="XZK-fz-2gc" id="mb4-iu-8KP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2BH-Ys-K4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168.80000000000001" y="65.217391304347828"/>
+        </scene>
+    </scenes>
+</document>
