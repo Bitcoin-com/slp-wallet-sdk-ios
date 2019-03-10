@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE866222679F400CB5755 /* AppDelegate.swift */; };
-		3B7FE869222679F400CB5755 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE868222679F400CB5755 /* ViewController.swift */; };
 		3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE86A222679F400CB5755 /* Main.storyboard */; };
 		3B7FE86F222679F400CB5755 /* SLPWalletTestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE86D222679F400CB5755 /* SLPWalletTestApp.xcdatamodeld */; };
 		3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE870222679F500CB5755 /* Assets.xcassets */; };
@@ -65,7 +64,6 @@
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B7FE863222679F400CB5755 /* SLPWalletTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FE866222679F400CB5755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B7FE868222679F400CB5755 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B7FE86B222679F400CB5755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B7FE86E222679F400CB5755 /* SLPWalletTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLPWalletTestApp.xcdatamodel; sourceTree = "<group>"; };
 		3B7FE870222679F500CB5755 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,7 +204,6 @@
 				3BA87525222EE8E4008A3B1D /* Token */,
 				3BA87520222EE875008A3B1D /* Tokens */,
 				3B7FE866222679F400CB5755 /* AppDelegate.swift */,
-				3B7FE868222679F400CB5755 /* ViewController.swift */,
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
 				3B7FE870222679F500CB5755 /* Assets.xcassets */,
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
@@ -535,7 +532,6 @@
 				3BA87546222F049A008A3B1D /* MnemonicPresenter.swift in Sources */,
 				3BA8753B222EFB22008A3B1D /* ReceiveViewController.swift in Sources */,
 				3BA87522222EE8AA008A3B1D /* TokensViewController.swift in Sources */,
-				3B7FE869222679F400CB5755 /* ViewController.swift in Sources */,
 				3BA8753D222EFB6E008A3B1D /* ReceivePresenter.swift in Sources */,
 				3BA8753F222EFBDC008A3B1D /* ReceiveBuilder.swift in Sources */,
 				3BA87524222EE8D9008A3B1D /* TokenViewController.swift in Sources */,

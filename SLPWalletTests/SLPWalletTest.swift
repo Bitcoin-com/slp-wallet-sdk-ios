@@ -59,18 +59,17 @@ class SLPWalletTest: QuickSpec {
                 let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                 do {
                     let txid = try wallet
-                        .sendToken("3257135d7c351f8b2f46ab2b5e610620beb7a957f3885ce1787cffa90582f503", amount: 300, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                        .sendToken("3257135d7c351f8b2f46ab2b5e610620beb7a957f3885ce1787cffa90582f503", amount: 10, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
                         .toBlocking()
                         .single()
                     expect(txid).toNot(beNil())
                 } catch {
                     fail()
                 }
-                
             }
             
             it("Secure storage") {
-                let createdWallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                let createdWallet = try! SLPWallet(.mainnet, force: true)
                 let restoredWallet = try! SLPWallet(.mainnet)
                 expect(restoredWallet.cashAddress).to(equal(createdWallet.cashAddress))
                 expect(restoredWallet.slpAddress).to(equal(createdWallet.slpAddress))

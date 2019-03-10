@@ -26,6 +26,12 @@
 		3B99B0832226290100A1B599 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07A2226290100A1B599 /* Config.swift */; };
 		3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B08A22262DC700A1B599 /* SLPWallet.swift */; };
 		3BC2880B222D022F00EB3375 /* SLPTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */; };
+		3BD7508522358D9A00CF5072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7508422358D9A00CF5072 /* AppDelegate.swift */; };
+		3BD7508722358D9A00CF5072 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7508622358D9A00CF5072 /* ViewController.swift */; };
+		3BD7508A22358D9A00CF5072 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508822358D9A00CF5072 /* Main.storyboard */; };
+		3BD7508C22358D9A00CF5072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508B22358D9A00CF5072 /* Assets.xcassets */; };
+		3BD7508F22358D9A00CF5072 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508D22358D9A00CF5072 /* LaunchScreen.storyboard */; };
+		3BDFC1572233A91E00DC167E /* SLPWalletTests.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */; };
 		3BE242AC22266165003432CE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BE242AB22266165003432CE /* Podfile */; };
 		3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE242AD222667F2003432CE /* RestServiceTest.swift */; };
 		41BF722F39A3BF667775B862 /* Pods_SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5D16DEBCECF6864C6A5DE4 /* Pods_SLPWallet.framework */; };
@@ -40,9 +46,17 @@
 			remoteGlobalIDString = 3B99B0542226251B00A1B599;
 			remoteInfo = SLPWallet;
 		};
+		3BD7509422358DA400CF5072 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B99B04C2226251B00A1B599 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BD7508122358D9A00CF5072;
+			remoteInfo = SLPWalletHostTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F3DBD1E3AA1FF795CCCF27A /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenQtyConverter.swift; sourceTree = "<group>"; };
 		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTest.swift; sourceTree = "<group>"; };
@@ -65,10 +79,21 @@
 		3B99B07A2226290100A1B599 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3B99B08A22262DC700A1B599 /* SLPWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWallet.swift; sourceTree = "<group>"; };
 		3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionBuilder.swift; sourceTree = "<group>"; };
+		3BD7504E2235745D00CF5072 /* BitcoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD7508222358D9A00CF5072 /* SLPWalletHostTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletHostTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD7508422358D9A00CF5072 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3BD7508622358D9A00CF5072 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3BD7508922358D9A00CF5072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3BD7508B22358D9A00CF5072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3BD7508E22358D9A00CF5072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3BD7509022358D9A00CF5072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLPWalletTests.entitlements; sourceTree = "<group>"; };
 		3BE242AB22266165003432CE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3BE242AD222667F2003432CE /* RestServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceTest.swift; sourceTree = "<group>"; };
+		5EE43B03AA8D7F3C7EC36DC6 /* Pods-SLPWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
 		61881E30603543E769A7A982 /* Pods-SLPWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		7BC625275932225E6EA53CAD /* Pods-SLPWalletTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C6242D7A786CD84C5AF132E7 /* Pods_SLPWalletDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9518541682F86F0E5526D95 /* Pods_SLPWalletTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECCF2F520F9B87AE5E9D58D1 /* Pods-SLPWallet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWallet.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWallet/Pods-SLPWallet.release.xcconfig"; sourceTree = "<group>"; };
 		EE5D16DEBCECF6864C6A5DE4 /* Pods_SLPWallet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWallet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +118,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BD7507F22358D9A00CF5072 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -103,6 +135,8 @@
 				ECCF2F520F9B87AE5E9D58D1 /* Pods-SLPWallet.release.xcconfig */,
 				7BC625275932225E6EA53CAD /* Pods-SLPWalletTests.debug.xcconfig */,
 				61881E30603543E769A7A982 /* Pods-SLPWalletTests.release.xcconfig */,
+				1F3DBD1E3AA1FF795CCCF27A /* Pods-SLPWalletDemo.debug.xcconfig */,
+				5EE43B03AA8D7F3C7EC36DC6 /* Pods-SLPWalletDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -110,8 +144,10 @@
 		0BD85E2FC2EB379579C59110 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BD7504E2235745D00CF5072 /* BitcoinKit.framework */,
 				EE5D16DEBCECF6864C6A5DE4 /* Pods_SLPWallet.framework */,
 				C9518541682F86F0E5526D95 /* Pods_SLPWalletTests.framework */,
+				C6242D7A786CD84C5AF132E7 /* Pods_SLPWalletDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,6 +171,7 @@
 				3BE242AB22266165003432CE /* Podfile */,
 				3B99B0572226251B00A1B599 /* SLPWallet */,
 				3B99B0622226251B00A1B599 /* SLPWalletTests */,
+				3BD7508322358D9A00CF5072 /* SLPWalletHostTests */,
 				3B99B0562226251B00A1B599 /* Products */,
 				08F103A57BE20E8B11970771 /* Pods */,
 				0BD85E2FC2EB379579C59110 /* Frameworks */,
@@ -146,6 +183,7 @@
 			children = (
 				3B99B0552226251B00A1B599 /* SLPWallet.framework */,
 				3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */,
+				3BD7508222358D9A00CF5072 /* SLPWalletHostTests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +210,7 @@
 				3BE242AD222667F2003432CE /* RestServiceTest.swift */,
 				3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */,
 				3B99B0652226251B00A1B599 /* Info.plist */,
+				3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */,
 			);
 			path = SLPWalletTests;
 			sourceTree = "<group>";
@@ -202,6 +241,19 @@
 				3B99B0782226290100A1B599 /* RestNetwork.swift */,
 			);
 			path = Networks;
+			sourceTree = "<group>";
+		};
+		3BD7508322358D9A00CF5072 /* SLPWalletHostTests */ = {
+			isa = PBXGroup;
+			children = (
+				3BD7508422358D9A00CF5072 /* AppDelegate.swift */,
+				3BD7508622358D9A00CF5072 /* ViewController.swift */,
+				3BD7508822358D9A00CF5072 /* Main.storyboard */,
+				3BD7508B22358D9A00CF5072 /* Assets.xcassets */,
+				3BD7508D22358D9A00CF5072 /* LaunchScreen.storyboard */,
+				3BD7509022358D9A00CF5072 /* Info.plist */,
+			);
+			path = SLPWalletHostTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,11 +302,29 @@
 			);
 			dependencies = (
 				3B99B0612226251B00A1B599 /* PBXTargetDependency */,
+				3BD7509522358DA400CF5072 /* PBXTargetDependency */,
 			);
 			name = SLPWalletTests;
 			productName = SLPWalletTests;
 			productReference = 3B99B05E2226251B00A1B599 /* SLPWalletTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3BD7508122358D9A00CF5072 /* SLPWalletHostTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BD7509122358D9A00CF5072 /* Build configuration list for PBXNativeTarget "SLPWalletHostTests" */;
+			buildPhases = (
+				3BD7507E22358D9A00CF5072 /* Sources */,
+				3BD7507F22358D9A00CF5072 /* Frameworks */,
+				3BD7508022358D9A00CF5072 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SLPWalletHostTests;
+			productName = SLPWalletHostTests;
+			productReference = 3BD7508222358D9A00CF5072 /* SLPWalletHostTests.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -272,6 +342,10 @@
 					};
 					3B99B05D2226251B00A1B599 = {
 						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3BD7508122358D9A00CF5072;
+					};
+					3BD7508122358D9A00CF5072 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -281,6 +355,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 3B99B04B2226251B00A1B599;
 			productRefGroup = 3B99B0562226251B00A1B599 /* Products */;
@@ -289,6 +364,7 @@
 			targets = (
 				3B99B0542226251B00A1B599 /* SLPWallet */,
 				3B99B05D2226251B00A1B599 /* SLPWalletTests */,
+				3BD7508122358D9A00CF5072 /* SLPWalletHostTests */,
 			);
 		};
 /* End PBXProject section */
@@ -308,6 +384,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BD7508022358D9A00CF5072 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BD7508F22358D9A00CF5072 /* LaunchScreen.storyboard in Resources */,
+				3BD7508C22358D9A00CF5072 /* Assets.xcassets in Resources */,
+				3BD7508A22358D9A00CF5072 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +506,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */,
+				3BDFC1572233A91E00DC167E /* SLPWalletTests.entitlements in Sources */,
 				3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BD7507E22358D9A00CF5072 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BD7508722358D9A00CF5072 /* ViewController.swift in Sources */,
+				3BD7508522358D9A00CF5072 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +528,31 @@
 			target = 3B99B0542226251B00A1B599 /* SLPWallet */;
 			targetProxy = 3B99B0602226251B00A1B599 /* PBXContainerItemProxy */;
 		};
+		3BD7509522358DA400CF5072 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3BD7508122358D9A00CF5072 /* SLPWalletHostTests */;
+			targetProxy = 3BD7509422358DA400CF5072 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3BD7508822358D9A00CF5072 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BD7508922358D9A00CF5072 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3BD7508D22358D9A00CF5072 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BD7508E22358D9A00CF5072 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3B99B0672226251B00A1B599 /* Debug */ = {
@@ -573,7 +693,16 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SLPWallet/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sample/SLPWalletTestApp/Pods/BitcoinKit/Libraries/secp256k1/lib",
+					"$(PROJECT_DIR)/Sample/SLPWalletTestApp/Pods/BitcoinKit/Libraries/openssl/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWallet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -597,7 +726,16 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SLPWallet/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Sample/SLPWalletTestApp/Pods/BitcoinKit/Libraries/secp256k1/lib",
+					"$(PROJECT_DIR)/Sample/SLPWalletTestApp/Pods/BitcoinKit/Libraries/openssl/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWallet;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -610,14 +748,21 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BC625275932225E6EA53CAD /* Pods-SLPWalletTests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "${SRCROOT}/SLPWalletTests/SLPWalletTests.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLPWalletHostTests.app/SLPWalletHostTests";
 			};
 			name = Debug;
 		};
@@ -625,13 +770,56 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 61881E30603543E769A7A982 /* Pods-SLPWalletTests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_ENTITLEMENTS = "${SRCROOT}/SLPWalletTests/SLPWalletTests.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLPWalletHostTests.app/SLPWalletHostTests";
+			};
+			name = Release;
+		};
+		3BD7509222358D9A00CF5072 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				INFOPLIST_FILE = SLPWalletHostTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletHostTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3BD7509322358D9A00CF5072 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				INFOPLIST_FILE = SLPWalletHostTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletHostTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -662,6 +850,15 @@
 			buildConfigurations = (
 				3B99B06D2226251B00A1B599 /* Debug */,
 				3B99B06E2226251B00A1B599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BD7509122358D9A00CF5072 /* Build configuration list for PBXNativeTarget "SLPWalletHostTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BD7509222358D9A00CF5072 /* Debug */,
+				3BD7509322358D9A00CF5072 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

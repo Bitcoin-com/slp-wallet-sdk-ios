@@ -23,7 +23,13 @@ public class SLPWallet {
         case MNEMONIC_NOT_FOUND
     }
     
-    fileprivate static let keychain = Keychain(service: Bundle.main.bundleIdentifier!)
+    fileprivate static let bundleId: String = {
+        guard let bundleId = Bundle.main.bundleIdentifier else {
+            fatalError("Should initialize properly to start using this SDK")
+        }
+        return bundleId
+    }()
+    fileprivate static let keychain = Keychain(service: SLPWallet.bundleId)
     fileprivate static let bag = DisposeBag()
     
     fileprivate let _mnemonic: [String]
@@ -74,24 +80,23 @@ public class SLPWallet {
         return t
     }()
     
+    public convenience init(_ network: Network) throws {
+        try self.init(network, force: false)
+    }
+    
     public convenience init(_ network: Network, force: Bool = false) throws {
         if force {
-            try self.init(network)
+            let mnemonic = try Mnemonic.generate()
+            let mnemonicStr = mnemonic.joined(separator: " ")
+            try self.init(mnemonicStr, network: network)
         } else {
             // Get in keychain
             guard let mnemonic = try SLPWallet.keychain.get("mnemonic") else {
-                try self.init(network)
+                try self.init(network, force: true)
                 return
             }
             try self.init(mnemonic, network: network)
         }
-    }
-    
-    public convenience init(_ network: Network) throws {
-        let mnemonic = try Mnemonic.generate()
-        let mnemonicStr = mnemonic.joined(separator: " ")
-        
-        try self.init(mnemonicStr, network: network)
     }
     
     public init(_ mnemonic: String, network: Network) throws {
