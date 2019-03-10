@@ -46,11 +46,11 @@ The wallet is working with only 1 address using the SLP recommanded path 44'/245
 // Restore wallet
 // else 
 // Generate mnemonic
-let wallet = SLPWallet(.testnet) // .mainnet or .testnet
+let wallet = try SLPWallet(.testnet) // .mainnet or .testnet
 
 // Init 2
 // Restore a wallet from Mnemonic + Save in Keychain
-let wallet = SLPWallet("My Mnemonic", network: .testnet) // .mainnet or .testnet
+let wallet = try SLPWallet("My Mnemonic", network: .testnet) // .mainnet or .testnet
 
 // Init 3
 // Generate a wallet
@@ -58,7 +58,7 @@ let wallet = SLPWallet("My Mnemonic", network: .testnet) // .mainnet or .testnet
 //  Generate everytime a new wallet
 // else 
 //  => Init 1
-let wallet = SLPWallet(.testnet, force: Bool)  // .mainnet or .testnet
+let wallet = try SLPWallet(.testnet, force: Bool)  // .mainnet or .testnet
 ```
 
 ### Addresses + tokens
