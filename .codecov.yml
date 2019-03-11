@@ -1,4 +1,6 @@
 codecov:
   branch: master
-ignore: 
-  SLPWalletHostTests/**/*.swift
+  ignore: 
+    - SLPWalletHostTests/*
+    - Sample/*
+    - Pods/*
