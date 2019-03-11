@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
   s.description  = "SLP Wallet SDK for iOS"
 
   s.homepage     = "https://github.com/bitcoin-portal/slp-wallet-sdk-ios"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
   
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
