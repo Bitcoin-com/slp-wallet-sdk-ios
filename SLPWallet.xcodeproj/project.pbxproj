@@ -23,7 +23,6 @@
 		3B99B07E2226290100A1B599 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */; };
 		3B99B0802226290100A1B599 /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0762226290100A1B599 /* RestService.swift */; };
 		3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0782226290100A1B599 /* RestNetwork.swift */; };
-		3B99B0832226290100A1B599 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B07A2226290100A1B599 /* Config.swift */; };
 		3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B08A22262DC700A1B599 /* SLPWallet.swift */; };
 		3BC2880B222D022F00EB3375 /* SLPTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */; };
 		3BD7508522358D9A00CF5072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7508422358D9A00CF5072 /* AppDelegate.swift */; };
@@ -76,7 +75,6 @@
 		3B99B0722226290100A1B599 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		3B99B0762226290100A1B599 /* RestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
 		3B99B0782226290100A1B599 /* RestNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestNetwork.swift; sourceTree = "<group>"; };
-		3B99B07A2226290100A1B599 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		3B99B08A22262DC700A1B599 /* SLPWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWallet.swift; sourceTree = "<group>"; };
 		3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionBuilder.swift; sourceTree = "<group>"; };
 		3BD7504E2235745D00CF5072 /* BitcoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +156,6 @@
 				3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */,
 				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
 				3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */,
-				3B99B07A2226290100A1B599 /* Config.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -496,7 +493,6 @@
 				3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */,
 				3B7FE933222A895E00CB5755 /* Array+Extensions.swift in Sources */,
 				3B7FE9292229225200CB5755 /* SLPTransactionParser.swift in Sources */,
-				3B99B0832226290100A1B599 /* Config.swift in Sources */,
 				3B7FE92D222990FB00CB5755 /* SLPToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

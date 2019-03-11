@@ -10,12 +10,12 @@ import Moya
 
 enum RestNetwork {
     case fetchUTXOs(String)
-    case fetchTxs(String)
     case fetchTxDetails([String])
     case broadcast(String)
 }
 
 extension RestNetwork: TargetType {
+    
     public var baseURL: URL {
         return URL(string: "https://rest.bitcoin.com/v2")!
     }
@@ -26,8 +26,6 @@ extension RestNetwork: TargetType {
             return "/address/utxo/\(address)"
         case .fetchTxDetails:
             return "/transaction/details/"
-        case .fetchTxs(let address):
-            return "/addrs/\(address)"
         case .broadcast(let rawTx): return "/rawtransactions/sendRawTransaction/\(rawTx)"
         }
     }
@@ -35,7 +33,6 @@ extension RestNetwork: TargetType {
     public var method: Moya.Method {
         switch self {
         case .fetchUTXOs: return .get
-        case .fetchTxs: return .get
         case .fetchTxDetails: return .post
         case .broadcast: return .get
         }

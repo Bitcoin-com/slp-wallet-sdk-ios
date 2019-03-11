@@ -38,7 +38,7 @@ public class SLPWallet {
     fileprivate var _tokens: [String:SLPToken]
     fileprivate let _privKey: PrivateKey
     
-    fileprivate let network: Network
+    fileprivate let _network: Network
     fileprivate var _utxos: [SLPWalletUTXO]
     
     var privKey: PrivateKey {
@@ -113,7 +113,7 @@ public class SLPWallet {
         let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
         let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self.network = network
+        self._network = network
         
         self._mnemonic = arrayOfwords
         self._privKey = privKey

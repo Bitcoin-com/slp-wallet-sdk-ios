@@ -106,8 +106,7 @@ extension RestService {
                     switch event {
                     case .next(let txs):
                         observer(.success(txs))
-                    case .error(let error):
-                        print(error)
+                    case .error( _):
                         observer(.error(RestError.REST_TX_DETAILS))
                     default: break
                     }
@@ -134,8 +133,7 @@ extension RestService {
                     switch event {
                     case .next(let txid):
                         observer(.success(txid as! String))
-                    case .error(let error):
-                        print(error)
+                    case .error( _):
                         observer(.error(RestError.REST_SEND_RAW_TX))
                     default: break
                     }

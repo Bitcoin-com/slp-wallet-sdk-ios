@@ -7,4 +7,4 @@ install:
 script:
   - xcodebuild -workspace SLPWallet.xcworkspace -scheme SLPWallet -destination platform\=iOS\ Simulator,OS\=12.1,name\=iPhone\ XR -enableCodeCoverage YES test
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -J 'SLPWallet' -t 256b3c8f-ae5a-4958-85b5-d5bbc86ebb83
