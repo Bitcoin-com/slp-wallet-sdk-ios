@@ -1,3 +1,6 @@
+source 'https://github.com/Bitcoin-com/CocoaPods.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
