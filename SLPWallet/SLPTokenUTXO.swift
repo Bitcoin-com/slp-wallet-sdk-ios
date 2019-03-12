@@ -15,6 +15,17 @@ public class SLPTokenUTXO: SLPWalletUTXO {
     public var rawTokenQty: Int { get { return _rawTokenQty } }
     public var tokenQty: Double? { get { return _tokenQty } }
     
+//    TODO: Activate for storage (Codable)
+//    private enum CodingKeys: String, CodingKey {
+//        case _rawTokenQty
+//    }
+//
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self._rawTokenQty = try container.decode(Int.self, forKey: ._rawTokenQty)
+//        try super.init(from: decoder)
+//    }
+    
     public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int, rawTokenQty: Int) {
         self._rawTokenQty = rawTokenQty
         super.init(txid, satoshis: satoshis, cashAddress: cashAddress, scriptPubKey: scriptPubKey, index: index)

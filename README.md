@@ -123,16 +123,14 @@ class MyViewController: SLPWalletDelegate {
         wallet.delegate = self
     }
 
-    func onUpdatedToken(_ tokens: [String:SLPToken]) {
-        // My updated tokens
-        tokens.forEach({ tokenId, token in
-            token.tokenId
-            token.tokenName
-            token.tokenTicker
-            token.decimal
-            token.getBalance()
-            token.getGas()
-        })
+    func onUpdatedToken(_ token: SLPToken) {
+        // My updated token
+        token.tokenId
+        token.tokenName
+        token.tokenTicker
+        token.decimal
+        token.getBalance()
+        token.getGas()
     }
 }
 ```

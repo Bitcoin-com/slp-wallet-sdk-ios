@@ -12,7 +12,7 @@ import RxCocoa
 import KeychainAccess
 
 public protocol SLPWalletDelegate {
-    func onUpdatedToken(_ token: [String:SLPToken])
+    func onUpdatedToken(_ token: SLPToken)
 }
 
 public class SLPWallet {
@@ -23,14 +23,8 @@ public class SLPWallet {
         case MNEMONIC_NOT_FOUND
     }
     
-    fileprivate static let bundleId: String = {
-        guard let bundleId = Bundle.main.bundleIdentifier else {
-            fatalError("Should initialize properly to start using this SDK")
-        }
-        return bundleId
-    }()
-    fileprivate static let keychain = Keychain(service: SLPWallet.bundleId)
     fileprivate static let bag = DisposeBag()
+    fileprivate static let storageProvider = StorageProvider()
     
     internal let _mnemonic: [String]
     internal let _cashAddress: String
@@ -40,6 +34,10 @@ public class SLPWallet {
     
     internal let _network: Network
     internal var _utxos: [SLPWalletUTXO]
+    
+    internal var privKey: PrivateKey {
+        get { return _privKey }
+    }
     
     public var utxos: [SLPWalletUTXO] {
         get { return _utxos }
@@ -87,7 +85,7 @@ public class SLPWallet {
             try self.init(mnemonicStr, network: network)
         } else {
             // Get in keychain
-            guard let mnemonic = try SLPWallet.keychain.get("mnemonic") else {
+            guard let mnemonic = try SLPWallet.storageProvider.getString("mnemonic") else {
                 try self.init(network, force: true)
                 return
             }
@@ -98,7 +96,7 @@ public class SLPWallet {
     public init(_ mnemonic: String, network: Network) throws {
         
         // Store in keychain
-        try SLPWallet.keychain.set(mnemonic, key: "mnemonic")
+        try SLPWallet.storageProvider.setString(mnemonic, key: "mnemonic")
         
         // Then go forward
         let arrayOfwords = mnemonic.components(separatedBy: " ")
@@ -124,11 +122,6 @@ public class SLPWallet {
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
-        
-        // Fetch token
-        // self.fetchTokens()
-        //    .subscribe()
-        //    .disposed(by: SLPWallet.bag)
     }
 }
 
@@ -304,16 +297,16 @@ public extension SLPWallet {
                                             return
                                         }
                                         t.utxos = token.utxos
+                                        self.delegate?.onUpdatedToken(t)
                                     })
                                     
                                     Observable
                                         .zip(newTokens.map { self.addToken($0).asObservable() })
                                         .subscribe({ event in
                                             switch event {
-                                            case .next(_): break
-                                            // Nothing interesting to do for now here
+                                            case .next(let tokens):
+                                                tokens.forEach({ self.delegate?.onUpdatedToken($0) })
                                             case .completed:
-                                                self.delegate?.onUpdatedToken(self._tokens)
                                                 single(.success(self._tokens))
                                             case .error(let error):
                                                 single(.error(error))
