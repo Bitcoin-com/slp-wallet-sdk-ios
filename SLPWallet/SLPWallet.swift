@@ -32,20 +32,16 @@ public class SLPWallet {
     fileprivate static let keychain = Keychain(service: SLPWallet.bundleId)
     fileprivate static let bag = DisposeBag()
     
-    fileprivate let _mnemonic: [String]
-    fileprivate let _cashAddress: String
-    fileprivate let _slpAddress: String
-    fileprivate var _tokens: [String:SLPToken]
-    fileprivate let _privKey: PrivateKey
+    internal let _mnemonic: [String]
+    internal let _cashAddress: String
+    internal let _slpAddress: String
+    internal var _tokens: [String:SLPToken]
+    internal let _privKey: PrivateKey
     
-    fileprivate let _network: Network
-    fileprivate var _utxos: [SLPWalletUTXO]
+    internal let _network: Network
+    internal var _utxos: [SLPWalletUTXO]
     
-    var privKey: PrivateKey {
-        get { return _privKey }
-    }
-    
-    var utxos: [SLPWalletUTXO] {
+    public var utxos: [SLPWalletUTXO] {
         get { return _utxos }
     }
     

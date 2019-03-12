@@ -33,13 +33,13 @@ class SLPTransactionBuilder {
                 throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
         }
         
+        guard let decimal = token.decimal else {
+            throw SLPTransactionBuilderError.DECIMAL_NOT_AVAILABLE
+        }
+        
         guard token.getBalance() >= amount else {
             // Insuffisant balance
             throw SLPTransactionBuilderError.INSUFFISANT_FUNDS
-        }
-        
-        guard let decimal = token.decimal else {
-            throw SLPTransactionBuilderError.DECIMAL_NOT_AVAILABLE
         }
         
         // change amount
@@ -182,9 +182,9 @@ class SLPTransactionBuilder {
             let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
             
             let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signature: Data = try! Crypto.sign(sighash, privateKey: wallet.privKey)
+            let signature: Data = try! Crypto.sign(sighash, privateKey: wallet._privKey)
             let txin = inputsToSign[i]
-            let pubkey = wallet.privKey.publicKey()
+            let pubkey = wallet._privKey.publicKey()
             
             let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
             
