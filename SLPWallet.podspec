@@ -35,10 +35,10 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
   
-  s.dependency "BitcoinKit",        :podspec => "https://github.com/Bitcoin-com/BitcoinKit/blob/master/BitcoinKit.podspec"
   s.dependency "RxSwift",           "~> 4.0"
   s.dependency "RxCocoa",           "~> 4.0"
   s.dependency "Moya/RxSwift",      "~> 11.0"
   s.dependency "KeychainAccess",    "~> 3.1.2"
+  s.dependency "BitcoinKit",        :podspec => "https://github.com/Bitcoin-com/BitcoinKit/blob/master/BitcoinKit.podspec"
 
 end
