@@ -9,6 +9,7 @@
 import SLPWallet
 
 class WalletManager: SLPWalletDelegate {
+    
     static let shared = WalletManager()
     
     var wallet: SLPWallet
@@ -23,7 +24,7 @@ class WalletManager: SLPWalletDelegate {
         }
     }
     
-    func onUpdatedToken(_ token: [String : SLPToken]) {
+    func onUpdatedToken(_ token: SLPToken) {
         // Notify
     }
 }
