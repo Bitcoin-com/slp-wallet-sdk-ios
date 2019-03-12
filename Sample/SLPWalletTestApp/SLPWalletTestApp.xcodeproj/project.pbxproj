@@ -97,6 +97,7 @@
 		3BA87547222F051B008A3B1D /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
 		3BA87549222F054E008A3B1D /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
 		3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicBuilder.swift; sourceTree = "<group>"; };
+		3BD750A72237D05200CF5072 /* SLPWalletTestApp.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SLPWalletTestApp.entitlements; sourceTree = "<group>"; };
 		60EA490FC3FA674621F3648B /* Pods_SLPWalletTestAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A1A22BACC538EE8024672A /* Pods_SLPWalletTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A811A6AB93C0FE75B9C0A874 /* Pods-SLPWalletTestAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTestAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletTestAppTests/Pods-SLPWalletTestAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
 				3B7FE875222679F500CB5755 /* Info.plist */,
 				3B7FE86D222679F400CB5755 /* SLPWalletTestApp.xcdatamodeld */,
+				3BD750A72237D05200CF5072 /* SLPWalletTestApp.entitlements */,
 			);
 			path = SLPWalletTestApp;
 			sourceTree = "<group>";
@@ -725,10 +727,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -744,10 +743,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -764,11 +760,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -786,11 +778,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -807,11 +795,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -828,11 +812,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletTestAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletTestAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
