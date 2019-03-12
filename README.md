@@ -11,7 +11,7 @@
 
 ```shell
 # Add our BitcoinKit fork that handles SLP address
-pod repo add BitcoinKitSpec https://github.com/Bitcoin-com/BitcoinKit 
+pod repo add BitcoinComCocoaPods https://github.com/Bitcoin-com/CocoaPods
 ```
 
 #### Podfile
