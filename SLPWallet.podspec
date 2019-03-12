@@ -39,6 +39,6 @@ Pod::Spec.new do |s|
   s.dependency "RxCocoa",           "~> 4.0"
   s.dependency "Moya/RxSwift",      "~> 11.0"
   s.dependency "KeychainAccess",    "~> 3.1.2"
-  s.dependency "BitcoinKit",        "https://raw.githubusercontent.com/Bitcoin-com/BitcoinKit/master/BitcoinKit.podspec"
+  s.dependency "BitcoinKit",        "~> 1.1.0"
 
 end
