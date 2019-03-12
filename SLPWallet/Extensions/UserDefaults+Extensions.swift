@@ -12,12 +12,4 @@ extension UserDefaults {
     public static var SLPWallet: UserDefaults {
         return UserDefaults(suiteName: "SLPWallet")!
     }
-    
-    public func getString(forKey key: String) -> String? {
-        return string(forKey: key)
-    }
-    
-    public func setString(_ value: String, forKey key: String) {
-        setValue(value, forKey: key)
-    }
 }

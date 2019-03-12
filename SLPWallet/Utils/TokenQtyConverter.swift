@@ -25,11 +25,6 @@ class TokenQtyConverter {
         // Convert the amount in hexa
         let amountInHex = String(rawAmount, radix: 16)
         
-        // Size maximal
-        guard amountInHex.count <= 16 else {
-            return nil
-        }
-        
         // Create the empty hex
         var amountInHex16 = [Character](repeating: "0", count: 16)
         for (i, value) in amountInHex.enumerated() {

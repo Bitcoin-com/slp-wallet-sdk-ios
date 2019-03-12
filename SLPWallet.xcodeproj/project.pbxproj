@@ -30,6 +30,12 @@
 		3BD7508A22358D9A00CF5072 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508822358D9A00CF5072 /* Main.storyboard */; };
 		3BD7508C22358D9A00CF5072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508B22358D9A00CF5072 /* Assets.xcassets */; };
 		3BD7508F22358D9A00CF5072 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508D22358D9A00CF5072 /* LaunchScreen.storyboard */; };
+		3BD750992237B0E400CF5072 /* TokenQtyConverterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD750982237B0E400CF5072 /* TokenQtyConverterTest.swift */; };
+		3BD7509B2237B5AF00CF5072 /* SLPWalletUTXOTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7509A2237B5AF00CF5072 /* SLPWalletUTXOTest.swift */; };
+		3BD7509D2237BEAB00CF5072 /* Double+ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7509C2237BEAB00CF5072 /* Double+ExtensionsTest.swift */; };
+		3BD7509F2237BF9000CF5072 /* String+ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7509E2237BF9000CF5072 /* String+ExtensionsTest.swift */; };
+		3BD750A12237C06D00CF5072 /* SLPTokenTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD750A02237C06D00CF5072 /* SLPTokenTest.swift */; };
+		3BD750A32237C3E800CF5072 /* UserDefault+ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD750A22237C3E800CF5072 /* UserDefault+ExtensionsTest.swift */; };
 		3BDFC1572233A91E00DC167E /* SLPWalletTests.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */; };
 		3BE242AC22266165003432CE /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3BE242AB22266165003432CE /* Podfile */; };
 		3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE242AD222667F2003432CE /* RestServiceTest.swift */; };
@@ -85,6 +91,12 @@
 		3BD7508B22358D9A00CF5072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BD7508E22358D9A00CF5072 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BD7509022358D9A00CF5072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BD750982237B0E400CF5072 /* TokenQtyConverterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenQtyConverterTest.swift; sourceTree = "<group>"; };
+		3BD7509A2237B5AF00CF5072 /* SLPWalletUTXOTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletUTXOTest.swift; sourceTree = "<group>"; };
+		3BD7509C2237BEAB00CF5072 /* Double+ExtensionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ExtensionsTest.swift"; sourceTree = "<group>"; };
+		3BD7509E2237BF9000CF5072 /* String+ExtensionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ExtensionsTest.swift"; sourceTree = "<group>"; };
+		3BD750A02237C06D00CF5072 /* SLPTokenTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTokenTest.swift; sourceTree = "<group>"; };
+		3BD750A22237C3E800CF5072 /* UserDefault+ExtensionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+ExtensionsTest.swift"; sourceTree = "<group>"; };
 		3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SLPWalletTests.entitlements; sourceTree = "<group>"; };
 		3BE242AB22266165003432CE /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3BE242AD222667F2003432CE /* RestServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestServiceTest.swift; sourceTree = "<group>"; };
@@ -206,6 +218,12 @@
 			children = (
 				3BE242AD222667F2003432CE /* RestServiceTest.swift */,
 				3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */,
+				3BD750A02237C06D00CF5072 /* SLPTokenTest.swift */,
+				3BD7509A2237B5AF00CF5072 /* SLPWalletUTXOTest.swift */,
+				3BD750982237B0E400CF5072 /* TokenQtyConverterTest.swift */,
+				3BD7509C2237BEAB00CF5072 /* Double+ExtensionsTest.swift */,
+				3BD7509E2237BF9000CF5072 /* String+ExtensionsTest.swift */,
+				3BD750A22237C3E800CF5072 /* UserDefault+ExtensionsTest.swift */,
 				3B99B0652226251B00A1B599 /* Info.plist */,
 				3BDFC1562233A91E00DC167E /* SLPWalletTests.entitlements */,
 			);
@@ -502,6 +520,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */,
+				3BD7509F2237BF9000CF5072 /* String+ExtensionsTest.swift in Sources */,
+				3BD750A32237C3E800CF5072 /* UserDefault+ExtensionsTest.swift in Sources */,
+				3BD750992237B0E400CF5072 /* TokenQtyConverterTest.swift in Sources */,
+				3BD7509D2237BEAB00CF5072 /* Double+ExtensionsTest.swift in Sources */,
+				3BD7509B2237B5AF00CF5072 /* SLPWalletUTXOTest.swift in Sources */,
+				3BD750A12237C06D00CF5072 /* SLPTokenTest.swift in Sources */,
 				3BDFC1572233A91E00DC167E /* SLPWalletTests.entitlements in Sources */,
 				3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */,
 			);

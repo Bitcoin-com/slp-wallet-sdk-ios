@@ -13,16 +13,24 @@ public class SLPToken {
     public var tokenId: String?
     public var tokenTicker: String?
     public var tokenName: String?
-    public var utxos = [SLPTokenUTXO]() {
+    public var decimal: Int? {
         willSet {
+            guard let decimal = newValue else {
+                return
+            }
+            
             // If decimal == 0, replace per the rawTokenQty
-            newValue.forEach { $0._tokenQty = (decimal > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0._rawTokenQty)) }
+            utxos.forEach { $0._tokenQty = (decimal > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0.rawTokenQty)) }
         }
     }
-    public var decimal: Int = 0 {
+    public var utxos = [SLPTokenUTXO]() {
         willSet {
+            guard let decimal = self.decimal else {
+                return
+            }
+            
             // If decimal == 0, replace per the rawTokenQty
-            utxos.forEach { $0._tokenQty = (newValue > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(newValue))) : Double($0.rawTokenQty)) }
+            newValue.forEach { $0._tokenQty = (decimal > 0 ? (Double($0._rawTokenQty) / pow(Double(10), Double(decimal))) : Double($0._rawTokenQty)) }
         }
     }
     
@@ -34,6 +42,11 @@ public class SLPToken {
     }
     
     func addUTXO(_ utxo: SLPTokenUTXO) {
+        guard let decimal = self.decimal else {
+            utxos.append(utxo)
+            return
+        }
+        
         utxo._tokenQty = decimal > 0 ? (Double(utxo._rawTokenQty) / pow(Double(10), Double(decimal))) : Double(utxo._rawTokenQty)
         utxos.append(utxo)
     }

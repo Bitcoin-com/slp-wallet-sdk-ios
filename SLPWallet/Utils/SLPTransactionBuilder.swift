@@ -21,6 +21,7 @@ class SLPTransactionBuilder {
         case SCRIPT_TOKEN_CHANGE
         case GAS_INSUFFISANT
         case SCRIPT_CHANGE
+        case DECIMAL_NOT_AVAILABLE
     }
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
@@ -37,8 +38,12 @@ class SLPTransactionBuilder {
             throw SLPTransactionBuilderError.INSUFFISANT_FUNDS
         }
         
+        guard let decimal = token.decimal else {
+            throw SLPTransactionBuilderError.DECIMAL_NOT_AVAILABLE
+        }
+        
         // change amount
-        let rawTokenAmount = TokenQtyConverter.convertToRawQty(amount, decimal: token.decimal)
+        let rawTokenAmount = TokenQtyConverter.convertToRawQty(amount, decimal: decimal)
         
         guard let tokenId = token.tokenId
             , let tokenIdInData = Data(hex: tokenId)

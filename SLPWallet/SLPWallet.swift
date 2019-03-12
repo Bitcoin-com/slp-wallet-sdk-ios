@@ -121,10 +121,18 @@ public class SLPWallet {
         
         let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
         
-        // Quick way to do it, @angel is working on building it in BitcoinKit
+        // TODO: Quick way to do it, @angel is working on building it in BitcoinKit
+        
+        // Not working
+        // self._slpAddress = privKey.publicKey().toSlpaddr().slpaddr
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
+        
+        // Fetch token
+        // self.fetchTokens()
+        //    .subscribe()
+        //    .disposed(by: SLPWallet.bag)
     }
 }
 
@@ -176,7 +184,7 @@ public extension SLPWallet {
                                             
                                             // 0 : lokad id 4 bytes ASCII
                                             // Good
-                                            guard let lokadId = String(data: chunks[0].chunkData.removeLeft().removeRight(), encoding: String.Encoding.ascii) else {
+                                            guard let lokadId = chunks[0].chunkData.removeLeft().removeRight().stringASCII else {
                                                 return
                                             }
                                             
@@ -184,11 +192,13 @@ public extension SLPWallet {
                                                 
                                                 // 1 : token_type 1 bytes Integer
                                                 // Good
-                                                let tokenType = chunks[1].chunkData.removeLeft().uint8
+                                                var chunk = chunks[1].chunkData.removeLeft()
+                                                let tokenType = chunk.uint8
                                                 
                                                 // 2 : transaction_type 4 bytes ASCII
                                                 // Good
-                                                guard let transactionType = String(data: chunks[2].chunkData.removeLeft(), encoding: String.Encoding.ascii) else {
+                                                chunk = chunks[2].chunkData.removeLeft()
+                                                guard let transactionType = chunks[2].chunkData.removeLeft().stringASCII else {
                                                     return
                                                 }
                                                 
@@ -205,28 +215,32 @@ public extension SLPWallet {
                                                     
                                                     // 3 : token_ticker UTF8
                                                     // Good
-                                                    guard let tokenTicker = String(data: chunks[3].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
+                                                    chunk = chunks[3].chunkData.removeLeft()
+                                                    guard let tokenTicker = chunk.stringUTF8 else {
                                                         return
                                                     }
                                                     currentToken.tokenTicker = tokenTicker
                                                     
                                                     // 4 : token_name UTF8
                                                     // Good
-                                                    guard let tokenName = String(data: chunks[4].chunkData.removeLeft(), encoding: String.Encoding.utf8) else {
+                                                    chunk = chunks[4].chunkData.removeLeft()
+                                                    guard let tokenName = chunk.stringUTF8 else {
                                                         return
                                                     }
                                                     currentToken.tokenName = tokenName
                                                     
                                                     // 8 : decimal 1 Byte
                                                     // Good
-                                                    guard let decimal = Int(chunks[7].chunkData.removeLeft().hex, radix: 16) else {
+                                                    chunk = chunks[7].chunkData.removeLeft()
+                                                    guard let decimal = Int(chunk.hex, radix: 16) else {
                                                         return
                                                     }
                                                     currentToken.decimal = decimal
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
-                                                    guard let balance = Int(chunks[9].chunkData.removeLeft().hex, radix: 16) else {
+                                                    chunk = chunks[9].chunkData.removeLeft()
+                                                    guard let balance = Int(chunk.hex, radix: 16) else {
                                                         return
                                                     }
                                                     voutToTokenQty.append(balance)
@@ -235,7 +249,8 @@ public extension SLPWallet {
                                                     
                                                     // 3 : token_id 32 bytes  hex
                                                     // Good
-                                                    let tokenId = chunks[3].chunkData.removeLeft().hex
+                                                    chunk = chunks[3].chunkData.removeLeft()
+                                                    let tokenId = chunk.hex
                                                     currentToken.tokenId = tokenId
                                                     
                                                     // If the token is already found, continue to work on it
@@ -245,7 +260,8 @@ public extension SLPWallet {
                                                     
                                                     // 4 to .. : token_output_quantity 1..19
                                                     for i in 4...chunks.count - 1 {
-                                                        if let balance = Int(chunks[i].chunkData.removeLeft().hex, radix: 16) {
+                                                        chunk = chunks[i].chunkData.removeLeft()
+                                                        if let balance = Int(chunk.hex, radix: 16) {
                                                             voutToTokenQty.append(balance)
                                                         } else {
                                                             break
@@ -376,7 +392,7 @@ public extension SLPWallet {
                             // 2 : transaction_type 4 bytes ASCII
                             // Good
                             var chunk = chunks[2].chunkData.removeLeft()
-                            guard let transactionType = String(data: chunk, encoding: String.Encoding.ascii)
+                            guard let transactionType = chunk.stringASCII
                                 , transactionType == "GENESIS" else {
                                     return
                             }
@@ -384,7 +400,7 @@ public extension SLPWallet {
                             // 3 : token_ticker UTF8
                             // Good
                             chunk = chunks[3].chunkData.removeLeft()
-                            guard let tokenTicker = String(data: chunk, encoding: String.Encoding.utf8) else {
+                            guard let tokenTicker = chunk.stringUTF8 else {
                                 return
                             }
                             token.tokenTicker = tokenTicker
@@ -392,7 +408,7 @@ public extension SLPWallet {
                             // 4 : token_name UTF8
                             // Good
                             chunk = chunks[4].chunkData.removeLeft()
-                            guard let tokenName = String(data: chunk, encoding: String.Encoding.utf8) else {
+                            guard let tokenName = chunk.stringUTF8 else {
                                 return
                             }
                             token.tokenName = tokenName

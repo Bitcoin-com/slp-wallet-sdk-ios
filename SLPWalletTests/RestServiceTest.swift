@@ -6,11 +6,10 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import SLPWallet
 import Nimble
 import Quick
 import RxBlocking
-import BitcoinKit
+@testable import SLPWallet
 
 class RestServiceTest: QuickSpec {
     override func spec() {

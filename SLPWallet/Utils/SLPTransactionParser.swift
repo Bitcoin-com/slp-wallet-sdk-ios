@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: Move all the parsering here to clean SLPWallet
+//
 enum SLPTransactionType: String {
     case GENESIS
     case SEND
@@ -22,8 +24,6 @@ struct SLPTransaction {
     let tokens: [SLPTokenUTXO]?
 }
 
-// TODO: Move all the parsering here to clean SLPWallet
-//
 public class SLPTransactionParser {
 //    func parse(script: Script) -> SLPTransaction? {
 //        var chunks = script.scriptChunks
