@@ -7,6 +7,13 @@
 
 ### CocoaPods
 
+#### Private PodSpec
+
+```shell
+# Add our BitcoinKit fork that handles SLP address
+pod repo add BitcoinKitSpec https://github.com/Bitcoin-com/BitcoinKit 
+```
+
 #### Podfile
 
 ```ruby
