@@ -35,10 +35,10 @@ Pod::Spec.new do |s|
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
   
-  s.dependency "BitcoinKit", "~> 1.0.2"
-  s.dependency "RxSwift", "~> 4.0"
-  s.dependency "RxCocoa", "~> 4.0"
-  s.dependency "Moya/RxSwift", "~> 11.0"
-  s.dependency "KeychainAccess", "~> 3.1.2"
+  s.dependency "BitcoinKit",        :git => "https://github.com/Bitcoin-com/BitcoinKit.git", :branch => "master"
+  s.dependency "RxSwift",           "~> 4.0"
+  s.dependency "RxCocoa",           "~> 4.0"
+  s.dependency "Moya/RxSwift",      "~> 11.0"
+  s.dependency "KeychainAccess",    "~> 3.1.2"
 
 end
