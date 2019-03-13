@@ -15,7 +15,6 @@ struct TokenOutput {
     var name: String
     var ticker: String
     var balance: Double
-    var gas: Int
 }
 
 class TokensPresenter {
@@ -53,7 +52,8 @@ class TokensPresenter {
                             , let tokenTicker = value.tokenTicker else {
                                 return nil
                         }
-                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance(), gas: value.getGas() + self.wallet.getGas())
+                                                
+                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance())
                     })
                 
                 // Notify my UI

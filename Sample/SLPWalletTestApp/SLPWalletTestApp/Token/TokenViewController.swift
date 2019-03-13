@@ -29,13 +29,17 @@ class TokenViewController: UITableViewController {
         presenter?.didPushSend()
     }
     
-    func onViewDidLoad(_ output: TokenPresenterOuput) {
+    func onViewDidLoad(_ output: TokenPresenterOutput) {
         title = output.tokenOutput.name
         
         nameLabel.text = output.tokenOutput.name
         tickerLabel.text = output.tokenOutput.ticker
-        balanceLabel.text = "\(output.tokenOutput.balance.description) \(output.tokenOutput.ticker)"
-        gasLabel.text = "\(output.tokenOutput.gas.description) BCH"
+        
+        onGetBalance(output.tokenOutput.balance, ticker: output.tokenOutput.ticker)
+    }
+    
+    func onGetBalance(_ balance: Double, ticker: String)  {
+        balanceLabel.text = "\(balance.description) \(ticker)"
     }
     
     func onSuccessSend(_ txid: String) {
@@ -57,6 +61,8 @@ class TokenViewController: UITableViewController {
     }
     
     func onError(_ error: Error) {
+        print(WalletManager.shared.wallet.getGas())
+//        WalletManager.shared.wallet.tokens.forEach({ print($0.value.getGas())})
         let alert = UIAlertController(title: "Send token", message: "Error, \(error.localizedDescription)", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in

@@ -10,7 +10,7 @@ import Foundation
 import SLPWallet
 import RxSwift
 
-struct TokenPresenterOuput {
+struct TokenPresenterOutput {
     var tokenOutput: TokenOutput
     var slpAddress: String
     var cashAddress: String
@@ -44,10 +44,24 @@ class TokenPresenter {
         let slpAddress = WalletManager.shared.wallet.slpAddress
         let cashAddress = WalletManager.shared.wallet.cashAddress
         
-        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance(), gas: token.getGas() + wallet.getGas())
-        let output = TokenPresenterOuput(tokenOutput: tokenOutput, slpAddress: slpAddress, cashAddress: cashAddress)
+        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance())
+        
+        let output = TokenPresenterOutput(tokenOutput: tokenOutput, slpAddress: slpAddress, cashAddress: cashAddress)
         
         viewDelegate?.onViewDidLoad(output)
+        
+        do {
+            let observable = try WalletManager.shared.observeToken(tokenId: tokenId)
+            observable.subscribe({ event in
+                if let token = event.element,
+                    let tokenTicker = token.tokenTicker {
+                    self.viewDelegate?.onGetBalance(token.getBalance(), ticker: tokenTicker)
+                }
+            })
+            .disposed(by: bag)
+        } catch {
+            // Cannot listen this token
+        }
     }
     
     func didPushSend() {
