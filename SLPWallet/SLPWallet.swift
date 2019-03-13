@@ -296,8 +296,24 @@ public extension SLPWallet {
                                             newTokens.append(token)
                                             return
                                         }
-                                        t.utxos = token.utxos
-                                        self.delegate?.onUpdatedToken(t)
+                                        
+                                        var hasChanged = false
+                                        if t.utxos.count != token.utxos.count {
+                                            hasChanged = true
+                                        } else {
+                                            let diff = t.utxos
+                                                .enumerated()
+                                                .filter({ $0.element != token.utxos[$0.offset] })
+                                            
+                                            if diff.count > 0 {
+                                                hasChanged = true
+                                            }
+                                        }
+                                        
+                                        // If it has changed, notify
+                                        if hasChanged {
+                                            self.delegate?.onUpdatedToken(t)
+                                        }
                                     })
                                     
                                     Observable

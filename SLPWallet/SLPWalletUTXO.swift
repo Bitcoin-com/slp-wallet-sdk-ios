@@ -56,3 +56,10 @@ public class SLPWalletUTXO {
         return UnspentTransaction(output: transactionOutput, outpoint: transactionOutpoint)
     }
 }
+
+extension SLPWalletUTXO: Equatable {
+    public static func == (lhs: SLPWalletUTXO, rhs: SLPWalletUTXO) -> Bool {
+        return lhs.index == rhs.index &&
+            lhs.txid == rhs.txid
+    }
+}
