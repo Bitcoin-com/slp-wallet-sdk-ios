@@ -166,6 +166,7 @@ public extension SLPWallet {
                                         voutToTokenQty.append(0) // To have the same mapping with the vouts
                                         
                                         var currentToken = SLPToken()
+                                        var mintVout = 0
                                         
                                         if var chunks = script?.scriptChunks
                                             , chunks.removeFirst().opCode == .OP_RETURN {
@@ -217,7 +218,7 @@ public extension SLPWallet {
                                                     }
                                                     currentToken.tokenName = tokenName
                                                     
-                                                    // 8 : decimal 1 Byte
+                                                    // 7 : decimal 1 Byte
                                                     // Good
                                                     chunk = chunks[7].chunkData.removeLeft()
                                                     guard let decimal = Int(chunk.hex, radix: 16) else {
@@ -225,13 +226,22 @@ public extension SLPWallet {
                                                     }
                                                     currentToken.decimal = decimal
                                                     
-                                                    // 3 : token_id 32 bytes  hex
+                                                    // 8 : Mint 2 Bytes
                                                     // Good
-                                                    chunk = chunks[9].chunkData.removeLeft()
-                                                    guard let balance = Int(chunk.hex, radix: 16) else {
-                                                        return
+                                                    chunk = chunks[8].chunkData.removeLeft()
+                                                    if let mv = Int(chunk.hex, radix: 16) {
+                                                        mintVout = mv
                                                     }
-                                                    voutToTokenQty.append(balance)
+                                                    
+                                                    // 4 to .. : token_output_quantity 1..19
+                                                    for i in 9...chunks.count - 1 {
+                                                        chunk = chunks[i].chunkData.removeLeft()
+                                                        if let balance = Int(chunk.hex, radix: 16) {
+                                                            voutToTokenQty.append(balance)
+                                                        } else {
+                                                            break
+                                                        }
+                                                    }
                                                     
                                                 } else if transactionType == SLPTransactionType.SEND.rawValue {
                                                     
@@ -265,9 +275,17 @@ public extension SLPWallet {
                                             let vout = tx.vout[utxo.vout]
                                             
                                             guard vout.n < voutToTokenQty.count else {
-                                                // UTXO without token
-                                                let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
-                                                updatedUTXOs.append(utxo)
+                                                
+                                                // We need to avoid using the mint baton
+                                                if vout.n == mintVout {
+                                                    // UTXO with baton
+                                                    currentToken.mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                } else {
+                                                    // UTXO without token
+                                                    let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                    updatedUTXOs.append(utxo)
+                                                }
+                                                
                                                 return
                                             }
                                             

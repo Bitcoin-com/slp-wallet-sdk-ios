@@ -13,6 +13,7 @@ public class SLPToken {
     public var tokenId: String?
     public var tokenTicker: String?
     public var tokenName: String?
+    public var mintUTXO: SLPWalletUTXO?
     public var decimal: Int? {
         willSet {
             guard let decimal = newValue else {
