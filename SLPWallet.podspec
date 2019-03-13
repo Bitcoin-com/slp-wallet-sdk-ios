@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "jbdtky" => "jb@bitcoin.com" }
 
+  s.swift_version = "4.0"
   s.platform     = :ios, "10.0"
 
   #  When using multiple platforms
