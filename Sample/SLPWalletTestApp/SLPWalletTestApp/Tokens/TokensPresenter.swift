@@ -17,6 +17,12 @@ struct TokenOutput {
     var balance: Double
 }
 
+extension TokenOutput: Equatable {
+    public static func == (lhs: TokenOutput, rhs: TokenOutput) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 class TokensPresenter {
     
     fileprivate var wallet: SLPWallet
@@ -38,6 +44,24 @@ class TokensPresenter {
     }
     
     func fetchTokens() {
+        
+        WalletManager.shared
+            .observeTokens()
+            .subscribe({ event in
+                if let token = event.element,
+                    let tokenTicker = token.tokenTicker {
+                    guard let tokenId = token.tokenId
+                        , let tokenName = token.tokenName
+                        , let tokenTicker = token.tokenTicker else {
+                            return
+                    }
+                    
+                    let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance())
+                    self.viewDelegate?.onGetToken(tokenOutput: tokenOutput)
+                }
+            })
+            .disposed(by: bag)
+        
         fetchTokensInteractor?.fetchTokens()
             .subscribe(onSuccess: { tokens in
                 

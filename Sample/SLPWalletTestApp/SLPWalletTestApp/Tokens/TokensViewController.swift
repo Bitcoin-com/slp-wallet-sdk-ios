@@ -51,6 +51,16 @@ class TokensViewController: UITableViewController {
         tableView.reloadData()
         refreshControl?.endRefreshing()
     }
+    
+    func onGetToken(tokenOutput: TokenOutput) {
+        // Reload the table on fetched tokens
+        if let index = self.tokenOutputs.firstIndex(of: tokenOutput) {
+            self.tokenOutputs[index] = tokenOutput
+        } else {
+            self.tokenOutputs.append(tokenOutput)
+        }
+        tableView.reloadData()
+    }
 }
 
 extension TokensViewController {
@@ -64,8 +74,9 @@ extension TokensViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = tokenOutputs[indexPath.item].name
-        cell.detailTextLabel?.text = tokenOutputs[indexPath.item].ticker
+        let tokenOutput = tokenOutputs[indexPath.item]
+        cell.textLabel?.text = tokenOutput.name
+        cell.detailTextLabel?.text = "\(tokenOutput.balance) \(tokenOutput.ticker)"
         return cell
     }
     

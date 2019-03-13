@@ -12,10 +12,10 @@ class TokenViewController: UITableViewController {
 
     var presenter: TokenPresenter?
     
+    @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var gasLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ class TokenViewController: UITableViewController {
     func onViewDidLoad(_ output: TokenPresenterOutput) {
         title = output.tokenOutput.name
         
+        idLabel.text = output.tokenOutput.id
         nameLabel.text = output.tokenOutput.name
         tickerLabel.text = output.tokenOutput.ticker
         

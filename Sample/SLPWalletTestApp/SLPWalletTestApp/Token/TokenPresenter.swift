@@ -25,12 +25,20 @@ class TokenPresenter {
     fileprivate let bag = DisposeBag()
     fileprivate var wallet: SLPWallet
     
+    var disposable: Disposable?
     var token: SLPToken?
     var sendTokenInteractor: SendTokenInteractor?
     weak var viewDelegate: TokenViewController?
     
     init() {
         wallet = WalletManager.shared.wallet
+    }
+    
+    deinit {
+        // Avoid memory leaks
+        if let disposable = self.disposable {
+            disposable.dispose()
+        }
     }
     
     func viewDidLoad() {
@@ -52,13 +60,12 @@ class TokenPresenter {
         
         do {
             let observable = try WalletManager.shared.observeToken(tokenId: tokenId)
-            observable.subscribe({ event in
+            self.disposable = observable.subscribe({ event in
                 if let token = event.element,
                     let tokenTicker = token.tokenTicker {
                     self.viewDelegate?.onGetBalance(token.getBalance(), ticker: tokenTicker)
                 }
             })
-            .disposed(by: bag)
         } catch {
             // Cannot listen this token
         }
