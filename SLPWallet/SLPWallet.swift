@@ -17,9 +17,8 @@ public protocol SLPWalletDelegate {
 
 public class SLPWallet {
     
-    enum SLPWalletError : Error {
+    enum SLPWalletError : String, Error {
         case TOKEN_ID_REQUIRED
-        case SLP_TRANSACTION_BUILDER
         case MNEMONIC_NOT_FOUND
     }
     
@@ -363,8 +362,8 @@ public extension SLPWallet {
                                 }
                             })
                             .disposed(by: SLPWallet.bag)
-                    } catch {
-                        single(.error(SLPWalletError.SLP_TRANSACTION_BUILDER))
+                    } catch (let error) {
+                        single(.error(error))
                     }
                 }, onError: { error in
                     single(.error(error))

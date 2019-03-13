@@ -28,7 +28,7 @@ class SLPWalletTest: QuickSpec {
             context("Fetch tokens") {
                 it("should success") {
                     let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
-                    let tokens = try! wallet
+                    var tokens = try! wallet
                         .fetchTokens()
                         .toBlocking()
                         .single()
@@ -41,6 +41,12 @@ class SLPWalletTest: QuickSpec {
                         expect(token.getBalance()).toNot(beNil())
                         expect(token.getGas()).toNot(beNil())
                     })
+                    
+                    // Fetch a second time to parse utxos
+                    try! wallet
+                        .fetchTokens()
+                        .toBlocking()
+                        .single()
                 }
             }
             

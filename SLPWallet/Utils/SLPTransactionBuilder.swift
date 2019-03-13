@@ -11,7 +11,7 @@ import BitcoinKit
 
 class SLPTransactionBuilder {
     
-    enum SLPTransactionBuilderError: Error {
+    enum SLPTransactionBuilderError: String, Error {
         case TOKEN_NOT_FOUND
         case INSUFFISANT_FUNDS
         case CONVERSION_METADATA

@@ -12,7 +12,7 @@ import RxSwift
 public class RestService {
     static let bag = DisposeBag()
     
-    enum RestError: Error {
+    enum RestError: String, Error {
         case REST_UTXOS
         case REST_TX_DETAILS
         case REST_SEND_RAW_TX
