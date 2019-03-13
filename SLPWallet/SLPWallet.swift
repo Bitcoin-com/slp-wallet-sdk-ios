@@ -329,6 +329,7 @@ public extension SLPWallet {
                                         
                                         // If it has changed, notify
                                         if hasChanged {
+                                            t.utxos = token.utxos
                                             self.delegate?.onUpdatedToken(t)
                                         }
                                     })
