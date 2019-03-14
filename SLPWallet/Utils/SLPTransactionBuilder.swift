@@ -26,7 +26,8 @@ class SLPTransactionBuilder {
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
         
-        var satoshisRequired: UInt64 = 546
+        let minSatoshisForToken = UInt64(546)
+        var satoshisForTokens: UInt64 = minSatoshisForToken
         
         guard let token = wallet.tokens[tokenId] else {
                 // Token doesn't exist
@@ -88,7 +89,7 @@ class SLPTransactionBuilder {
             }
             
             try newScript.appendData(changeInData)
-            satoshisRequired += 546
+            satoshisForTokens += minSatoshisForToken
         }
         
         var selectedUTXOs = selectedTokenUTXOs.map({ utxo -> UnspentTransaction in
@@ -105,7 +106,6 @@ class SLPTransactionBuilder {
             throw SLPTransactionBuilderError.SCRIPT_TO
         }
         
-        let minSatoshisForToken = UInt64(546)
         let toOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTo.data)
         
         var outputs: [TransactionOutput] = [opOutput, toOutput]
@@ -121,8 +121,8 @@ class SLPTransactionBuilder {
         }
         
         let totalAmount: UInt64 = selectedUTXOs.reduce(0) { $0 + $1.output.value }
-        let txFee = UInt64(selectedUTXOs.count * 200 + outputs.count * 200 + 300)
-        var change: Int64 = Int64(totalAmount) - Int64(satoshisRequired) - Int64(txFee)
+        let txFee = UInt64(selectedUTXOs.count * 200 + outputs.count * 33 + 300)
+        var change: Int64 = Int64(totalAmount) - Int64(satoshisForTokens) - Int64(txFee)
         
         // If there is not enough gas, lets grab utxos from the wallet to refill
         if change < 0 {
@@ -133,7 +133,7 @@ class SLPTransactionBuilder {
                         return false
                     }
                     
-                    sum = sum + utxo.satoshis - 33 // Minus the future fee for an output
+                    sum = sum + utxo.satoshis - 200 // Minus the future fee for an input
                     return true
                 }
                 .compactMap { $0 }
@@ -157,7 +157,7 @@ class SLPTransactionBuilder {
         
         let unsignedInputs = selectedUTXOs.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
         
-        if change > 546 { // Minimum for expensable utxo
+        if change > minSatoshisForToken { // Minimum for expensable utxo
             guard let lockScriptChange = Script(address: fromAddress) else {
                 // throw exception
                 throw SLPTransactionBuilderError.SCRIPT_CHANGE

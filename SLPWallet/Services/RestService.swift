@@ -51,8 +51,7 @@ extension RestService {
                     switch event {
                     case .next(let utxos):
                         observer(.success(utxos))
-                    case .error(let error):
-                        print(error)
+                    case .error( _):
                         observer(.error(RestError.REST_UTXOS))
                     default: break
                     }

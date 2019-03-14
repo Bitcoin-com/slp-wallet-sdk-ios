@@ -14,7 +14,6 @@ class SendTokenInteractor {
     
     func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
         return Single<String>.create { single in
-            
             WalletManager.shared.wallet
                 .sendToken(tokenId, amount: amount, toAddress: toAddress)
                 .subscribe(onSuccess: { txid in

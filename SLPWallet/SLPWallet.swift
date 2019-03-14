@@ -277,7 +277,7 @@ public extension SLPWallet {
                                             guard vout.n < voutToTokenQty.count else {
                                                 
                                                 // We need to avoid using the mint baton
-                                                if vout.n == mintVout {
+                                                if vout.n == mintVout && mintVout > 0 {
                                                     // UTXO with baton
                                                     currentToken.mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
                                                 } else {
@@ -369,7 +369,6 @@ public extension SLPWallet {
                 .subscribe(onSuccess: { _ in
                     do {
                         let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
-                        
                         RestService
                             .broadcast(rawTx)
                             .subscribe({ response in

@@ -6,9 +6,14 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
+import Foundation
 
 extension String {
     func toSatoshis() -> Int {
-        return Double(self)?.toSatoshis() ?? 0
+        return self.toDouble()?.toSatoshis() ?? 0
+    }
+    
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
     }
 }
