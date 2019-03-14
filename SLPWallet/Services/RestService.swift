@@ -16,6 +16,7 @@ public class RestService {
         case REST_UTXOS
         case REST_TX_DETAILS
         case REST_SEND_RAW_TX
+        case REST_TX_VALIDATIONS
     }
 }
 
@@ -127,14 +128,46 @@ extension RestService {
             provider.rx
                 .request(.broadcast(rawTx))
                 .retry(3)
-                .mapJSON()
+                .mapString()
                 .asObservable()
                 .subscribe ({ (event) in
                     switch event {
                     case .next(let txid):
-                        observer(.success(txid as! String))
+                        observer(.success(txid))
                     case .error( _):
                         observer(.error(RestError.REST_SEND_RAW_TX))
+                    default: break
+                    }
+                })
+                .disposed(by: RestService.bag)
+            return Disposables.create()
+        })
+    }
+}
+
+// ValidateTxs
+//
+extension RestService {
+    
+    public struct ResponseTxValidation: Codable {
+        public let txid: String
+        public let valid: Bool
+    }
+    
+    public static func fetchTxValidations(_ txIds: [String]) -> Single<[ResponseTxValidation]> {
+        return Single<[ResponseTxValidation]>.create(subscribe: { (observer) -> Disposable in
+            let provider = MoyaProvider<RestNetwork>()
+            provider.rx
+                .request(.fetchTxValidations(txIds))
+                .retry(3)
+                .map([ResponseTxValidation].self)
+                .asObservable()
+                .subscribe ({ (event) in
+                    switch event {
+                    case .next(let txValidations):
+                        observer(.success(txValidations))
+                    case .error( _):
+                        observer(.error(RestError.REST_TX_VALIDATIONS))
                     default: break
                     }
                 })

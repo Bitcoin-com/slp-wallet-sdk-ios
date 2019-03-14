@@ -11,13 +11,18 @@ import Moya
 enum RestNetwork {
     case fetchUTXOs(String)
     case fetchTxDetails([String])
+    case fetchTxValidations([String])
     case broadcast(String)
 }
 
 extension RestNetwork: TargetType {
     
     public var baseURL: URL {
-        return URL(string: "https://rest.bitcoin.com/v2")!
+        guard let url = URL(string: "https://rest.bitcoin.com/v2") else {
+            fatalError("should be able to parse this URL")
+        }
+        
+        return url
     }
     
     public var path: String {
@@ -26,6 +31,8 @@ extension RestNetwork: TargetType {
             return "/address/utxo/\(address)"
         case .fetchTxDetails:
             return "/transaction/details/"
+        case .fetchTxValidations:
+            return "/slp/validateTxid"
         case .broadcast(let rawTx): return "/rawtransactions/sendRawTransaction/\(rawTx)"
         }
     }
@@ -34,6 +41,7 @@ extension RestNetwork: TargetType {
         switch self {
         case .fetchUTXOs: return .get
         case .fetchTxDetails: return .post
+        case .fetchTxValidations: return .post
         case .broadcast: return .get
         }
     }
@@ -44,18 +52,9 @@ extension RestNetwork: TargetType {
     
     public var task: Task {
         switch self {
-        case .broadcast(let rawTx):
-//            let str = "{\"rawtx\":\"\(rawTx)\"}"
-//            if let data = str.data(using: .utf8) {
-//                return .requestData(data)
-//            }
-            return .requestPlain
         case .fetchTxDetails(let txids):
-//            let str = "{\"txids\":[\"\(txids)\"]}"
-//            if let data = str.data(using: .utf8) {
-//                return .requestData(data)
-//            }
-//            return .requestPlain
+            return .requestParameters(parameters: ["txids": txids], encoding: JSONEncoding.default)
+        case .fetchTxValidations(let txids):
             return .requestParameters(parameters: ["txids": txids], encoding: JSONEncoding.default)
         default:
             return .requestPlain
