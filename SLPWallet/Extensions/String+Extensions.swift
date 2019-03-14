@@ -14,6 +14,6 @@ extension String {
     }
     
     func toDouble() -> Double? {
-        return NumberFormatter().number(from: self)?.doubleValue
+        return NSDecimalNumber(string: self).doubleValue
     }
 }
