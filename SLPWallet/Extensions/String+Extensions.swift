@@ -10,10 +10,10 @@ import Foundation
 
 extension String {
     func toSatoshis() -> Int {
-        return self.toDouble()?.toSatoshis() ?? 0
+        return self.toDouble().toSatoshis()
     }
     
-    func toDouble() -> Double? {
+    func toDouble() -> Double {
         return NSDecimalNumber(string: self).doubleValue
     }
 }
