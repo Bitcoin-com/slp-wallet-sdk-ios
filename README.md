@@ -38,6 +38,25 @@ $ pod install
 sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer/
 ```
 
+### Configuration
+
+SLPWallet is using Keychain to store safely on your device the mnemonic seed phrase. However you need to create a entitlement file to allow the access to Keychain. You can have a look at the sample project anytime you need to check the configuration : ./Sample/SLPWalletTestApp/
+
+Under the wood, the SDK is using [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess).
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)your.bundle.id</string>
+	</array>
+</dict>
+</plist>
+```
+
 ## Get Started
 
 ### Creating new wallet with/without mnemonic
@@ -114,7 +133,8 @@ wallet.scheduler.suspend()
 // Change the interval
 wallet.schedulerInterval = 10 // in seconds
 ```
-### WalletDelegate called when the scheduler is started
+### WalletDelegate called when :
++ scheduler is started + token balance changed
 
 ```swift
 class MyViewController: SLPWalletDelegate {
@@ -140,12 +160,12 @@ class MyViewController: SLPWalletDelegate {
 ```
 
 ## Authors & Maintainers
-- [jbdtky](https://github.com/jbdtky)
-- [holemcross](https://github.com/holemcross)
+- Jean-Baptiste Dominguez [[Github](https://github.com/jbdtky), [Twitter](https://twitter.com/jbdtky)]
 
 ## References
 - [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
 - [Simple Ledger Protocol (SLP)](https://github.com/simpleledger/slp-specifications/blob/master/slp-token-type-1.md)
+- [KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)
 
 ## License
 
