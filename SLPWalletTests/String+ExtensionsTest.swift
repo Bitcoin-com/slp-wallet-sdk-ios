@@ -17,9 +17,6 @@ class StringTest: QuickSpec {
                 it("should success") {
                     let bch: String = "1.2"
                     expect(bch.toSatoshis()).to(equal(120000000))
-                    
-                    let whatEver: String = "whatever"
-                    expect(whatEver.toSatoshis()).to(equal(0))
                 }
             }
         }
