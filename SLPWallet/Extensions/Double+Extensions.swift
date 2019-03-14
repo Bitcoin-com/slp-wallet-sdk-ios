@@ -6,9 +6,11 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
+import Foundation
+
 extension Double {
     func toSatoshis() -> Int {
-        return Int(self*100000000)
+        return NSDecimalNumber(value: self).multiplying(by: 100000000).intValue
     }
     
     func toString() -> String {
@@ -16,6 +18,6 @@ extension Double {
     }
     
     func toInt() -> Int {
-        return Int(self)
+        return NSDecimalNumber(value: self).intValue
     }
 }
