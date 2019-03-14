@@ -25,9 +25,7 @@ class WalletManager: SLPWalletDelegate {
     
     init() {
         do {
-            wallet = try SLPWallet("tornado filter rural benefit remove trigger vessel stumble bridge buyer grit dignity", network: .mainnet)
-            print(wallet.slpAddress)
-            print(wallet.cashAddress)
+            wallet = try SLPWallet(.mainnet)
             wallet.delegate = self
             wallet.scheduler.resume()
         } catch {

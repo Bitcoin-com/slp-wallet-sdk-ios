@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D21C223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld */; };
+		3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */; };
 		3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE866222679F400CB5755 /* AppDelegate.swift */; };
 		3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE86A222679F400CB5755 /* Main.storyboard */; };
 		3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE870222679F500CB5755 /* Assets.xcassets */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B79D21D223AB2E400FF3AFB /* SLPWalletTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLPWalletTestApp.xcdatamodel; sourceTree = "<group>"; };
+		3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE863222679F400CB5755 /* SLPWalletDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FE866222679F400CB5755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B7FE86B222679F400CB5755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +175,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		3B79D21F223AC2CD00FF3AFB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3B7FE85A222679F400CB5755 = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 		3BA87534222EEB3D008A3B1D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3B79D21F223AC2CD00FF3AFB /* Extension */,
 				3B4CE3AF222F0FAF003B326F /* Router */,
 				3B4CE3AE222F0FA3003B326F /* Manager */,
 				3B4CE3AD222F0F87003B326F /* Interactor */,
@@ -542,6 +553,7 @@
 				3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */,
 				3BA87538222EECB0008A3B1D /* WalletManager.swift in Sources */,
 				3BA8752B222EE99E008A3B1D /* TokenBuilder.swift in Sources */,
+				3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */,
 				3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */,
 				3BA87533222EEAA3008A3B1D /* TokensRouter.swift in Sources */,
 				3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */,

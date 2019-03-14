@@ -15,10 +15,11 @@ class TokenViewController: UIViewController {
     fileprivate var rightBarButtonCancelItem: UIBarButtonItem?
     fileprivate var rightBarButtonSendItem: UIBarButtonItem?
     
-//    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var decimalLabel: UILabel!
     
     @IBOutlet weak var sendView: UIView!
     @IBOutlet weak var confirmButton: UIButton!
@@ -28,13 +29,15 @@ class TokenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedAround()
+        
         rightBarButtonSendItem = UIBarButtonItem(title: "Send", style: .plain, target: self, action: #selector(didPushSend))
         rightBarButtonCancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(didPushCancel))
         
         navigationItem.rightBarButtonItem = rightBarButtonSendItem
         
         sendView.isHidden = true
-
+        
         presenter?.viewDidLoad()
     }
     
@@ -49,9 +52,10 @@ class TokenViewController: UIViewController {
     func onViewDidLoad(_ output: TokenPresenterOutput) {
         title = output.tokenOutput.name
         
-//        idLabel.text = output.tokenOutput.id
+        idLabel.text = output.tokenOutput.id
         nameLabel.text = output.tokenOutput.name
         tickerLabel.text = output.tokenOutput.ticker
+        decimalLabel.text = output.tokenOutput.decimal.description
         
         onGetBalance(output.tokenOutput.balance, ticker: output.tokenOutput.ticker)
     }
@@ -64,13 +68,12 @@ class TokenViewController: UIViewController {
         let alert = UIAlertController(title: "Token sent", message: "Please, Visit our block explorer to see your transaction", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
-            alert.dismiss(animated: true, completion: {
-                self.hideSend()
-            })
+            self.dismissSend()
+            alert.dismiss(animated: true, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "View on explorer", style: .default, handler: { _ in
-            self.hideSend()
+            self.dismissSend()
             guard let url = URL(string: "https://explorer.bitcoin.com/bch/tx/\(txid)") else {
                 return
             }
@@ -94,6 +97,18 @@ class TokenViewController: UIViewController {
     }
     
     
+    @IBAction func didPushGenesisExplorer(_ sender: Any) {
+        presenter?.didPushGenesisExplorer()
+    }
+    
+    
+    @IBAction func didPushPaste(_ sender: Any) {
+        if let toAddress = UIPasteboard.general.string {
+            toAddressTextField.text = toAddress
+        }
+    }
+    
+    
     @IBAction func didPushConfirm(_ sender: Any) {
         guard let amount = amountTextField?.text
             , let toAddress = toAddressTextField?.text else {
@@ -101,26 +116,29 @@ class TokenViewController: UIViewController {
         }
         
         confirmButton.isEnabled = false
+        self.dismissKeyboard()
         
         self.presenter?.didPushSend(amount, toAddress: toAddress)
     }
     
-    func hideSend() {
+    func dismissSend() {
         self.navigationItem.rightBarButtonItem = self.rightBarButtonSendItem
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.sendView.isHidden = true
         }, completion: { _ in
             self.amountTextField.text = ""
             self.toAddressTextField.text = ""
+            self.dismissKeyboard()
         })
     }
     
-    func showSend() {
+    func presentSend() {
         self.navigationItem.rightBarButtonItem = self.rightBarButtonCancelItem
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.sendView.isHidden = false
         }, completion: { _ in
             self.confirmButton.isEnabled = true
+            self.amountTextField.becomeFirstResponder()
         })
     }
 }

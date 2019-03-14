@@ -15,6 +15,7 @@ struct TokenOutput {
     var name: String
     var ticker: String
     var balance: Double
+    var decimal: Int
 }
 
 extension TokenOutput: Equatable {
@@ -52,12 +53,16 @@ class TokensPresenter {
                     let tokenTicker = token.tokenTicker {
                     guard let tokenId = token.tokenId
                         , let tokenName = token.tokenName
-                        , let tokenTicker = token.tokenTicker else {
+                        , let tokenTicker = token.tokenTicker
+                        , let tokenDecimal = token.decimal else {
                             return
                     }
                     
-                    let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance())
+                    let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance(), decimal: tokenDecimal)
                     self.viewDelegate?.onGetToken(tokenOutput: tokenOutput)
+                    
+                    let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()), decimal: 0)
+                    self.viewDelegate?.onGetToken(tokenOutput: gas)
                 }
             })
             .disposed(by: bag)
@@ -69,16 +74,21 @@ class TokensPresenter {
                 self.tokens = tokens
                 
                 // Prepare the output for my view
-                let tokenOutputs = tokens
+                var tokenOutputs = tokens
                     .flatMap({ (key, value) -> TokenOutput? in
                         guard let tokenId = value.tokenId
                             , let tokenName = value.tokenName
-                            , let tokenTicker = value.tokenTicker else {
+                            , let tokenTicker = value.tokenTicker
+                            , let tokenDecimal = value.decimal else {
                                 return nil
                         }
                                                 
-                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance())
+                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance(), decimal: tokenDecimal)
                     })
+                
+                let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()), decimal: 0)
+                
+                tokenOutputs.insert(gas, at: 0)
                 
                 // Notify my UI
                 self.viewDelegate?.onFetchTokens(tokenOutputs: tokenOutputs)

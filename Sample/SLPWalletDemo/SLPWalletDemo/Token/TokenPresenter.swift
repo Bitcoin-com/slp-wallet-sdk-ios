@@ -45,14 +45,15 @@ class TokenPresenter {
         guard let token = self.token
             , let tokenId = token.tokenId
             , let tokenName = token.tokenName
-            , let tokenTicker = token.tokenTicker else {
+            , let tokenTicker = token.tokenTicker
+            , let tokenDecimal = token.decimal else {
             return
         }
         
         let slpAddress = WalletManager.shared.wallet.slpAddress
         let cashAddress = WalletManager.shared.wallet.cashAddress
         
-        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance())
+        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance(), decimal: tokenDecimal)
         
         let output = TokenPresenterOutput(tokenOutput: tokenOutput, slpAddress: slpAddress, cashAddress: cashAddress)
         
@@ -72,11 +73,20 @@ class TokenPresenter {
     }
     
     func didPushSend() {
-        viewDelegate?.showSend()
+        viewDelegate?.presentSend()
     }
     
     func didPushCancel() {
-        viewDelegate?.hideSend()
+        viewDelegate?.dismissSend()
+    }
+    
+    func didPushGenesisExplorer() {
+        guard let token = self.token
+            , let tokenId = token.tokenId
+            , let url = URL(string: "https://explorer.bitcoin.com/bch/tx/\(tokenId)") else {
+            return
+        }
+        UIApplication.shared.open(url)
     }
     
     func didPushSend(_ amount: String, toAddress: String) {
