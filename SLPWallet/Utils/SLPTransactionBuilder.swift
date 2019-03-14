@@ -121,7 +121,7 @@ class SLPTransactionBuilder {
         }
         
         let totalAmount: UInt64 = selectedUTXOs.reduce(0) { $0 + $1.output.value }
-        let txFee = UInt64(selectedUTXOs.count * 146 + outputs.count * 33 + 300)
+        let txFee = UInt64(selectedUTXOs.count * 200 + outputs.count * 200 + 300)
         var change: Int64 = Int64(totalAmount) - Int64(satoshisRequired) - Int64(txFee)
         
         // If there is not enough gas, lets grab utxos from the wallet to refill

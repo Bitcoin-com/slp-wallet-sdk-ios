@@ -128,11 +128,15 @@ extension RestService {
             provider.rx
                 .request(.broadcast(rawTx))
                 .retry(3)
-                .mapString()
                 .asObservable()
                 .subscribe ({ (event) in
                     switch event {
-                    case .next(let txid):
+                    case .next(let response):
+                        guard let txid = String(data: response.data, encoding: .utf8)
+                            , response.statusCode == 200 else {
+                            observer(.error(RestError.REST_SEND_RAW_TX))
+                            return
+                        }
                         observer(.success(txid))
                     case .error( _):
                         observer(.error(RestError.REST_SEND_RAW_TX))
