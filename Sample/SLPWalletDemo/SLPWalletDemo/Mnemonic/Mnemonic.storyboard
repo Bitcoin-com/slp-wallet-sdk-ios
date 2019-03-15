@@ -13,24 +13,50 @@
         <!--Mnemonic View Controller-->
         <scene sceneID="55y-At-HBT">
             <objects>
-                <viewController storyboardIdentifier="MnemonicViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bw1-BM-dmG" customClass="MnemonicViewController" customModule="SLPWalletTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MnemonicViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bw1-BM-dmG" customClass="MnemonicViewController" customModule="SLPWalletDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ZK-48-pBr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-7b-UvQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ou-gE-nxQ">
                                 <rect key="frame" x="16" y="36" width="343" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEw-MF-vTg">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="BN8-JB-OL3"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Copy">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPushCopy:" destination="bw1-BM-dmG" eventType="touchUpInside" id="EfP-Xv-pCM"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4Ou-gE-nxQ" firstAttribute="centerX" secondItem="9ZK-48-pBr" secondAttribute="centerX" id="2cr-Ae-v8q"/>
                             <constraint firstItem="jXO-vO-Lrz" firstAttribute="trailing" secondItem="4Ou-gE-nxQ" secondAttribute="trailing" constant="16" id="F8x-mo-j60"/>
                             <constraint firstItem="4Ou-gE-nxQ" firstAttribute="top" secondItem="jXO-vO-Lrz" secondAttribute="top" constant="16" id="IcB-rT-i1R"/>
                             <constraint firstItem="4Ou-gE-nxQ" firstAttribute="leading" secondItem="jXO-vO-Lrz" secondAttribute="leading" constant="16" id="XYs-0V-RY5"/>
+                            <constraint firstItem="jXO-vO-Lrz" firstAttribute="trailing" secondItem="t7m-7b-UvQ" secondAttribute="trailing" id="Xym-wA-EBI"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="trailing" secondItem="jXO-vO-Lrz" secondAttribute="trailing" id="bQ8-Nh-DGJ"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="leading" secondItem="jXO-vO-Lrz" secondAttribute="leading" id="edQ-Kh-kEG"/>
+                            <constraint firstItem="t7m-7b-UvQ" firstAttribute="leading" secondItem="jXO-vO-Lrz" secondAttribute="leading" id="r49-XE-FIz"/>
+                            <constraint firstItem="jXO-vO-Lrz" firstAttribute="bottom" secondItem="hEw-MF-vTg" secondAttribute="bottom" id="t8G-9Y-83v"/>
+                            <constraint firstItem="t7m-7b-UvQ" firstAttribute="top" secondItem="9ZK-48-pBr" secondAttribute="top" id="urp-ve-WdK"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="top" secondItem="t7m-7b-UvQ" secondAttribute="bottom" id="xIZ-2w-XBS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jXO-vO-Lrz"/>
                     </view>
@@ -40,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0kz-ue-tI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="164" y="-6"/>
+            <point key="canvasLocation" x="164" y="-6.746626686656672"/>
         </scene>
     </scenes>
 </document>

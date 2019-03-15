@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IGIdenticon
 
 class TokenViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class TokenViewController: UIViewController {
     @IBOutlet weak var tickerLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var decimalLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     @IBOutlet weak var sendView: UIView!
     @IBOutlet weak var confirmButton: UIButton!
@@ -57,11 +59,24 @@ class TokenViewController: UIViewController {
         tickerLabel.text = output.tokenOutput.ticker
         decimalLabel.text = output.tokenOutput.decimal.description
         
-        onGetBalance(output.tokenOutput.balance, ticker: output.tokenOutput.ticker)
+        iconImageView.image = Identicon().icon(from: output.tokenOutput.id, size: CGSize(width: 48, height: 48))
+        iconImageView.layer.cornerRadius = 24
+        iconImageView.layer.borderColor = UIColor.white.cgColor
+        iconImageView.layer.borderWidth = 1
+        iconImageView.clipsToBounds = true
+        iconImageView.backgroundColor = UIColor.white
+        
+        onGetBalance(output.tokenOutput.balance, decimal: output.tokenOutput.decimal, ticker: output.tokenOutput.ticker)
     }
     
-    func onGetBalance(_ balance: Double, ticker: String)  {
-        balanceLabel.text = "\(balance.description) \(ticker)"
+    func onGetBalance(_ balance: Double, decimal: Int, ticker: String)  {
+        let balance = NSDecimalNumber(value: balance)
+        let nf = NumberFormatter()
+        nf.usesGroupingSeparator = true
+        nf.numberStyle = .currency
+        nf.maximumFractionDigits = decimal
+        nf.currencySymbol = "\(ticker) "
+        balanceLabel.text = nf.string(from: balance)
     }
     
     func onSuccessSend(_ txid: String) {

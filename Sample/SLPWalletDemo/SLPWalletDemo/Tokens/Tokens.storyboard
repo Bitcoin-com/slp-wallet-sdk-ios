@@ -12,21 +12,11 @@
         <!--Tokens View Controller-->
         <scene sceneID="giD-mV-z91">
             <objects>
-                <tableViewController storyboardIdentifier="TokensViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sNM-G0-bfn" customClass="TokensViewController" customModule="SLPWalletTestApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g9f-6I-82n">
+                <tableViewController storyboardIdentifier="TokensViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sNM-G0-bfn" customClass="TokensViewController" customModule="SLPWalletDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g9f-6I-82n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5FW-cX-1c9">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5FW-cX-1c9" id="Reo-ci-JE1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <connections>
                             <outlet property="dataSource" destination="sNM-G0-bfn" id="uON-CI-tmI"/>
                             <outlet property="delegate" destination="sNM-G0-bfn" id="Aad-q7-zJq"/>

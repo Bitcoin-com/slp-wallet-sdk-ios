@@ -6,15 +6,28 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MnemonicPresenter {
+    
     weak var viewDelegate: MnemonicViewController?
+    
+    fileprivate var mnemonic: String?
     
     init() {}
     
     func viewDidLoad() {
-        let mnemonic = WalletManager.shared.wallet.mnemonic
-        viewDelegate?.onGetMnemonic(mnemonic.joined(separator: ", "))
+        let mnemonic = WalletManager.shared.wallet.mnemonic.joined(separator: " ")
+        self.mnemonic = mnemonic
+        
+        viewDelegate?.onGetMnemonic(mnemonic)
+    }
+    
+    func didPushCopy() {
+        guard let mnemonic = self.mnemonic else {
+            return
+        }
+
+        UIPasteboard.general.string = mnemonic
     }
 }

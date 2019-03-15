@@ -22,6 +22,11 @@ class MnemonicViewController: UIViewController {
         presenter?.viewDidLoad()
     }
     
+    
+    @IBAction func didPushCopy(_ sender: Any) {
+        presenter?.didPushCopy()
+    }
+    
     func onGetMnemonic(_ output: String) {
         mnemonicLabel.text = output
     }

@@ -64,7 +64,7 @@ class TokenPresenter {
             self.disposable = observable.subscribe({ event in
                 if let token = event.element,
                     let tokenTicker = token.tokenTicker {
-                    self.viewDelegate?.onGetBalance(token.getBalance(), ticker: tokenTicker)
+                    self.viewDelegate?.onGetBalance(token.getBalance(), decimal: tokenDecimal, ticker: tokenTicker)
                 }
             })
         } catch {

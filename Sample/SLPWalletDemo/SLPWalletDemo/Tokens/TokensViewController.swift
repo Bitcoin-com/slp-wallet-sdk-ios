@@ -25,6 +25,7 @@ class TokensViewController: UITableViewController {
         tableView.refreshControl = UIRefreshControl()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "TokenViewCell", bundle: nil), forCellReuseIdentifier: "TokenViewCell")
         
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(didRefreshTokens), for: .valueChanged)
@@ -73,10 +74,22 @@ extension TokensViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
         let tokenOutput = tokenOutputs[indexPath.item]
-        cell.textLabel?.text = tokenOutput.name
-        cell.detailTextLabel?.text = "\(tokenOutput.balance) \(tokenOutput.ticker)"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TokenViewCell", for: indexPath) as? TokenViewCell else {
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: "TokenViewCell")
+            cell.textLabel?.text = tokenOutput.name
+            cell.detailTextLabel?.text = "\(tokenOutput.balance) \(tokenOutput.ticker)"
+            return cell
+        }
+        
+        cell.backgroundColor = UIColor.clear
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.themBlue
+        
+        cell.selectedBackgroundView = bgColorView
+        cell.tokenOutput = tokenOutput
         return cell
     }
     

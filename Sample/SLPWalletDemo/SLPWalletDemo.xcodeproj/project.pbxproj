@@ -10,6 +10,8 @@
 		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D21C223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld */; };
 		3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */; };
+		3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B79D226223BE18600FF3AFB /* TokenViewCell.xib */; };
+		3B79D229223BE1B000FF3AFB /* TokenViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D228223BE1B000FF3AFB /* TokenViewCell.swift */; };
 		3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE866222679F400CB5755 /* AppDelegate.swift */; };
 		3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE86A222679F400CB5755 /* Main.storyboard */; };
 		3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE870222679F500CB5755 /* Assets.xcassets */; };
@@ -63,6 +65,8 @@
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B79D21D223AB2E400FF3AFB /* SLPWalletTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLPWalletTestApp.xcdatamodel; sourceTree = "<group>"; };
 		3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		3B79D226223BE18600FF3AFB /* TokenViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenViewCell.xib; sourceTree = "<group>"; };
+		3B79D228223BE1B000FF3AFB /* TokenViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenViewCell.swift; sourceTree = "<group>"; };
 		3B7FE863222679F400CB5755 /* SLPWalletDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7FE866222679F400CB5755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B7FE86B222679F400CB5755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +187,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		3B79D225223BE15B00FF3AFB /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				3B79D226223BE18600FF3AFB /* TokenViewCell.xib */,
+				3B79D228223BE1B000FF3AFB /* TokenViewCell.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
 		3B7FE85A222679F400CB5755 = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +270,7 @@
 		3BA87520222EE875008A3B1D /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
+				3B79D225223BE15B00FF3AFB /* Token */,
 				3BA87521222EE8AA008A3B1D /* TokensViewController.swift */,
 				3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */,
 				3BA8752E222EEA03008A3B1D /* TokensBuilder.swift */,
@@ -425,6 +439,7 @@
 				3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */,
 				3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */,
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
+				3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +488,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BitcoinKit/BitcoinKit.framework",
+				"${BUILT_PRODUCTS_DIR}/IGIdenticon/IGIdenticon.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -480,11 +496,13 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SLPWallet/SLPWallet.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BitcoinKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGIdenticon.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -492,6 +510,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SLPWallet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -556,6 +575,7 @@
 				3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */,
 				3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */,
 				3BA87533222EEAA3008A3B1D /* TokensRouter.swift in Sources */,
+				3B79D229223BE1B000FF3AFB /* TokenViewCell.swift in Sources */,
 				3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */,
 				3BA87529222EE982008A3B1D /* TokenPresenter.swift in Sources */,
 				3BA8752F222EEA03008A3B1D /* TokensBuilder.swift in Sources */,

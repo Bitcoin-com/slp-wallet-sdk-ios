@@ -10,6 +10,10 @@ target 'SLPWalletDemo' do
 
   # Pods for SLPWalletDemo
   pod 'SLPWallet', :git => 'https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git', :branch => 'master'
+  pod 'RxSwift',        '~> 4.0'
+  pod 'RxCocoa',        '~> 4.0'
+  pod 'lottie-ios'
+  pod 'IGIdenticon'
 
 
   target 'SLPWalletDemoTests' do
