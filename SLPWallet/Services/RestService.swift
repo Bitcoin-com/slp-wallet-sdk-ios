@@ -131,7 +131,8 @@ extension RestService {
                 .subscribe ({ (event) in
                     switch event {
                     case .next(let response):
-                        guard let txid = String(data: response.data, encoding: .utf8)
+                        guard let json = try? response.mapJSON()
+                            , let txid = json as? String
                             , response.statusCode == 200 else {
                             observer(.error(RestError.REST_SEND_RAW_TX))
                             return
