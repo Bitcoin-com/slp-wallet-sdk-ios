@@ -37,16 +37,16 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SLP / Cash / Legacy Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hef-yj-soQ">
-                                                        <rect key="frame" x="56" y="0.0" width="223" height="30"/>
+                                                        <rect key="frame" x="56" y="0.0" width="215" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBy-Uv-lR8">
-                                                        <rect key="frame" x="295" y="0.0" width="48" height="30"/>
+                                                        <rect key="frame" x="287" y="0.0" width="56" height="30"/>
                                                         <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="48" id="jJT-Gt-2Jc"/>
+                                                            <constraint firstAttribute="width" constant="56" id="jJT-Gt-2Jc"/>
                                                         </constraints>
                                                         <state key="normal" title="Paste">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

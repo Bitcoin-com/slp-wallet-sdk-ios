@@ -6,7 +6,7 @@
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct AddressOutput {
     var slpAddress: String
@@ -18,10 +18,12 @@ class ReceivePresenter {
     
     fileprivate var slpAddress: String
     fileprivate var cashAddress: String
+    fileprivate var selectedAddress: String
     
     init() {
         slpAddress = WalletManager.shared.wallet.slpAddress
         cashAddress = WalletManager.shared.wallet.cashAddress
+        selectedAddress = slpAddress
     }
     
     func viewDidLoad() {
@@ -33,9 +35,14 @@ class ReceivePresenter {
     func didSelectType(index: Int) {
         switch index {
         case 0:
-            viewDelegate?.onSelectAddress(slpAddress)
+            selectedAddress = slpAddress
         default:
-            viewDelegate?.onSelectAddress(cashAddress)
+            selectedAddress = cashAddress
         }
+        viewDelegate?.onSelectAddress(selectedAddress)
+    }
+    
+    func didPushCopy() {
+        UIPasteboard.general.string = selectedAddress
     }
 }

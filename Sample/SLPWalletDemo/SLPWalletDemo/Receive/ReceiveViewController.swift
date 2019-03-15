@@ -37,6 +37,11 @@ class ReceiveViewController: UIViewController {
         QRCodeImageView.image = generateQRCode(data: output)
         addressLabel.text = output
     }
+    
+    @IBAction func didPushCopy(_ sender: Any) {
+        presenter?.didPushCopy()
+    }
+    
 }
 
 extension ReceiveViewController {
@@ -57,5 +62,7 @@ extension ReceiveViewController {
         }
         return UIImage(cgImage: cgImage)
     }
+    
+    
 
 }

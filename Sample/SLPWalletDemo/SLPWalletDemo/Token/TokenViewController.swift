@@ -65,22 +65,24 @@ class TokenViewController: UIViewController {
     }
     
     func onSuccessSend(_ txid: String) {
+        print(txid)
         let alert = UIAlertController(title: "Token sent", message: "Please, Visit our block explorer to see your transaction", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
             self.dismissSend()
-            alert.dismiss(animated: true, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "View on explorer", style: .default, handler: { _ in
             self.dismissSend()
+            
             guard let url = URL(string: "https://explorer.bitcoin.com/bch/tx/\(txid)") else {
                 return
             }
+            
             UIApplication.shared.open(url)
         }))
         
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
     
     func onError(_ error: Error) {

@@ -13,7 +13,7 @@
         <!--Receive View Controller-->
         <scene sceneID="PfC-13-LnK">
             <objects>
-                <viewController storyboardIdentifier="ReceiveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8F-Q6-fgK" customClass="ReceiveViewController" customModule="SLPWalletTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReceiveViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j8F-Q6-fgK" customClass="ReceiveViewController" customModule="SLPWalletDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O2y-pV-jfN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,6 +37,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9o-e9-HIO">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="UG8-Ee-D2A"/>
+                                </constraints>
+                                <state key="normal" title="Copy">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPushCopy:" destination="j8F-Q6-fgK" eventType="touchUpInside" id="AcJ-BX-2ra"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -50,6 +63,9 @@
                             <constraint firstItem="ege-P8-m1r" firstAttribute="trailing" secondItem="eZm-UC-5ue" secondAttribute="trailing" constant="16" id="U6d-Se-9Ql"/>
                             <constraint firstItem="eZm-UC-5ue" firstAttribute="leading" secondItem="ege-P8-m1r" secondAttribute="leading" constant="16" id="f1w-fm-ItN"/>
                             <constraint firstItem="eZm-UC-5ue" firstAttribute="width" secondItem="eZm-UC-5ue" secondAttribute="height" multiplier="1:1" id="hMV-YD-6IX"/>
+                            <constraint firstItem="o9o-e9-HIO" firstAttribute="leading" secondItem="ege-P8-m1r" secondAttribute="leading" id="icu-zg-xU2"/>
+                            <constraint firstItem="o9o-e9-HIO" firstAttribute="bottom" secondItem="ege-P8-m1r" secondAttribute="bottom" id="ppL-eh-dt1"/>
+                            <constraint firstItem="o9o-e9-HIO" firstAttribute="trailing" secondItem="ege-P8-m1r" secondAttribute="trailing" id="v47-et-8nO"/>
                             <constraint firstItem="eZm-UC-5ue" firstAttribute="top" secondItem="ege-P8-m1r" secondAttribute="top" constant="16" id="zwh-B3-U0j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ege-P8-m1r"/>
