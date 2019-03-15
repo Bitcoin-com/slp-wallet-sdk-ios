@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    func toSatoshis() -> Int {
+    func toSatoshis() -> Int64 {
         return self.toDouble().toSatoshis()
     }
     

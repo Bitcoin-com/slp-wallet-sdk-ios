@@ -133,7 +133,7 @@ class SLPTransactionBuilder {
                         return false
                     }
                     
-                    sum = sum + utxo.satoshis - 200 // Minus the future fee for an input
+                    sum = sum + Int(utxo.satoshis) - 200 // Minus the future fee for an input
                     return true
                 }
                 .compactMap { $0 }

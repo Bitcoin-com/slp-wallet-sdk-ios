@@ -9,8 +9,9 @@
 import Foundation
 
 extension Double {
-    func toSatoshis() -> Int {
-        return NSDecimalNumber(value: self).multiplying(by: 100000000).intValue
+    func toSatoshis() -> Int64 {
+        let double = NSDecimalNumber(value: self).multiplying(by: 100000000).doubleValue
+        return Int64(double.rounded())
     }
     
     func toString() -> String {

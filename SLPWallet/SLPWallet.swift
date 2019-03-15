@@ -127,7 +127,7 @@ public class SLPWallet {
 public extension SLPWallet {
     
     public func getGas() -> Int {
-        return _utxos.reduce(0, { $0 + $1.satoshis })
+        return _utxos.reduce(0, { $0 + Int($1.satoshis) })
     }
     
     public func fetchTokens() -> Single<[String:SLPToken]> {

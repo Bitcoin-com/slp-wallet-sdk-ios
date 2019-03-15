@@ -11,13 +11,13 @@ import BitcoinKit
 
 public class SLPWalletUTXO {
     fileprivate var _txid: String
-    fileprivate var _satoshis: Int
+    fileprivate var _satoshis: Int64
     fileprivate var _cashAddress: String
     fileprivate var _scriptPubKey: String
     fileprivate var _index: Int
     
     public var txid: String { get { return _txid } }
-    public var satoshis: Int { get { return _satoshis } }
+    public var satoshis: Int64 { get { return _satoshis } }
     public var cashAddress: String { get { return _cashAddress } }
     public var scriptPubKey: String { get { return _scriptPubKey } }
     public var index: Int { get { return _index } }
@@ -40,7 +40,7 @@ public class SLPWalletUTXO {
 //        self._index = try container.decode(Int.self, forKey: ._index)
 //    }
     
-    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int) {
+    public init(_ txid: String, satoshis: Int64, cashAddress: String, scriptPubKey: String, index: Int) {
         self._txid = txid
         self._satoshis = satoshis
         self._cashAddress = cashAddress

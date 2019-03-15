@@ -57,7 +57,7 @@ public class SLPToken {
     }
     
     public func getGas() -> Int {
-        return utxos.reduce(0, { $0 + $1.satoshis })
+        return utxos.reduce(0, { $0 + Int($1.satoshis) })
     }
     
     public func getBalance() -> Double {

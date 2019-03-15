@@ -26,7 +26,7 @@ public class SLPTokenUTXO: SLPWalletUTXO {
 //        try super.init(from: decoder)
 //    }
     
-    public init(_ txid: String, satoshis: Int, cashAddress: String, scriptPubKey: String, index: Int, rawTokenQty: Int) {
+    public init(_ txid: String, satoshis: Int64, cashAddress: String, scriptPubKey: String, index: Int, rawTokenQty: Int) {
         self._rawTokenQty = rawTokenQty
         super.init(txid, satoshis: satoshis, cashAddress: cashAddress, scriptPubKey: scriptPubKey, index: index)
     }
