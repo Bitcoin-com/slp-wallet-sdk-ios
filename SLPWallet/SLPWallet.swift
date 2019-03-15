@@ -274,7 +274,8 @@ public extension SLPWallet {
                                         vouts.forEach({ utxo in
                                             let vout = tx.vout[utxo.vout]
                                             
-                                            guard vout.n < voutToTokenQty.count else {
+                                            guard vout.n < voutToTokenQty.count
+                                                , voutToTokenQty.count > 1 else { // Because we push 1 vout qty by default for the OP_RETURN
                                                 
                                                 // We need to avoid using the mint baton
                                                 if vout.n == mintVout && mintVout > 0 {
