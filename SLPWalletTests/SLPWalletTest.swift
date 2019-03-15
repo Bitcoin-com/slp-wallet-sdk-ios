@@ -69,10 +69,10 @@ class SLPWalletTest: QuickSpec {
             
             context("Send token Bitcoin.com Coin") {
                 it("should success") {
-                    let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                    let wallet = try! SLPWallet("tornado filter rural benefit remove trigger vessel stumble bridge buyer grit dignity", network: .mainnet)
                     do {
                         let txid = try wallet
-                            .sendToken("3257135d7c351f8b2f46ab2b5e610620beb7a957f3885ce1787cffa90582f503", amount: 10, toAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                            .sendToken("9cc1cf24e502554d2d3d09918c27decda2c260762961acd469c5473fbcfe192e", amount: 10, toAddress: "simpleledger:qp4zxnnce2wy8ackzc29wtjp2xw9e6sgyvsh49ev9f")
                             .toBlocking()
                             .single()
                         expect(txid).toNot(beNil())

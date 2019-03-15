@@ -2,10 +2,14 @@
 
 [![Build Status](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios.svg?token=PAo6Ye6VXq8pszqjtpHk&branch=master)](https://travis-ci.com/bitcoin-portal/slp-wallet-sdk-ios) 
 [![codecov](https://codecov.io/gh/bitcoin-portal/slp-wallet-sdk-ios/branch/master/graph/badge.svg?token=FRvZH4tttT)](https://codecov.io/gh/bitcoin-portal/slp-wallet-sdk-ios)
-![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-v0.1.1-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg) 
 ![Compatibility](https://img.shields.io/badge/Swift-%3E=4.0-orange.svg) 
 ![License](https://img.shields.io/badge/License-MIT-black.svg) 
+
+## Demo
+
+![Alt Text](Sample/SLPWalletDemo/demo-app.gif)
 
 ## Installation
 
