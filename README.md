@@ -28,7 +28,7 @@ target 'SLPWalletTestApp' do
 use_frameworks!
 
 # Pods for SLPWalletTestApp
-pod 'SLPWallet', :git => 'https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git', :branch => 'master'
+pod 'SLPWallet'
 
 end
 ```
