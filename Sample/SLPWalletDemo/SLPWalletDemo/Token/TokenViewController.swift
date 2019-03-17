@@ -66,17 +66,11 @@ class TokenViewController: UIViewController {
         iconImageView.clipsToBounds = true
         iconImageView.backgroundColor = UIColor.white
         
-        onGetBalance(output.tokenOutput.balance, decimal: output.tokenOutput.decimal, ticker: output.tokenOutput.ticker)
+        onGetBalance(output.tokenOutput.balance)
     }
     
-    func onGetBalance(_ balance: Double, decimal: Int, ticker: String)  {
-        let balance = NSDecimalNumber(value: balance)
-        let nf = NumberFormatter()
-        nf.usesGroupingSeparator = true
-        nf.numberStyle = .currency
-        nf.maximumFractionDigits = decimal
-        nf.currencySymbol = "\(ticker) "
-        balanceLabel.text = nf.string(from: balance)
+    func onGetBalance(_ balance: String)  {
+        balanceLabel.text = balance
     }
     
     func onSuccessSend(_ txid: String) {

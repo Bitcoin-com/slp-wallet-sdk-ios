@@ -11,8 +11,12 @@ import SLPWallet
 
 class TokensRouter: BaseRouter {
     
-    func transitToToken(token: SLPToken) {
+    func transitToToken(_ token: SLPToken) {
         let tokenViewController = TokenBuilder.provide(token: token)
+        viewController?.navigationController?.pushViewController(tokenViewController, animated: true)
+    }
+    
+    func transitToToken(_ tokenViewController: TokenViewController) {
         viewController?.navigationController?.pushViewController(tokenViewController, animated: true)
     }
     

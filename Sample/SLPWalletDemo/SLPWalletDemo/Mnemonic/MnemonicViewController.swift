@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Lottie
 
 class MnemonicViewController: UIViewController {
     
     var presenter: MnemonicPresenter?
 
     @IBOutlet weak var mnemonicLabel: UILabel!
+    @IBOutlet weak var bgAnimationView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,14 @@ class MnemonicViewController: UIViewController {
     
     @IBAction func didPushCopy(_ sender: Any) {
         presenter?.didPushCopy()
+        
+        let animationView = LOTAnimationView(name: "success_animation")
+        animationView.frame = bgAnimationView.bounds
+        bgAnimationView.addSubview(animationView)
+        
+        animationView.play(completion: { _ in
+            animationView.removeFromSuperview()
+        })
     }
     
     func onGetMnemonic(_ output: String) {

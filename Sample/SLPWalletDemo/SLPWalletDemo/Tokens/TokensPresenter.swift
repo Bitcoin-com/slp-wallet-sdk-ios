@@ -14,7 +14,7 @@ struct TokenOutput {
     var id: String
     var name: String
     var ticker: String
-    var balance: Double
+    var balance: String
     var decimal: Int
 }
 
@@ -42,6 +42,9 @@ class TokensPresenter {
     func viewDidLoad() {
         // Fetch token on the viewLoad to setup the view
         fetchTokens()
+        
+        // Notify the addresses
+        viewDelegate?.onGetAddresses(slpAddress: wallet.slpAddress, cashAddress: wallet.cashAddress)
     }
     
     func fetchTokens() {
@@ -58,10 +61,10 @@ class TokensPresenter {
                             return
                     }
                     
-                    let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance(), decimal: tokenDecimal)
+                    let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal), decimal: tokenDecimal)
                     self.viewDelegate?.onGetToken(tokenOutput: tokenOutput)
                     
-                    let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()), decimal: 0)
+                    let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
                     self.viewDelegate?.onGetToken(tokenOutput: gas)
                 }
             })
@@ -83,10 +86,10 @@ class TokensPresenter {
                                 return nil
                         }
                                                 
-                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance(), decimal: tokenDecimal)
+                        return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal), decimal: tokenDecimal)
                     })
                 
-                let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()), decimal: 0)
+                let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
                 
                 tokenOutputs.insert(gas, at: 0)
                 
@@ -98,14 +101,33 @@ class TokensPresenter {
             .disposed(by: bag)
     }
     
-    func didPushToken(_ tokenId: String) {
+    func didPreview(_ tokenId: String) -> UIViewController? {
         guard let tokens = self.tokens
             , let token = tokens[tokenId] else {
+                return nil
+        }
+        
+        // If token exists transit to the token module
+        return TokenBuilder.provide(token: token)
+    }
+    
+    func didPushPreview(_ viewControllerToCommit: UIViewController) {
+        guard let tokenViewController = viewControllerToCommit as? TokenViewController else {
             return
         }
         
         // If token exists transit to the token module
-        router?.transitToToken(token: token)
+        router?.transitToToken(tokenViewController)
+    }
+    
+    func didPushToken(_ tokenId: String) {
+        guard let tokens = self.tokens
+            , let token = tokens[tokenId] else {
+                return
+        }
+        
+        // If token exists transit to the token module
+        router?.transitToToken(token)
     }
     
     func didRefreshTokens() {

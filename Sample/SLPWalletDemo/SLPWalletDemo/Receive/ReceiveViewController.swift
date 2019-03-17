@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ReceiveViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ReceiveViewController: UIViewController {
     @IBOutlet weak var QRCodeImageView: UIImageView!
     @IBOutlet weak var segmentAddressType: UISegmentedControl!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var bgAnimationView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,14 @@ class ReceiveViewController: UIViewController {
     
     @IBAction func didPushCopy(_ sender: Any) {
         presenter?.didPushCopy()
+        
+        let animationView = LOTAnimationView(name: "success_animation")
+        animationView.frame = bgAnimationView.bounds
+        bgAnimationView.addSubview(animationView)
+        
+        animationView.play(completion: { _ in
+            animationView.removeFromSuperview()
+        })
     }
     
 }

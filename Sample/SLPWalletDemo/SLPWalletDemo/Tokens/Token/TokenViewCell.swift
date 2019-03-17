@@ -19,14 +19,7 @@ class TokenViewCell: UITableViewCell {
             
             titleLabel.text = tokenOutput.name
             subTitleLabel.text = tokenOutput.ticker
-            
-            let balance = NSDecimalNumber(value: tokenOutput.balance)
-            let nf = NumberFormatter()
-            nf.usesGroupingSeparator = true
-            nf.numberStyle = .currency
-            nf.maximumFractionDigits = tokenOutput.decimal
-            nf.currencySymbol = "\(tokenOutput.ticker) "
-            thirdTitleLabel.text = nf.string(from: balance)
+            thirdTitleLabel.text = tokenOutput.balance
             
             iconImageView.image = Identicon().icon(from: tokenOutput.id, size: CGSize(width: 48, height: 48))
             iconImageView.layer.cornerRadius = 24

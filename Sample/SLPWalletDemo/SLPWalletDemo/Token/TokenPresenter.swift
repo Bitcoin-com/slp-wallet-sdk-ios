@@ -53,7 +53,7 @@ class TokenPresenter {
         let slpAddress = WalletManager.shared.wallet.slpAddress
         let cashAddress = WalletManager.shared.wallet.cashAddress
         
-        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance(), decimal: tokenDecimal)
+        let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal), decimal: tokenDecimal)
         
         let output = TokenPresenterOutput(tokenOutput: tokenOutput, slpAddress: slpAddress, cashAddress: cashAddress)
         
@@ -64,7 +64,7 @@ class TokenPresenter {
             self.disposable = observable.subscribe({ event in
                 if let token = event.element,
                     let tokenTicker = token.tokenTicker {
-                    self.viewDelegate?.onGetBalance(token.getBalance(), decimal: tokenDecimal, ticker: tokenTicker)
+                    self.viewDelegate?.onGetBalance(token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal))
                 }
             })
         } catch {

@@ -7,34 +7,76 @@
 //
 
 import UIKit
+import Lottie
+import WatchConnectivity
 
-class TokensViewController: UITableViewController {
+class TokensViewController: UITableViewController, UIViewControllerPreviewingDelegate {
 
     var tokenOutputs: [TokenOutput] = []
     var presenter: TokensPresenter?
+    var animationView: LOTAnimationView?
+    var session: WCSession?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Demo SLP SDK"
+        title = "Demo"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Receive", style: .plain, target: self, action: #selector(didPushReceive))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "qrcode_icon"), style: .plain, target: self, action: #selector(didPushReceive))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Mnemonic", style: .plain, target: self, action: #selector(didPushMnemonic))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "key_icon"), style: .plain, target: self, action: #selector(didPushMnemonic))
         
-        tableView.refreshControl = UIRefreshControl()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didRefreshTokens), for: .valueChanged)
+        
+        tableView.refreshControl = refreshControl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TokenViewCell", bundle: nil), forCellReuseIdentifier: "TokenViewCell")
         
-        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl?.addTarget(self, action: #selector(didRefreshTokens), for: .valueChanged)
+        // Custom refresh control
+        let animationView = LOTAnimationView(name: "refresh_loading_animation")
+        animationView.loopAnimation = true
+        animationView.frame = refreshControl.bounds
+        
+        self.animationView = animationView
+        
+        refreshControl.tintColor = .clear
+        refreshControl.addSubview(animationView)
+        
+        // 3D touch enable if available
+        if(traitCollection.forceTouchCapability == .available){
+            self.registerForPreviewing(with: self, sourceView: self.view)
+        }
+        
+        
+        if WCSession.isSupported() {
+            session = WCSession.default
+            session?.delegate = self
+            session?.activate()
+        }
         
         // Notify our presenter that we loaded the view
         presenter?.viewDidLoad()
     }
     
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        presenter?.didPushPreview(viewControllerToCommit)
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
+            return nil
+        }
+        
+        return presenter?.didPreview(tokenOutputs[indexPath.item].id)
+    }
+    
     @objc func didRefreshTokens() {
+        // Activate the animation
+        animationView?.play()
+        
+        // Refresh tokens
         presenter?.didRefreshTokens()
     }
     
@@ -51,6 +93,37 @@ class TokensViewController: UITableViewController {
         self.tokenOutputs = tokenOutputs
         tableView.reloadData()
         refreshControl?.endRefreshing()
+        animationView?.stop()
+        
+        if let session = self.session {
+            var data = [String: Any]()
+            var tokens = [[String:String]]()
+            tokenOutputs.forEach { (tokenOutput) in
+                var token = [String: String]()
+                token["id"] = tokenOutput.id
+                token["name"] = tokenOutput.name
+                token["balance"] = tokenOutput.balance
+                tokens.append(token)
+            }
+            
+            data["tokens"] = tokens
+            
+            do { // Try to update the WatchApp
+                try session.updateApplicationContext(data)
+            } catch {}
+        }
+    }
+    
+    func onGetAddresses(slpAddress: String, cashAddress: String) {
+        if let session = self.session {
+            var data = [String: Any]()
+            data["slpAddress"] = slpAddress
+            data["cashAddress"] = cashAddress
+            
+            do { // Try to update the WatchApp
+//                try session.updateApplicationContext(data)
+            } catch {}
+        }
     }
     
     func onGetToken(tokenOutput: TokenOutput) {
@@ -94,6 +167,13 @@ extension TokensViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         presenter?.didPushToken(tokenOutputs[indexPath.item].id)
     }
+}
+
+extension TokensViewController: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
+    func sessionDidBecomeInactive(_ session: WCSession) {}
+    func sessionDidDeactivate(_ session: WCSession) {}
 }

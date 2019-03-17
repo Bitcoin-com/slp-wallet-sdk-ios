@@ -39,6 +39,19 @@
 		3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87547222F051B008A3B1D /* MnemonicViewController.swift */; };
 		3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87549222F054E008A3B1D /* Mnemonic.storyboard */; };
 		3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */; };
+		3BB79DE8223DA1BA007E23EC /* refresh_loading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */; };
+		3BB79DEF223DADE9007E23EC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DED223DADE9007E23EC /* Interface.storyboard */; };
+		3BB79DF1223DADEA007E23EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DF0223DADEA007E23EC /* Assets.xcassets */; };
+		3BB79DF8223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3BB79DFD223DADEA007E23EC /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79DFC223DADEA007E23EC /* InterfaceController.swift */; };
+		3BB79DFF223DADEA007E23EC /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79DFE223DADEA007E23EC /* ExtensionDelegate.swift */; };
+		3BB79E01223DADEA007E23EC /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E00223DADEA007E23EC /* NotificationController.swift */; };
+		3BB79E03223DADEB007E23EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79E02223DADEB007E23EC /* Assets.xcassets */; };
+		3BB79E08223DADEB007E23EC /* SLPWalletDemo Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */; };
+		3BB79E13223DAF1A007E23EC /* TokenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */; };
+		3BB79E14223DAF1A007E23EC /* TokensInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */; };
+		3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E15223DB275007E23EC /* Double+Extensions.swift */; };
+		3BB79E1C223DCDE2007E23EC /* success_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79E1B223DCDE1007E23EC /* success_animation.json */; };
 		4D8358BD066925C55465B4A7 /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4664AB7AC7970DC8CDE0ABB /* Pods_SLPWalletDemoTests.framework */; };
 		A2E61A3C660B43C93EA54D1D /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E130DBDA4766FEFE9C93C1 /* Pods_SLPWalletDemo.framework */; };
 		CCF412851FC521A1C337551A /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66ACFB613042A9E2C9DCFBBD /* Pods_SLPWalletDemoUITests.framework */; };
@@ -59,7 +72,46 @@
 			remoteGlobalIDString = 3B7FE862222679F400CB5755;
 			remoteInfo = SLPWalletDemo;
 		};
+		3BB79DF9223DADEA007E23EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B7FE85B222679F400CB5755 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BB79DF6223DADEA007E23EC;
+			remoteInfo = "SLPWalletDemo Watch Extension";
+		};
+		3BB79E06223DADEB007E23EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B7FE85B222679F400CB5755 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BB79DEA223DADE9007E23EC;
+			remoteInfo = "SLPWalletDemo Watch";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3BB79E0C223DADEB007E23EC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3BB79DF8223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BB79E10223DADEB007E23EC /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3BB79E08223DADEB007E23EC /* SLPWalletDemo Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
@@ -101,6 +153,22 @@
 		3BA87547222F051B008A3B1D /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
 		3BA87549222F054E008A3B1D /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
 		3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicBuilder.swift; sourceTree = "<group>"; };
+		3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = refresh_loading_animation.json; path = ../../../../../../../Downloads/refresh_loading_animation.json; sourceTree = "<group>"; };
+		3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SLPWalletDemo Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB79DEE223DADE9007E23EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		3BB79DF0223DADEA007E23EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3BB79DF2223DADEA007E23EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "SLPWalletDemo Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB79DFC223DADEA007E23EC /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		3BB79DFE223DADEA007E23EC /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		3BB79E00223DADEA007E23EC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		3BB79E02223DADEB007E23EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3BB79E04223DADEB007E23EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB79E05223DADEB007E23EC /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenInterfaceController.swift; sourceTree = "<group>"; };
+		3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensInterfaceController.swift; sourceTree = "<group>"; };
+		3BB79E15223DB275007E23EC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
+		3BB79E1B223DCDE1007E23EC /* success_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = success_animation.json; path = ../../../../../../../Downloads/success_animation.json; sourceTree = "<group>"; };
 		3BD750A72237D05200CF5072 /* SLPWalletDemo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SLPWalletDemo.entitlements; sourceTree = "<group>"; };
 		42E8F45A23D5D80EB38F5F85 /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4323AEB42EF7E5F17693CAB5 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +203,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF412851FC521A1C337551A /* Pods_SLPWalletDemoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BB79DF4223DADEA007E23EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */,
+				3BB79E15223DB275007E23EC /* Double+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -203,6 +279,8 @@
 				3B7FE865222679F400CB5755 /* SLPWalletDemo */,
 				3B7FE87D222679F500CB5755 /* SLPWalletDemoTests */,
 				3B7FE888222679F500CB5755 /* SLPWalletDemoUITests */,
+				3BB79DEC223DADE9007E23EC /* SLPWalletDemo Watch */,
+				3BB79DFB223DADEA007E23EC /* SLPWalletDemo Watch Extension */,
 				3B7FE864222679F400CB5755 /* Products */,
 				3B7FE8CB22267F0500CB5755 /* Frameworks */,
 				34C6065D4BAC0D982E7AD4AE /* Pods */,
@@ -215,6 +293,8 @@
 				3B7FE863222679F400CB5755 /* SLPWalletDemo.app */,
 				3B7FE87A222679F500CB5755 /* SLPWalletDemoTests.xctest */,
 				3B7FE885222679F500CB5755 /* SLPWalletDemoUITests.xctest */,
+				3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */,
+				3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,6 +308,8 @@
 				3BA87525222EE8E4008A3B1D /* Token */,
 				3BA87520222EE875008A3B1D /* Tokens */,
 				3B7FE866222679F400CB5755 /* AppDelegate.swift */,
+				3BB79E1B223DCDE1007E23EC /* success_animation.json */,
+				3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */,
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
 				3B7FE870222679F500CB5755 /* Assets.xcassets */,
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
@@ -324,6 +406,31 @@
 			path = Mnemonic;
 			sourceTree = "<group>";
 		};
+		3BB79DEC223DADE9007E23EC /* SLPWalletDemo Watch */ = {
+			isa = PBXGroup;
+			children = (
+				3BB79DED223DADE9007E23EC /* Interface.storyboard */,
+				3BB79DF0223DADEA007E23EC /* Assets.xcassets */,
+				3BB79DF2223DADEA007E23EC /* Info.plist */,
+			);
+			path = "SLPWalletDemo Watch";
+			sourceTree = "<group>";
+		};
+		3BB79DFB223DADEA007E23EC /* SLPWalletDemo Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */,
+				3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */,
+				3BB79DFC223DADEA007E23EC /* InterfaceController.swift */,
+				3BB79DFE223DADEA007E23EC /* ExtensionDelegate.swift */,
+				3BB79E00223DADEA007E23EC /* NotificationController.swift */,
+				3BB79E02223DADEB007E23EC /* Assets.xcassets */,
+				3BB79E04223DADEB007E23EC /* Info.plist */,
+				3BB79E05223DADEB007E23EC /* PushNotificationPayload.apns */,
+			);
+			path = "SLPWalletDemo Watch Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,10 +443,12 @@
 				3B7FE860222679F400CB5755 /* Frameworks */,
 				3B7FE861222679F400CB5755 /* Resources */,
 				7301E1DC5B64C8F59374CFCC /* [CP] Embed Pods Frameworks */,
+				3BB79E10223DADEB007E23EC /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3BB79E07223DADEB007E23EC /* PBXTargetDependency */,
 			);
 			name = SLPWalletDemo;
 			productName = SLPWalletDemo;
@@ -384,6 +493,40 @@
 			productReference = 3B7FE885222679F500CB5755 /* SLPWalletDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3BB79DEA223DADE9007E23EC /* SLPWalletDemo Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BB79E0D223DADEB007E23EC /* Build configuration list for PBXNativeTarget "SLPWalletDemo Watch" */;
+			buildPhases = (
+				3BB79DE9223DADE9007E23EC /* Resources */,
+				3BB79E0C223DADEB007E23EC /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BB79DFA223DADEA007E23EC /* PBXTargetDependency */,
+			);
+			name = "SLPWalletDemo Watch";
+			productName = "SLPWalletDemo Watch";
+			productReference = 3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		3BB79DF6223DADEA007E23EC /* SLPWalletDemo Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BB79E09223DADEB007E23EC /* Build configuration list for PBXNativeTarget "SLPWalletDemo Watch Extension" */;
+			buildPhases = (
+				3BB79DF3223DADEA007E23EC /* Sources */,
+				3BB79DF4223DADEA007E23EC /* Frameworks */,
+				3BB79DF5223DADEA007E23EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SLPWalletDemo Watch Extension";
+			productName = "SLPWalletDemo Watch Extension";
+			productReference = 3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -405,6 +548,12 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 3B7FE862222679F400CB5755;
 					};
+					3BB79DEA223DADE9007E23EC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3BB79DF6223DADEA007E23EC = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 3B7FE85E222679F400CB5755 /* Build configuration list for PBXProject "SLPWalletDemo" */;
@@ -423,6 +572,8 @@
 				3B7FE862222679F400CB5755 /* SLPWalletDemo */,
 				3B7FE879222679F500CB5755 /* SLPWalletDemoTests */,
 				3B7FE884222679F500CB5755 /* SLPWalletDemoUITests */,
+				3BB79DEA223DADE9007E23EC /* SLPWalletDemo Watch */,
+				3BB79DF6223DADEA007E23EC /* SLPWalletDemo Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -432,6 +583,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB79E1C223DCDE2007E23EC /* success_animation.json in Resources */,
 				3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */,
 				3B7FE874222679F500CB5755 /* LaunchScreen.storyboard in Resources */,
 				3BA8752D222EE9CD008A3B1D /* Token.storyboard in Resources */,
@@ -441,6 +593,7 @@
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
 				3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
+				3BB79DE8223DA1BA007E23EC /* refresh_loading_animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +608,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BB79DE9223DADE9007E23EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB79DF1223DADEA007E23EC /* Assets.xcassets in Resources */,
+				3BB79DEF223DADE9007E23EC /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BB79DF5223DADEA007E23EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB79E03223DADEB007E23EC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +750,7 @@
 				3BA87529222EE982008A3B1D /* TokenPresenter.swift in Sources */,
 				3BA8752F222EEA03008A3B1D /* TokensBuilder.swift in Sources */,
 				3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */,
+				3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */,
 				3BA87543222F01A8008A3B1D /* FetchTokensInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +771,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BB79DF3223DADEA007E23EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB79E14223DAF1A007E23EC /* TokensInterfaceController.swift in Sources */,
+				3BB79E13223DAF1A007E23EC /* TokenInterfaceController.swift in Sources */,
+				3BB79E01223DADEA007E23EC /* NotificationController.swift in Sources */,
+				3BB79DFF223DADEA007E23EC /* ExtensionDelegate.swift in Sources */,
+				3BB79DFD223DADEA007E23EC /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -612,6 +795,16 @@
 			isa = PBXTargetDependency;
 			target = 3B7FE862222679F400CB5755 /* SLPWalletDemo */;
 			targetProxy = 3B7FE886222679F500CB5755 /* PBXContainerItemProxy */;
+		};
+		3BB79DFA223DADEA007E23EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3BB79DF6223DADEA007E23EC /* SLPWalletDemo Watch Extension */;
+			targetProxy = 3BB79DF9223DADEA007E23EC /* PBXContainerItemProxy */;
+		};
+		3BB79E07223DADEB007E23EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3BB79DEA223DADE9007E23EC /* SLPWalletDemo Watch */;
+			targetProxy = 3BB79E06223DADEB007E23EC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -630,6 +823,14 @@
 				3B7FE873222679F500CB5755 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3BB79DED223DADE9007E23EC /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BB79DEE223DADE9007E23EC /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -875,6 +1076,88 @@
 			};
 			name = Release;
 		};
+		3BB79E0A223DADEB007E23EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				INFOPLIST_FILE = "SLPWalletDemo Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		3BB79E0B223DADEB007E23EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				INFOPLIST_FILE = "SLPWalletDemo Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletDemo.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		3BB79E0E223DADEB007E23EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				IBSC_MODULE = SLPWalletDemo_Watch_Extension;
+				INFOPLIST_FILE = "SLPWalletDemo Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		3BB79E0F223DADEB007E23EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 299HJ3G3BP;
+				IBSC_MODULE = SLPWalletDemo_Watch_Extension;
+				INFOPLIST_FILE = "SLPWalletDemo Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitcoin.SLPWalletDemo.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -910,6 +1193,24 @@
 			buildConfigurations = (
 				3B7FE895222679F500CB5755 /* Debug */,
 				3B7FE896222679F500CB5755 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BB79E09223DADEB007E23EC /* Build configuration list for PBXNativeTarget "SLPWalletDemo Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB79E0A223DADEB007E23EC /* Debug */,
+				3BB79E0B223DADEB007E23EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BB79E0D223DADEB007E23EC /* Build configuration list for PBXNativeTarget "SLPWalletDemo Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB79E0E223DADEB007E23EC /* Debug */,
+				3BB79E0F223DADEB007E23EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
