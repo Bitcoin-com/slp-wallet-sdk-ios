@@ -13,10 +13,10 @@ public class RestService {
     static let bag = DisposeBag()
     
     enum RestError: String, Error {
-        case REST_UTXOS
-        case REST_TX_DETAILS
-        case REST_SEND_RAW_TX
-        case REST_TX_VALIDATIONS
+        case REST_UTXOS = "Failed to fetch UTXOs"
+        case REST_TX_DETAILS = "Failed to fetch TX details"
+        case REST_SEND_RAW_TX = "Failed to send TX"
+        case REST_TX_VALIDATIONS = "Failed to validate TXs"
     }
 }
 

@@ -12,16 +12,16 @@ import BitcoinKit
 class SLPTransactionBuilder {
     
     enum SLPTransactionBuilderError: String, Error {
-        case TOKEN_NOT_FOUND
-        case INSUFFISANT_FUNDS
-        case CONVERSION_METADATA
-        case CONVERSION_AMOUNT
-        case CONVERSION_CHANGE
-        case SCRIPT_TO
-        case SCRIPT_TOKEN_CHANGE
-        case GAS_INSUFFISANT
-        case SCRIPT_CHANGE
-        case DECIMAL_NOT_AVAILABLE
+        case TOKEN_NOT_FOUND = "Token does not exist"
+        case INSUFFICIENT_FUNDS = "Insufficent funds available"
+        case CONVERSION_METADATA = "Failed to encode metadata"
+        case CONVERSION_AMOUNT = "Failed to convert token amount"
+        case CONVERSION_CHANGE = "Failed to convert change"
+        case SCRIPT_TO = "Failed to create to address script"
+        case SCRIPT_TOKEN_CHANGE = "Failed to create token change script"
+        case GAS_INSUFFICIENT = "Insufficient BCH available for transaction"
+        case SCRIPT_CHANGE = "Failed to create BCH change script"
+        case DECIMAL_NOT_AVAILABLE = "Decimal values not available"
     }
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
@@ -39,8 +39,8 @@ class SLPTransactionBuilder {
         }
         
         guard token.getBalance() >= amount else {
-            // Insuffisant balance
-            throw SLPTransactionBuilderError.INSUFFISANT_FUNDS
+            // Insufficent balance
+            throw SLPTransactionBuilderError.INSUFFICIENT_FUNDS
         }
         
         // change amount
@@ -148,7 +148,7 @@ class SLPTransactionBuilder {
             
             if change < 0 {
                 // Throw exception not enough gas
-                throw SLPTransactionBuilderError.GAS_INSUFFISANT
+                throw SLPTransactionBuilderError.GAS_INSUFFICIENT
             }
             
             // Add my gasUTXOs in my selectedUTXOs
