@@ -12,7 +12,14 @@ import SLPWallet
 class TokenRouter: BaseRouter {
     
     func transitToScanner() {
-        let scannerViewController = ScannerBuilder.provide()
-        viewController?.navigationController?.pushViewController(scannerViewController, animated: true)
+        guard let scannerDelegate = viewController as? ScannerDelegate else {
+            return
+        }
+        
+        let scannerViewController = ScannerBuilder.provide(scannerDelegate)
+        
+        let navigationController = UINavigationController(rootViewController: scannerViewController)
+        viewController?.navigationController?.present(navigationController, animated: true)
+        
     }
 }

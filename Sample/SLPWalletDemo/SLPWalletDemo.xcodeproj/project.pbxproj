@@ -59,6 +59,7 @@
 		93677DD222423B9F00910B0B /* ScannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD122423B9F00910B0B /* ScannerBuilder.swift */; };
 		93677DD422423BB100910B0B /* Scanner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93677DD322423BB100910B0B /* Scanner.storyboard */; };
 		93677DD62242409300910B0B /* TokenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD52242409300910B0B /* TokenRouter.swift */; };
+		93677DD822424DE400910B0B /* ScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD722424DE400910B0B /* ScannerRouter.swift */; };
 		F72B01F74362C74C2B320FEA /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469A3618346F61A04D60B473 /* Pods_SLPWalletDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -185,6 +186,7 @@
 		93677DD122423B9F00910B0B /* ScannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerBuilder.swift; sourceTree = "<group>"; };
 		93677DD322423BB100910B0B /* Scanner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Scanner.storyboard; sourceTree = "<group>"; };
 		93677DD52242409300910B0B /* TokenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRouter.swift; sourceTree = "<group>"; };
+		93677DD722424DE400910B0B /* ScannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerRouter.swift; sourceTree = "<group>"; };
 		96FF4E788C798059BECA1884 /* Pods_SLPWalletDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2063890FDBF9BBB98F84730 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CAF3A8692F7F2D6137CA457A /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				93677DCD22423B7800910B0B /* ScannerViewController.swift */,
 				93677DCF22423B8900910B0B /* ScannerPresenter.swift */,
 				93677DD122423B9F00910B0B /* ScannerBuilder.swift */,
+				93677DD722424DE400910B0B /* ScannerRouter.swift */,
 				93677DD322423BB100910B0B /* Scanner.storyboard */,
 			);
 			path = Scanner;
@@ -458,7 +461,6 @@
 				3C7198E6256009166A1E15A9 /* Pods-SLPWalletDemoUITests.debug.xcconfig */,
 				B2063890FDBF9BBB98F84730 /* Pods-SLPWalletDemoUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -791,6 +793,7 @@
 				3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */,
 				93677DD62242409300910B0B /* TokenRouter.swift in Sources */,
 				3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */,
+				93677DD822424DE400910B0B /* ScannerRouter.swift in Sources */,
 				3BA87538222EECB0008A3B1D /* WalletManager.swift in Sources */,
 				3BA8752B222EE99E008A3B1D /* TokenBuilder.swift in Sources */,
 				3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */,

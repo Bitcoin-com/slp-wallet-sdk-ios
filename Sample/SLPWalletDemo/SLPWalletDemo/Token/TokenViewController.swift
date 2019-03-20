@@ -175,3 +175,13 @@ class TokenViewController: UIViewController {
         })
     }
 }
+
+extension TokenViewController : ScannerDelegate {
+    func onScanResult(value: String?) {
+        guard let value = value else {
+            return
+        }
+        
+        toAddressTextField.text = value
+    }
+}

@@ -8,16 +8,27 @@
 
 import UIKit
 
+protocol ScannerDelegate {
+    func onScanResult(value: String?)
+}
+
 class ScannerPresenter {
     
     weak var viewDelegate: ScannerViewController?
+    var router: ScannerRouter?
+    var scannerDelegate: ScannerDelegate?
     
     fileprivate var mnemonic: String?
     
     init() {}
     
-    func viewDidLoad() {
-        print("Scanner Presenter Loaded!")
+    func didNext(value: String) {
+        scannerDelegate?.onScanResult(value: value)
+        router?.transitBackToToken()
+    }
+    
+    func didPushClose() {
+        router?.transitBackToToken()
     }
     
 }
