@@ -21,7 +21,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "test", amount: 12, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.TOKEN_NOT_FOUND {
+                    } catch SLPTransactionBuilderError.TOKEN_NOT_FOUND {
                         // Success
                     } catch {
                         fail()
@@ -41,7 +41,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 12, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.DECIMAL_NOT_AVAILABLE {
+                    } catch SLPTransactionBuilderError.DECIMAL_NOT_AVAILABLE {
                         // Success
                     } catch {
                         fail()
@@ -62,7 +62,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 1235, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.INSUFFICIENT_FUNDS {
+                    } catch SLPTransactionBuilderError.INSUFFICIENT_FUNDS {
                         // Success
                     } catch {
                         fail()
@@ -83,7 +83,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "test", amount: 1234, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.CONVERSION_METADATA {
+                    } catch SLPTransactionBuilderError.CONVERSION_METADATA {
                         // Success
                     } catch {
                         fail()
@@ -104,7 +104,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 12, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.GAS_INSUFFICIENT {
+                    } catch SLPTransactionBuilderError.GAS_INSUFFICIENT {
                         // Success
                     } catch {
                         fail()

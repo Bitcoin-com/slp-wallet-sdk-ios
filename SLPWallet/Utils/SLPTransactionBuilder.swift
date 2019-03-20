@@ -9,21 +9,22 @@
 import Foundation
 import BitcoinKit
 
+public enum SLPTransactionBuilderError: String, Error {
+    case CONVERSION_METADATA
+    case CONVERSION_AMOUNT
+    case CONVERSION_CHANGE
+    case DECIMAL_NOT_AVAILABLE
+    case GAS_INSUFFICIENT
+    case INSUFFICIENT_FUNDS
+    case SCRIPT_TO
+    case SCRIPT_TOKEN_CHANGE
+    case SCRIPT_CHANGE
+    case TO_ADDRESS_INVALID
+    case TOKEN_NOT_FOUND
+    case WALLET_ADDRESS_INVALID
+}
+
 class SLPTransactionBuilder {
-    
-    enum SLPTransactionBuilderError: String, Error {
-        case ADDRESS_INVALID
-        case CONVERSION_METADATA
-        case CONVERSION_AMOUNT
-        case CONVERSION_CHANGE
-        case DECIMAL_NOT_AVAILABLE
-        case GAS_INSUFFICIENT
-        case INSUFFICIENT_FUNDS
-        case SCRIPT_TO
-        case SCRIPT_TOKEN_CHANGE
-        case SCRIPT_CHANGE
-        case TOKEN_NOT_FOUND
-    }
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
         
@@ -97,9 +98,11 @@ class SLPTransactionBuilder {
             return utxo.asUnspentTransaction()
         })
         
-        guard let fromAddress = try? AddressFactory.create(wallet.cashAddress)
-            , let toAddress = try? AddressFactory.create(toAddress) else {
-                throw SLPTransactionBuilderError.ADDRESS_INVALID
+        guard let fromAddress = try? AddressFactory.create(wallet.cashAddress) else {
+            throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
+        }
+        guard let toAddress = try? AddressFactory.create(toAddress) else {
+            throw SLPTransactionBuilderError.TO_ADDRESS_INVALID
         }
         
         let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
