@@ -67,21 +67,6 @@ class SLPWalletTest: QuickSpec {
                 }
             }
             
-            context("Send token Bitcoin.com Coin") {
-                it("should success") {
-                    let wallet = try! SLPWallet("tornado filter rural benefit remove trigger vessel stumble bridge buyer grit dignity", network: .mainnet)
-                    do {
-                        let txid = try wallet
-                            .sendToken("9cc1cf24e502554d2d3d09918c27decda2c260762961acd469c5473fbcfe192e", amount: 10, toAddress: "simpleledger:qp4zxnnce2wy8ackzc29wtjp2xw9e6sgyvsh49ev9f")
-                            .toBlocking()
-                            .single()
-                        expect(txid).toNot(beNil())
-                    } catch {
-                        fail()
-                    }
-                }
-            }
-            
             context("Secure storage") {
                 it("should success") {
                     let createdWallet = try! SLPWallet(.mainnet, force: true)
