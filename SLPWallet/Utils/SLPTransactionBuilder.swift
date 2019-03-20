@@ -9,20 +9,22 @@
 import Foundation
 import BitcoinKit
 
+public enum SLPTransactionBuilderError: String, Error {
+    case CONVERSION_METADATA
+    case CONVERSION_AMOUNT
+    case CONVERSION_CHANGE
+    case DECIMAL_NOT_AVAILABLE
+    case GAS_INSUFFICIENT
+    case INSUFFICIENT_FUNDS
+    case SCRIPT_TO
+    case SCRIPT_TOKEN_CHANGE
+    case SCRIPT_CHANGE
+    case TO_ADDRESS_INVALID
+    case TOKEN_NOT_FOUND
+    case WALLET_ADDRESS_INVALID
+}
+
 class SLPTransactionBuilder {
-    
-    enum SLPTransactionBuilderError: String, Error {
-        case TOKEN_NOT_FOUND = "Token does not exist"
-        case INSUFFICIENT_FUNDS = "Insufficent funds available"
-        case CONVERSION_METADATA = "Failed to encode metadata"
-        case CONVERSION_AMOUNT = "Failed to convert token amount"
-        case CONVERSION_CHANGE = "Failed to convert change"
-        case SCRIPT_TO = "Failed to create to address script"
-        case SCRIPT_TOKEN_CHANGE = "Failed to create token change script"
-        case GAS_INSUFFICIENT = "Insufficient BCH available for transaction"
-        case SCRIPT_CHANGE = "Failed to create BCH change script"
-        case DECIMAL_NOT_AVAILABLE = "Decimal values not available"
-    }
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
         
@@ -31,8 +33,8 @@ class SLPTransactionBuilder {
         var privKeys = [PrivateKey]()
         
         guard let token = wallet.tokens[tokenId] else {
-                // Token doesn't exist
-                throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
+            // Token doesn't exist
+            throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
         }
         
         guard let decimal = token.decimal else {
@@ -104,10 +106,18 @@ class SLPTransactionBuilder {
         var selectedUTXOs = selectedTokenUTXOs.map({ utxo -> UnspentTransaction in
             return utxo.asUnspentTransaction()
         })
-        
-        let tokenChangeAddress = try AddressFactory.create(wallet.SLPAccount.cashAddress)
-        let cashChangeAddress = try AddressFactory.create(wallet.BCHAccount.cashAddress)
-        let toAddress = try AddressFactory.create(toAddress)
+
+        guard let tokenChangeAddress = try? AddressFactory.create(wallet.SLPAccount.cashAddress) else {
+            throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
+        }
+
+        guard let cashChangeAddress = try? AddressFactory.create(wallet.BCHAccount.cashAddress) else {
+            throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
+        }
+
+        guard let toAddress = try? AddressFactory.create(toAddress) else {
+            throw SLPTransactionBuilderError.TO_ADDRESS_INVALID
+        }
         
         let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
         
@@ -201,7 +211,7 @@ class SLPTransactionBuilder {
             // TODO: sequenceの更新
             inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
         }
-       
+        
         let signedTx = transactionToSign.serialized()
         
         return signedTx.hex

@@ -11,17 +11,17 @@ import RxSwift
 import RxCocoa
 import KeychainAccess
 
+public enum SLPWalletError : String, Error {
+    case TOKEN_ID_REQUIRED
+    case MNEMONIC_NOT_FOUND
+    case PRIVKEY_NOT_FOUND
+}
+
 public protocol SLPWalletDelegate {
     func onUpdatedToken(_ token: SLPToken)
 }
 
 public class SLPWallet {
-    
-    enum SLPWalletError : String, Error {
-        case TOKEN_ID_REQUIRED = "Token ID is required"
-        case MNEMONIC_NOT_FOUND = "Mnemonic not found"
-        case PRIVKEY_NOT_FOUND
-    }
     
     fileprivate static let bag = DisposeBag()
     fileprivate static let storageProvider = StorageProvider()
