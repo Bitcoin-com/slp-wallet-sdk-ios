@@ -12,17 +12,16 @@ import BitcoinKit
 class SLPTransactionBuilder {
     
     enum SLPTransactionBuilderError: String, Error {
-        case ADDRESS_INVALID
-        case CONVERSION_METADATA
-        case CONVERSION_AMOUNT
-        case CONVERSION_CHANGE
-        case DECIMAL_NOT_AVAILABLE
-        case GAS_INSUFFICIENT
-        case INSUFFICIENT_FUNDS
-        case SCRIPT_TO
-        case SCRIPT_TOKEN_CHANGE
-        case SCRIPT_CHANGE
-        case TOKEN_NOT_FOUND
+        case TOKEN_NOT_FOUND = "Token does not exist"
+        case INSUFFICIENT_FUNDS = "Insufficent funds available"
+        case CONVERSION_METADATA = "Failed to encode metadata"
+        case CONVERSION_AMOUNT = "Failed to convert token amount"
+        case CONVERSION_CHANGE = "Failed to convert change"
+        case SCRIPT_TO = "Failed to create to address script"
+        case SCRIPT_TOKEN_CHANGE = "Failed to create token change script"
+        case GAS_INSUFFICIENT = "Insufficient BCH available for transaction"
+        case SCRIPT_CHANGE = "Failed to create BCH change script"
+        case DECIMAL_NOT_AVAILABLE = "Decimal values not available"
     }
     
     static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
@@ -31,8 +30,8 @@ class SLPTransactionBuilder {
         var satoshisForTokens: UInt64 = minSatoshisForToken
         
         guard let token = wallet.tokens[tokenId] else {
-            // Token doesn't exist
-            throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
+                // Token doesn't exist
+                throw SLPTransactionBuilderError.TOKEN_NOT_FOUND
         }
         
         guard let decimal = token.decimal else {
@@ -97,10 +96,8 @@ class SLPTransactionBuilder {
             return utxo.asUnspentTransaction()
         })
         
-        guard let fromAddress = try? AddressFactory.create(wallet.cashAddress)
-            , let toAddress = try? AddressFactory.create(toAddress) else {
-            throw SLPTransactionBuilderError.ADDRESS_INVALID
-        }
+        let fromAddress = try AddressFactory.create(wallet.cashAddress)
+        let toAddress = try AddressFactory.create(toAddress)
         
         let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
         
