@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="599"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Nd-Vn-MOQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="264"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lbt-cl-Spu">
                                                 <rect key="frame" x="16" y="84" width="343" height="36"/>
@@ -41,7 +41,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SLP / Cash / Legacy Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hef-yj-soQ">
-                                                        <rect key="frame" x="56" y="0.0" width="223" height="36"/>
+                                                        <rect key="frame" x="56" y="0.0" width="287" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="36" id="Byf-91-5fw"/>
                                                         </constraints>
@@ -49,43 +49,8 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBy-Uv-lR8">
-                                                        <rect key="frame" x="295" y="0.0" width="48" height="36"/>
-                                                        <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="48" id="2uG-Fq-4Je"/>
-                                                        </constraints>
-                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="paste_icon"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="didPushPaste:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="k2o-S8-LoA"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSb-9H-onJ">
-                                                <rect key="frame" x="16" y="152" width="343" height="48"/>
-                                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="6xi-E1-JXy"/>
-                                                </constraints>
-                                                <state key="normal" title="Confirm">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="didPushConfirm:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="g2f-nQ-7XM"/>
-                                                </connections>
-                                            </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="fod-rE-zVu">
                                                 <rect key="frame" x="16" y="32" width="343" height="36"/>
                                                 <subviews>
@@ -102,7 +67,7 @@
                                                         <rect key="frame" x="56" y="0.0" width="287" height="36"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fq6-JJ-Txx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="147" height="36"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="211" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="36" id="aRS-7E-eKJ"/>
                                                                 </constraints>
@@ -111,7 +76,7 @@
                                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="send"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwL-WA-jLR">
-                                                                <rect key="frame" x="163" y="0.0" width="60" height="36"/>
+                                                                <rect key="frame" x="227" y="0.0" width="60" height="36"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="60" id="SQl-ko-Lam"/>
                                                                 </constraints>
@@ -119,44 +84,91 @@
                                                                 <color key="textColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-Za-cHr">
-                                                                <rect key="frame" x="239" y="0.0" width="48" height="36"/>
-                                                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="48" id="IuK-3r-W9R"/>
-                                                                </constraints>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" image="qrcode_icon"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                        <integer key="value" value="8"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="didPushScanner:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="Hf5-Z6-XGI"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GCN-1q-L3w">
+                                                <rect key="frame" x="16" y="136" width="343" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zBy-Uv-lR8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="48"/>
+                                                        <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="gmE-g0-vOK"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Paste" image="paste_icon"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didPushPaste:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="k2o-S8-LoA"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-Za-cHr">
+                                                        <rect key="frame" x="179.5" y="0.0" width="163.5" height="48"/>
+                                                        <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="48" id="dYv-65-0u1"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Scan" image="qrcode_icon"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didPushScanner:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="Hf5-Z6-XGI"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSb-9H-onJ">
+                                                <rect key="frame" x="16" y="200" width="343" height="48"/>
+                                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="6xi-E1-JXy"/>
+                                                </constraints>
+                                                <state key="normal" title="Confirm">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didPushConfirm:" destination="2Of-jg-1Ku" eventType="touchUpInside" id="g2f-nQ-7XM"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.082352941176470587" green="0.50997751950000003" blue="1" alpha="0.75088291952054798" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="fod-rE-zVu" secondAttribute="trailing" constant="16" id="0uW-QH-GID"/>
                                             <constraint firstItem="cSb-9H-onJ" firstAttribute="leading" secondItem="8Nd-Vn-MOQ" secondAttribute="leading" constant="16" id="13p-12-QW0"/>
-                                            <constraint firstItem="cSb-9H-onJ" firstAttribute="top" secondItem="lbt-cl-Spu" secondAttribute="bottom" constant="32" id="AKx-B4-5pT"/>
+                                            <constraint firstItem="GCN-1q-L3w" firstAttribute="top" secondItem="lbt-cl-Spu" secondAttribute="bottom" constant="16" id="AeP-Ek-oQN"/>
+                                            <constraint firstAttribute="trailing" secondItem="GCN-1q-L3w" secondAttribute="trailing" constant="16" id="BG3-lq-xGs"/>
+                                            <constraint firstItem="GCN-1q-L3w" firstAttribute="leading" secondItem="8Nd-Vn-MOQ" secondAttribute="leading" constant="16" id="J4K-yV-z4J"/>
                                             <constraint firstItem="lbt-cl-Spu" firstAttribute="top" secondItem="fod-rE-zVu" secondAttribute="bottom" constant="16" id="LuZ-gB-wFc"/>
                                             <constraint firstAttribute="trailing" secondItem="cSb-9H-onJ" secondAttribute="trailing" constant="16" id="U0B-go-1lT"/>
+                                            <constraint firstItem="cSb-9H-onJ" firstAttribute="top" secondItem="GCN-1q-L3w" secondAttribute="bottom" constant="16" id="cUS-VI-2oL"/>
                                             <constraint firstItem="fod-rE-zVu" firstAttribute="top" secondItem="8Nd-Vn-MOQ" secondAttribute="top" constant="32" id="e9N-4J-hJT"/>
                                             <constraint firstItem="lbt-cl-Spu" firstAttribute="leading" secondItem="8Nd-Vn-MOQ" secondAttribute="leading" constant="16" id="iYF-iX-n5z"/>
                                             <constraint firstAttribute="trailing" secondItem="lbt-cl-Spu" secondAttribute="trailing" constant="16" id="kK3-dB-VIa"/>
-                                            <constraint firstAttribute="bottom" secondItem="cSb-9H-onJ" secondAttribute="bottom" constant="32" id="mP8-Ku-4GU"/>
+                                            <constraint firstAttribute="bottom" secondItem="cSb-9H-onJ" secondAttribute="bottom" constant="16" id="mP8-Ku-4GU"/>
                                             <constraint firstItem="fod-rE-zVu" firstAttribute="leading" secondItem="8Nd-Vn-MOQ" secondAttribute="leading" constant="16" id="woM-t0-ZCZ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jfn-GA-mkc">
-                                        <rect key="frame" x="0.0" y="236" width="375" height="363"/>
+                                        <rect key="frame" x="0.0" y="268" width="375" height="331"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-78-tOV">
                                                 <rect key="frame" x="16" y="32" width="343" height="29"/>

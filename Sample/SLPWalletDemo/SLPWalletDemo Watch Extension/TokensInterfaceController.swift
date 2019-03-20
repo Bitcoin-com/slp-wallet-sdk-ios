@@ -42,7 +42,7 @@ class TokensInterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        setTitle("Demo")
+        setTitle("SLP Wallet")
         processApplicationContext()
         session.delegate = self
         session.activate()

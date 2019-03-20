@@ -17,6 +17,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     fileprivate var captureSession: AVCaptureSession!
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer!
     fileprivate var animationView: LOTAnimationView!
+    fileprivate var hasPermission = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,46 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         view.backgroundColor = UIColor.black
         
+        setupCamera()
+    }
+    
+    fileprivate func setupCamera() {
         captureSession = AVCaptureSession()
         
+        //Camera
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { [weak self] success in
+            if !success {
+                DispatchQueue.main.async {
+                    // Handle the case without permission
+                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString), UIApplication.shared.canOpenURL(settingsUrl) else {
+                        return
+                    }
+                    
+                    let alert = UIAlertController(title: "Camera Permission Error", message: "The camera is necessary", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
+                        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: { [weak self] success in
+                            self?.setupCamera()
+                        })
+                    }))
+                    
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
+                        self?.presenter?.didPushClose()
+                    }))
+                    
+                    self?.present(alert, animated: true)
+                }
+            } else {
+                self?.hasPermission = true
+            }
+        }
+        
+        guard hasPermission else {
+            return
+        }
+        
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
-            // Handle the case without permission
+            failed()
             return
         }
         
@@ -80,26 +117,22 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         animationView.loopAnimation = true
         animationView.play()
-        
     }
         
     @objc func didPushClose() {
         presenter?.didPushClose()
     }
     
-    func failed() {
+    fileprivate func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
         present(ac, animated: true)
         captureSession = nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if (captureSession?.isRunning == false) {
-            captureSession.startRunning()
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupCamera()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

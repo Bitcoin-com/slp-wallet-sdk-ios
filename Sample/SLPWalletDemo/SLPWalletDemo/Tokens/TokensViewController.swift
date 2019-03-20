@@ -20,7 +20,7 @@ class TokensViewController: UITableViewController, UIViewControllerPreviewingDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Demo"
+        title = "SLP Wallet"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "qrcode_icon"), style: .plain, target: self, action: #selector(didPushReceive))
         
@@ -173,7 +173,23 @@ extension TokensViewController {
 }
 
 extension TokensViewController: WCSessionDelegate {
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        var data = [String: Any]()
+        var tokens = [[String:String]]()
+        tokenOutputs.forEach { (tokenOutput) in
+            var token = [String: String]()
+            token["id"] = tokenOutput.id
+            token["name"] = tokenOutput.name
+            token["balance"] = tokenOutput.balance
+            tokens.append(token)
+        }
+        
+        data["tokens"] = tokens
+        
+        do { // Try to update the WatchApp
+            try session.updateApplicationContext(data)
+        } catch {}
+    }
     func sessionDidBecomeInactive(_ session: WCSession) {}
     func sessionDidDeactivate(_ session: WCSession) {}
 }

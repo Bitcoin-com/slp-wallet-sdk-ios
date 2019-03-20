@@ -113,6 +113,8 @@ class TokenViewController: UIViewController {
             default:
                 message = "Transaction building has failed."
             }
+        } else if error is TokenPresenterError {
+            message = "Amount is invalid."
         } else {
             message = error.localizedDescription
         }
