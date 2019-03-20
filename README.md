@@ -69,7 +69,11 @@ Under the wood, the SDK is using [KeychainAccess](https://github.com/kishikawaka
 
 ### Creating new wallet with/without mnemonic
 
-The wallet is working with only 1 address using the SLP recommanded path 44'/245'/0' + m/0/0.
+The wallet is working with only 2 addresses using :
+- the SLP recommanded path 44'/245'/0' + m/0/0 (handling tokens - bch with token + token change address)
+- the BCH recommanded path 44'/145'/0' + m/0/0 (handling gas - bch without token + bch change address)
+
+However both paths are scanned to get any bch or tokens available.
 
 ```swift
 // Init 1
