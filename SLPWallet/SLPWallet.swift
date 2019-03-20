@@ -18,8 +18,8 @@ public protocol SLPWalletDelegate {
 public class SLPWallet {
     
     enum SLPWalletError : String, Error {
-        case TOKEN_ID_REQUIRED
-        case MNEMONIC_NOT_FOUND
+        case TOKEN_ID_REQUIRED = "Token ID is required"
+        case MNEMONIC_NOT_FOUND = "Mnemonic not found"
     }
     
     fileprivate static let bag = DisposeBag()

@@ -48,7 +48,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     }
                 }
                 
-                it("should fail INSUFFISANT_FUNDS") {
+                it("should fail INSUFFICIENT_FUNDS") {
                     let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                     
                     let token = SLPToken("e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06")
@@ -62,7 +62,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 1235, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.INSUFFISANT_FUNDS {
+                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.INSUFFICIENT_FUNDS {
                         // Success
                     } catch {
                         fail()
@@ -104,7 +104,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                     do {
                         _ = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 12, toAddress: "simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny")
                         fail()
-                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.GAS_INSUFFISANT {
+                    } catch SLPTransactionBuilder.SLPTransactionBuilderError.GAS_INSUFFICIENT {
                         // Success
                     } catch {
                         fail()
