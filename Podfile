@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
 
-abstract_target 'CommonFramekWork' do
+abstract_target 'CommonFrameWork' do
     use_frameworks!
     pod 'RxSwift',          '~> 4.0'
     pod 'RxCocoa',          '~> 4.0'
