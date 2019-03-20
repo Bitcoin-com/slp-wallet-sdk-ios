@@ -39,7 +39,8 @@
 		3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87547222F051B008A3B1D /* MnemonicViewController.swift */; };
 		3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87549222F054E008A3B1D /* Mnemonic.storyboard */; };
 		3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */; };
-		3BB79DE8223DA1BA007E23EC /* refresh_loading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */; };
+		3BA8E4342241F234009AE9BE /* success_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8E4322241F233009AE9BE /* success_animation.json */; };
+		3BA8E4352241F234009AE9BE /* refresh_loading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */; };
 		3BB79DEF223DADE9007E23EC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DED223DADE9007E23EC /* Interface.storyboard */; };
 		3BB79DF1223DADEA007E23EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DF0223DADEA007E23EC /* Assets.xcassets */; };
 		3BB79DF8223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -51,7 +52,6 @@
 		3BB79E13223DAF1A007E23EC /* TokenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */; };
 		3BB79E14223DAF1A007E23EC /* TokensInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */; };
 		3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E15223DB275007E23EC /* Double+Extensions.swift */; };
-		3BB79E1C223DCDE2007E23EC /* success_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79E1B223DCDE1007E23EC /* success_animation.json */; };
 		4D8358BD066925C55465B4A7 /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4664AB7AC7970DC8CDE0ABB /* Pods_SLPWalletDemoTests.framework */; };
 		A2E61A3C660B43C93EA54D1D /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E130DBDA4766FEFE9C93C1 /* Pods_SLPWalletDemo.framework */; };
 		CCF412851FC521A1C337551A /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66ACFB613042A9E2C9DCFBBD /* Pods_SLPWalletDemoUITests.framework */; };
@@ -153,7 +153,8 @@
 		3BA87547222F051B008A3B1D /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
 		3BA87549222F054E008A3B1D /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
 		3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicBuilder.swift; sourceTree = "<group>"; };
-		3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = refresh_loading_animation.json; path = ../../../../../../../Downloads/refresh_loading_animation.json; sourceTree = "<group>"; };
+		3BA8E4322241F233009AE9BE /* success_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success_animation.json; sourceTree = "<group>"; };
+		3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refresh_loading_animation.json; sourceTree = "<group>"; };
 		3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SLPWalletDemo Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB79DEE223DADE9007E23EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		3BB79DF0223DADEA007E23EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,7 +169,6 @@
 		3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenInterfaceController.swift; sourceTree = "<group>"; };
 		3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensInterfaceController.swift; sourceTree = "<group>"; };
 		3BB79E15223DB275007E23EC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
-		3BB79E1B223DCDE1007E23EC /* success_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = success_animation.json; path = ../../../../../../../Downloads/success_animation.json; sourceTree = "<group>"; };
 		3BD750A72237D05200CF5072 /* SLPWalletDemo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SLPWalletDemo.entitlements; sourceTree = "<group>"; };
 		42E8F45A23D5D80EB38F5F85 /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4323AEB42EF7E5F17693CAB5 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -308,10 +308,10 @@
 				3BA87525222EE8E4008A3B1D /* Token */,
 				3BA87520222EE875008A3B1D /* Tokens */,
 				3B7FE866222679F400CB5755 /* AppDelegate.swift */,
-				3BB79E1B223DCDE1007E23EC /* success_animation.json */,
-				3BB79DE7223DA1BA007E23EC /* refresh_loading_animation.json */,
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
 				3B7FE870222679F500CB5755 /* Assets.xcassets */,
+				3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */,
+				3BA8E4322241F233009AE9BE /* success_animation.json */,
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
 				3B7FE875222679F500CB5755 /* Info.plist */,
 				3B79D21C223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld */,
@@ -583,17 +583,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BB79E1C223DCDE2007E23EC /* success_animation.json in Resources */,
 				3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */,
 				3B7FE874222679F500CB5755 /* LaunchScreen.storyboard in Resources */,
 				3BA8752D222EE9CD008A3B1D /* Token.storyboard in Resources */,
+				3BA8E4352241F234009AE9BE /* refresh_loading_animation.json in Resources */,
 				3BA87531222EEA3D008A3B1D /* Tokens.storyboard in Resources */,
+				3BA8E4342241F234009AE9BE /* success_animation.json in Resources */,
 				3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */,
 				3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */,
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
 				3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
-				3BB79DE8223DA1BA007E23EC /* refresh_loading_animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
