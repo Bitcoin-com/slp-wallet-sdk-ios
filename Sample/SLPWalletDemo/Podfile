@@ -12,8 +12,8 @@ target 'SLPWalletDemo' do
   pod 'SLPWallet', :git => 'https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git', :branch => 'master'
   pod 'RxSwift',        '~> 4.0'
   pod 'RxCocoa',        '~> 4.0'
-  pod 'lottie-ios'
-  pod 'IGIdenticon'
+  pod 'lottie-ios',     '~> 2.5.2'
+  pod 'IGIdenticon',    '~> 0.6'
 
 
   target 'SLPWalletDemoTests' do
