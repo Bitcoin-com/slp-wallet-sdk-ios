@@ -131,6 +131,9 @@ class TokenViewController: UIViewController {
         presenter?.didPushGenesisExplorer()
     }
     
+    @IBAction func didPushScanner(_ sender: Any) {
+        presenter?.didPushScanner(sender)
+    }
     
     @IBAction func didPushPaste(_ sender: Any) {
         if let toAddress = UIPasteboard.general.string {
@@ -170,5 +173,15 @@ class TokenViewController: UIViewController {
             self.confirmButton.isEnabled = true
             self.amountTextField.becomeFirstResponder()
         })
+    }
+}
+
+extension TokenViewController : ScannerDelegate {
+    func onScanResult(value: String?) {
+        guard let value = value else {
+            return
+        }
+        
+        toAddressTextField.text = value
     }
 }

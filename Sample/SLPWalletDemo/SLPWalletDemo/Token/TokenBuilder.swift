@@ -16,10 +16,12 @@ class TokenBuilder {
         
         let presenter = TokenPresenter()
         let sendTokenInteractor = SendTokenInteractor()
+        let router = TokenRouter(viewController: viewController)
         
         presenter.viewDelegate = viewController
         presenter.sendTokenInteractor = sendTokenInteractor
         presenter.token = token
+        presenter.router = router
 
         viewController.presenter = presenter
         
