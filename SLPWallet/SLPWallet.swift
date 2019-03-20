@@ -233,14 +233,11 @@ public extension SLPWallet {
                                                         mintVout = mv
                                                     }
                                                     
-                                                    // 4 to .. : token_output_quantity 1..19
-                                                    for i in 9...chunks.count - 1 {
-                                                        chunk = chunks[i].chunkData.removeLeft()
-                                                        if let balance = Int(chunk.hex, radix: 16) {
-                                                            voutToTokenQty.append(balance)
-                                                        } else {
-                                                            break
-                                                        }
+                                                    // 9 to .. : initial_token_mint_quantity 8 Bytes
+                                                    // Good
+                                                    chunk = chunks[9].chunkData.removeLeft()
+                                                    if let balance = Int(chunk.hex, radix: 16) {
+                                                        voutToTokenQty.append(balance)
                                                     }
                                                     
                                                 } else if transactionType == SLPTransactionType.SEND.rawValue {
@@ -256,7 +253,7 @@ public extension SLPWallet {
                                                         currentToken = token
                                                     }
                                                     
-                                                    // 4 to .. : token_output_quantity 1..19
+                                                    // 4 to .. : token_output_quantity 1..19 8 Bytes / qty
                                                     for i in 4...chunks.count - 1 {
                                                         chunk = chunks[i].chunkData.removeLeft()
                                                         if let balance = Int(chunk.hex, radix: 16) {
@@ -264,6 +261,32 @@ public extension SLPWallet {
                                                         } else {
                                                             break
                                                         }
+                                                    }
+                                                } else if transactionType == SLPTransactionType.MINT.rawValue {
+                                                    
+                                                    // 3 : token_id 32 bytes  hex
+                                                    // Good
+                                                    chunk = chunks[3].chunkData.removeLeft()
+                                                    let tokenId = chunk.hex
+                                                    currentToken.tokenId = tokenId
+                                                    
+                                                    // If the token is already found, continue to work on it
+                                                    if let token = updatedTokens[tokenId] {
+                                                        currentToken = token
+                                                    }
+                                                    
+                                                    // 4 : Mint 2 Bytes
+                                                    // Good
+                                                    chunk = chunks[4].chunkData.removeLeft()
+                                                    if let mv = Int(chunk.hex, radix: 16) {
+                                                        mintVout = mv
+                                                    }
+                                                    
+                                                    // 5 : additional_token_quantity 8 Bytes
+                                                    // Good
+                                                    chunk = chunks[5].chunkData.removeLeft()
+                                                    if let balance = Int(chunk.hex, radix: 16) {
+                                                        voutToTokenQty.append(balance)
                                                     }
                                                 }
                                             }
