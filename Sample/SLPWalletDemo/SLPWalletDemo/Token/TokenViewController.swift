@@ -8,6 +8,7 @@
 
 import UIKit
 import IGIdenticon
+import SLPWallet
 
 class TokenViewController: UIViewController {
 
@@ -98,7 +99,25 @@ class TokenViewController: UIViewController {
         // Enable to send again
         confirmButton.isEnabled = true
         
-        let alert = UIAlertController(title: "Send token", message: "Error, \(error.localizedDescription)", preferredStyle: .alert)
+        var message: String
+        if let error = error as? SLPTransactionBuilderError {
+            switch error {
+            case .TO_ADDRESS_INVALID:
+                message = "Address is invalid."
+            case .GAS_INSUFFICIENT:
+                message = "Insufficent BCH available."
+            case .INSUFFICIENT_FUNDS:
+                message = "Insufficent tokens available."
+            case .TOKEN_NOT_FOUND:
+                message = "Token was not found."
+            default:
+                message = "Transaction building has failed."
+            }
+        } else {
+            message = error.localizedDescription
+        }
+        
+        let alert = UIAlertController(title: "Send Token Error", message: "\(message)", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
             alert.dismiss(animated: true, completion: nil)
