@@ -5,22 +5,23 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
 target 'SLPWallet' do
-  use_frameworks!
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
 
-  # Pods for all targets
-  pod 'RxSwift',          '~> 4.0'
-  pod 'RxCocoa',          '~> 4.0'
-  pod 'Moya/RxSwift',     '~> 11.0'
-  pod 'KeychainAccess',   '~> 3.1.2'
-  pod 'BitcoinKit',       '~> 1.1.0'
-end
+    # Pods for SLPWallet
+    pod 'RxSwift',          '~> 4.0'
+    pod 'RxCocoa',          '~> 4.0'
+    pod 'Moya/RxSwift',     '~> 11.0'
+    pod 'KeychainAccess',   '~> 3.1.2'
+    pod 'BitcoinKit',       '~> 1.1.0'
 
-target 'SLPWalletTests' do
-    inherit! :search_paths
-    
-    # Pods for SLPWalletTests
-    pod 'RxBlocking'
-    pod 'RxTest'
-    pod 'Quick'
-    pod 'Nimble'
+    target 'SLPWalletTests' do
+        inherit! :search_paths
+
+        # Pods for SLPWalletTests
+        pod 'RxBlocking'
+        pod 'RxTest'
+        pod 'Quick'
+        pod 'Nimble'
+    end
 end
