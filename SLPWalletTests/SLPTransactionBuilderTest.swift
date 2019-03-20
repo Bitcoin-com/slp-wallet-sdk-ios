@@ -106,7 +106,7 @@ class SLPTransactionBuilderTest: QuickSpec {
                         fail()
                     } catch SLPTransactionBuilderError.GAS_INSUFFICIENT {
                         // Success
-                    } catch (let error){
+                    } catch ( _){
                         fail()
                     }
                 }

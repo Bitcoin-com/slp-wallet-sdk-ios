@@ -66,6 +66,7 @@ public class SLPWallet {
     
     public var schedulerInterval: Double = 20 {
         didSet {
+            scheduler.cancel()
             scheduler.schedule(deadline: .now(), repeating: schedulerInterval)
         }
     }

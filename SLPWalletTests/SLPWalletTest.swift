@@ -22,6 +22,15 @@ class SLPWalletTest: QuickSpec {
                     expect(wallet.cashAddress).to(equal("bitcoincash:qzd5sk803xqxlmcs6yfwtpwzesq75s5m9c3x6gjl8n"))
                     expect(wallet.slpAddress).to(equal("simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny"))
                     expect(wallet.tokens.values.count).to(equal(0))
+                    expect(wallet.getGas()).to(equal(0))
+                    expect(wallet.getPrivKeyByCashAddress("bitcoincash:qzd5sk803xqxlmcs6yfwtpwzesq75s5m9c3x6gjl8n")).toNot(beNil())
+                    expect(wallet.getPrivKeyByCashAddress("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")).toNot(beNil())
+                    expect(wallet.getPrivKeyByCashAddress("test")).to(beNil())
+                    
+                    wallet.scheduler.resume()
+                    wallet.schedulerInterval = 1
+                    
+                    expect(wallet.schedulerInterval).to(equal(1))
                 }
             }
             
