@@ -131,6 +131,9 @@ class TokenViewController: UIViewController {
         presenter?.didPushGenesisExplorer()
     }
     
+    @IBAction func didPushScanner(_ sender: Any) {
+        presenter?.didPushScanner(sender)
+    }
     
     @IBAction func didPushPaste(_ sender: Any) {
         if let toAddress = UIPasteboard.general.string {

@@ -28,6 +28,7 @@ class TokenPresenter {
     var disposable: Disposable?
     var token: SLPToken?
     var sendTokenInteractor: SendTokenInteractor?
+    var router: TokenRouter?
     weak var viewDelegate: TokenViewController?
     
     init() {
@@ -89,6 +90,10 @@ class TokenPresenter {
         UIApplication.shared.open(url)
     }
     
+    func didPushScanner(_ sender:Any) {
+        router?.transitToScanner()
+    }
+    
     func didPushSend(_ amount: String, toAddress: String) {
         
         guard let tokenId = token?.tokenId
@@ -108,4 +113,5 @@ class TokenPresenter {
             })
             .disposed(by: bag)
     }
+    
 }
