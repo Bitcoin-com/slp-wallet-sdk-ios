@@ -69,7 +69,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         captureSession.startRunning()
         
-        animationView = LOTAnimationView(name: "animation_qrcode")
+        animationView = LOTAnimationView(name: "qr_animation")
         view.addSubview(animationView)
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
