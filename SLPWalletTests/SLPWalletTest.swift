@@ -19,7 +19,7 @@ class SLPWalletTest: QuickSpec {
                     let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
                     
                     expect(wallet.mnemonic).to(equal(["machine", "cannon", "man", "rail", "best", "deliver", "draw", "course", "time", "tape", "violin", "tone"]))
-                    expect(wallet.cashAddress).to(equal("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6"))
+                    expect(wallet.cashAddress).to(equal("bitcoincash:qzd5sk803xqxlmcs6yfwtpwzesq75s5m9c3x6gjl8n"))
                     expect(wallet.slpAddress).to(equal("simpleledger:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqsrzm5cny"))
                     expect(wallet.tokens.values.count).to(equal(0))
                 }

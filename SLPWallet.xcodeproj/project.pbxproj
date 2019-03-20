@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B288C49222C387700C1AC81 /* TokenQtyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */; };
+		3B6D8278224241B000119AF0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D8277224241B000119AF0 /* Account.swift */; };
 		3B79D223223B160100FF3AFB /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D222223B160100FF3AFB /* Double+Extensions.swift */; };
 		3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */; };
 		3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		1F3DBD1E3AA1FF795CCCF27A /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenQtyConverter.swift; sourceTree = "<group>"; };
+		3B6D8277224241B000119AF0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3B79D222223B160100FF3AFB /* Double+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTest.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
 				3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */,
 				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
+				3B6D8277224241B000119AF0 /* Account.swift */,
 				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
 				3B288C4A222C388500C1AC81 /* Utils */,
 				3B99B06F2226290100A1B599 /* Extensions */,
@@ -511,6 +514,7 @@
 				3BD750AF2237E93400CF5072 /* StorageProvider.swift in Sources */,
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B288C49222C387700C1AC81 /* TokenQtyConverter.swift in Sources */,
+				3B6D8278224241B000119AF0 /* Account.swift in Sources */,
 				3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */,
 				3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */,
 				3B79D223223B160100FF3AFB /* Double+Extensions.swift in Sources */,

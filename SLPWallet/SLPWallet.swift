@@ -20,22 +20,29 @@ public class SLPWallet {
     enum SLPWalletError : String, Error {
         case TOKEN_ID_REQUIRED = "Token ID is required"
         case MNEMONIC_NOT_FOUND = "Mnemonic not found"
+        case PRIVKEY_NOT_FOUND
     }
     
     fileprivate static let bag = DisposeBag()
     fileprivate static let storageProvider = StorageProvider()
     
     internal let _mnemonic: [String]
-    internal let _cashAddress: String
-    internal let _slpAddress: String
     internal var _tokens: [String:SLPToken]
-    internal let _privKey: PrivateKey
+    
+    internal let _BCHAccount: Account
+    internal let _SLPAccount: Account
+    
+    internal let _slpAddress: String
     
     internal let _network: Network
     internal var _utxos: [SLPWalletUTXO]
     
-    internal var privKey: PrivateKey {
-        get { return _privKey }
+    internal var BCHAccount: Account {
+        get { return _BCHAccount }
+    }
+    
+    internal var SLPAccount: Account {
+        get { return _SLPAccount }
     }
     
     public var utxos: [SLPWalletUTXO] {
@@ -46,7 +53,7 @@ public class SLPWallet {
         get { return _mnemonic }
     }
     public var cashAddress: String {
-        get { return _cashAddress }
+        get { return _BCHAccount.cashAddress }
     }
     public var slpAddress: String {
         get { return _slpAddress }
@@ -103,24 +110,41 @@ public class SLPWallet {
         let seed = Mnemonic.seed(mnemonic: mnemonic.components(separatedBy: " "))
         let hdPrivKey = HDPrivateKey(seed: seed, network: network)
         
-        let xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
-        let privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
+        // 145
+        var xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 145, hardened: true).derived(at: 0, hardened: true)
+        var privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self._network = network
+        self._BCHAccount = Account(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
+        
+        // 245
+        xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
+        privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
+        
+        self._SLPAccount = Account(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
         
         self._mnemonic = arrayOfwords
-        self._privKey = privKey
-        self._cashAddress = privKey.publicKey().toCashaddr().cashaddr
-        
-        let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
+        self._network = network
         
         // TODO: Quick way to do it, @angel is working on building it in BitcoinKit
-        
         // Not working
         // self._slpAddress = privKey.publicKey().toSlpaddr().slpaddr
+        let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
+    }
+}
+
+internal extension SLPWallet {
+    internal func getPrivKeyByCashAddress(_ cashAddress: String) -> PrivateKey? {
+        switch cashAddress {
+        case BCHAccount.cashAddress:
+            return BCHAccount.privKey
+        case SLPAccount.cashAddress:
+            return SLPAccount.privKey
+        default:
+            return nil
+        }
     }
 }
 
@@ -131,14 +155,18 @@ public extension SLPWallet {
     }
     
     public func fetchTokens() -> Single<[String:SLPToken]> {
+        
+        let cashAddresses = [BCHAccount.cashAddress, SLPAccount.cashAddress]
+        
         return Single<[String:SLPToken]>.create { single in
             RestService
-                .fetchUTXOs(self.cashAddress)
+                .fetchUTXOs(cashAddresses)
                 .subscribe({ event in
                     switch event {
-                    case .success(let utxo):
-                        let requests = utxo
-                            .utxos
+                    case .success(let rawUtxos):
+                        let utxos = rawUtxos
+                            .flatMap { $0.utxos }
+                        let requests = utxos
                             .compactMap { $0.txid }
                             .removeDuplicates()
                             .chunk(20)
@@ -293,9 +321,16 @@ public extension SLPWallet {
                                         }
                                         
                                         // Get the vouts that we are interested in
-                                        let vouts = utxo.utxos.filter({ return $0.txid == tx.txid })
+                                        let vouts = utxos.filter({ return $0.txid == tx.txid })
                                         vouts.forEach({ utxo in
                                             let vout = tx.vout[utxo.vout]
+                                            
+                                            guard let rawAddress = vout.scriptPubKey.addresses?.first
+                                                , let address = try? AddressFactory.create(rawAddress) else {
+                                                return
+                                            }
+                                            
+                                            let cashAddress = address.cashaddr
                                             
                                             guard vout.n < voutToTokenQty.count
                                                 , voutToTokenQty.count > 1 else { // Because we push 1 vout qty by default for the OP_RETURN
@@ -303,10 +338,10 @@ public extension SLPWallet {
                                                 // We need to avoid using the mint baton
                                                 if vout.n == mintVout && mintVout > 0 {
                                                     // UTXO with baton
-                                                    currentToken.mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                    currentToken.mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
                                                 } else {
                                                     // UTXO without token
-                                                    let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                    let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
                                                     updatedUTXOs.append(utxo)
                                                 }
                                                 
@@ -315,7 +350,7 @@ public extension SLPWallet {
                                             
                                             // UTXO with a token
                                             let rawTokenQty = voutToTokenQty[vout.n]
-                                            let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: self.cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n, rawTokenQty: rawTokenQty)
+                                            let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n, rawTokenQty: rawTokenQty)
                                             currentToken.addUTXO(tokenUTXO)
                                         })
                                         

@@ -18,11 +18,11 @@ class RestServiceTest: QuickSpec {
             context("Fetch UTXO") {
                 it("should success") {
                     let utxos = try! RestService
-                        .fetchUTXOs("bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6")
+                        .fetchUTXOs(["bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6"])
                         .toBlocking()
                         .single()
                     expect(utxos).notTo(beNil())
-                    expect(utxos.scriptPubKey).to(equal("76a914ac554d6f334d82809124a91b947271db67c0b80088ac"))
+                    expect(utxos.first?.scriptPubKey).to(equal("76a914ac554d6f334d82809124a91b947271db67c0b80088ac"))
                 }
             }
             

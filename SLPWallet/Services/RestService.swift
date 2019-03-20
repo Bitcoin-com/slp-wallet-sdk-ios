@@ -26,7 +26,7 @@ extension RestService {
     
     public struct ResponseUTXOs: Codable {
         public let utxos: [ResponseUTXO]
-        public let scriptPubKey: String
+        public let scriptPubKey: String?
     }
     
     public struct ResponseUTXO: Codable {
@@ -36,16 +36,16 @@ extension RestService {
         public let confirmations: Int
     }
     
-    static public func fetchUTXOs(_ address: String) -> Single<ResponseUTXOs> {
+    static public func fetchUTXOs(_ addresses: [String]) -> Single<[ResponseUTXOs]> {
         
-        return Single<ResponseUTXOs>.create(subscribe: { (observer) -> Disposable in
+        return Single<[ResponseUTXOs]>.create(subscribe: { (observer) -> Disposable in
             // Get a utxo
             //
             let provider = MoyaProvider<RestNetwork>()
             provider.rx
-                .request(.fetchUTXOs(address))
+                .request(.fetchUTXOs(addresses))
                 .retry(3)
-                .map(ResponseUTXOs.self)
+                .map([ResponseUTXOs].self)
                 .asObservable()
                 .subscribe ({ (event) in
                     switch event {

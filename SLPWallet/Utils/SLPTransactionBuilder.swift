@@ -28,6 +28,7 @@ class SLPTransactionBuilder {
         
         let minSatoshisForToken = UInt64(546)
         var satoshisForTokens: UInt64 = minSatoshisForToken
+        var privKeys = [PrivateKey]()
         
         guard let token = wallet.tokens[tokenId] else {
                 // Token doesn't exist
@@ -72,16 +73,24 @@ class SLPTransactionBuilder {
         var sum = 0
         let selectedTokenUTXOs: [SLPTokenUTXO] = token.utxos
             .filter { utxo -> Bool in
-                if sum > rawTokenAmount {
+                guard sum < rawTokenAmount
+                    , let privKey = wallet.getPrivKeyByCashAddress(utxo.cashAddress) else {
                     return false
                 }
                 
+                privKeys.append(privKey)
                 sum += utxo.rawTokenQty
                 return true
             }
             .compactMap { $0 }
         
         let rawTokenChange = sum - rawTokenAmount
+        
+        // Case we don't have the PrivKey of utxos and didn't get enough tokens
+        if rawTokenChange < 0 {
+            throw SLPTransactionBuilderError.INSUFFICIENT_FUNDS
+        }
+        
         if rawTokenChange > 0 {
             guard let changeInData = TokenQtyConverter.convertToData(rawTokenChange) else {
                 // throw an exception
@@ -96,7 +105,8 @@ class SLPTransactionBuilder {
             return utxo.asUnspentTransaction()
         })
         
-        let fromAddress = try AddressFactory.create(wallet.cashAddress)
+        let tokenChangeAddress = try AddressFactory.create(wallet.SLPAccount.cashAddress)
+        let cashChangeAddress = try AddressFactory.create(wallet.BCHAccount.cashAddress)
         let toAddress = try AddressFactory.create(toAddress)
         
         let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
@@ -111,7 +121,7 @@ class SLPTransactionBuilder {
         var outputs: [TransactionOutput] = [opOutput, toOutput]
         
         if rawTokenChange > 0 {
-            guard let lockScriptTokenChange = Script(address: fromAddress) else {
+            guard let lockScriptTokenChange = Script(address: tokenChangeAddress) else {
                 // throw exception
                 throw SLPTransactionBuilderError.SCRIPT_TOKEN_CHANGE
             }
@@ -129,9 +139,11 @@ class SLPTransactionBuilder {
             var sum = Int(change)
             let gasTokenUTXOs: [SLPWalletUTXO] = wallet.utxos
                 .filter { utxo -> Bool in
-                    if sum >= 0 {
-                        return false
+                    guard sum < 0
+                        , let privKey = wallet.getPrivKeyByCashAddress(utxo.cashAddress) else {
+                            return false
                     }
+                    privKeys.append(privKey)
                     
                     sum = sum + Int(utxo.satoshis) - 200 // Minus the future fee for an input
                     return true
@@ -158,7 +170,7 @@ class SLPTransactionBuilder {
         let unsignedInputs = selectedUTXOs.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
         
         if change > minSatoshisForToken { // Minimum for expensable utxo
-            guard let lockScriptChange = Script(address: fromAddress) else {
+            guard let lockScriptChange = Script(address: cashChangeAddress) else {
                 // throw exception
                 throw SLPTransactionBuilderError.SCRIPT_CHANGE
             }
@@ -179,12 +191,10 @@ class SLPTransactionBuilder {
         // Signing
         let hashType = SighashType.BCH.ALL
         for (i, utxo) in unsignedTx.utxos.enumerated() {
-            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
-            
             let sighash: Data = transactionToSign.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signature: Data = try! Crypto.sign(sighash, privateKey: wallet._privKey)
+            let signature: Data = try! Crypto.sign(sighash, privateKey: privKeys[i])
             let txin = inputsToSign[i]
-            let pubkey = wallet._privKey.publicKey()
+            let pubkey = privKeys[i].publicKey()
             
             let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
             

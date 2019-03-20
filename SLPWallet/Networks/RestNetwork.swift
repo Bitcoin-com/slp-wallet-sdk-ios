@@ -9,7 +9,7 @@
 import Moya
 
 enum RestNetwork {
-    case fetchUTXOs(String)
+    case fetchUTXOs([String])
     case fetchTxDetails([String])
     case fetchTxValidations([String])
     case broadcast(String)
@@ -27,19 +27,20 @@ extension RestNetwork: TargetType {
     
     public var path: String {
         switch self {
-        case .fetchUTXOs(let address):
-            return "/address/utxo/\(address)"
+        case .fetchUTXOs:
+            return "/address/utxo"
         case .fetchTxDetails:
-            return "/transaction/details/"
+            return "/transaction/details"
         case .fetchTxValidations:
             return "/slp/validateTxid"
-        case .broadcast(let rawTx): return "/rawtransactions/sendRawTransaction/\(rawTx)"
+        case .broadcast(let rawTx):
+            return "/rawtransactions/sendRawTransaction/\(rawTx)"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .fetchUTXOs: return .get
+        case .fetchUTXOs: return .post
         case .fetchTxDetails: return .post
         case .fetchTxValidations: return .post
         case .broadcast: return .get
@@ -52,6 +53,8 @@ extension RestNetwork: TargetType {
     
     public var task: Task {
         switch self {
+        case .fetchUTXOs(let addresses):
+            return .requestParameters(parameters: ["addresses": addresses], encoding: JSONEncoding.default)
         case .fetchTxDetails(let txids):
             return .requestParameters(parameters: ["txids": txids], encoding: JSONEncoding.default)
         case .fetchTxValidations(let txids):
