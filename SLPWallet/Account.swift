@@ -8,7 +8,7 @@
 
 import BitcoinKit
 
-internal struct Account {
+struct Account {
     let privKey: PrivateKey
     let cashAddress: String
 }

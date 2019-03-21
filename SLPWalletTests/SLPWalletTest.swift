@@ -84,6 +84,32 @@ class SLPWalletTest: QuickSpec {
                     expect(restoredWallet.slpAddress).to(equal(createdWallet.slpAddress))
                 }
             }
+                    
+            context("Send token") {
+                it("should success") {
+                    let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)
+                    
+                    let token = SLPToken("e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06")
+                    token._decimal = 2
+                    
+                    let utxo = SLPTokenUTXO("e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", satoshis: 20000, cashAddress: "bitcoincash:qzk92nt0xdxc9qy3yj53h9rjw8dk0s9cqqucfqpcd6", scriptPubKey: "483045022100e36b594680823bcf7f4a872611cb7652032e92793f2eadae9ad87a57e4854e3602203ffb057332f47bf9f68738f668acad8ae1d2d3265c34e75c9158c9e9be2ae1f0412103b8ac3da9a09a58444291ce21c68a6b279fe33d3e46a879a4c1ed64bd87146506", index: 1, rawTokenQty: 1234)
+                    token.addUTXO(utxo)
+                    
+                    wallet._tokens["e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06"] = token
+                    
+                    print(wallet.getGas())
+                    do {
+                        let value = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 12, toAddress: "simpleledger:qqs5mxuxr9kaukncpgdc7z64zp6t87rk7cwtkvhpjv")
+                        
+                        wallet.updateUTXOsAfterSending(token, usedUTXOs: value.usedUTXOs, newUTXOs: value.newUTXOs)
+                        
+                        expect(wallet.getGas()).to(be(18309))
+                        expect(wallet._tokens["e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06"]?.getBalance()).to(equal(0.34))
+                    } catch {
+                        fail()
+                    }
+                }
+            }
         }
     }
 }

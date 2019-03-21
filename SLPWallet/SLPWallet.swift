@@ -26,22 +26,22 @@ public class SLPWallet {
     fileprivate static let bag = DisposeBag()
     fileprivate static let storageProvider = StorageProvider()
     
-    internal let _mnemonic: [String]
-    internal var _tokens: [String:SLPToken]
+    let _mnemonic: [String]
+    var _tokens: [String:SLPToken]
     
-    internal let _BCHAccount: Account
-    internal let _SLPAccount: Account
+    let _BCHAccount: Account
+    let _SLPAccount: Account
     
-    internal let _slpAddress: String
+    let _slpAddress: String
     
-    internal let _network: Network
-    internal var _utxos: [SLPWalletUTXO]
+    let _network: Network
+    var _utxos: [SLPWalletUTXO]
     
-    internal var BCHAccount: Account {
+    var BCHAccount: Account {
         get { return _BCHAccount }
     }
     
-    internal var SLPAccount: Account {
+    var SLPAccount: Account {
         get { return _SLPAccount }
     }
     
@@ -136,19 +136,6 @@ public class SLPWallet {
     }
 }
 
-internal extension SLPWallet {
-    internal func getPrivKeyByCashAddress(_ cashAddress: String) -> PrivateKey? {
-        switch cashAddress {
-        case BCHAccount.cashAddress:
-            return BCHAccount.privKey
-        case SLPAccount.cashAddress:
-            return SLPAccount.privKey
-        default:
-            return nil
-        }
-    }
-}
-
 public extension SLPWallet {
     
     public func getGas() -> Int {
@@ -224,7 +211,7 @@ public extension SLPWallet {
                                                     
                                                     // Genesis => Txid
                                                     let tokenId = tx.txid
-                                                    currentToken.tokenId = tokenId
+                                                    currentToken._tokenId = tokenId
                                                     
                                                     // If the token is already found, continue to work on it
                                                     if let token = updatedTokens[tokenId] {
@@ -237,7 +224,7 @@ public extension SLPWallet {
                                                     guard let tokenTicker = chunk.stringUTF8 else {
                                                         return
                                                     }
-                                                    currentToken.tokenTicker = tokenTicker
+                                                    currentToken._tokenTicker = tokenTicker
                                                     
                                                     // 4 : token_name UTF8
                                                     // Good
@@ -245,7 +232,7 @@ public extension SLPWallet {
                                                     guard let tokenName = chunk.stringUTF8 else {
                                                         return
                                                     }
-                                                    currentToken.tokenName = tokenName
+                                                    currentToken._tokenName = tokenName
                                                     
                                                     // 7 : decimal 1 Byte
                                                     // Good
@@ -253,7 +240,7 @@ public extension SLPWallet {
                                                     guard let decimal = Int(chunk.hex, radix: 16) else {
                                                         return
                                                     }
-                                                    currentToken.decimal = decimal
+                                                    currentToken._decimal = decimal
                                                     
                                                     // 8 : Mint 2 Bytes
                                                     // Good
@@ -275,7 +262,7 @@ public extension SLPWallet {
                                                     // Good
                                                     chunk = chunks[3].chunkData.removeLeft()
                                                     let tokenId = chunk.hex
-                                                    currentToken.tokenId = tokenId
+                                                    currentToken._tokenId = tokenId
                                                     
                                                     // If the token is already found, continue to work on it
                                                     if let token = updatedTokens[tokenId] {
@@ -297,7 +284,7 @@ public extension SLPWallet {
                                                     // Good
                                                     chunk = chunks[3].chunkData.removeLeft()
                                                     let tokenId = chunk.hex
-                                                    currentToken.tokenId = tokenId
+                                                    currentToken._tokenId = tokenId
                                                     
                                                     // If the token is already found, continue to work on it
                                                     if let token = updatedTokens[tokenId] {
@@ -334,12 +321,13 @@ public extension SLPWallet {
                                             let cashAddress = address.cashaddr
                                             
                                             guard vout.n < voutToTokenQty.count
-                                                , voutToTokenQty.count > 1 else { // Because we push 1 vout qty by default for the OP_RETURN
+                                                , voutToTokenQty.count > 1
+                                                , voutToTokenQty[vout.n] > 0 else { // Because we push 1 vout qty by default for the OP_RETURN
                                                 
                                                 // We need to avoid using the mint baton
                                                 if vout.n == mintVout && mintVout > 0 {
                                                     // UTXO with baton
-                                                    currentToken.mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
+                                                    currentToken._mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
                                                 } else {
                                                     // UTXO without token
                                                     let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
@@ -370,7 +358,9 @@ public extension SLPWallet {
                                     var newTokens = [SLPToken]()
                                     updatedTokens.forEach({ tokenId, token in
                                         guard let t = self._tokens[tokenId] else {
-                                            newTokens.append(token)
+                                            if token.utxos.count > 0 {
+                                                newTokens.append(token)
+                                            }
                                             return
                                         }
                                         
@@ -389,7 +379,7 @@ public extension SLPWallet {
                                         
                                         // If it has changed, notify
                                         if hasChanged {
-                                            t.utxos = token.utxos
+                                            t._utxos = token.utxos
                                             self.delegate?.onUpdatedToken(t)
                                         }
                                     })
@@ -428,12 +418,22 @@ public extension SLPWallet {
             self.fetchTokens()
                 .subscribe(onSuccess: { _ in
                     do {
-                        let rawTx = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
+                        let value = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
                         RestService
-                            .broadcast(rawTx)
+                            .broadcast(value.rawTx)
                             .subscribe({ response in
                                 switch response {
                                 case.success(let txid):
+                                    
+                                    guard let token = self.tokens[tokenId] else {
+                                        return single(.success(txid))
+                                    }
+                                    
+                                    self.updateUTXOsAfterSending(token, usedUTXOs: value.usedUTXOs, newUTXOs: value.newUTXOs)
+                                    
+                                    // Update delegate
+                                    self.delegate?.onUpdatedToken(token)
+                                    
                                     single(.success(txid))
                                 case .error(let error):
                                     single(.error(error))
@@ -485,7 +485,7 @@ public extension SLPWallet {
                             guard let tokenTicker = chunk.stringUTF8 else {
                                 return
                             }
-                            token.tokenTicker = tokenTicker
+                            token._tokenTicker = tokenTicker
                             
                             // 4 : token_name UTF8
                             // Good
@@ -493,7 +493,7 @@ public extension SLPWallet {
                             guard let tokenName = chunk.stringUTF8 else {
                                 return
                             }
-                            token.tokenName = tokenName
+                            token._tokenName = tokenName
                             
                             // 8 : decimal 1 Byte
                             // Good
@@ -501,7 +501,7 @@ public extension SLPWallet {
                             guard let decimal = Int(chunk.hex, radix: 16) else {
                                 return
                             }
-                            token.decimal = decimal
+                            token._decimal = decimal
                         })
                         
                         // Add the token in the list
@@ -516,7 +516,44 @@ public extension SLPWallet {
             return Disposables.create()
         }
     }
-    
 }
 
-
+extension SLPWallet {
+    func getPrivKeyByCashAddress(_ cashAddress: String) -> PrivateKey? {
+        switch cashAddress {
+        case BCHAccount.cashAddress:
+            return BCHAccount.privKey
+        case SLPAccount.cashAddress:
+            return SLPAccount.privKey
+        default:
+            return nil
+        }
+    }
+    
+    func updateUTXOsAfterSending(_ token: SLPToken, usedUTXOs: [SLPWalletUTXO], newUTXOs: [SLPWalletUTXO]) {
+        newUTXOs.forEach({ UTXO in
+            guard let newUTXO = UTXO as? SLPTokenUTXO else {
+                return self.addUTXO(UTXO)
+            }
+            return token.addUTXO(newUTXO)
+        })
+        
+        usedUTXOs.forEach({ UTXO in
+            guard let newUTXO = UTXO as? SLPTokenUTXO else {
+                return self.removeUTXO(UTXO)
+            }
+            return token.removeUTXO(newUTXO)
+        })
+    }
+    
+    func addUTXO(_ utxo: SLPWalletUTXO) {
+        _utxos.append(utxo)
+    }
+    
+    func removeUTXO(_ utxo: SLPWalletUTXO) {
+        guard let i = _utxos.firstIndex(where: { $0.index == utxo.index && $0.txid == utxo.txid }) else {
+            return
+        }
+        _utxos.remove(at: i)
+    }
+}

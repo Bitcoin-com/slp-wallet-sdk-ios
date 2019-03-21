@@ -16,12 +16,6 @@ public class SLPWalletUTXO {
     fileprivate var _scriptPubKey: String
     fileprivate var _index: Int
     
-    public var txid: String { get { return _txid } }
-    public var satoshis: Int64 { get { return _satoshis } }
-    public var cashAddress: String { get { return _cashAddress } }
-    public var scriptPubKey: String { get { return _scriptPubKey } }
-    public var index: Int { get { return _index } }
-    
 //    TODO: Activate for storage (Codable)
 //    private enum CodingKeys: String, CodingKey {
 //        case _txid
@@ -40,6 +34,12 @@ public class SLPWalletUTXO {
 //        self._index = try container.decode(Int.self, forKey: ._index)
 //    }
     
+    public var txid: String { get { return _txid } }
+    public var satoshis: Int64 { get { return _satoshis } }
+    public var cashAddress: String { get { return _cashAddress } }
+    public var scriptPubKey: String { get { return _scriptPubKey } }
+    public var index: Int { get { return _index } }
+    
     public init(_ txid: String, satoshis: Int64, cashAddress: String, scriptPubKey: String, index: Int) {
         self._txid = txid
         self._satoshis = satoshis
@@ -47,7 +47,9 @@ public class SLPWalletUTXO {
         self._scriptPubKey = scriptPubKey
         self._index = index
     }
-    
+}
+
+extension SLPWalletUTXO {
     func asUnspentTransaction() -> UnspentTransaction {
         let transactionOutput = TransactionOutput(value: UInt64(_satoshis), lockingScript: Data(hex: _scriptPubKey)!)
         let txid: Data = Data(hex: String(_txid))!

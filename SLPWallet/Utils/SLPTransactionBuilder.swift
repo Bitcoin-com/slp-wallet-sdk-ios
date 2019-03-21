@@ -24,13 +24,21 @@ public enum SLPTransactionBuilderError: String, Error {
     case WALLET_ADDRESS_INVALID
 }
 
+struct SLPTransactionBuilderResponse {
+    var rawTx: String
+    var usedUTXOs: [SLPWalletUTXO]
+    var newUTXOs: [SLPWalletUTXO]
+}
+
 class SLPTransactionBuilder {
     
-    static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> String {
+    static func build(_ wallet: SLPWallet, tokenId: String, amount: Double, toAddress: String) throws -> SLPTransactionBuilderResponse {
         
         let minSatoshisForToken = UInt64(546)
         var satoshisForTokens: UInt64 = minSatoshisForToken
         var privKeys = [PrivateKey]()
+        var newUTXOs = [SLPWalletUTXO]()
+        var usedUTXOs = [SLPWalletUTXO]()
         
         guard let token = wallet.tokens[tokenId] else {
             // Token doesn't exist
@@ -73,7 +81,7 @@ class SLPTransactionBuilder {
         
         // UTXOs selection from SLPTokenUTXOs
         var sum = 0
-        let selectedTokenUTXOs: [SLPTokenUTXO] = token.utxos
+        var selectedTokenUTXOs: [SLPTokenUTXO] = token.utxos
             .filter { utxo -> Bool in
                 guard sum < rawTokenAmount
                     , let privKey = wallet.getPrivKeyByCashAddress(utxo.cashAddress) else {
@@ -103,6 +111,7 @@ class SLPTransactionBuilder {
             satoshisForTokens += minSatoshisForToken
         }
         
+        usedUTXOs.append(contentsOf: selectedTokenUTXOs)
         var selectedUTXOs = selectedTokenUTXOs.map({ utxo -> UnspentTransaction in
             return utxo.asUnspentTransaction()
         })
@@ -110,32 +119,37 @@ class SLPTransactionBuilder {
         guard let tokenChangeAddress = try? AddressFactory.create(wallet.SLPAccount.cashAddress) else {
             throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
         }
+        
+        guard let lockScriptTokenChange = Script(address: tokenChangeAddress) else {
+            // throw exception
+            throw SLPTransactionBuilderError.SCRIPT_TOKEN_CHANGE
+        }
 
         guard let cashChangeAddress = try? AddressFactory.create(wallet.BCHAccount.cashAddress) else {
             throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
+        }
+        
+        guard let lockScriptCashChange = Script(address: cashChangeAddress) else {
+            // throw exception
+            throw SLPTransactionBuilderError.SCRIPT_CHANGE
         }
 
         guard let toAddress = try? AddressFactory.create(toAddress) else {
             throw SLPTransactionBuilderError.TO_ADDRESS_INVALID
         }
         
-        let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
-        
         guard let lockScriptTo = Script(address: toAddress) else {
             // throw exception
             throw SLPTransactionBuilderError.SCRIPT_TO
         }
         
+        
+        let opOutput = TransactionOutput(value: 0, lockingScript: newScript.data)
         let toOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTo.data)
         
         var outputs: [TransactionOutput] = [opOutput, toOutput]
         
         if rawTokenChange > 0 {
-            guard let lockScriptTokenChange = Script(address: tokenChangeAddress) else {
-                // throw exception
-                throw SLPTransactionBuilderError.SCRIPT_TOKEN_CHANGE
-            }
-            
             let tokenChangeOutput = TransactionOutput(value: minSatoshisForToken, lockingScript: lockScriptTokenChange.data)
             outputs.append(tokenChangeOutput)
         }
@@ -175,17 +189,13 @@ class SLPTransactionBuilder {
             
             // Add my gasUTXOs in my selectedUTXOs
             selectedUTXOs.append(contentsOf: gasUTXOs)
+            usedUTXOs.append(contentsOf: gasTokenUTXOs)
         }
         
         let unsignedInputs = selectedUTXOs.map { TransactionInput(previousOutput: $0.outpoint, signatureScript: Data(), sequence: UInt32.max) }
         
         if change > minSatoshisForToken { // Minimum for expensable utxo
-            guard let lockScriptChange = Script(address: cashChangeAddress) else {
-                // throw exception
-                throw SLPTransactionBuilderError.SCRIPT_CHANGE
-            }
-            
-            let changeOutput = TransactionOutput(value: UInt64(change), lockingScript: lockScriptChange.data)
+            let changeOutput = TransactionOutput(value: UInt64(change), lockingScript: lockScriptCashChange.data)
             outputs.append(changeOutput)
         }
         
@@ -214,6 +224,19 @@ class SLPTransactionBuilder {
         
         let signedTx = transactionToSign.serialized()
         
-        return signedTx.hex
+        var index = 1
+        if rawTokenChange > 0 {
+            let newUTXO = SLPTokenUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index, rawTokenQty: rawTokenChange)
+            newUTXOs.append(newUTXO)
+            index += 1
+        }
+        
+        if change > minSatoshisForToken { // Minimum for expensable utxo
+            let newUTXO = SLPWalletUTXO(unsignedTx.tx.txID, satoshis: Int64(change), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index)
+            newUTXOs.append(newUTXO)
+        }
+
+        // Return rawTx, inputs used, new outputs
+        return SLPTransactionBuilderResponse(rawTx: signedTx.hex, usedUTXOs: usedUTXOs, newUTXOs: newUTXOs)
     }
 }

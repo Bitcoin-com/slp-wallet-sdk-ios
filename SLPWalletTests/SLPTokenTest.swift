@@ -49,7 +49,7 @@ class SLPWalletTokenTest: QuickSpec {
             context("Get balance with decimal nil") {
                 it("should success") {
                     let token = SLPToken("test")
-                    token.decimal = nil
+                    token._decimal = nil
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
                     token.addUTXO(utxo)
@@ -61,7 +61,7 @@ class SLPWalletTokenTest: QuickSpec {
             context("Get balance with decimal 2") {
                 it("should success") {
                     let token = SLPToken("test")
-                    token.decimal = 2
+                    token._decimal = 2
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
                     token.addUTXO(utxo)
@@ -73,7 +73,7 @@ class SLPWalletTokenTest: QuickSpec {
             context("Get balance with decimal 0") {
                 it("should success") {
                     let token = SLPToken("test")
-                    token.decimal = 0
+                    token._decimal = 0
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
                     token.addUTXO(utxo)

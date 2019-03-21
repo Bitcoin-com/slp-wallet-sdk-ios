@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -211,11 +211,11 @@
 		3B99B0572226251B00A1B599 /* SLPWallet */ = {
 			isa = PBXGroup;
 			children = (
-				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
 				3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */,
 				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
 				3B6D8277224241B000119AF0 /* Account.swift */,
 				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
+				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
 				3B288C4A222C388500C1AC81 /* Utils */,
 				3B99B06F2226290100A1B599 /* Extensions */,
 				3B99B0772226290100A1B599 /* Networks */,
