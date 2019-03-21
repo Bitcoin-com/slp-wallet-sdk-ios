@@ -12,6 +12,16 @@
 This code comes from [WalletManager.swift](SLPWalletDemo/Common/Manager/WalletManager.swift). You can create a SLP wallet in few lines only. All other files don't concern the SDK but mainly UI.
 
 ```swift
+//
+// ...
+//
+
+import SLPWallet
+
+//
+// ...
+//
+
 class WalletManager: SLPWalletDelegate {
     
     static let shared = WalletManager()
@@ -57,14 +67,8 @@ class WalletManager: SLPWalletDelegate {
 Then it shows how to send token in this file [SendTokenInteractor.swift](SLPWalletDemo/Common/Interactor/SendTokenInteractor.swift) 
 ```Swift
 //
-//  SendTokenInteractor.swift
-//  SLPWalletDemo
+// ...
 //
-//  Created by Jean-Baptiste Dominguez on 2019/03/06.
-//  Copyright © 2019 Bitcoin.com. All rights reserved.
-//
-
-import RxSwift
 
 class SendTokenInteractor {
     
@@ -73,7 +77,7 @@ class SendTokenInteractor {
     func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
         return Single<String>.create { single in
             WalletManager.shared.wallet
-                .sendToken(tokenId, amount: amount, toAddress: toAddress)
+                .sendToken(tokenId, amount: amount, toAddress: toAddress) // That's it 💥🚀
                 .subscribe(onSuccess: { txid in
                     single(.success(txid))
                 }, onError: { error in
