@@ -19,6 +19,7 @@
 		3B7FE87F222679F500CB5755 /* SLPWalletDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE87E222679F500CB5755 /* SLPWalletDemoTests.swift */; };
 		3B7FE88A222679F500CB5755 /* SLPWalletDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE889222679F500CB5755 /* SLPWalletDemoUITests.swift */; };
 		3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 3B7FE90A2228FFDF00CB5755 /* Podfile */; };
+		3B82E4442243C385002500C3 /* button_loading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3B82E4432243C385002500C3 /* button_loading_animation.json */; };
 		3BA87522222EE8AA008A3B1D /* TokensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87521222EE8AA008A3B1D /* TokensViewController.swift */; };
 		3BA87524222EE8D9008A3B1D /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87523222EE8D9008A3B1D /* TokenViewController.swift */; };
 		3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */; };
@@ -142,6 +143,7 @@
 		3B7FE88B222679F500CB5755 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B7FE90322283AD700CB5755 /* SLPWallet.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; name = SLPWallet.xcworkspace; path = ../../SLPWallet.xcworkspace; sourceTree = "<group>"; };
 		3B7FE90A2228FFDF00CB5755 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3B82E4432243C385002500C3 /* button_loading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = button_loading_animation.json; sourceTree = "<group>"; };
 		3BA87521222EE8AA008A3B1D /* TokensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensViewController.swift; sourceTree = "<group>"; };
 		3BA87523222EE8D9008A3B1D /* TokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
 		3BA87526222EE8FF008A3B1D /* TokensPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensPresenter.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
 				3B7FE870222679F500CB5755 /* Assets.xcassets */,
 				93677DD92242682900910B0B /* qr_animation.json */,
+				3B82E4432243C385002500C3 /* button_loading_animation.json */,
 				3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */,
 				3BA8E4322241F233009AE9BE /* success_animation.json */,
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
@@ -629,6 +632,7 @@
 				3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */,
 				3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */,
 				93677DDA2242682900910B0B /* qr_animation.json in Resources */,
+				3B82E4442243C385002500C3 /* button_loading_animation.json in Resources */,
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
 				3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
@@ -995,6 +999,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1014,6 +1019,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 299HJ3G3BP;
 				INFOPLIST_FILE = SLPWalletDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

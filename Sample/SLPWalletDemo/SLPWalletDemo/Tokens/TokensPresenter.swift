@@ -53,7 +53,7 @@ class TokensPresenter {
             .observeTokens()
             .subscribe({ event in
                 if let token = event.element,
-                    let tokenTicker = token.tokenTicker {
+                    let _ = token.tokenTicker {
                     guard let tokenId = token.tokenId
                         , let tokenName = token.tokenName
                         , let tokenTicker = token.tokenTicker
@@ -78,7 +78,7 @@ class TokensPresenter {
                 
                 // Prepare the output for my view
                 var tokenOutputs = tokens
-                    .flatMap({ (key, value) -> TokenOutput? in
+                    .compactMap({ (key, value) -> TokenOutput? in
                         guard let tokenId = value.tokenId
                             , let tokenName = value.tokenName
                             , let tokenTicker = value.tokenTicker

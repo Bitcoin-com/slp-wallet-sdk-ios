@@ -8,6 +8,7 @@
 
 import UIKit
 import IGIdenticon
+import Lottie
 import SLPWallet
 
 class TokenViewController: UIViewController {
@@ -16,6 +17,7 @@ class TokenViewController: UIViewController {
     
     fileprivate var rightBarButtonCancelItem: UIBarButtonItem?
     fileprivate var rightBarButtonSendItem: UIBarButtonItem?
+    fileprivate var confirmLoadingAnimationView: LOTAnimationView?
     
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -40,6 +42,14 @@ class TokenViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButtonSendItem
         
         sendView.isHidden = true
+        
+        let confirmLoadingAnimationView = LOTAnimationView(name: "button_loading_animation")
+        confirmLoadingAnimationView.frame = confirmButton.bounds
+        confirmLoadingAnimationView.isHidden = true
+        confirmLoadingAnimationView.loopAnimation = true
+        confirmButton.addSubview(confirmLoadingAnimationView)
+        
+        self.confirmLoadingAnimationView = confirmLoadingAnimationView
         
         presenter?.viewDidLoad()
     }
@@ -75,7 +85,6 @@ class TokenViewController: UIViewController {
     }
     
     func onSuccessSend(_ txid: String) {
-        print(txid)
         let alert = UIAlertController(title: "Token sent", message: "Please, Visit our block explorer to see your transaction", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { _ in
@@ -97,7 +106,10 @@ class TokenViewController: UIViewController {
     
     func onError(_ error: Error) {
         // Enable to send again
+        confirmButton.setTitle("Confirm", for: .normal)
         confirmButton.isEnabled = true
+        confirmLoadingAnimationView?.stop()
+        confirmLoadingAnimationView?.isHidden = true
         
         var message: String
         if let error = error as? SLPTransactionBuilderError {
@@ -150,10 +162,15 @@ class TokenViewController: UIViewController {
                 return
         }
         
+        // UI
+        dismissKeyboard()
+        confirmButton.setTitle(nil, for: .normal)
         confirmButton.isEnabled = false
-        self.dismissKeyboard()
+        confirmLoadingAnimationView?.isHidden = false
+        confirmLoadingAnimationView?.play()
         
-        self.presenter?.didPushSend(amount, toAddress: toAddress)
+        // Send action
+        self.presenter?.didPushConfirm(amount, toAddress: toAddress)
     }
     
     func dismissSend() {
@@ -168,10 +185,14 @@ class TokenViewController: UIViewController {
     }
     
     func presentSend() {
-        self.navigationItem.rightBarButtonItem = self.rightBarButtonCancelItem
+        navigationItem.rightBarButtonItem = rightBarButtonCancelItem
+        confirmLoadingAnimationView?.isHidden = true
+        confirmLoadingAnimationView?.stop()
+        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.sendView.isHidden = false
         }, completion: { _ in
+            self.confirmButton.setTitle("Confirm", for: .normal)
             self.confirmButton.isEnabled = true
             self.amountTextField.becomeFirstResponder()
         })

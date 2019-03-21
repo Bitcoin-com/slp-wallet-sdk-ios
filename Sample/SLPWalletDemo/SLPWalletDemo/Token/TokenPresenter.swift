@@ -94,7 +94,7 @@ class TokenPresenter {
         router?.transitToScanner()
     }
     
-    func didPushSend(_ amount: String, toAddress: String) {
+    func didPushConfirm(_ amount: String, toAddress: String) {
         
         guard let tokenId = token?.tokenId
             , let amount = Double(amount) else {
@@ -105,10 +105,8 @@ class TokenPresenter {
         sendTokenInteractor?
             .sendToken(tokenId, amount: amount, toAddress: toAddress)
             .subscribe(onSuccess: { txid in
-                // TODO: On success
                 self.viewDelegate?.onSuccessSend(txid)
             }, onError: { error in
-                // TODO: On error
                 self.viewDelegate?.onError(error)
             })
             .disposed(by: bag)
