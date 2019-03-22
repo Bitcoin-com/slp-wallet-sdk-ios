@@ -91,13 +91,11 @@ class RestServiceTest: QuickSpec {
                 
                 it("should fail") {
                     do {
-                        _ = try RestService
+                        let txValidations = try RestService
                             .fetchTxValidations(["test"])
                             .toBlocking()
                             .single()
-                        fail()
-                    } catch RestService.RestError.REST_TX_VALIDATIONS {
-                        // Success
+                        expect(txValidations.count).to(be(0))
                     } catch {
                         fail()
                     }
