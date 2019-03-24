@@ -97,13 +97,11 @@ class SLPWalletTest: QuickSpec {
                     
                     wallet._tokens["e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06"] = token
                     
-                    print(wallet.getGas())
                     do {
                         let value = try SLPTransactionBuilder.build(wallet, tokenId: "e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06", amount: 12, toAddress: "simpleledger:qqs5mxuxr9kaukncpgdc7z64zp6t87rk7cwtkvhpjv")
                         
                         wallet.updateUTXOsAfterSending(token, usedUTXOs: value.usedUTXOs, newUTXOs: value.newUTXOs)
-                        
-                        expect(wallet.getGas()).to(be(18309))
+                        expect(wallet.getGas()).to(be(17909))
                         expect(wallet._tokens["e3422fa70647b659272e4124234b7d80855ccdf077b683d3f348b76454090f06"]?.getBalance()).to(equal(0.34))
                     } catch {
                         fail()

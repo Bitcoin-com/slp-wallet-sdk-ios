@@ -95,9 +95,9 @@ class RestServiceTest: QuickSpec {
                             .fetchTxValidations(["test"])
                             .toBlocking()
                             .single()
-                        expect(txValidations.count).to(be(0))
-                    } catch {
                         fail()
+                    } catch {
+                        // success
                     }
                 }
             }
