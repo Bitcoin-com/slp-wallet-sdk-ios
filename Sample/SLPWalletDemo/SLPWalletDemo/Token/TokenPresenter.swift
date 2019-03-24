@@ -62,10 +62,10 @@ class TokenPresenter {
         
         do {
             let observable = try WalletManager.shared.observeToken(tokenId: tokenId)
-            self.disposable = observable.subscribe({ event in
+            self.disposable = observable.subscribe({ [weak self] event in
                 if let token = event.element,
                     let tokenTicker = token.tokenTicker {
-                    self.viewDelegate?.onGetBalance(token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal))
+                    self?.viewDelegate?.onGetBalance(token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal))
                 }
             })
         } catch {
@@ -104,10 +104,10 @@ class TokenPresenter {
         
         sendTokenInteractor?
             .sendToken(tokenId, amount: amount, toAddress: toAddress)
-            .subscribe(onSuccess: { txid in
-                self.viewDelegate?.onSuccessSend(txid)
-            }, onError: { error in
-                self.viewDelegate?.onError(error)
+            .subscribe(onSuccess: { [weak self] txid in
+                self?.viewDelegate?.onSuccessSend(txid)
+            }, onError: { [weak self] error in
+                self?.viewDelegate?.onError(error)
             })
             .disposed(by: bag)
     }

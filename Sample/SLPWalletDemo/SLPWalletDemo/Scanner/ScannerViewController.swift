@@ -47,12 +47,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                     let alert = UIAlertController(title: "Camera Permission Error", message: "The camera is necessary", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "Open Settings", style: .default, handler: { _ in
-                        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: { [weak self] success in
+                        UIApplication.shared.open(settingsUrl, options: [:], completionHandler: { success in
                             self?.setupCamera()
                         })
                     }))
                     
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] _ in
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
                         self?.presenter?.didPushClose()
                     }))
                     

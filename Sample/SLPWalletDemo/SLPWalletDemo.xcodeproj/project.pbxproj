@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0643866A49CA4753A9ADB8F4 /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */; };
+		295A5EBB1D8A1C10E6F38CED /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */; };
 		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D21C223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld */; };
 		3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */; };
@@ -53,8 +55,6 @@
 		3BB79E13223DAF1A007E23EC /* TokenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */; };
 		3BB79E14223DAF1A007E23EC /* TokensInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */; };
 		3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E15223DB275007E23EC /* Double+Extensions.swift */; };
-		5A8988AD004CB1016F721A6C /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06BB6FC555EFF5E16335995D /* Pods_SLPWalletDemoTests.framework */; };
-		7504D3D3ACA7ADD8575C0B7A /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96FF4E788C798059BECA1884 /* Pods_SLPWalletDemoUITests.framework */; };
 		93677DCE22423B7800910B0B /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DCD22423B7800910B0B /* ScannerViewController.swift */; };
 		93677DD022423B8900910B0B /* ScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DCF22423B8900910B0B /* ScannerPresenter.swift */; };
 		93677DD222423B9F00910B0B /* ScannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD122423B9F00910B0B /* ScannerBuilder.swift */; };
@@ -62,7 +62,7 @@
 		93677DD62242409300910B0B /* TokenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD52242409300910B0B /* TokenRouter.swift */; };
 		93677DD822424DE400910B0B /* ScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD722424DE400910B0B /* ScannerRouter.swift */; };
 		93677DDA2242682900910B0B /* qr_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 93677DD92242682900910B0B /* qr_animation.json */; };
-		F72B01F74362C74C2B320FEA /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469A3618346F61A04D60B473 /* Pods_SLPWalletDemo.framework */; };
+		B9A315E1B39464778243BCF6 /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,8 +122,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		06BB6FC555EFF5E16335995D /* Pods_SLPWalletDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07BCCA5E5E199BA4CBD5558D /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B79D21D223AB2E400FF3AFB /* SLPWalletTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLPWalletTestApp.xcdatamodel; sourceTree = "<group>"; };
 		3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -181,9 +180,11 @@
 		3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensInterfaceController.swift; sourceTree = "<group>"; };
 		3BB79E15223DB275007E23EC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		3BD750A72237D05200CF5072 /* SLPWalletDemo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SLPWalletDemo.entitlements; sourceTree = "<group>"; };
-		3C7198E6256009166A1E15A9 /* Pods-SLPWalletDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		469A3618346F61A04D60B473 /* Pods_SLPWalletDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6070756FB4FAC69E02597BD2 /* Pods-SLPWalletDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93677DCD22423B7800910B0B /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		93677DCF22423B8900910B0B /* ScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerPresenter.swift; sourceTree = "<group>"; };
 		93677DD122423B9F00910B0B /* ScannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerBuilder.swift; sourceTree = "<group>"; };
@@ -191,10 +192,9 @@
 		93677DD52242409300910B0B /* TokenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRouter.swift; sourceTree = "<group>"; };
 		93677DD722424DE400910B0B /* ScannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerRouter.swift; sourceTree = "<group>"; };
 		93677DD92242682900910B0B /* qr_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_animation.json; sourceTree = "<group>"; };
-		96FF4E788C798059BECA1884 /* Pods_SLPWalletDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2063890FDBF9BBB98F84730 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		CAF3A8692F7F2D6137CA457A /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		FC5CC43084AAFC9574E504D7 /* Pods-SLPWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
+		9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72B01F74362C74C2B320FEA /* Pods_SLPWalletDemo.framework in Frameworks */,
+				0643866A49CA4753A9ADB8F4 /* Pods_SLPWalletDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A8988AD004CB1016F721A6C /* Pods_SLPWalletDemoTests.framework in Frameworks */,
+				B9A315E1B39464778243BCF6 /* Pods_SLPWalletDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7504D3D3ACA7ADD8575C0B7A /* Pods_SLPWalletDemoUITests.framework in Frameworks */,
+				295A5EBB1D8A1C10E6F38CED /* Pods_SLPWalletDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,9 +355,9 @@
 			isa = PBXGroup;
 			children = (
 				3B7FE90322283AD700CB5755 /* SLPWallet.xcworkspace */,
-				469A3618346F61A04D60B473 /* Pods_SLPWalletDemo.framework */,
-				06BB6FC555EFF5E16335995D /* Pods_SLPWalletDemoTests.framework */,
-				96FF4E788C798059BECA1884 /* Pods_SLPWalletDemoUITests.framework */,
+				1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */,
+				9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */,
+				8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,12 +460,12 @@
 		CFE494F9D6423AD77A2A4B65 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CAF3A8692F7F2D6137CA457A /* Pods-SLPWalletDemo.debug.xcconfig */,
-				FC5CC43084AAFC9574E504D7 /* Pods-SLPWalletDemo.release.xcconfig */,
-				07BCCA5E5E199BA4CBD5558D /* Pods-SLPWalletDemoTests.debug.xcconfig */,
-				6070756FB4FAC69E02597BD2 /* Pods-SLPWalletDemoTests.release.xcconfig */,
-				3C7198E6256009166A1E15A9 /* Pods-SLPWalletDemoUITests.debug.xcconfig */,
-				B2063890FDBF9BBB98F84730 /* Pods-SLPWalletDemoUITests.release.xcconfig */,
+				A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */,
+				9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */,
+				6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */,
+				569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */,
+				7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */,
+				8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -477,12 +477,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE88E222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemo" */;
 			buildPhases = (
-				73780CB397AC5869F8921160 /* [CP] Check Pods Manifest.lock */,
+				4FC78CBBFE9FC75D1372A58E /* [CP] Check Pods Manifest.lock */,
 				3B7FE85F222679F400CB5755 /* Sources */,
 				3B7FE860222679F400CB5755 /* Frameworks */,
 				3B7FE861222679F400CB5755 /* Resources */,
 				3BB79E10223DADEB007E23EC /* Embed Watch Content */,
-				CB9AA178F75824285167EE97 /* [CP] Embed Pods Frameworks */,
+				192EA402896FD09B6BCF0305 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -498,7 +498,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE891222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemoTests" */;
 			buildPhases = (
-				D3BFBBDB3076A3CFB1412FCF /* [CP] Check Pods Manifest.lock */,
+				4BFC1097DF7D8C0B1BE535C5 /* [CP] Check Pods Manifest.lock */,
 				3B7FE876222679F500CB5755 /* Sources */,
 				3B7FE877222679F500CB5755 /* Frameworks */,
 				3B7FE878222679F500CB5755 /* Resources */,
@@ -517,7 +517,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE894222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemoUITests" */;
 			buildPhases = (
-				21CDC1DA62ED3812FE18ED99 /* [CP] Check Pods Manifest.lock */,
+				0AF83E43CA08620092734734 /* [CP] Check Pods Manifest.lock */,
 				3B7FE881222679F500CB5755 /* Sources */,
 				3B7FE882222679F500CB5755 /* Frameworks */,
 				3B7FE883222679F500CB5755 /* Resources */,
@@ -674,7 +674,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21CDC1DA62ED3812FE18ED99 /* [CP] Check Pods Manifest.lock */ = {
+		0AF83E43CA08620092734734 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -696,29 +696,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		73780CB397AC5869F8921160 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SLPWalletDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB9AA178F75824285167EE97 /* [CP] Embed Pods Frameworks */ = {
+		192EA402896FD09B6BCF0305 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -735,7 +713,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D3BFBBDB3076A3CFB1412FCF /* [CP] Check Pods Manifest.lock */ = {
+		4BFC1097DF7D8C0B1BE535C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -751,6 +729,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SLPWalletDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FC78CBBFE9FC75D1372A58E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SLPWalletDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -993,7 +993,7 @@
 		};
 		3B7FE88F222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CAF3A8692F7F2D6137CA457A /* Pods-SLPWalletDemo.debug.xcconfig */;
+			baseConfigurationReference = A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1013,7 +1013,7 @@
 		};
 		3B7FE890222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC5CC43084AAFC9574E504D7 /* Pods-SLPWalletDemo.release.xcconfig */;
+			baseConfigurationReference = 9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1033,7 +1033,7 @@
 		};
 		3B7FE892222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07BCCA5E5E199BA4CBD5558D /* Pods-SLPWalletDemoTests.debug.xcconfig */;
+			baseConfigurationReference = 6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1055,7 +1055,7 @@
 		};
 		3B7FE893222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6070756FB4FAC69E02597BD2 /* Pods-SLPWalletDemoTests.release.xcconfig */;
+			baseConfigurationReference = 569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1077,7 +1077,7 @@
 		};
 		3B7FE895222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C7198E6256009166A1E15A9 /* Pods-SLPWalletDemoUITests.debug.xcconfig */;
+			baseConfigurationReference = 7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1098,7 +1098,7 @@
 		};
 		3B7FE896222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B2063890FDBF9BBB98F84730 /* Pods-SLPWalletDemoUITests.release.xcconfig */;
+			baseConfigurationReference = 8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

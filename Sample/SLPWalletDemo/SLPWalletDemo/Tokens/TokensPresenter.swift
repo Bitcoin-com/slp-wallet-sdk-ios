@@ -43,15 +43,15 @@ class TokensPresenter {
         // Fetch token on the viewLoad to setup the view
         fetchTokens()
         
-        // Notify the addresses
-        viewDelegate?.onGetAddresses(slpAddress: wallet.slpAddress, cashAddress: wallet.cashAddress)
-    }
-    
-    func fetchTokens() {
-        
+        // Observe tokens
         WalletManager.shared
             .observeTokens()
-            .subscribe({ event in
+            .subscribe({ [weak self] event in
+                
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 if let token = event.element,
                     let _ = token.tokenTicker {
                     guard let tokenId = token.tokenId
@@ -62,19 +62,36 @@ class TokensPresenter {
                     }
                     
                     let tokenOutput = TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: token.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal), decimal: tokenDecimal)
-                    self.viewDelegate?.onGetToken(tokenOutput: tokenOutput)
+                    strongSelf.viewDelegate?.onGetToken(tokenOutput: tokenOutput)
                     
-                    let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
-                    self.viewDelegate?.onGetToken(tokenOutput: gas)
+                    let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(strongSelf.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
+                    strongSelf.viewDelegate?.onGetToken(tokenOutput: gas)
+                    
+                    if let _ = strongSelf.tokens?[tokenId] {
+                        return
+                    }
+                    
+                    // New token, so add it
+                    strongSelf.tokens?[tokenId] = token
                 }
             })
             .disposed(by: bag)
         
+        // Notify the addresses
+        viewDelegate?.onGetAddresses(slpAddress: wallet.slpAddress, cashAddress: wallet.cashAddress)
+    }
+    
+    func fetchTokens() {
+        
         fetchTokensInteractor?.fetchTokens()
-            .subscribe(onSuccess: { tokens in
+            .subscribe(onSuccess: { [weak self] tokens in
+                
+                guard let strongSelf = self else {
+                    return
+                }
                 
                 // Store my tokens to take action on it later
-                self.tokens = tokens
+                strongSelf.tokens = tokens
                 
                 // Prepare the output for my view
                 var tokenOutputs = tokens
@@ -89,12 +106,12 @@ class TokensPresenter {
                         return TokenOutput(id: tokenId, name: tokenName, ticker: tokenTicker, balance: value.getBalance().toCurrency(ticker: tokenTicker, decimal: tokenDecimal), decimal: tokenDecimal)
                     })
                 
-                let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(self.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
+                let gas = TokenOutput(id: "BCH", name: "Bitcoin Cash", ticker: "Satoshis", balance: Double(strongSelf.wallet.getGas()).toCurrency(ticker: "Satoshis", decimal: 0), decimal: 0)
                 
                 tokenOutputs.insert(gas, at: 0)
                 
                 // Notify my UI
-                self.viewDelegate?.onFetchTokens(tokenOutputs: tokenOutputs)
+                strongSelf.viewDelegate?.onFetchTokens(tokenOutputs: tokenOutputs)
             }, onError: { error in
                 // TODO: Do something
             })
