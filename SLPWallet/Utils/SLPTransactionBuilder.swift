@@ -155,7 +155,7 @@ class SLPTransactionBuilder {
         }
         
         let totalAmount: UInt64 = selectedUTXOs.reduce(0) { $0 + $1.output.value }
-        let txFee = UInt64(selectedUTXOs.count * 200 + outputs.count * 33 + 300)
+        let txFee = UInt64(selectedUTXOs.count * 300 + outputs.count * 33 + 300 + 300) // + 300 for the OP_RETURN
         var change: Int64 = Int64(totalAmount) - Int64(satoshisForTokens) - Int64(txFee)
         
         // If there is not enough gas, lets grab utxos from the wallet to refill
@@ -169,7 +169,7 @@ class SLPTransactionBuilder {
                     }
                     privKeys.append(privKey)
                     
-                    sum = sum + Int(utxo.satoshis) - 200 // Minus the future fee for an input
+                    sum = sum + Int(utxo.satoshis) - 300 // Minus the future fee for an input
                     return true
                 }
                 .compactMap { $0 }
