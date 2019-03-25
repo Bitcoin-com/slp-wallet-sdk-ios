@@ -154,6 +154,7 @@ public extension SLPWallet {
                     case .success(let rawUtxos):
                         let utxos = rawUtxos
                             .flatMap { $0.utxos }
+                        
                         let requests = utxos
                             .compactMap { $0.txid }
                             .removeDuplicates()
@@ -175,181 +176,33 @@ public extension SLPWallet {
                                     
                                     txs.forEach({ tx in
                                         
-                                        // TODO: Parse the tx in another place
-                                        let script = Script(hex: tx.vout[0].scriptPubKey.hex)
-                                        
-                                        var voutToTokenQty = [Int]()
-                                        voutToTokenQty.append(0) // To have the same mapping with the vouts
-                                        
-                                        var currentToken = SLPToken()
-                                        var mintVout = 0
-                                        
-                                        if var chunks = script?.scriptChunks
-                                            , chunks.removeFirst().opCode == .OP_RETURN {
-                                            
-                                            // 0 : lokad id 4 bytes ASCII
-                                            // Good
-                                            guard let lokadId = chunks[0].chunkData.removeLeft().removeRight().stringASCII else {
-                                                return
-                                            }
-                                            
-                                            if lokadId == "SLP" {
-                                                
-                                                // 1 : token_type 1 bytes Integer
-                                                // Good
-                                                var chunk = chunks[1].chunkData.removeLeft()
-                                                let tokenType = chunk.uint8
-                                                
-                                                // 2 : transaction_type 4 bytes ASCII
-                                                // Good
-                                                chunk = chunks[2].chunkData.removeLeft()
-                                                guard let transactionType = chunks[2].chunkData.removeLeft().stringASCII else {
-                                                    return
-                                                }
-                                                
-                                                if transactionType == SLPTransactionType.GENESIS.rawValue {
-                                                    
-                                                    // Genesis => Txid
-                                                    let tokenId = tx.txid
-                                                    currentToken._tokenId = tokenId
-                                                    
-                                                    // If the token is already found, continue to work on it
-                                                    if let token = updatedTokens[tokenId] {
-                                                        currentToken = token
-                                                    }
-                                                    
-                                                    // 3 : token_ticker UTF8
-                                                    // Good
-                                                    chunk = chunks[3].chunkData.removeLeft()
-                                                    guard let tokenTicker = chunk.stringUTF8 else {
-                                                        return
-                                                    }
-                                                    currentToken._tokenTicker = tokenTicker
-                                                    
-                                                    // 4 : token_name UTF8
-                                                    // Good
-                                                    chunk = chunks[4].chunkData.removeLeft()
-                                                    guard let tokenName = chunk.stringUTF8 else {
-                                                        return
-                                                    }
-                                                    currentToken._tokenName = tokenName
-                                                    
-                                                    // 7 : decimal 1 Byte
-                                                    // Good
-                                                    chunk = chunks[7].chunkData.removeLeft()
-                                                    guard let decimal = Int(chunk.hex, radix: 16) else {
-                                                        return
-                                                    }
-                                                    currentToken._decimal = decimal
-                                                    
-                                                    // 8 : Mint 2 Bytes
-                                                    // Good
-                                                    chunk = chunks[8].chunkData.removeLeft()
-                                                    if let mv = Int(chunk.hex, radix: 16) {
-                                                        mintVout = mv
-                                                    }
-                                                    
-                                                    // 9 to .. : initial_token_mint_quantity 8 Bytes
-                                                    // Good
-                                                    chunk = chunks[9].chunkData.removeLeft()
-                                                    if let balance = Int(chunk.hex, radix: 16) {
-                                                        voutToTokenQty.append(balance)
-                                                    }
-                                                    
-                                                } else if transactionType == SLPTransactionType.SEND.rawValue {
-                                                    
-                                                    // 3 : token_id 32 bytes  hex
-                                                    // Good
-                                                    chunk = chunks[3].chunkData.removeLeft()
-                                                    let tokenId = chunk.hex
-                                                    currentToken._tokenId = tokenId
-                                                    
-                                                    // If the token is already found, continue to work on it
-                                                    if let token = updatedTokens[tokenId] {
-                                                        currentToken = token
-                                                    }
-                                                    
-                                                    // 4 to .. : token_output_quantity 1..19 8 Bytes / qty
-                                                    for i in 4...chunks.count - 1 {
-                                                        chunk = chunks[i].chunkData.removeLeft()
-                                                        if let balance = Int(chunk.hex, radix: 16) {
-                                                            voutToTokenQty.append(balance)
-                                                        } else {
-                                                            break
-                                                        }
-                                                    }
-                                                } else if transactionType == SLPTransactionType.MINT.rawValue {
-                                                    
-                                                    // 3 : token_id 32 bytes  hex
-                                                    // Good
-                                                    chunk = chunks[3].chunkData.removeLeft()
-                                                    let tokenId = chunk.hex
-                                                    currentToken._tokenId = tokenId
-                                                    
-                                                    // If the token is already found, continue to work on it
-                                                    if let token = updatedTokens[tokenId] {
-                                                        currentToken = token
-                                                    }
-                                                    
-                                                    // 4 : Mint 2 Bytes
-                                                    // Good
-                                                    chunk = chunks[4].chunkData.removeLeft()
-                                                    if let mv = Int(chunk.hex, radix: 16) {
-                                                        mintVout = mv
-                                                    }
-                                                    
-                                                    // 5 : additional_token_quantity 8 Bytes
-                                                    // Good
-                                                    chunk = chunks[5].chunkData.removeLeft()
-                                                    if let balance = Int(chunk.hex, radix: 16) {
-                                                        voutToTokenQty.append(balance)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        
                                         // Get the vouts that we are interested in
-                                        let vouts = utxos.filter({ return $0.txid == tx.txid })
-                                        vouts.forEach({ utxo in
-                                            let vout = tx.vout[utxo.vout]
-                                            
-                                            guard let rawAddress = vout.scriptPubKey.addresses?.first
-                                                , let address = try? AddressFactory.create(rawAddress) else {
-                                                return
-                                            }
-                                            
-                                            let cashAddress = address.cashaddr
-                                            
-                                            guard vout.n < voutToTokenQty.count
-                                                , voutToTokenQty.count > 1
-                                                , voutToTokenQty[vout.n] > 0 else { // Because we push 1 vout qty by default for the OP_RETURN
-                                                
-                                                // We need to avoid using the mint baton
-                                                if vout.n == mintVout && mintVout > 0 {
-                                                    // UTXO with baton
-                                                    currentToken._mintUTXO = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
-                                                } else {
-                                                    // UTXO without token
-                                                    let utxo = SLPWalletUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n)
-                                                    updatedUTXOs.append(utxo)
-                                                }
-                                                
-                                                return
-                                            }
-                                            
-                                            // UTXO with a token
-                                            let rawTokenQty = voutToTokenQty[vout.n]
-                                            let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n, rawTokenQty: rawTokenQty)
-                                            currentToken.addUTXO(tokenUTXO)
-                                        })
+                                        let vouts = utxos
+                                            .filter { $0.txid == tx.txid }
+                                            .map { $0.vout }
                                         
-                                        // If first time, map the token in updatedTokens
-                                        if let tId = currentToken.tokenId {
-                                            if updatedTokens[tId] == nil {
-                                                updatedTokens[tId] = currentToken
+                                        // Parse tx
+                                        guard let parsedData = SLPTransactionParser.parse(tx, vouts: vouts) else {
+                                            return
+                                        }
+                                        
+                                        if let tokenId = parsedData.token.tokenId {
+                                            if let token = updatedTokens[tokenId] {
+                                                token.merge(parsedData.token)
+                                            } else {
+                                                updatedTokens[tokenId] = parsedData.token
                                             }
                                         }
+                                        
+                                        updatedUTXOs.append(contentsOf: parsedData.utxos)
                                     })
+                                    
+                                    //
+                                    //
+                                    // Parse finished
+                                    // Update data
+                                    //
+                                    //
                                     
                                     // Update the UTXOs used as gas :)
                                     self._utxos = updatedUTXOs
@@ -383,6 +236,13 @@ public extension SLPWallet {
                                             self.delegate?.onUpdatedToken(t)
                                         }
                                     })
+                                    
+                                    //
+                                    //
+                                    // Update data finished
+                                    // Get info on unknown tokens
+                                    //
+                                    //
                                     
                                     Observable
                                         .zip(newTokens.map { self.addToken($0).asObservable() })

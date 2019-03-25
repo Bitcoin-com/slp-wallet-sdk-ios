@@ -81,4 +81,24 @@ extension SLPToken {
         }
         _utxos.remove(at: i)
     }
+    
+    func merge(_ token: SLPToken) -> SLPToken {
+        if let tokenId = token._tokenId {
+            self._tokenId = tokenId
+        }
+        if let tokenName = token._tokenName {
+            self._tokenName = tokenName
+        }
+        if let tokenTicker = token._tokenTicker {
+            self._tokenTicker = tokenTicker
+        }
+        if let decimal = token._decimal {
+            self._decimal = decimal
+        }
+        if let mintUTXO = token._mintUTXO {
+            self._mintUTXO = mintUTXO
+        }
+        
+        return self
+    }
 }

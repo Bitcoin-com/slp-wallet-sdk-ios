@@ -26,6 +26,10 @@
 		3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B0782226290100A1B599 /* RestNetwork.swift */; };
 		3B99B08B22262DC700A1B599 /* SLPWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B99B08A22262DC700A1B599 /* SLPWallet.swift */; };
 		3BC2880B222D022F00EB3375 /* SLPTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */; };
+		3BD622602248943300503956 /* SLPTransactionParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD6225F2248943300503956 /* SLPTransactionParserTest.swift */; };
+		3BD6226722489C6100503956 /* tx_details_genesis_tst.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6226622489C6000503956 /* tx_details_genesis_tst.json */; };
+		3BD622692248B05900503956 /* tx_details_send_tst.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BD622682248B05900503956 /* tx_details_send_tst.json */; };
+		3BD6226B2248B5F500503956 /* tx_details_mint_lvl001.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BD6226A2248B5F500503956 /* tx_details_mint_lvl001.json */; };
 		3BD7508522358D9A00CF5072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7508422358D9A00CF5072 /* AppDelegate.swift */; };
 		3BD7508722358D9A00CF5072 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7508622358D9A00CF5072 /* ViewController.swift */; };
 		3BD7508A22358D9A00CF5072 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7508822358D9A00CF5072 /* Main.storyboard */; };
@@ -86,6 +90,10 @@
 		3B99B0782226290100A1B599 /* RestNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestNetwork.swift; sourceTree = "<group>"; };
 		3B99B08A22262DC700A1B599 /* SLPWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWallet.swift; sourceTree = "<group>"; };
 		3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionBuilder.swift; sourceTree = "<group>"; };
+		3BD6225F2248943300503956 /* SLPTransactionParserTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPTransactionParserTest.swift; sourceTree = "<group>"; };
+		3BD6226622489C6000503956 /* tx_details_genesis_tst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tx_details_genesis_tst.json; sourceTree = "<group>"; };
+		3BD622682248B05900503956 /* tx_details_send_tst.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tx_details_send_tst.json; sourceTree = "<group>"; };
+		3BD6226A2248B5F500503956 /* tx_details_mint_lvl001.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tx_details_mint_lvl001.json; sourceTree = "<group>"; };
 		3BD7504E2235745D00CF5072 /* BitcoinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD7508222358D9A00CF5072 /* SLPWalletHostTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLPWalletHostTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD7508422358D9A00CF5072 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,7 +157,6 @@
 				5F9D01CB6B549D6E64D1F0E8 /* Pods-SLPWalletTests.debug.xcconfig */,
 				7678BEF4EF2CE7FD1057F5D7 /* Pods-SLPWalletTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -219,10 +226,12 @@
 		3B99B0622226251B00A1B599 /* SLPWalletTests */ = {
 			isa = PBXGroup;
 			children = (
+				3BB10C472248B621009BE56D /* Assets */,
 				3BE242AD222667F2003432CE /* RestServiceTest.swift */,
 				3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */,
 				3BD750A02237C06D00CF5072 /* SLPTokenTest.swift */,
 				3BD7509A2237B5AF00CF5072 /* SLPWalletUTXOTest.swift */,
+				3BD6225F2248943300503956 /* SLPTransactionParserTest.swift */,
 				3BD750A42237C72900CF5072 /* SLPTransactionBuilderTest.swift */,
 				3BD750982237B0E400CF5072 /* TokenQtyConverterTest.swift */,
 				3BD7509C2237BEAB00CF5072 /* Double+ExtensionsTest.swift */,
@@ -260,6 +269,16 @@
 				3B99B0782226290100A1B599 /* RestNetwork.swift */,
 			);
 			path = Networks;
+			sourceTree = "<group>";
+		};
+		3BB10C472248B621009BE56D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3BD6226A2248B5F500503956 /* tx_details_mint_lvl001.json */,
+				3BD622682248B05900503956 /* tx_details_send_tst.json */,
+				3BD6226622489C6000503956 /* tx_details_genesis_tst.json */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		3BD7508322358D9A00CF5072 /* SLPWalletHostTests */ = {
@@ -403,6 +422,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BD622692248B05900503956 /* tx_details_send_tst.json in Resources */,
+				3BD6226722489C6100503956 /* tx_details_genesis_tst.json in Resources */,
+				3BD6226B2248B5F500503956 /* tx_details_mint_lvl001.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +540,7 @@
 				3BD7509B2237B5AF00CF5072 /* SLPWalletUTXOTest.swift in Sources */,
 				3BD750A52237C72900CF5072 /* SLPTransactionBuilderTest.swift in Sources */,
 				3BD750A12237C06D00CF5072 /* SLPTokenTest.swift in Sources */,
+				3BD622602248943300503956 /* SLPTransactionParserTest.swift in Sources */,
 				3BDFC1572233A91E00DC167E /* SLPWalletTests.entitlements in Sources */,
 				3BE242AE222667F2003432CE /* RestServiceTest.swift in Sources */,
 			);
