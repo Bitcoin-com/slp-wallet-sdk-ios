@@ -34,9 +34,9 @@ class SLPTransactionParserTest: QuickSpec {
                     expect(parsedData.token.decimal).to(equal(2))
                     
                     // Token UTXOs
-                    expect(parsedData.token.utxos.first).toNot(beNil())
+                    expect(parsedData.token._utxos.first).toNot(beNil())
                     
-                    guard let utxo = parsedData.token.utxos.first else {
+                    guard let utxo = parsedData.token._utxos.first else {
                         fail()
                         return
                     }
@@ -81,9 +81,9 @@ class SLPTransactionParserTest: QuickSpec {
                 expect(parsedData.token.decimal).to(beNil())
                 
                 // Token UTXOs
-                expect(parsedData.token.utxos.first).toNot(beNil())
+                expect(parsedData.token._utxos.first).toNot(beNil())
                 
-                guard let tokenUTXO = parsedData.token.utxos.first else {
+                guard let tokenUTXO = parsedData.token._utxos.first else {
                     fail()
                     return
                 }
@@ -133,9 +133,9 @@ class SLPTransactionParserTest: QuickSpec {
                 expect(parsedData.token.decimal).to(beNil())
                 
                 // Token UTXOs
-                expect(parsedData.token.utxos.first).toNot(beNil())
+                expect(parsedData.token._utxos.first).toNot(beNil())
                 
-                guard let tokenUTXO = parsedData.token.utxos.first else {
+                guard let tokenUTXO = parsedData.token._utxos.first else {
                     fail()
                     return
                 }

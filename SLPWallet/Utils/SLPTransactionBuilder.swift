@@ -237,6 +237,7 @@ class SLPTransactionBuilder {
         var index = 1
         if rawTokenChange > 0 {
             let newUTXO = SLPTokenUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index, rawTokenQty: rawTokenChange)
+            newUTXO._isValid = true
             newUTXOs.append(newUTXO)
             index += 1
         }

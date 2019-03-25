@@ -42,7 +42,7 @@ public class SLPToken {
     public var tokenName: String? { get { return _tokenName } }
     public var mintUTXO: SLPWalletUTXO? { get { return _mintUTXO } }
     public var decimal: Int? { get { return _decimal } }
-    public var utxos: [SLPTokenUTXO] { get { return _utxos } }
+    public var utxos: [SLPTokenUTXO] { get { return _utxos.filter { $0.isValid } } }
     
     public init() {
     }
@@ -52,11 +52,11 @@ public class SLPToken {
     }
     
     public func getGas() -> Int {
-        return _utxos.reduce(0, { $0 + Int($1.satoshis) })
+        return utxos.reduce(0, { $0 + Int($1.satoshis) })
     }
     
     public func getBalance() -> Double {
-        return _utxos.reduce(0, { $0 + ($1.tokenQty ?? 0) })
+        return utxos.reduce(0, { $0 + ($1.tokenQty ?? 0) })
     }
 }
     
@@ -98,6 +98,7 @@ extension SLPToken {
         if let mintUTXO = token._mintUTXO {
             self._mintUTXO = mintUTXO
         }
+        self._utxos.append(contentsOf: token._utxos)
         
         return self
     }

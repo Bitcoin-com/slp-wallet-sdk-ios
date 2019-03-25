@@ -20,7 +20,7 @@ class SLPWalletTokenTest: QuickSpec {
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
                     token.addUTXOs([utxo])
                     
-                    expect(token.utxos.count).to(equal(1))
+                    expect(token._utxos.count).to(equal(1))
                 }
             }
             
@@ -31,7 +31,7 @@ class SLPWalletTokenTest: QuickSpec {
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
                     token.addUTXO(utxo)
                     
-                    expect(token.utxos.count).to(equal(1))
+                    expect(token._utxos.count).to(equal(1))
                 }
             }
             
@@ -40,6 +40,8 @@ class SLPWalletTokenTest: QuickSpec {
                     let token = SLPToken("test")
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
+                    utxo._isValid = true
+                    
                     token.addUTXO(utxo)
                     
                     expect(token.getBalance()).to(equal(0))
@@ -52,6 +54,8 @@ class SLPWalletTokenTest: QuickSpec {
                     token._decimal = nil
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
+                    utxo._isValid = true
+                    
                     token.addUTXO(utxo)
                     
                     expect(token.getBalance()).to(equal(0))
@@ -64,6 +68,8 @@ class SLPWalletTokenTest: QuickSpec {
                     token._decimal = 2
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
+                    utxo._isValid = true
+                    
                     token.addUTXO(utxo)
                     
                     expect(token.getBalance()).to(equal(0.1))
@@ -76,6 +82,8 @@ class SLPWalletTokenTest: QuickSpec {
                     token._decimal = 0
                     
                     let utxo = SLPTokenUTXO("txid", satoshis: 100, cashAddress: "cashAddress", scriptPubKey: "scriptPubKey", index: 1, rawTokenQty: 10)
+                    utxo._isValid = true
+                    
                     token.addUTXO(utxo)
                     
                     expect(token.getBalance()).to(equal(10))
