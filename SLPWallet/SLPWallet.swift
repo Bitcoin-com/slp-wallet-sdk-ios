@@ -160,38 +160,30 @@ public extension SLPWallet {
                             .removeDuplicates()
                             .chunk(20)
                         
-                        let observeTxDetails = Observable
-                            .zip(requests
-                                .map { RestService
-                                    .fetchTxDetails($0)
-                                    .asObservable() })
-                        
-                        
-                        let observeTxValidations = Observable
-                            .zip(requests
-                                .map { RestService
-                                    .fetchTxValidations($0)
-                                    .asObservable() })
+                        let observable = Observable
+                            .from(requests)
+                            .flatMap({ request in
+                                Observable.zip(
+                                    RestService.fetchTxDetails(request).asObservable()
+                                    , RestService.fetchTxValidations(request).asObservable()
+                                    , resultSelector: { (txs, validations) in
+                                        return txs
+                                            .enumerated()
+                                            .compactMap({ (index, tx) in
+                                                return (tx, validations[index].valid)
+                                            })
+                                    })
+                            })
                             
-                        Observable
-                            .combineLatest(observeTxDetails, observeTxValidations)
+                        observable
                             .subscribe({ event in
                                 switch event {
-                                case .next(let response):
-                                    
-                                    let txs = response.0.flatMap({ $0 })
-                                    
-                                    // Set hashmap by txid
-                                    var txValidations =  [String: Bool]()
-                                    
-                                    response.1
-                                        .flatMap({ $0 })
-                                        .forEach { txValidations[$0.txid] = $0.valid }
+                                case .next(let txs):
                                     
                                     var updatedTokens = [String:SLPToken]()
                                     var updatedUTXOs = [SLPWalletUTXO]()
                                     
-                                    txs.forEach({ tx in
+                                    txs.forEach({ (tx, isValid) in
                                         
                                         // Get the vouts that we are interested in
                                         let vouts = utxos
@@ -206,7 +198,7 @@ public extension SLPWallet {
                                         if let tokenId = parsedData.token.tokenId {
                                             
                                             // Validate the utxos if it should be
-                                            parsedData.token._utxos.forEach { $0._isValid = txValidations[$0.txid] ?? false }
+                                            parsedData.token._utxos.forEach { $0._isValid = isValid }
                                             
                                             if let token = updatedTokens[tokenId] {
                                                 token.merge(parsedData.token)
