@@ -222,6 +222,8 @@ public extension SLPWallet {
                                     
                                     // Check which one is new and need to get the info from Genesis
                                     var newTokens = [SLPToken]()
+                                    var tokensHaveChanged = [SLPToken]()
+                                    
                                     updatedTokens.forEach({ tokenId, token in
                                         guard let t = self._tokens[tokenId] else {
                                             if token.utxos.count > 0 {
@@ -246,9 +248,12 @@ public extension SLPWallet {
                                         // If it has changed, notify
                                         if hasChanged {
                                             t._utxos = token.utxos
-                                            self.delegate?.onUpdatedToken(t)
+                                            tokensHaveChanged.append(t)
                                         }
                                     })
+                                    
+                                    // Notify changed tokens
+                                    tokensHaveChanged.forEach { self.delegate?.onUpdatedToken($0) }
                                     
                                     //
                                     //
@@ -262,6 +267,7 @@ public extension SLPWallet {
                                         .subscribe({ event in
                                             switch event {
                                             case .next(let tokens):
+                                                // Notify new tokens
                                                 tokens.forEach({ self.delegate?.onUpdatedToken($0) })
                                             case .completed:
                                                 single(.success(self._tokens))
