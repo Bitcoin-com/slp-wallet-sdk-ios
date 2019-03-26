@@ -36,7 +36,7 @@ class SLPTransactionBuilder {
         
         let minSatoshisForToken = UInt64(546)
         var satoshisForTokens: UInt64 = minSatoshisForToken
-        let satoshisForInput = 148 + 60
+        let satoshisForInput = 148 + 200
         var tokenInputs = 1
         var privKeys = [PrivateKey]()
         var newUTXOs = [SLPWalletUTXO]()
@@ -163,7 +163,7 @@ class SLPTransactionBuilder {
         // 9 = value of OP_RETURN (same as previously)
         // 46 = value of OP_RETURN data
         // 34 = value of output
-        // 148 = value of input + 50 for propagation
+        // 148 = value of input + 200 for propagation
         
         let txFee = UInt64(selectedUTXOs.count * satoshisForInput + outputs.count * 34 + 46 + 9 * tokenInputs + 9)
         var change: Int64 = Int64(totalAmount) - Int64(satoshisForTokens) - Int64(txFee)
@@ -228,13 +228,12 @@ class SLPTransactionBuilder {
             
             let unlockingScript = Script.buildPublicKeyUnlockingScript(signature: signature, pubkey: pubkey, hashType: hashType)
             
-            // TODO: sequenceの更新
             inputsToSign[i] = TransactionInput(previousOutput: txin.previousOutput, signatureScript: unlockingScript, sequence: txin.sequence)
         }
         
         let signedTx = transactionToSign.serialized()
         
-        var index = 1
+        var index = 2
         if rawTokenChange > 0 {
             let newUTXO = SLPTokenUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index, rawTokenQty: rawTokenChange)
             newUTXO._isValid = true

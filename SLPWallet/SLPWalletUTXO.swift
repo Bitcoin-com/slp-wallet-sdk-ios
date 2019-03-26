@@ -10,7 +10,7 @@ import Foundation
 import BitcoinKit
 
 public class SLPWalletUTXO {
-    fileprivate var _txid: String
+    var _txid: String // TODO: Expose until I fix the TransactionBuilder to provide the right tx directly
     fileprivate var _satoshis: Int64
     fileprivate var _cashAddress: String
     fileprivate var _scriptPubKey: String
@@ -63,5 +63,11 @@ extension SLPWalletUTXO: Equatable {
     public static func == (lhs: SLPWalletUTXO, rhs: SLPWalletUTXO) -> Bool {
         return lhs.index == rhs.index &&
             lhs.txid == rhs.txid
+    }
+}
+
+extension SLPWalletUTXO: Hashable {
+    public var hashValue: Int {
+        return txid.hashValue << 8 | index
     }
 }

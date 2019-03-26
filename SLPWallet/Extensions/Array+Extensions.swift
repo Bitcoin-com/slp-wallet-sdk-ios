@@ -25,4 +25,9 @@ public extension Array where Element: Equatable {
             return Array(self[startIndex..<startIndex.advanced(by: endIndex)])
         })
     }
+    
+    public mutating func mergeElements<C : Collection>(newElements: C) where C.Iterator.Element == Element{
+        let filteredList = newElements.filter({!self.contains($0)})
+        self.append(contentsOf: filteredList)
+    }
 }

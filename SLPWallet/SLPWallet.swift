@@ -25,6 +25,7 @@ public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
     fileprivate static let storageProvider = StorageProvider()
+    fileprivate let semaphore = DispatchSemaphore(value: 1)
     
     let _mnemonic: [String]
     var _tokens: [String:SLPToken]
@@ -36,6 +37,9 @@ public class SLPWallet {
     
     let _network: Network
     var _utxos: [SLPWalletUTXO]
+    
+    // Garbage
+    var _usedUTXOs: [SLPWalletUTXO]
     
     var BCHAccount: Account {
         get { return _BCHAccount }
@@ -133,6 +137,7 @@ public class SLPWallet {
         self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
+        self._usedUTXOs = [SLPWalletUTXO]()
     }
 }
 
@@ -180,6 +185,8 @@ public extension SLPWallet {
                                 switch event {
                                 case .next(let txs):
                                     
+                                    self.semaphore.wait()
+                                    
                                     var updatedTokens = [String:SLPToken]()
                                     var updatedUTXOs = [SLPWalletUTXO]()
                                     
@@ -198,6 +205,9 @@ public extension SLPWallet {
                                         if let tokenId = parsedData.token.tokenId {
                                             
                                             // Validate the utxos if it should be
+                                            parsedData.token._utxos = parsedData.token._utxos.filter { !self._usedUTXOs.contains($0) }
+                                            
+                                            // I don't remove it to avoid flickering, in case the API doesn't answer well
                                             parsedData.token._utxos.forEach { $0._isValid = isValid }
                                             
                                             if let token = updatedTokens[tokenId] {
@@ -207,7 +217,8 @@ public extension SLPWallet {
                                             }
                                         }
                                         
-                                        updatedUTXOs.append(contentsOf: parsedData.utxos)
+                                        let newUtxos = parsedData.utxos.filter { !self._usedUTXOs.contains($0) }
+                                        updatedUTXOs.append(contentsOf: newUtxos)
                                     })
                                     
                                     //
@@ -218,7 +229,7 @@ public extension SLPWallet {
                                     //
                                     
                                     // Update the UTXOs used as gas :)
-                                    self._utxos = updatedUTXOs
+                                    self._utxos.mergeElements(newElements: updatedUTXOs)
                                     
                                     // Check which one is new and need to get the info from Genesis
                                     var newTokens = [SLPToken]()
@@ -236,24 +247,36 @@ public extension SLPWallet {
                                         if t._utxos.count != token._utxos.count {
                                             hasChanged = true
                                         } else {
-                                            let diff = t._utxos
-                                                .enumerated()
-                                                .filter({ $0.element != token._utxos[$0.offset] })
+                                            let hash1 = t._utxos
+                                                .sorted(by: { (u1, u2) -> Bool in
+                                                    return u1.txid < u2.txid && u1.index < u2.index
+                                                })
+                                                .compactMap { "\($0.hashValue)" }
+                                                .joined(separator: "")
                                             
-                                            if diff.count > 0 {
+                                            let hash2 = token._utxos
+                                                .sorted(by: { (u1, u2) -> Bool in
+                                                    return u1.txid < u2.txid && u1.index < u2.index
+                                                })
+                                                .compactMap { "\($0.hashValue)" }
+                                                .joined(separator: "")
+                                            
+                                            if hash1 != hash2 {
                                                 hasChanged = true
                                             }
                                         }
                                         
                                         // If it has changed, notify
                                         if hasChanged {
-                                            t._utxos = token._utxos
+                                            t._utxos.mergeElements(newElements: token._utxos)
                                             tokensHaveChanged.append(t)
                                         }
                                     })
                                     
                                     // Notify changed tokens
                                     tokensHaveChanged.forEach { self.delegate?.onUpdatedToken($0) }
+                                    
+                                    self.semaphore.signal()
                                     
                                     //
                                     //
@@ -307,6 +330,10 @@ public extension SLPWallet {
                                     guard let token = self.tokens[tokenId] else {
                                         return single(.success(txid))
                                     }
+                                    
+                                    // TODO: Debug why the TXID is wrong in the builder
+                                    // Add the right txid
+                                    value.newUTXOs.forEach { $0._txid = txid }
                                     
                                     self.updateUTXOsAfterSending(token, usedUTXOs: value.usedUTXOs, newUTXOs: value.newUTXOs)
                                     
@@ -410,6 +437,9 @@ extension SLPWallet {
     }
     
     func updateUTXOsAfterSending(_ token: SLPToken, usedUTXOs: [SLPWalletUTXO], newUTXOs: [SLPWalletUTXO]) {
+        // Add a lock to be sure I am not adding or removing in the same time with the fetchTokens
+        semaphore.wait()
+        
         newUTXOs.forEach({ UTXO in
             guard let newUTXO = UTXO as? SLPTokenUTXO else {
                 return self.addUTXO(UTXO)
@@ -417,12 +447,15 @@ extension SLPWallet {
             return token.addUTXO(newUTXO)
         })
         
+        _usedUTXOs.append(contentsOf: usedUTXOs)
         usedUTXOs.forEach({ UTXO in
             guard let newUTXO = UTXO as? SLPTokenUTXO else {
                 return self.removeUTXO(UTXO)
             }
             return token.removeUTXO(newUTXO)
         })
+        
+        semaphore.signal()
     }
     
     func addUTXO(_ utxo: SLPWalletUTXO) {
