@@ -226,19 +226,19 @@ public extension SLPWallet {
                                     
                                     updatedTokens.forEach({ tokenId, token in
                                         guard let t = self._tokens[tokenId] else {
-                                            if token.utxos.count > 0 {
+                                            if token._utxos.count > 0 {
                                                 newTokens.append(token)
                                             }
                                             return
                                         }
                                         
                                         var hasChanged = false
-                                        if t.utxos.count != token.utxos.count {
+                                        if t._utxos.count != token._utxos.count {
                                             hasChanged = true
                                         } else {
-                                            let diff = t.utxos
+                                            let diff = t._utxos
                                                 .enumerated()
-                                                .filter({ $0.element != token.utxos[$0.offset] })
+                                                .filter({ $0.element != token._utxos[$0.offset] })
                                             
                                             if diff.count > 0 {
                                                 hasChanged = true
@@ -247,7 +247,7 @@ public extension SLPWallet {
                                         
                                         // If it has changed, notify
                                         if hasChanged {
-                                            t._utxos = token.utxos
+                                            t._utxos = token._utxos
                                             tokensHaveChanged.append(t)
                                         }
                                     })
