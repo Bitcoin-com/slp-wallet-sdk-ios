@@ -10,7 +10,7 @@
 		20F9189D876A537C9921C41D /* Pods_All_SLPWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8FBE6A85C0A5C87BA47239 /* Pods_All_SLPWallet.framework */; };
 		28F506C21B69A85C511D3BEF /* Pods_SLPWalletTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BF528C674BCE9EEB5E90520 /* Pods_SLPWalletTests.framework */; };
 		3B288C49222C387700C1AC81 /* TokenQtyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */; };
-		3B6D8278224241B000119AF0 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D8277224241B000119AF0 /* Account.swift */; };
+		3B6D8278224241B000119AF0 /* SLPWalletAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D8277224241B000119AF0 /* SLPWalletAccount.swift */; };
 		3B79D223223B160100FF3AFB /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D222223B160100FF3AFB /* Double+Extensions.swift */; };
 		3B7FE8D52226A67E00CB5755 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */; };
 		3B7FE8FE2227ABD900CB5755 /* SLPWalletTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */; };
@@ -76,7 +76,7 @@
 /* Begin PBXFileReference section */
 		1DFFAD2AFD166179BF17DA9E /* Pods-SLPWalletTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletTests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletTests/Pods-SLPWalletTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenQtyConverter.swift; sourceTree = "<group>"; };
-		3B6D8277224241B000119AF0 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3B6D8277224241B000119AF0 /* SLPWalletAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletAccount.swift; sourceTree = "<group>"; };
 		3B79D222223B160100FF3AFB /* Double+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8D42226A67E00CB5755 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		3B7FE8FD2227ABD900CB5755 /* SLPWalletTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLPWalletTest.swift; sourceTree = "<group>"; };
@@ -185,8 +185,6 @@
 		3B288C4A222C388500C1AC81 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3BB10CB6224B5BCD009BE56D /* StorageProvider */,
-				3BB10CB2224B5AB8009BE56D /* StorageProvider.swift */,
 				3BC2880A222D022F00EB3375 /* SLPTransactionBuilder.swift */,
 				3B7FE9282229225200CB5755 /* SLPTransactionParser.swift */,
 				3B288C46222C300E00C1AC81 /* TokenQtyConverter.swift */,
@@ -222,10 +220,10 @@
 		3B99B0572226251B00A1B599 /* SLPWallet */ = {
 			isa = PBXGroup;
 			children = (
-				3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */,
-				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
-				3B6D8277224241B000119AF0 /* Account.swift */,
-				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
+				3BB10CB6224B5BCD009BE56D /* StorageProvider */,
+				3BB10CB2224B5AB8009BE56D /* StorageProvider.swift */,
+				3BB10CBE224B76F5009BE56D /* Token */,
+				3BB10CBD224B76DA009BE56D /* Wallet */,
 				3B99B08A22262DC700A1B599 /* SLPWallet.swift */,
 				3BB10CB0224B59E6009BE56D /* SLPWalletConfig.swift */,
 				3B288C4A222C388500C1AC81 /* Utils */,
@@ -305,6 +303,24 @@
 				3BB10CB4224B5ADB009BE56D /* InternalStorageProvider.swift */,
 			);
 			path = StorageProvider;
+			sourceTree = "<group>";
+		};
+		3BB10CBD224B76DA009BE56D /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				3B7FE92E2229913100CB5755 /* SLPWalletUTXO.swift */,
+				3B6D8277224241B000119AF0 /* SLPWalletAccount.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		3BB10CBE224B76F5009BE56D /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				3B7FE92C222990FB00CB5755 /* SLPToken.swift */,
+				3B7FE9302229915600CB5755 /* SLPTokenUTXO.swift */,
+			);
+			path = Token;
 			sourceTree = "<group>";
 		};
 		3BD7508322358D9A00CF5072 /* SLPWalletHostTests */ = {
@@ -544,7 +560,7 @@
 				3B99B0812226290100A1B599 /* RestNetwork.swift in Sources */,
 				3B288C49222C387700C1AC81 /* TokenQtyConverter.swift in Sources */,
 				3BB10CB5224B5ADB009BE56D /* InternalStorageProvider.swift in Sources */,
-				3B6D8278224241B000119AF0 /* Account.swift in Sources */,
+				3B6D8278224241B000119AF0 /* SLPWalletAccount.swift in Sources */,
 				3BB10CB1224B59E6009BE56D /* SLPWalletConfig.swift in Sources */,
 				3B7FE9002227BF8300CB5755 /* String+Extensions.swift in Sources */,
 				3B7FE9312229915600CB5755 /* SLPTokenUTXO.swift in Sources */,

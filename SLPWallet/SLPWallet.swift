@@ -30,8 +30,8 @@ public class SLPWallet {
     let _mnemonic: [String]
     var _tokens: [String:SLPToken]
     
-    let _BCHAccount: Account
-    let _SLPAccount: Account
+    let _BCHAccount: SLPWalletAccount
+    let _SLPAccount: SLPWalletAccount
     
     let _slpAddress: String
     
@@ -41,11 +41,11 @@ public class SLPWallet {
     // Garbage
     var _usedUTXOs: [SLPWalletUTXO]
     
-    var BCHAccount: Account {
+    var BCHAccount: SLPWalletAccount {
         get { return _BCHAccount }
     }
     
-    var SLPAccount: Account {
+    var SLPAccount: SLPWalletAccount {
         get { return _SLPAccount }
     }
     
@@ -119,13 +119,13 @@ public class SLPWallet {
         var xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 145, hardened: true).derived(at: 0, hardened: true)
         var privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self._BCHAccount = Account(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
+        self._BCHAccount = SLPWalletAccount(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
         
         // 245
         xPrivKey = try! hdPrivKey.derived(at: 44, hardened: true).derived(at: 245, hardened: true).derived(at: 0, hardened: true)
         privKey = try! xPrivKey.derived(at: UInt32(0)).derived(at: UInt32(0)).privateKey()
         
-        self._SLPAccount = Account(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
+        self._SLPAccount = SLPWalletAccount(privKey: privKey, cashAddress: privKey.publicKey().toCashaddr().cashaddr)
         
         self._mnemonic = arrayOfwords
         self._network = network
@@ -371,43 +371,14 @@ public extension SLPWallet {
                     case.success(let txs):
                         txs.forEach({ tx in
                             
-                            let script = Script(hex: tx.vout[0].scriptPubKey.hex)
-                            guard var chunks = script?.scriptChunks
-                                , chunks.removeFirst().opCode == .OP_RETURN else {
-                                    return
-                            }
-                            
-                            // 2 : transaction_type 4 bytes ASCII
-                            // Good
-                            var chunk = chunks[2].chunkData.removeLeft()
-                            guard let transactionType = chunk.stringASCII
-                                , transactionType == "GENESIS" else {
-                                    return
-                            }
-                            
-                            // 3 : token_ticker UTF8
-                            // Good
-                            chunk = chunks[3].chunkData.removeLeft()
-                            guard let tokenTicker = chunk.stringUTF8 else {
+                            // Parse tx
+                            guard let parsedData = SLPTransactionParser.parse(tx, vouts: []) else {
                                 return
                             }
-                            token._tokenTicker = tokenTicker
                             
-                            // 4 : token_name UTF8
-                            // Good
-                            chunk = chunks[4].chunkData.removeLeft()
-                            guard let tokenName = chunk.stringUTF8 else {
-                                return
+                            if let _ = parsedData.token.tokenId {
+                                token.merge(parsedData.token)
                             }
-                            token._tokenName = tokenName
-                            
-                            // 8 : decimal 1 Byte
-                            // Good
-                            chunk = chunks[7].chunkData.removeLeft()
-                            guard let decimal = Int(chunk.hex, radix: 16) else {
-                                return
-                            }
-                            token._decimal = decimal
                         })
                         
                         // Add the token in the list
