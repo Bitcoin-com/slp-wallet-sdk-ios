@@ -51,6 +51,9 @@ class TokenViewController: UIViewController {
         
         self.confirmLoadingAnimationView = confirmLoadingAnimationView
         
+        toAddressTextField.autocorrectionType = .no
+        toAddressTextField.autocapitalizationType = .none
+        
         presenter?.viewDidLoad()
     }
     

@@ -12,7 +12,7 @@ import SLPWallet
 class TokensRouter: BaseRouter {
     
     func transitToToken(_ token: SLPToken) {
-        let tokenViewController = TokenBuilder.provide(token: token)
+        let tokenViewController = TokenBuilder().provide(token: token)
         viewController?.navigationController?.pushViewController(tokenViewController, animated: true)
     }
     
@@ -21,12 +21,13 @@ class TokensRouter: BaseRouter {
     }
     
     func transitToReceive() {
-        let receiveViewController = ReceiveBuilder.provide()
+        let receiveViewController = ReceiveBuilder().provide()
         viewController?.navigationController?.pushViewController(receiveViewController, animated: true)
     }
     
-    func transitToMnemonic() {
-        let mnemonicViewController = MnemonicBuilder.provide()
-        viewController?.navigationController?.pushViewController(mnemonicViewController, animated: true)
+    func transitToSettings() {
+        let settingsViewController = SettingsBuilder().provide()
+        let navController = UINavigationController(rootViewController: settingsViewController)
+        viewController?.present(navController, animated: true)
     }
 }

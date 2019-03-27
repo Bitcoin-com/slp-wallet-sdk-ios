@@ -11,7 +11,7 @@ import SLPWallet
 
 class ScannerBuilder {
     
-    static func provide(_ scannerDelegate: ScannerDelegate) -> ScannerViewController {
+    func provide(_ scannerDelegate: ScannerDelegate) -> ScannerViewController {
         let viewController = UIStoryboard(name: "Scanner", bundle: nil).instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
         
         let presenter = ScannerPresenter()

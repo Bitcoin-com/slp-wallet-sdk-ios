@@ -39,6 +39,12 @@ class TokensPresenter {
         wallet = WalletManager.shared.wallet
     }
     
+    func viewWillAppear() {
+        if (wallet.cashAddress != WalletManager.shared.wallet.cashAddress) {
+            viewDelegate?.navigationController?.setViewControllers([TokensBuilder().provide()], animated: true)
+        }
+    }
+    
     func viewDidLoad() {
         // Fetch token on the viewLoad to setup the view
         fetchTokens()
@@ -125,7 +131,7 @@ class TokensPresenter {
         }
         
         // If token exists transit to the token module
-        return TokenBuilder.provide(token: token)
+        return TokenBuilder().provide(token: token)
     }
     
     func didPushPreview(_ viewControllerToCommit: UIViewController) {
@@ -158,6 +164,6 @@ class TokensPresenter {
     
     func didPushMnemonic() {
         // Transit the receive module
-        router?.transitToMnemonic()
+        router?.transitToSettings()
     }
 }

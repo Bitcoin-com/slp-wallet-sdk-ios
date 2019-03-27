@@ -16,7 +16,7 @@ class TokenRouter: BaseRouter {
             return
         }
         
-        let scannerViewController = ScannerBuilder.provide(scannerDelegate)
+        let scannerViewController = ScannerBuilder().provide(scannerDelegate)
         
         let navigationController = UINavigationController(rootViewController: scannerViewController)
         viewController?.navigationController?.present(navigationController, animated: true)

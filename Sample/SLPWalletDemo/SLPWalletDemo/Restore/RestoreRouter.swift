@@ -1,14 +1,12 @@
 //
-//  ScannerRouter.swift
+//  RestoreRouter.swift
 //  SLPWalletDemo
 //
-//  Created by Angel Mortega on 2019/03/20.
+//  Created by Jean-Baptiste Dominguez on 2019/03/26.
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import Foundation
-
-class ScannerRouter: BaseRouter {
+class RestoreRouter: BaseRouter {
     
     func transitBack() {
         viewController?.dismiss(animated: true)

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Pnl-DO-Ean">
+            <objects>
+                <navigationController id="aD1-g1-Ix1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qI6-1h-gHI">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bw1-BM-dmG" kind="relationship" relationship="rootViewController" id="uIN-jt-QkV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qX8-Mm-hq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215" y="-8"/>
+        </scene>
+        <!--Restore View Controller-->
+        <scene sceneID="55y-At-HBT">
+            <objects>
+                <viewController storyboardIdentifier="RestoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bw1-BM-dmG" customClass="RestoreViewController" customModule="SLPWalletDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ZK-48-pBr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7m-7b-UvQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                                <subviews>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter 12 words from a previous wallet backup." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ou-gE-nxQ">
+                                        <rect key="frame" x="16" y="16" width="343" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AQ-ja-XKX">
+                                        <rect key="frame" x="16" y="305" width="343" height="26.5"/>
+                                        <string key="text">Restoring a wallet will overwrite the current wallet. All funds in the current wallet will be lost unless it has already been backed up.</string>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The mnemonic doesn't have 12 words." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqi-KN-s7X">
+                                        <rect key="frame" x="16" y="65" width="343" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="0.53848167841405625" blue="0.42693877050568829" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Mnemonic" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oAq-d7-hy0">
+                                        <rect key="frame" x="16" y="89" width="343" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="YsY-5W-99r"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                    </textField>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X5C-Nj-EiE">
+                                        <rect key="frame" x="87.5" y="177.5" width="200" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="8HX-5m-Fwk"/>
+                                            <constraint firstAttribute="height" constant="200" id="qOi-cp-jXp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1532296538" green="0.17543157940000001" blue="0.23138043280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yqi-KN-s7X" secondAttribute="trailing" constant="16" id="Fdc-GR-R97"/>
+                                    <constraint firstItem="oAq-d7-hy0" firstAttribute="leading" secondItem="t7m-7b-UvQ" secondAttribute="leading" constant="16" id="OCu-Gk-tHX"/>
+                                    <constraint firstItem="7AQ-ja-XKX" firstAttribute="leading" secondItem="t7m-7b-UvQ" secondAttribute="leading" constant="16" id="W3g-XG-nd4"/>
+                                    <constraint firstItem="yqi-KN-s7X" firstAttribute="top" secondItem="4Ou-gE-nxQ" secondAttribute="bottom" constant="8" id="XUM-tw-Ppl"/>
+                                    <constraint firstAttribute="trailing" secondItem="oAq-d7-hy0" secondAttribute="trailing" constant="16" id="YbH-Sa-iHS"/>
+                                    <constraint firstItem="4Ou-gE-nxQ" firstAttribute="leading" secondItem="t7m-7b-UvQ" secondAttribute="leading" constant="16" id="baw-cQ-2cg"/>
+                                    <constraint firstItem="7AQ-ja-XKX" firstAttribute="top" secondItem="oAq-d7-hy0" secondAttribute="bottom" constant="16" id="eoW-l4-Gij"/>
+                                    <constraint firstItem="oAq-d7-hy0" firstAttribute="top" secondItem="4Ou-gE-nxQ" secondAttribute="bottom" constant="32" id="fme-hp-OSH"/>
+                                    <constraint firstItem="X5C-Nj-EiE" firstAttribute="centerX" secondItem="t7m-7b-UvQ" secondAttribute="centerX" id="h3h-6G-yYc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7AQ-ja-XKX" secondAttribute="trailing" constant="16" id="kgL-CM-7tF"/>
+                                    <constraint firstItem="X5C-Nj-EiE" firstAttribute="centerY" secondItem="t7m-7b-UvQ" secondAttribute="centerY" id="l5M-i1-gUt"/>
+                                    <constraint firstItem="yqi-KN-s7X" firstAttribute="leading" secondItem="t7m-7b-UvQ" secondAttribute="leading" constant="16" id="oZi-l4-1Dh"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Ou-gE-nxQ" secondAttribute="trailing" constant="16" id="rz3-xb-9dx"/>
+                                    <constraint firstItem="4Ou-gE-nxQ" firstAttribute="top" secondItem="t7m-7b-UvQ" secondAttribute="top" constant="16" id="w64-k4-0h0"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEw-MF-vTg">
+                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="BN8-JB-OL3"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Restore">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPushRestore:" destination="bw1-BM-dmG" eventType="touchUpInside" id="Xa2-X8-Ioq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="jXO-vO-Lrz" firstAttribute="trailing" secondItem="t7m-7b-UvQ" secondAttribute="trailing" id="Xym-wA-EBI"/>
+                            <constraint firstItem="t7m-7b-UvQ" firstAttribute="top" secondItem="jXO-vO-Lrz" secondAttribute="top" id="aVD-cm-mrA"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="trailing" secondItem="jXO-vO-Lrz" secondAttribute="trailing" id="bQ8-Nh-DGJ"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="leading" secondItem="jXO-vO-Lrz" secondAttribute="leading" id="edQ-Kh-kEG"/>
+                            <constraint firstItem="t7m-7b-UvQ" firstAttribute="leading" secondItem="jXO-vO-Lrz" secondAttribute="leading" id="r49-XE-FIz"/>
+                            <constraint firstItem="jXO-vO-Lrz" firstAttribute="bottom" secondItem="hEw-MF-vTg" secondAttribute="bottom" id="t8G-9Y-83v"/>
+                            <constraint firstItem="hEw-MF-vTg" firstAttribute="top" secondItem="t7m-7b-UvQ" secondAttribute="bottom" id="xIZ-2w-XBS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jXO-vO-Lrz"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ezn-Y9-fre"/>
+                    <connections>
+                        <outlet property="bgAnimationView" destination="X5C-Nj-EiE" id="KLH-fm-K46"/>
+                        <outlet property="errorLabel" destination="yqi-KN-s7X" id="fNy-9e-y3s"/>
+                        <outlet property="mnemonicTextfield" destination="oAq-d7-hy0" id="5WQ-NP-vel"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kz-ue-tI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="596" y="-7.6461769115442282"/>
+        </scene>
+    </scenes>
+</document>

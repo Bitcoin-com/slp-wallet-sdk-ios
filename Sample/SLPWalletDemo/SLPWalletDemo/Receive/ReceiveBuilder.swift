@@ -10,7 +10,7 @@ import UIKit
 
 class ReceiveBuilder {
     
-    static func provide() -> ReceiveViewController {
+    func provide() -> ReceiveViewController {
         let viewController = UIStoryboard(name: "Receive", bundle: nil).instantiateViewController(withIdentifier: "ReceiveViewController") as! ReceiveViewController
         
         let presenter = ReceivePresenter()

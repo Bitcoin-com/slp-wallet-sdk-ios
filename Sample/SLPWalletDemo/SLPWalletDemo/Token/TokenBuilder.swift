@@ -11,7 +11,7 @@ import SLPWallet
 
 class TokenBuilder {
     
-    static func provide(token: SLPToken) -> TokenViewController {
+    func provide(token: SLPToken) -> TokenViewController {
         let viewController = UIStoryboard(name: "Token", bundle: nil).instantiateViewController(withIdentifier: "TokenViewController") as! TokenViewController
         
         let presenter = TokenPresenter()

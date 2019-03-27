@@ -1,5 +1,5 @@
 //
-//  MnemonicViewController.swift
+//  BackupViewController.swift
 //  SLPWalletDemo
 //
 //  Created by Jean-Baptiste Dominguez on 2019/03/06.
@@ -9,9 +9,9 @@
 import UIKit
 import Lottie
 
-class MnemonicViewController: UIViewController {
+class BackupViewController: UIViewController {
     
-    var presenter: MnemonicPresenter?
+    var presenter: BackupPresenter?
 
     @IBOutlet weak var mnemonicLabel: UILabel!
     @IBOutlet weak var bgAnimationView: UIView!
@@ -19,7 +19,7 @@ class MnemonicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Mnemonic"
+        title = "Backup"
         
         presenter?.viewDidLoad()
     }

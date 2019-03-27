@@ -10,7 +10,7 @@ import UIKit
 
 class TokensBuilder {
     
-    static func provide() -> TokensViewController {
+    func provide() -> TokensViewController {
         let viewController = UIStoryboard(name: "Tokens", bundle: nil).instantiateViewController(withIdentifier: "TokensViewController") as! TokensViewController
         
         let router = TokensRouter(viewController: viewController)

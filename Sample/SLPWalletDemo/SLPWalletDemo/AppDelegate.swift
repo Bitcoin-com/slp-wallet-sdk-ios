@@ -9,10 +9,6 @@
 import UIKit
 import CoreData
 
-extension UIColor {
-    static var themBlue: UIColor  { return UIColor(red: 21/255, green: 130/255, blue: 1, alpha: 1) }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
         
-        let rootViewController = TokensBuilder.provide()
+        let rootViewController = TokensBuilder().provide()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         let navStyles = UINavigationBar.appearance()

@@ -10,7 +10,7 @@ import UIKit
 import Lottie
 import WatchConnectivity
 
-class TokensViewController: UITableViewController, UIViewControllerPreviewingDelegate {
+class TokensViewController: UITableViewController {
 
     var tokenOutputs: [TokenOutput] = []
     var presenter: TokensPresenter?
@@ -24,7 +24,7 @@ class TokensViewController: UITableViewController, UIViewControllerPreviewingDel
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "qrcode_icon"), style: .plain, target: self, action: #selector(didPushReceive))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "key_icon"), style: .plain, target: self, action: #selector(didPushMnemonic))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings_icon"), style: .plain, target: self, action: #selector(didPushMnemonic))
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(didRefreshTokens), for: .valueChanged)
@@ -60,16 +60,8 @@ class TokensViewController: UITableViewController, UIViewControllerPreviewingDel
         presenter?.viewDidLoad()
     }
     
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        presenter?.didPushPreview(viewControllerToCommit)
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
-            return nil
-        }
-        
-        return presenter?.didPreview(tokenOutputs[indexPath.item].id)
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.viewWillAppear()
     }
     
     @objc func didRefreshTokens() {
@@ -134,6 +126,20 @@ class TokensViewController: UITableViewController, UIViewControllerPreviewingDel
             self.tokenOutputs.append(tokenOutput)
         }
         tableView.reloadData()
+    }
+}
+
+extension TokensViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        presenter?.didPushPreview(viewControllerToCommit)
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
+            return nil
+        }
+        
+        return presenter?.didPreview(tokenOutputs[indexPath.item].id)
     }
 }
 

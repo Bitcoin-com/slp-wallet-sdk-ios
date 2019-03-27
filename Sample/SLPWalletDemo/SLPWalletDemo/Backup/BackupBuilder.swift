@@ -1,5 +1,5 @@
 //
-//  MnemonicBuilder.swift
+//  BackupBuilder.swift
 //  SLPWalletDemo
 //
 //  Created by Jean-Baptiste Dominguez on 2019/03/06.
@@ -9,12 +9,12 @@
 import UIKit
 import SLPWallet
 
-class MnemonicBuilder {
+class BackupBuilder: BaseBuilder {
     
-    static func provide() -> MnemonicViewController {
-        let viewController = UIStoryboard(name: "Mnemonic", bundle: nil).instantiateViewController(withIdentifier: "MnemonicViewController") as! MnemonicViewController
+    func provide() -> UIViewController {
+        let viewController = UIStoryboard(name: "Backup", bundle: nil).instantiateViewController(withIdentifier: "BackupViewController") as! BackupViewController
         
-        let presenter = MnemonicPresenter()
+        let presenter = BackupPresenter()
         
         presenter.viewDelegate = viewController
         

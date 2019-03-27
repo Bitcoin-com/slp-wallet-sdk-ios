@@ -24,11 +24,11 @@ class ScannerPresenter {
     
     func didNext(value: String) {
         scannerDelegate?.onScanResult(value: value)
-        router?.transitBackToToken()
+        router?.transitBack()
     }
     
     func didPushClose() {
-        router?.transitBackToToken()
+        router?.transitBack()
     }
     
 }

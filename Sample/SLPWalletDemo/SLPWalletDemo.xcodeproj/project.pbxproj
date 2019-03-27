@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0643866A49CA4753A9ADB8F4 /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */; };
-		295A5EBB1D8A1C10E6F38CED /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */; };
+		35DC851BB3D1BDF2DC71564E /* Pods_SLPWalletDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95AD30733A9E4F4B8D567D5 /* Pods_SLPWalletDemo.framework */; };
 		3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */; };
 		3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D21C223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld */; };
 		3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */; };
@@ -38,12 +37,27 @@
 		3BA8753F222EFBDC008A3B1D /* ReceiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8753E222EFBDC008A3B1D /* ReceiveBuilder.swift */; };
 		3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87540222EFCB7008A3B1D /* Receive.storyboard */; };
 		3BA87543222F01A8008A3B1D /* FetchTokensInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */; };
-		3BA87546222F049A008A3B1D /* MnemonicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */; };
-		3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87547222F051B008A3B1D /* MnemonicViewController.swift */; };
-		3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87549222F054E008A3B1D /* Mnemonic.storyboard */; };
-		3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */; };
+		3BA87546222F049A008A3B1D /* RestorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87545222F049A008A3B1D /* RestorePresenter.swift */; };
+		3BA87548222F051B008A3B1D /* RestoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA87547222F051B008A3B1D /* RestoreViewController.swift */; };
+		3BA8754A222F054E008A3B1D /* Restore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA87549222F054E008A3B1D /* Restore.storyboard */; };
+		3BA8754C222F0664008A3B1D /* RestoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8754B222F0664008A3B1D /* RestoreBuilder.swift */; };
 		3BA8E4342241F234009AE9BE /* success_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8E4322241F233009AE9BE /* success_animation.json */; };
 		3BA8E4352241F234009AE9BE /* refresh_loading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */; };
+		3BB10C89224A00CD009BE56D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C88224A00CD009BE56D /* UIColor+Extensions.swift */; };
+		3BB10C8C224A0191009BE56D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C8B224A0191009BE56D /* SettingsViewController.swift */; };
+		3BB10C8E224A01E8009BE56D /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C8D224A01E8009BE56D /* SettingsPresenter.swift */; };
+		3BB10C90224A0237009BE56D /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C8F224A0237009BE56D /* SettingsRouter.swift */; };
+		3BB10C92224A027B009BE56D /* SettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C91224A027B009BE56D /* SettingsBuilder.swift */; };
+		3BB10C94224A02BD009BE56D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB10C93224A02BD009BE56D /* Settings.storyboard */; };
+		3BB10C96224A0853009BE56D /* BaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C95224A0853009BE56D /* BaseBuilder.swift */; };
+		3BB10CA2224A28EB009BE56D /* BackupBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10C9E224A28EB009BE56D /* BackupBuilder.swift */; };
+		3BB10CA3224A28EB009BE56D /* Backup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB10C9F224A28EB009BE56D /* Backup.storyboard */; };
+		3BB10CA4224A28EB009BE56D /* BackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10CA0224A28EB009BE56D /* BackupViewController.swift */; };
+		3BB10CA5224A28EB009BE56D /* BackupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10CA1224A28EB009BE56D /* BackupPresenter.swift */; };
+		3BB10CA7224A2B3F009BE56D /* RestoreWalletInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10CA6224A2B3F009BE56D /* RestoreWalletInteractor.swift */; };
+		3BB10CAB224A3356009BE56D /* rocket_success_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB10CAA224A3356009BE56D /* rocket_success_animation.json */; };
+		3BB10CAD224A33F2009BE56D /* RestoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB10CAC224A33F2009BE56D /* RestoreRouter.swift */; };
+		3BB10CAF224A4ECC009BE56D /* shock_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BB10CAE224A4ECC009BE56D /* shock_animation.json */; };
 		3BB79DEF223DADE9007E23EC /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DED223DADE9007E23EC /* Interface.storyboard */; };
 		3BB79DF1223DADEA007E23EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB79DF0223DADEA007E23EC /* Assets.xcassets */; };
 		3BB79DF8223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3BB79DF7223DADEA007E23EC /* SLPWalletDemo Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -55,6 +69,7 @@
 		3BB79E13223DAF1A007E23EC /* TokenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E11223DAF1A007E23EC /* TokenInterfaceController.swift */; };
 		3BB79E14223DAF1A007E23EC /* TokensInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */; };
 		3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB79E15223DB275007E23EC /* Double+Extensions.swift */; };
+		4F0883ECE6F19622EDA568F8 /* Pods_SLPWalletDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED814C113710E78A2D63C854 /* Pods_SLPWalletDemoUITests.framework */; };
 		93677DCE22423B7800910B0B /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DCD22423B7800910B0B /* ScannerViewController.swift */; };
 		93677DD022423B8900910B0B /* ScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DCF22423B8900910B0B /* ScannerPresenter.swift */; };
 		93677DD222423B9F00910B0B /* ScannerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD122423B9F00910B0B /* ScannerBuilder.swift */; };
@@ -62,7 +77,7 @@
 		93677DD62242409300910B0B /* TokenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD52242409300910B0B /* TokenRouter.swift */; };
 		93677DD822424DE400910B0B /* ScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93677DD722424DE400910B0B /* ScannerRouter.swift */; };
 		93677DDA2242682900910B0B /* qr_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 93677DD92242682900910B0B /* qr_animation.json */; };
-		B9A315E1B39464778243BCF6 /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */; };
+		AA8524F629977606DACDB258 /* Pods_SLPWalletDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5585E6FEE487A28882FC1441 /* Pods_SLPWalletDemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,7 +137,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTokenInteractor.swift; sourceTree = "<group>"; };
 		3B79D21D223AB2E400FF3AFB /* SLPWalletTestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SLPWalletTestApp.xcdatamodel; sourceTree = "<group>"; };
 		3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -159,12 +173,27 @@
 		3BA8753E222EFBDC008A3B1D /* ReceiveBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveBuilder.swift; sourceTree = "<group>"; };
 		3BA87540222EFCB7008A3B1D /* Receive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Receive.storyboard; sourceTree = "<group>"; };
 		3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchTokensInteractor.swift; sourceTree = "<group>"; };
-		3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicPresenter.swift; sourceTree = "<group>"; };
-		3BA87547222F051B008A3B1D /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
-		3BA87549222F054E008A3B1D /* Mnemonic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mnemonic.storyboard; sourceTree = "<group>"; };
-		3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicBuilder.swift; sourceTree = "<group>"; };
+		3BA87545222F049A008A3B1D /* RestorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePresenter.swift; sourceTree = "<group>"; };
+		3BA87547222F051B008A3B1D /* RestoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreViewController.swift; sourceTree = "<group>"; };
+		3BA87549222F054E008A3B1D /* Restore.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Restore.storyboard; sourceTree = "<group>"; };
+		3BA8754B222F0664008A3B1D /* RestoreBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreBuilder.swift; sourceTree = "<group>"; };
 		3BA8E4322241F233009AE9BE /* success_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = success_animation.json; sourceTree = "<group>"; };
 		3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = refresh_loading_animation.json; sourceTree = "<group>"; };
+		3BB10C88224A00CD009BE56D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		3BB10C8B224A0191009BE56D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3BB10C8D224A01E8009BE56D /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		3BB10C8F224A0237009BE56D /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		3BB10C91224A027B009BE56D /* SettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBuilder.swift; sourceTree = "<group>"; };
+		3BB10C93224A02BD009BE56D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		3BB10C95224A0853009BE56D /* BaseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBuilder.swift; sourceTree = "<group>"; };
+		3BB10C9E224A28EB009BE56D /* BackupBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupBuilder.swift; sourceTree = "<group>"; };
+		3BB10C9F224A28EB009BE56D /* Backup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Backup.storyboard; sourceTree = "<group>"; };
+		3BB10CA0224A28EB009BE56D /* BackupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupViewController.swift; sourceTree = "<group>"; };
+		3BB10CA1224A28EB009BE56D /* BackupPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackupPresenter.swift; sourceTree = "<group>"; };
+		3BB10CA6224A2B3F009BE56D /* RestoreWalletInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletInteractor.swift; sourceTree = "<group>"; };
+		3BB10CAA224A3356009BE56D /* rocket_success_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rocket_success_animation.json; sourceTree = "<group>"; };
+		3BB10CAC224A33F2009BE56D /* RestoreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreRouter.swift; sourceTree = "<group>"; };
+		3BB10CAE224A4ECC009BE56D /* shock_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shock_animation.json; sourceTree = "<group>"; };
 		3BB79DEB223DADE9007E23EC /* SLPWalletDemo Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SLPWalletDemo Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB79DEE223DADE9007E23EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		3BB79DF0223DADEA007E23EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,11 +209,9 @@
 		3BB79E12223DAF1A007E23EC /* TokensInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokensInterfaceController.swift; sourceTree = "<group>"; };
 		3BB79E15223DB275007E23EC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		3BD750A72237D05200CF5072 /* SLPWalletDemo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SLPWalletDemo.entitlements; sourceTree = "<group>"; };
-		569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		436A15B5C54717E8CD774D71 /* Pods-SLPWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
+		5585E6FEE487A28882FC1441 /* Pods_SLPWalletDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8034A184B62339AD8AE73F86 /* Pods-SLPWalletDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		93677DCD22423B7800910B0B /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		93677DCF22423B8900910B0B /* ScannerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerPresenter.swift; sourceTree = "<group>"; };
 		93677DD122423B9F00910B0B /* ScannerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerBuilder.swift; sourceTree = "<group>"; };
@@ -192,9 +219,12 @@
 		93677DD52242409300910B0B /* TokenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRouter.swift; sourceTree = "<group>"; };
 		93677DD722424DE400910B0B /* ScannerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerRouter.swift; sourceTree = "<group>"; };
 		93677DD92242682900910B0B /* qr_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = qr_animation.json; sourceTree = "<group>"; };
-		9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
-		9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		9ED2A8BB8345AD47F3B57DB5 /* Pods-SLPWalletDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoTests/Pods-SLPWalletDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B441FA68616D750BBB1C343D /* Pods-SLPWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C193BCFD73104A0CC835DCEE /* Pods-SLPWalletDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA8F0A0A8EC5D99F68F511EE /* Pods-SLPWalletDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLPWalletDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-SLPWalletDemoUITests/Pods-SLPWalletDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E95AD30733A9E4F4B8D567D5 /* Pods_SLPWalletDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED814C113710E78A2D63C854 /* Pods_SLPWalletDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLPWalletDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0643866A49CA4753A9ADB8F4 /* Pods_SLPWalletDemo.framework in Frameworks */,
+				35DC851BB3D1BDF2DC71564E /* Pods_SLPWalletDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9A315E1B39464778243BCF6 /* Pods_SLPWalletDemoTests.framework in Frameworks */,
+				AA8524F629977606DACDB258 /* Pods_SLPWalletDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				295A5EBB1D8A1C10E6F38CED /* Pods_SLPWalletDemoUITests.framework in Frameworks */,
+				4F0883ECE6F19622EDA568F8 /* Pods_SLPWalletDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +274,7 @@
 			children = (
 				3BA87542222F01A8008A3B1D /* FetchTokensInteractor.swift */,
 				3B4CE3AB222F0CA8003B326F /* SendTokenInteractor.swift */,
+				3BB10CA6224A2B3F009BE56D /* RestoreWalletInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -269,6 +300,7 @@
 			children = (
 				3B79D220223AC2F100FF3AFB /* UIViewController+Extensions.swift */,
 				3BB79E15223DB275007E23EC /* Double+Extensions.swift */,
+				3BB10C88224A00CD009BE56D /* UIColor+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -313,17 +345,21 @@
 			isa = PBXGroup;
 			children = (
 				3BA87534222EEB3D008A3B1D /* Common */,
-				3BA87544222F047E008A3B1D /* Mnemonic */,
+				3BB10C8A224A0174009BE56D /* Settings */,
+				3BB10C9D224A28EB009BE56D /* Backup */,
+				3BA87544222F047E008A3B1D /* Restore */,
 				3BA87539222EFB09008A3B1D /* Receive */,
 				93677DCC22423B4B00910B0B /* Scanner */,
 				3BA87525222EE8E4008A3B1D /* Token */,
 				3BA87520222EE875008A3B1D /* Tokens */,
 				3B7FE866222679F400CB5755 /* AppDelegate.swift */,
 				3B7FE86A222679F400CB5755 /* Main.storyboard */,
+				3BB10CAA224A3356009BE56D /* rocket_success_animation.json */,
 				3B7FE870222679F500CB5755 /* Assets.xcassets */,
 				93677DD92242682900910B0B /* qr_animation.json */,
 				3B82E4432243C385002500C3 /* button_loading_animation.json */,
 				3BA8E4332241F234009AE9BE /* refresh_loading_animation.json */,
+				3BB10CAE224A4ECC009BE56D /* shock_animation.json */,
 				3BA8E4322241F233009AE9BE /* success_animation.json */,
 				3B7FE872222679F500CB5755 /* LaunchScreen.storyboard */,
 				3B7FE875222679F500CB5755 /* Info.plist */,
@@ -355,9 +391,9 @@
 			isa = PBXGroup;
 			children = (
 				3B7FE90322283AD700CB5755 /* SLPWallet.xcworkspace */,
-				1363D43584DA40CD26908472 /* Pods_SLPWalletDemo.framework */,
-				9D215B7917EAA4078D080910 /* Pods_SLPWalletDemoTests.framework */,
-				8B6F5DE325720AD972B3ABC9 /* Pods_SLPWalletDemoUITests.framework */,
+				E95AD30733A9E4F4B8D567D5 /* Pods_SLPWalletDemo.framework */,
+				5585E6FEE487A28882FC1441 /* Pods_SLPWalletDemoTests.framework */,
+				ED814C113710E78A2D63C854 /* Pods_SLPWalletDemoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -390,6 +426,7 @@
 		3BA87534222EEB3D008A3B1D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3BB10C97224A085A009BE56D /* Builder */,
 				3B79D21F223AC2CD00FF3AFB /* Extension */,
 				3B4CE3AF222F0FAF003B326F /* Router */,
 				3B4CE3AE222F0FA3003B326F /* Manager */,
@@ -409,15 +446,47 @@
 			path = Receive;
 			sourceTree = "<group>";
 		};
-		3BA87544222F047E008A3B1D /* Mnemonic */ = {
+		3BA87544222F047E008A3B1D /* Restore */ = {
 			isa = PBXGroup;
 			children = (
-				3BA87545222F049A008A3B1D /* MnemonicPresenter.swift */,
-				3BA87547222F051B008A3B1D /* MnemonicViewController.swift */,
-				3BA8754B222F0664008A3B1D /* MnemonicBuilder.swift */,
-				3BA87549222F054E008A3B1D /* Mnemonic.storyboard */,
+				3BA87545222F049A008A3B1D /* RestorePresenter.swift */,
+				3BA87547222F051B008A3B1D /* RestoreViewController.swift */,
+				3BA8754B222F0664008A3B1D /* RestoreBuilder.swift */,
+				3BB10CAC224A33F2009BE56D /* RestoreRouter.swift */,
+				3BA87549222F054E008A3B1D /* Restore.storyboard */,
 			);
-			path = Mnemonic;
+			path = Restore;
+			sourceTree = "<group>";
+		};
+		3BB10C8A224A0174009BE56D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3BB10C8B224A0191009BE56D /* SettingsViewController.swift */,
+				3BB10C8D224A01E8009BE56D /* SettingsPresenter.swift */,
+				3BB10C8F224A0237009BE56D /* SettingsRouter.swift */,
+				3BB10C91224A027B009BE56D /* SettingsBuilder.swift */,
+				3BB10C93224A02BD009BE56D /* Settings.storyboard */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3BB10C97224A085A009BE56D /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				3BB10C95224A0853009BE56D /* BaseBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		3BB10C9D224A28EB009BE56D /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				3BB10C9E224A28EB009BE56D /* BackupBuilder.swift */,
+				3BB10C9F224A28EB009BE56D /* Backup.storyboard */,
+				3BB10CA0224A28EB009BE56D /* BackupViewController.swift */,
+				3BB10CA1224A28EB009BE56D /* BackupPresenter.swift */,
+			);
+			path = Backup;
 			sourceTree = "<group>";
 		};
 		3BB79DEC223DADE9007E23EC /* SLPWalletDemo Watch */ = {
@@ -460,12 +529,12 @@
 		CFE494F9D6423AD77A2A4B65 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */,
-				9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */,
-				6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */,
-				569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */,
-				7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */,
-				8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */,
+				B441FA68616D750BBB1C343D /* Pods-SLPWalletDemo.debug.xcconfig */,
+				436A15B5C54717E8CD774D71 /* Pods-SLPWalletDemo.release.xcconfig */,
+				9ED2A8BB8345AD47F3B57DB5 /* Pods-SLPWalletDemoTests.debug.xcconfig */,
+				8034A184B62339AD8AE73F86 /* Pods-SLPWalletDemoTests.release.xcconfig */,
+				C193BCFD73104A0CC835DCEE /* Pods-SLPWalletDemoUITests.debug.xcconfig */,
+				CA8F0A0A8EC5D99F68F511EE /* Pods-SLPWalletDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -477,12 +546,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE88E222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemo" */;
 			buildPhases = (
-				4FC78CBBFE9FC75D1372A58E /* [CP] Check Pods Manifest.lock */,
+				BBE27C439B85B4BF1926232E /* [CP] Check Pods Manifest.lock */,
 				3B7FE85F222679F400CB5755 /* Sources */,
 				3B7FE860222679F400CB5755 /* Frameworks */,
 				3B7FE861222679F400CB5755 /* Resources */,
 				3BB79E10223DADEB007E23EC /* Embed Watch Content */,
-				192EA402896FD09B6BCF0305 /* [CP] Embed Pods Frameworks */,
+				601C42FB521D00F7C743BF13 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -498,7 +567,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE891222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemoTests" */;
 			buildPhases = (
-				4BFC1097DF7D8C0B1BE535C5 /* [CP] Check Pods Manifest.lock */,
+				0C27A6CCEC5A064EAED5DBA2 /* [CP] Check Pods Manifest.lock */,
 				3B7FE876222679F500CB5755 /* Sources */,
 				3B7FE877222679F500CB5755 /* Frameworks */,
 				3B7FE878222679F500CB5755 /* Resources */,
@@ -517,7 +586,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B7FE894222679F500CB5755 /* Build configuration list for PBXNativeTarget "SLPWalletDemoUITests" */;
 			buildPhases = (
-				0AF83E43CA08620092734734 /* [CP] Check Pods Manifest.lock */,
+				F979D260E99E8B055EDFFBCA /* [CP] Check Pods Manifest.lock */,
 				3B7FE881222679F500CB5755 /* Sources */,
 				3B7FE882222679F500CB5755 /* Frameworks */,
 				3B7FE883222679F500CB5755 /* Resources */,
@@ -623,7 +692,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BA8754A222F054E008A3B1D /* Mnemonic.storyboard in Resources */,
+				3BB10CA3224A28EB009BE56D /* Backup.storyboard in Resources */,
+				3BA8754A222F054E008A3B1D /* Restore.storyboard in Resources */,
 				3B7FE874222679F500CB5755 /* LaunchScreen.storyboard in Resources */,
 				3BA8752D222EE9CD008A3B1D /* Token.storyboard in Resources */,
 				3BA8E4352241F234009AE9BE /* refresh_loading_animation.json in Resources */,
@@ -632,11 +702,14 @@
 				3BA87541222EFCB7008A3B1D /* Receive.storyboard in Resources */,
 				3B7FE871222679F500CB5755 /* Assets.xcassets in Resources */,
 				93677DDA2242682900910B0B /* qr_animation.json in Resources */,
+				3BB10C94224A02BD009BE56D /* Settings.storyboard in Resources */,
 				3B82E4442243C385002500C3 /* button_loading_animation.json in Resources */,
+				3BB10CAB224A3356009BE56D /* rocket_success_animation.json in Resources */,
 				3B7FE90B2228FFDF00CB5755 /* Podfile in Resources */,
 				3B79D227223BE18600FF3AFB /* TokenViewCell.xib in Resources */,
 				3B7FE86C222679F400CB5755 /* Main.storyboard in Resources */,
 				93677DD422423BB100910B0B /* Scanner.storyboard in Resources */,
+				3BB10CAF224A4ECC009BE56D /* shock_animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,46 +747,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AF83E43CA08620092734734 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SLPWalletDemoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		192EA402896FD09B6BCF0305 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4BFC1097DF7D8C0B1BE535C5 /* [CP] Check Pods Manifest.lock */ = {
+		0C27A6CCEC5A064EAED5DBA2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -735,7 +769,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4FC78CBBFE9FC75D1372A58E /* [CP] Check Pods Manifest.lock */ = {
+		601C42FB521D00F7C743BF13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SLPWalletDemo/Pods-SLPWalletDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BBE27C439B85B4BF1926232E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -757,6 +808,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F979D260E99E8B055EDFFBCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SLPWalletDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -765,32 +838,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BA87536222EEB46008A3B1D /* BaseRouter.swift in Sources */,
-				3BA87546222F049A008A3B1D /* MnemonicPresenter.swift in Sources */,
+				3BA87546222F049A008A3B1D /* RestorePresenter.swift in Sources */,
 				3BA8753B222EFB22008A3B1D /* ReceiveViewController.swift in Sources */,
+				3BB10C96224A0853009BE56D /* BaseBuilder.swift in Sources */,
 				93677DD222423B9F00910B0B /* ScannerBuilder.swift in Sources */,
+				3BB10CA4224A28EB009BE56D /* BackupViewController.swift in Sources */,
 				3BA87522222EE8AA008A3B1D /* TokensViewController.swift in Sources */,
 				3BA8753D222EFB6E008A3B1D /* ReceivePresenter.swift in Sources */,
 				3BA8753F222EFBDC008A3B1D /* ReceiveBuilder.swift in Sources */,
 				3BA87524222EE8D9008A3B1D /* TokenViewController.swift in Sources */,
+				3BB10C92224A027B009BE56D /* SettingsBuilder.swift in Sources */,
 				3B7FE867222679F400CB5755 /* AppDelegate.swift in Sources */,
 				3B79D21E223AB2E400FF3AFB /* SLPWalletDemo.xcdatamodeld in Sources */,
 				93677DD62242409300910B0B /* TokenRouter.swift in Sources */,
+				3BB10C90224A0237009BE56D /* SettingsRouter.swift in Sources */,
+				3BB10C89224A00CD009BE56D /* UIColor+Extensions.swift in Sources */,
+				3BB10CA5224A28EB009BE56D /* BackupPresenter.swift in Sources */,
+				3BB10CA2224A28EB009BE56D /* BackupBuilder.swift in Sources */,
 				3BA87527222EE8FF008A3B1D /* TokensPresenter.swift in Sources */,
 				93677DD822424DE400910B0B /* ScannerRouter.swift in Sources */,
+				3BB10CA7224A2B3F009BE56D /* RestoreWalletInteractor.swift in Sources */,
 				3BA87538222EECB0008A3B1D /* WalletManager.swift in Sources */,
 				3BA8752B222EE99E008A3B1D /* TokenBuilder.swift in Sources */,
 				3B79D221223AC2F100FF3AFB /* UIViewController+Extensions.swift in Sources */,
-				3BA87548222F051B008A3B1D /* MnemonicViewController.swift in Sources */,
+				3BA87548222F051B008A3B1D /* RestoreViewController.swift in Sources */,
 				3BA87533222EEAA3008A3B1D /* TokensRouter.swift in Sources */,
 				3B79D229223BE1B000FF3AFB /* TokenViewCell.swift in Sources */,
 				93677DCE22423B7800910B0B /* ScannerViewController.swift in Sources */,
 				3B4CE3AC222F0CA8003B326F /* SendTokenInteractor.swift in Sources */,
 				3BA87529222EE982008A3B1D /* TokenPresenter.swift in Sources */,
+				3BB10C8C224A0191009BE56D /* SettingsViewController.swift in Sources */,
 				93677DD022423B8900910B0B /* ScannerPresenter.swift in Sources */,
 				3BA8752F222EEA03008A3B1D /* TokensBuilder.swift in Sources */,
-				3BA8754C222F0664008A3B1D /* MnemonicBuilder.swift in Sources */,
+				3BB10CAD224A33F2009BE56D /* RestoreRouter.swift in Sources */,
+				3BA8754C222F0664008A3B1D /* RestoreBuilder.swift in Sources */,
 				3BB79E16223DB275007E23EC /* Double+Extensions.swift in Sources */,
 				3BA87543222F01A8008A3B1D /* FetchTokensInteractor.swift in Sources */,
+				3BB10C8E224A01E8009BE56D /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,7 +1077,7 @@
 		};
 		3B7FE88F222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A26927A9BA9611D92100B5F8 /* Pods-SLPWalletDemo.debug.xcconfig */;
+			baseConfigurationReference = B441FA68616D750BBB1C343D /* Pods-SLPWalletDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1013,7 +1097,7 @@
 		};
 		3B7FE890222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C65A3B965B6A5ECE307D0D1 /* Pods-SLPWalletDemo.release.xcconfig */;
+			baseConfigurationReference = 436A15B5C54717E8CD774D71 /* Pods-SLPWalletDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1033,7 +1117,7 @@
 		};
 		3B7FE892222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6ADEF541381AAC64169CC15C /* Pods-SLPWalletDemoTests.debug.xcconfig */;
+			baseConfigurationReference = 9ED2A8BB8345AD47F3B57DB5 /* Pods-SLPWalletDemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1055,7 +1139,7 @@
 		};
 		3B7FE893222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 569379E9A2554348C07DB899 /* Pods-SLPWalletDemoTests.release.xcconfig */;
+			baseConfigurationReference = 8034A184B62339AD8AE73F86 /* Pods-SLPWalletDemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1077,7 +1161,7 @@
 		};
 		3B7FE895222679F500CB5755 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B99AFE86D416991812CCFC2 /* Pods-SLPWalletDemoUITests.debug.xcconfig */;
+			baseConfigurationReference = C193BCFD73104A0CC835DCEE /* Pods-SLPWalletDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1098,7 +1182,7 @@
 		};
 		3B7FE896222679F500CB5755 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8124A418083BC5D285660B74 /* Pods-SLPWalletDemoUITests.release.xcconfig */;
+			baseConfigurationReference = CA8F0A0A8EC5D99F68F511EE /* Pods-SLPWalletDemoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
