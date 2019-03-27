@@ -1,27 +1,15 @@
-
 //
 //  StorageProvider.swift
 //  SLPWallet
 //
-//  Created by Jean-Baptiste Dominguez on 2019/03/12.
+//  Created by Jean-Baptiste Dominguez on 2019/03/27.
 //  Copyright © 2019 Bitcoin.com. All rights reserved.
 //
 
-import KeychainAccess
+import Foundation
 
-class StorageProvider {
-    fileprivate let keychain: Keychain = {
-        guard let bundleId = Bundle.main.bundleIdentifier else {
-            fatalError("Should initialize properly to start using this SDK")
-        }
-        return Keychain(service: bundleId)
-    }()
-    
-    func setString(_ value: String, key: String) throws {
-        try keychain.set(value, key: key)
-    }
-    
-    func getString(_ key: String) throws -> String? {
-        return try keychain.get(key)
-    }
+protocol StorageProvider {
+    func remove(_ key: String) throws
+    func setString(_ value: String, key: String) throws
+    func getString(_ key: String) throws -> String?
 }

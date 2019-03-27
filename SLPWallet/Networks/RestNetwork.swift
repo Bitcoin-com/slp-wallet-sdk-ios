@@ -65,6 +65,15 @@ extension RestNetwork: TargetType {
     }
     
     public var headers: [String : String]? {
-        return ["Content-Type": "application/json"]
+        var headers =  ["Content-Type": "application/json"]
+        
+        guard let apiKey = SLPWalletConfig.shared.restAPIKey else {
+            return headers
+        }
+        
+        // Add the API Key
+        headers["Authorization"] = "Basic \(apiKey)"
+        
+        return headers
     }
 }

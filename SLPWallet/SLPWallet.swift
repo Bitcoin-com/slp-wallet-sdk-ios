@@ -24,7 +24,7 @@ public protocol SLPWalletDelegate {
 public class SLPWallet {
     
     fileprivate static let bag = DisposeBag()
-    fileprivate static let storageProvider = StorageProvider()
+    fileprivate static let storageProvider = SecureStorageProvider()
     fileprivate let semaphore = DispatchSemaphore(value: 1)
     
     let _mnemonic: [String]
