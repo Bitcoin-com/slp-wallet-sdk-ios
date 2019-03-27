@@ -1,4 +1,4 @@
-# SLPWallet Demo
+# SLPWallet Demo :snake:
 
 ![Version](https://img.shields.io/badge/version-v0.2.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg) 
