@@ -118,8 +118,8 @@ class TokensPresenter {
                 
                 // Notify my UI
                 strongSelf.viewDelegate?.onFetchTokens(tokenOutputs: tokenOutputs)
-            }, onError: { error in
-                // TODO: Do something
+            }, onError: { [weak self] error in
+                self?.viewDelegate?.onError()
             })
             .disposed(by: bag)
     }

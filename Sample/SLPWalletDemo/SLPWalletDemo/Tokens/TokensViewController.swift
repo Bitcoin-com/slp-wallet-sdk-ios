@@ -80,6 +80,11 @@ class TokensViewController: UITableViewController {
         presenter?.didPushMnemonic()
     }
     
+    func onError() {
+        refreshControl?.endRefreshing()
+        animationView?.stop()
+    }
+    
     func onFetchTokens(tokenOutputs: [TokenOutput]) {
         // Reload the table on fetched tokens
         self.tokenOutputs = tokenOutputs
