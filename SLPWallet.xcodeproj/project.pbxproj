@@ -157,7 +157,7 @@
 				C1FE69D587C893FA137F1448 /* Pods-SLPWalletTests.debug.xcconfig */,
 				F6DF1AB1F68E3CDAE0771FAA /* Pods-SLPWalletTests.release.xcconfig */,
 			);
-			path = Pods;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		0BD85E2FC2EB379579C59110 /* Frameworks */ = {

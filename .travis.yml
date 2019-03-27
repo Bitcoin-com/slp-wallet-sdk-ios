@@ -3,6 +3,7 @@ osx_image: xcode10.1
 before_install:
   - travis_retry pod repo update
 install:
+  - gem install cocoapods --pre
   - pod deintegrate
   - pod cache clean --all
   - pod setup
