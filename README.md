@@ -63,6 +63,24 @@ Under the wood, the SDK is using [KeychainAccess](https://github.com/kishikawaka
 
 ## Get Started
 
+### Setup API Key (Not required :warning:, nice to have :dash:)
+
+The SDK is using https://rest.bitcoin.com, so if you would like to upgrade your rate limit of call, you may configure the SDK with an API key as shown bellow.
+
+Add your API key to your ```AppDelegate.swift``` as follows:
+
+1. Add the following import statement:
+
+```Swift
+Import SLPWallet
+```
+
+2. Set the API Key in the ```application(_:didFinishLaunchingWithOptions:)```
+
+```Swift
+SLPWalletConfig.setRestAPIKey("MY_API_KEY")
+```
+
 ### Creating new wallet with/without mnemonic
 
 The wallet is working with only 2 addresses using :
