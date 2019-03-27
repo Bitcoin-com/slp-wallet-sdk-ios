@@ -160,7 +160,13 @@ public extension SLPWallet {
                         let utxos = rawUtxos
                             .flatMap { $0.utxos }
                         
+                        var myUTXOs: [String] = self.tokens
+                            .flatMap { $1._utxos }
+                            .flatMap { $0.txid }
+                        myUTXOs.append(contentsOf: self.utxos.flatMap({ $0.txid }))
+                        
                         let requests = utxos
+                            .filter { !myUTXOs.contains($0.txid) }
                             .compactMap { $0.txid }
                             .removeDuplicates()
                             .chunk(20)
