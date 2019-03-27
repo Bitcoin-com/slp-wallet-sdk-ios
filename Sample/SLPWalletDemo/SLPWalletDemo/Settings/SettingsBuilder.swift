@@ -21,7 +21,6 @@ class SettingsBuilder {
         let viewController = UIStoryboard(name: "Settings", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
         
         let backupSetting = SettingsEntity(title: "Backup", description: "Mnemonic is used to backup and restore your wallet", iconName: "backup_icon", builder: BackupBuilder())
-        
         let restoreSetting = SettingsEntity(title: "Restore", description: "Restoring a wallet will overwrite the current wallet", iconName: "restore_icon", builder: RestoreBuilder())
         
         let settings = [backupSetting, restoreSetting]
