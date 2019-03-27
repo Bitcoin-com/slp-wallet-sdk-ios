@@ -4,8 +4,9 @@ before_install:
   - travis_retry pod repo update
 install:
   - pod deintegrate
+  - pod clean
+  - pod setup
   - travis_wait 30 pod install
-  - travis_wait 30 pod update
 script:
   - xcodebuild -workspace SLPWallet.xcworkspace -scheme SLPWallet -destination platform\=iOS\ Simulator,OS\=12.1,name\=iPhone\ XR -enableCodeCoverage YES test > /dev/null
 after_success:
