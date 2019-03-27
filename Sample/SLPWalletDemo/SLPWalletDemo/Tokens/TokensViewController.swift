@@ -20,7 +20,7 @@ class TokensViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "SLP Wallet"
+        title = "SLP Token Wallet"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "qrcode_icon"), style: .plain, target: self, action: #selector(didPushReceive))
         
