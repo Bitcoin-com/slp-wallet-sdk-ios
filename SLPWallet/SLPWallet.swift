@@ -162,14 +162,19 @@ public extension SLPWallet {
                         
                         var myUTXOs: [String] = self.tokens
                             .flatMap { $1._utxos }
-                            .flatMap { "\($0.txid)-\($0.index)" }
-                        myUTXOs.append(contentsOf: self.utxos.flatMap({ "\($0.txid)-\($0.index)" }))
+                            .compactMap { "\($0.txid)-\($0.index)" }
+                        myUTXOs.append(contentsOf: self.utxos.compactMap({ "\($0.txid)-\($0.index)" }))
                         
                         let requests = utxos
                             .filter { !myUTXOs.contains("\($0.txid)-\($0.vout)") }
                             .compactMap { $0.txid }
                             .removeDuplicates()
                             .chunk(20)
+                        
+                        guard requests.count > 0 else {
+                            single(.success(self._tokens))
+                            return
+                        }
                         
                         let observable = Observable
                             .from(requests)
