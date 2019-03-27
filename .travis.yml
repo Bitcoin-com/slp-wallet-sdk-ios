@@ -4,7 +4,7 @@ before_install:
   - travis_retry pod repo update
 install:
   - pod deintegrate
-  - pod clean
+  - pod cache clean --all
   - pod setup
   - travis_wait 30 pod install
 script:
