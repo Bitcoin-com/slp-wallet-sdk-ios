@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SLPWallet"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "SLP Wallet SDK for iOS"
   s.description  = "SLP Wallet SDK for iOS"
 
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
-  s.source       = { :git => "https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git", :branch => "master" }
+  s.source       = { :git => "https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git", :branch => "v#{s.version}" }
   s.source_files  = "SLPWallet/**/*.swift"
 
   # s.resource  = "icon.png"
