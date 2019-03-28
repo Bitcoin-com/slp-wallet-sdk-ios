@@ -10,12 +10,6 @@ import SLPWallet
 
 class RestoreWalletInteractor {
     func restore(_ mnemonic: String) -> Bool {
-        guard let wallet = try? SLPWallet(mnemonic, network: .mainnet) else {
-            return false
-        }
-        
-        WalletManager.shared.wallet = wallet
-        
-        return true
+        return WalletManager.shared.restore(mnemonic)
     }
 }

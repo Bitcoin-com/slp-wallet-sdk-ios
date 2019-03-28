@@ -14,7 +14,7 @@ enum WalletManagerError: Error {
     case TOKEN_NOT_FOUND
 }
 
-class WalletManager: SLPWalletDelegate {
+class WalletManager {
     
     static let shared = WalletManager()
     
@@ -26,11 +26,27 @@ class WalletManager: SLPWalletDelegate {
     init() {
         do {
             wallet = try SLPWallet(.mainnet)
-            wallet.delegate = self
-            wallet.scheduler.resume()
+            setup()
         } catch {
             fatalError("It should be able to construct a wallet")
         }
+    }
+    
+    func restore(_ mnemonic: String) -> Bool {
+        guard let wallet = try? SLPWallet(mnemonic, network: .mainnet) else {
+            return false
+        }
+        
+        // Stop the scheduler of the previous wallet
+        self.wallet.scheduler.cancel()
+        
+        // Replace the wallet
+        self.wallet = wallet
+        
+        // Setup the wallet
+        setup()
+        
+        return true
     }
     
     func observeToken(tokenId: String) throws -> Observable<SLPToken> {
@@ -54,6 +70,14 @@ class WalletManager: SLPWalletDelegate {
         
         return observedTokens.asObservable()
     }
+    
+    private func setup() {
+        wallet.delegate = self
+        wallet.scheduler.resume()
+    }
+}
+
+extension WalletManager: SLPWalletDelegate {
     
     func onUpdatedToken(_ token: SLPToken) {
         

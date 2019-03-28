@@ -41,7 +41,9 @@ class TokensPresenter {
     
     func viewWillAppear() {
         if (wallet.cashAddress != WalletManager.shared.wallet.cashAddress) {
-            viewDelegate?.navigationController?.setViewControllers([TokensBuilder().provide()], animated: true)
+            viewDelegate?.onFetchTokens(tokenOutputs: [])
+            wallet = WalletManager.shared.wallet
+            fetchTokens()
         }
     }
     
