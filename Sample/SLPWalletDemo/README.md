@@ -1,3 +1,5 @@
+![Logo](../../github_logo.png)
+
 # SLPWallet Demo :snake:
 
 ![Version](https://img.shields.io/badge/version-v0.4.0-blue.svg)
