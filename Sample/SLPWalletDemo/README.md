@@ -1,6 +1,6 @@
 ![Logo](../../github_logo.png)
 
-# SLPWallet Demo :snake:
+# SLPWallet Demo :snake: (Built with VIPER)
 
 ![Version](https://img.shields.io/badge/version-v0.4.0-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-ios-black.svg) 
@@ -12,7 +12,7 @@
 
 ### Playing with the SDK
 
-This code comes from [WalletManager.swift](SLPWalletDemo/Common/Manager/WalletManager.swift). You can create a SLP wallet in few lines only. All other files don't concern the SDK but mainly UI.
+You can create an SLP wallet in a few lines only. This code comes from [WalletManager.swift](SLPWalletDemo/Common/Manager/WalletManager.swift). All other files are UI related code and don't concern the SDK. 
 
 ```swift
 //
@@ -69,7 +69,7 @@ extension WalletManager: SLPWalletDelegate {
 
 ```
 
-Then it shows how to send token in this file [SendTokenInteractor.swift](SLPWalletDemo/Common/Interactor/SendTokenInteractor.swift) 
+After creating your wallet, you can start sending tokens. This file describes how to send tokens: [SendTokenInteractor.swift](SLPWalletDemo/Common/Interactor/SendTokenInteractor.swift). Below you can see a preview of the file.
 ```Swift
 //
 // ...
