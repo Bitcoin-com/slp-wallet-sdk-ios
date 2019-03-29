@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.com/Bitcoin-com/slp-wallet-sdk-ios.svg?branch=master)](https://travis-ci.com/Bitcoin-com/slp-wallet-sdk-ios)
 [![codecov](https://codecov.io/gh/bitcoin-com/slp-wallet-sdk-ios/branch/master/graph/badge.svg?token=FRvZH4tttT)](https://codecov.io/gh/bitcoin-com/slp-wallet-sdk-ios)
-![Version](https://img.shields.io/badge/pod-v0.1.0-blue.svg)
+[![Version](https://img.shields.io/badge/pod-v0.1.0-blue.svg)](https://github.com/Bitcoin-com/CocoaPods/tree/master/SLPWallet/0.1.0)
 ![Platform](https://img.shields.io/badge/platform-ios-black.svg) 
 ![Compatibility](https://img.shields.io/badge/iOS-+10.0-orange.svg) 
 ![Compatibility](https://img.shields.io/badge/Swift-4.0-orange.svg) 
