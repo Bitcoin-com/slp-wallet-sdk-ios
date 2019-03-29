@@ -13,7 +13,13 @@ import RxBlocking
 
 class SLPWalletTest: QuickSpec {
     override func spec() {
+        
         describe("SLPWallet") {
+            
+            beforeEach {
+                SLPWalletConfig.setRestURL("https://rest.bitcoin.com/v2")
+            }
+            
             context("Create wallet") {
                 it("should success") {
                     let wallet = try! SLPWallet("machine cannon man rail best deliver draw course time tape violin tone", network: .mainnet)

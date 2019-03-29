@@ -15,6 +15,10 @@ class RestServiceTest: QuickSpec {
     override func spec() {
         describe("RestService") {
             
+            beforeEach {
+                SLPWalletConfig.setRestURL("https://rest.bitcoin.com/v2")
+            }
+            
             context("Fetch UTXO") {
                 it("should success") {
                     let utxos = try! RestService

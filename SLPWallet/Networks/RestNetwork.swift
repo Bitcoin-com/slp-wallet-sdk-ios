@@ -18,7 +18,7 @@ enum RestNetwork {
 extension RestNetwork: TargetType {
     
     public var baseURL: URL {
-        guard let url = URL(string: "https://rest.bitcoin.com/v2") else {
+        guard let url = URL(string: SLPWalletConfig.shared.restURL) else {
             fatalError("should be able to parse this URL")
         }
         

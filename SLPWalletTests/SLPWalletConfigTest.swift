@@ -21,6 +21,15 @@ class SLPWalletConfigTest: QuickSpec {
                     expect(SLPWalletConfig.shared.restAPIKey).to(equal("test"))
                 }
             }
+            
+            context("SetURL") {
+                it("should success") {
+                    expect(SLPWalletConfig.shared.restURL).to(equal("https://rest.bitcoin.com/v2"))
+                    
+                    SLPWalletConfig.setRestURL("test")
+                    expect(SLPWalletConfig.shared.restURL).to(equal("test"))
+                }
+            }
         }
     }
 }
