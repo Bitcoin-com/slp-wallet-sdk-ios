@@ -1,8 +1,9 @@
 # SLPWallet Demo :snake:
 
-![Version](https://img.shields.io/badge/version-v0.2.0-blue.svg)
-![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg) 
-![Compatibility](https://img.shields.io/badge/iOS-%3E=10.0-orange.svg) 
+![Version](https://img.shields.io/badge/version-v0.4.0-blue.svg)
+![Platform](https://img.shields.io/badge/platform-ios-black.svg) 
+![Compatibility](https://img.shields.io/badge/iOS-+10.0-orange.svg) 
+![Compatibility](https://img.shields.io/badge/Swift-4.0-orange.svg) 
 ![License](https://img.shields.io/badge/License-MIT-black.svg) 
 
 ## Get Started
@@ -22,7 +23,7 @@ import SLPWallet
 // ...
 //
 
-class WalletManager: SLPWalletDelegate {
+class WalletManager {
     
     static let shared = WalletManager()
     
@@ -33,9 +34,8 @@ class WalletManager: SLPWalletDelegate {
     
     init() {
         do {
-            wallet = try SLPWallet(.mainnet) // 1 line 🚀🚀🚀
-            wallet.delegate = self
-            wallet.scheduler.resume()
+            wallet = try SLPWallet(.mainnet)
+            setup()
         } catch {
             fatalError("It should be able to construct a wallet")
         }
@@ -44,6 +44,9 @@ class WalletManager: SLPWalletDelegate {
     //
     // ... 
     //
+}
+
+extension WalletManager: SLPWalletDelegate {
     
     // Call with SLPWalletDelegate ❗️💥🚀
     func onUpdatedToken(_ token: SLPToken) {

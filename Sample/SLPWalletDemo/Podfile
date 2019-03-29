@@ -9,7 +9,7 @@ target 'SLPWalletDemo' do
   use_frameworks!
 
   # Pods for SLPWalletDemo
-  pod 'SLPWallet', :git => 'https://github.com/bitcoin-portal/slp-wallet-sdk-ios.git', :branch => 'master'
+  pod 'SLPWallet'
   pod 'RxSwift',        '~> 4.0'
   pod 'RxCocoa',        '~> 4.0'
   pod 'lottie-ios',     '~> 2.5.2'
