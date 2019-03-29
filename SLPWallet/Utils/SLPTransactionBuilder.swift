@@ -233,6 +233,25 @@ class SLPTransactionBuilder {
         
         let signedTx = transactionToSign.serialized()
         
+        //
+        // Check Destination
+        //
+        
+        if toAddress.cashaddr == tokenChangeAddress.cashaddr {
+            let newUTXO = SLPTokenUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTo.hex, index: 1, rawTokenQty: rawTokenAmount)
+            newUTXO._isValid = true
+            newUTXOs.append(newUTXO)
+        }
+        
+        if toAddress.cashaddr == cashChangeAddress.cashaddr {
+            let newUTXO = SLPWalletUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: cashChangeAddress.cashaddr, scriptPubKey: lockScriptTo.hex, index: 1)
+            newUTXOs.append(newUTXO)
+        }
+        
+        //
+        // Check Change
+        //
+        
         var index = 2
         if rawTokenChange > 0 {
             let newUTXO = SLPTokenUTXO(unsignedTx.tx.txID, satoshis: Int64(minSatoshisForToken), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index, rawTokenQty: rawTokenChange)
@@ -242,7 +261,7 @@ class SLPTransactionBuilder {
         }
         
         if change > minSatoshisForToken { // Minimum for expensable utxo
-            let newUTXO = SLPWalletUTXO(unsignedTx.tx.txID, satoshis: Int64(change), cashAddress: tokenChangeAddress.cashaddr, scriptPubKey: lockScriptTokenChange.hex, index: index)
+            let newUTXO = SLPWalletUTXO(unsignedTx.tx.txID, satoshis: Int64(change), cashAddress: cashChangeAddress.cashaddr, scriptPubKey: lockScriptCashChange.hex, index: index)
             newUTXOs.append(newUTXO)
         }
 
