@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         SLPWalletConfig.setRestAPIKey("BITBOX:slpsdkH6aIcXEApC4wXQfqqPH")
+        SLPWalletConfig.setRestURL("https://rest.bitcoin.com/v2")
         
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
