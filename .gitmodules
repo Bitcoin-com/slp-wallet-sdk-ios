@@ -1,0 +1,3 @@
+[submodule "Sample/SLPWalletDemo"]
+	path = Sample/SLPWalletDemo
+	url = https://github.com/Bitcoin-com/slp-wallet-sdk-ios-demo.git
