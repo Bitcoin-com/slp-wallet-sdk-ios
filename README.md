@@ -193,9 +193,9 @@ class MyViewController: SLPWalletDelegate {
 
 ## Sample Project
 
-[iOS project developed with SLPWallet SDK](Sample/SLPWalletDemo/)
+[iOS project developed with SLPWallet SDK](https://github.com/Bitcoin-com/slp-wallet-sdk-ios-demo)
 
-![Alt Text](Sample/SLPWalletDemo/demo-app.gif)
+![Alt Text](https://github.com/Bitcoin-com/slp-wallet-sdk-ios-demo/raw/master/demo-app.gif)
 
 ## Authors & Maintainers
 - Jean-Baptiste Dominguez [[Github](https://github.com/jbdtky), [Twitter](https://twitter.com/jbdtky)]
