@@ -130,11 +130,7 @@ public class SLPWallet {
         self._mnemonic = arrayOfwords
         self._network = network
         
-        // TODO: Quick way to do it, @angel is working on building it in BitcoinKit
-        // Not working
-        // self._slpAddress = privKey.publicKey().toSlpaddr().slpaddr
-        let addressData: Data = [0] + privKey.publicKey().toCashaddr().data
-        self._slpAddress = Bech32.encode(addressData, prefix: network == .mainnet ? "simpleledger" : "slptest")
+        self._slpAddress = privKey.publicKey().toSlpaddr().slpaddr
         self._tokens = [String:SLPToken]()
         self._utxos = [SLPWalletUTXO]()
         self._usedUTXOs = [SLPWalletUTXO]()
