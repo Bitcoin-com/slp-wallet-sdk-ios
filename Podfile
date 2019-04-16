@@ -11,7 +11,7 @@ abstract_target 'All' do
     pod 'RxCocoa',          '~> 4.0'
     pod 'Moya/RxSwift',     '~> 11.0'
     pod 'KeychainAccess',   '~> 3.1.2'
-    pod 'BitcoinKit',       '~> 1.1.0'
+    pod 'BitcoinKit',       '~> 1.1.1'
     
     target 'SLPWallet' do
     end
