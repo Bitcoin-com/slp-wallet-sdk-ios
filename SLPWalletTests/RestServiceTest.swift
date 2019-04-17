@@ -26,7 +26,6 @@ class RestServiceTest: QuickSpec {
                         .toBlocking()
                         .single()
                     expect(utxos).notTo(beNil())
-                    expect(utxos.first?.scriptPubKey).to(equal("76a914ac554d6f334d82809124a91b947271db67c0b80088ac"))
                 }
             }
             
