@@ -115,9 +115,9 @@ class SLPTransactionBuilder {
         }
         
         usedUTXOs.append(contentsOf: selectedTokenUTXOs)
-        var selectedUTXOs = selectedTokenUTXOs.map({ utxo -> UnspentTransaction in
+        var selectedUTXOs = selectedTokenUTXOs.map { utxo -> UnspentTransaction in
             return utxo.asUnspentTransaction()
-        })
+        }
 
         guard let tokenChangeAddress = try? AddressFactory.create(wallet.SLPAccount.cashAddress) else {
             throw SLPTransactionBuilderError.WALLET_ADDRESS_INVALID
@@ -184,9 +184,9 @@ class SLPTransactionBuilder {
                 }
                 .compactMap { $0 }
             
-            let gasUTXOs = gasTokenUTXOs.map({ utxo -> UnspentTransaction in
+            let gasUTXOs = gasTokenUTXOs.map { utxo -> UnspentTransaction in
                 return utxo.asUnspentTransaction()
-            })
+            }
             
             let gas: Int64 = Int64(gasUTXOs.reduce(0) { $0 + $1.output.value })
             

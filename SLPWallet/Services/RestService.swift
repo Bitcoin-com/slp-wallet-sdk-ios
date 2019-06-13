@@ -47,7 +47,7 @@ extension RestService {
                 .retry(3)
                 .map([ResponseUTXOs].self)
                 .asObservable()
-                .subscribe ({ (event) in
+                .subscribe { event in
                     switch event {
                     case .next(let utxos):
                         observer(.success(utxos))
@@ -55,7 +55,7 @@ extension RestService {
                         observer(.error(RestError.REST_UTXOS))
                     default: break
                     }
-                })
+                }
                 .disposed(by: RestService.bag)
             return Disposables.create()
         })
@@ -102,7 +102,7 @@ extension RestService {
                 .retry(3)
                 .map([ResponseTx].self)
                 .asObservable()
-                .subscribe ({ (event) in
+                .subscribe { event in
                     switch event {
                     case .next(let txs):
                         observer(.success(txs))
@@ -110,7 +110,7 @@ extension RestService {
                         observer(.error(RestError.REST_TX_DETAILS))
                     default: break
                     }
-                })
+                }
                 .disposed(by: RestService.bag)
             return Disposables.create()
         })
@@ -128,7 +128,7 @@ extension RestService {
                 .request(.broadcast(rawTx))
                 .retry(3)
                 .asObservable()
-                .subscribe ({ (event) in
+                .subscribe { event in
                     switch event {
                     case .next(let response):
                         guard let json = try? response.mapJSON()
@@ -142,7 +142,7 @@ extension RestService {
                         observer(.error(RestError.REST_SEND_RAW_TX))
                     default: break
                     }
-                })
+                }
                 .disposed(by: RestService.bag)
             return Disposables.create()
         })
@@ -166,7 +166,7 @@ extension RestService {
                 .retry(3)
                 .map([ResponseTxValidation].self)
                 .asObservable()
-                .subscribe ({ (event) in
+                .subscribe { event in
                     switch event {
                     case .next(let txValidations):
                         observer(.success(txValidations))
@@ -174,7 +174,7 @@ extension RestService {
                         observer(.error(RestError.REST_TX_VALIDATIONS))
                     default: break
                     }
-                })
+                }
                 .disposed(by: RestService.bag)
             return Disposables.create()
         })

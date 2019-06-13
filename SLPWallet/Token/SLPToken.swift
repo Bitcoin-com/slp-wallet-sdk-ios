@@ -72,7 +72,7 @@ extension SLPToken {
     }
     
     func addUTXOs(_ utxos: [SLPTokenUTXO]) {
-        utxos.forEach({ self.addUTXO($0) })
+        utxos.forEach { self.addUTXO($0) }
     }
     
     func removeUTXO(_ utxo: SLPTokenUTXO) {

@@ -150,7 +150,7 @@ class SLPTransactionParser {
         }
         
         // Get the vouts that we are interested in
-        vouts.forEach({ i in
+        vouts.forEach { i in
             let vout = tx.vout[i]
             
             guard let rawAddress = vout.scriptPubKey.addresses?.first
@@ -181,7 +181,7 @@ class SLPTransactionParser {
             let rawTokenQty = voutToTokenQty[vout.n]
             let tokenUTXO = SLPTokenUTXO(tx.txid, satoshis: vout.value.toSatoshis(), cashAddress: cashAddress, scriptPubKey: vout.scriptPubKey.hex, index: vout.n, rawTokenQty: rawTokenQty)
             parsedToken.addUTXO(tokenUTXO)
-        })
+        }
         
         return SLPTransactionParserResponse(token: parsedToken, utxos: parsedUTXOs)
     }

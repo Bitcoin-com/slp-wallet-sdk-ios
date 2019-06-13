@@ -131,14 +131,14 @@ wallet
     .fetchTokens() // RxSwift => Single<[String:Token]>
     .subscribe(onSuccess: { tokens in
         // My tokens
-        tokens.forEach({ tokenId, token in
+        tokens.forEach { tokenId, token in
             token.tokenId
             token.tokenName
             token.tokenTicker
             token.decimal
             token.getBalance()
             token.getGas()
-        })
+        }
     }, onError: { error in
         // ...
     })

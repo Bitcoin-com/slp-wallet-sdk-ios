@@ -48,14 +48,14 @@ class SLPWalletTest: QuickSpec {
                         .toBlocking()
                         .single()
                     
-                    tokens.forEach({ tokenId, token in
+                    tokens.forEach { tokenId, token in
                         expect(token.tokenId).toNot(beNil())
                         expect(token.tokenTicker).toNot(beNil())
                         expect(token.tokenName).toNot(beNil())
                         expect(token.decimal).toNot(beNil())
                         expect(token.getBalance()).toNot(beNil())
                         expect(token.getGas()).toNot(beNil())
-                    })
+                    }
                     
                     // Fetch a second time to parse utxos
                     try! wallet

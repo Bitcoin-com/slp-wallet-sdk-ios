@@ -16,24 +16,6 @@ public class SLPWalletUTXO {
     fileprivate var _scriptPubKey: String
     fileprivate var _index: Int
     
-//    TODO: Activate for storage (Codable)
-//    private enum CodingKeys: String, CodingKey {
-//        case _txid
-//        case _satoshis
-//        case _cashAddress
-//        case _scriptPubKey
-//        case _index
-//    }
-//
-//    required public init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self._txid = try container.decode(String.self, forKey: ._txid)
-//        self._satoshis = try container.decode(Int.self, forKey: ._satoshis)
-//        self._cashAddress = try container.decode(String.self, forKey: ._cashAddress)
-//        self._scriptPubKey = try container.decode(String.self, forKey: ._scriptPubKey)
-//        self._index = try container.decode(Int.self, forKey: ._index)
-//    }
-    
     public var txid: String { get { return _txid } }
     public var satoshis: Int64 { get { return _satoshis } }
     public var cashAddress: String { get { return _cashAddress } }

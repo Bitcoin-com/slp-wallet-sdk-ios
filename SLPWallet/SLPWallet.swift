@@ -139,18 +139,18 @@ public class SLPWallet {
 
 public extension SLPWallet {
     
-    public func getGas() -> Int {
+    func getGas() -> Int {
         return _utxos.reduce(0, { $0 + Int($1.satoshis) })
     }
     
-    public func fetchTokens() -> Single<[String:SLPToken]> {
+    func fetchTokens() -> Single<[String:SLPToken]> {
         
         let cashAddresses = [BCHAccount.cashAddress, SLPAccount.cashAddress]
         
         return Single<[String:SLPToken]>.create { single in
             RestService
                 .fetchUTXOs(cashAddresses)
-                .subscribe({ event in
+                .subscribe { event in
                     switch event {
                     case .success(let rawUtxos):
                         let utxos = rawUtxos
@@ -159,7 +159,7 @@ public extension SLPWallet {
                         var myUTXOs: [String] = self.tokens
                             .flatMap { $1._utxos }
                             .compactMap { "\($0.txid)-\($0.index)" }
-                        myUTXOs.append(contentsOf: self.utxos.compactMap({ "\($0.txid)-\($0.index)" }))
+                        myUTXOs.append(contentsOf: self.utxos.compactMap { "\($0.txid)-\($0.index)" })
                         
                         let requests = utxos
                             .filter { !myUTXOs.contains("\($0.txid)-\($0.vout)") }
@@ -174,21 +174,21 @@ public extension SLPWallet {
                         
                         let observable = Observable
                             .from(requests)
-                            .flatMap({ request in
+                            .flatMap { request in
                                 Observable.zip(
                                     RestService.fetchTxDetails(request).asObservable()
                                     , RestService.fetchTxValidations(request).asObservable()
                                     , resultSelector: { (txs, validations) in
                                         return txs
                                             .enumerated()
-                                            .compactMap({ (index, tx) in
+                                            .compactMap { (index, tx) in
                                                 return (tx, validations[index].valid)
-                                            })
+                                            }
                                     })
-                            })
+                            }
                             
                         observable
-                            .subscribe({ event in
+                            .subscribe { event in
                                 switch event {
                                 case .next(let txs):
                                     
@@ -197,7 +197,7 @@ public extension SLPWallet {
                                     var updatedTokens = [String:SLPToken]()
                                     var updatedUTXOs = [SLPWalletUTXO]()
                                     
-                                    txs.forEach({ (tx, isValid) in
+                                    txs.forEach { (tx, isValid) in
                                         
                                         // Get the vouts that we are interested in
                                         let vouts = utxos
@@ -226,7 +226,7 @@ public extension SLPWallet {
                                         
                                         let newUtxos = parsedData.utxos.filter { !self._usedUTXOs.contains($0) }
                                         updatedUTXOs.append(contentsOf: newUtxos)
-                                    })
+                                    }
                                     
                                     //
                                     //
@@ -242,7 +242,7 @@ public extension SLPWallet {
                                     var newTokens = [SLPToken]()
                                     var tokensHaveChanged = [SLPToken]()
                                     
-                                    updatedTokens.forEach({ tokenId, token in
+                                    updatedTokens.forEach { tokenId, token in
                                         guard let t = self._tokens[tokenId] else {
                                             if token._utxos.count > 0 {
                                                 newTokens.append(token)
@@ -278,7 +278,7 @@ public extension SLPWallet {
                                             t._utxos.mergeElements(newElements: token._utxos)
                                             tokensHaveChanged.append(t)
                                         }
-                                    })
+                                    }
                                     
                                     // Notify changed tokens
                                     tokensHaveChanged.forEach { self.delegate?.onUpdatedToken($0) }
@@ -294,35 +294,35 @@ public extension SLPWallet {
                                     
                                     Observable
                                         .zip(newTokens.map { self.addToken($0).asObservable() })
-                                        .subscribe({ event in
+                                        .subscribe { event in
                                             switch event {
                                             case .next(let tokens):
                                                 // Notify new tokens
-                                                tokens.forEach({ self.delegate?.onUpdatedToken($0) })
+                                                tokens.forEach { self.delegate?.onUpdatedToken($0) }
                                             case .completed:
                                                 single(.success(self._tokens))
                                             case .error(let error):
                                                 single(.error(error))
                                             }
-                                        })
+                                        }
                                         .disposed(by: SLPWallet.bag)
                                     
                                 case .error(let error):
                                     single(.error(error))
                                 case .completed: break
                                 }
-                            })
+                            }
                             .disposed(by: SLPWallet.bag)
                     case .error(let error):
                         single(.error(error))
                     }
-                })
+                }
                 .disposed(by: SLPWallet.bag)
             return Disposables.create()
         }
     }
     
-    public func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
+    func sendToken(_ tokenId: String, amount: Double, toAddress: String) -> Single<String> {
         return Single<String>.create { single in
             self.fetchTokens()
                 .subscribe(onSuccess: { _ in
@@ -330,7 +330,7 @@ public extension SLPWallet {
                         let value = try SLPTransactionBuilder.build(self, tokenId: tokenId, amount: amount, toAddress: toAddress)
                         RestService
                             .broadcast(value.rawTx)
-                            .subscribe({ response in
+                            .subscribe { response in
                                 switch response {
                                 case.success(let txid):
                                     
@@ -351,7 +351,7 @@ public extension SLPWallet {
                                 case .error(let error):
                                     single(.error(error))
                                 }
-                            })
+                            }
                             .disposed(by: SLPWallet.bag)
                     } catch (let error) {
                         single(.error(error))
@@ -365,7 +365,7 @@ public extension SLPWallet {
         }
     }
     
-    public func addToken(_ token: SLPToken) -> Single<SLPToken> {
+    func addToken(_ token: SLPToken) -> Single<SLPToken> {
         return Single<SLPToken>.create { single in
             guard let tokenId = token.tokenId else {
                 single(.error(SLPWalletError.TOKEN_ID_REQUIRED))
@@ -373,10 +373,10 @@ public extension SLPWallet {
             }
             RestService
                 .fetchTxDetails([tokenId])
-                .subscribe({ response in
+                .subscribe { response in
                     switch response {
                     case.success(let txs):
-                        txs.forEach({ tx in
+                        txs.forEach { tx in
                             
                             // Parse tx
                             guard let parsedData = SLPTransactionParser.parse(tx, vouts: []) else {
@@ -386,7 +386,7 @@ public extension SLPWallet {
                             if let _ = parsedData.token.tokenId {
                                 token.merge(parsedData.token)
                             }
-                        })
+                        }
                         
                         // Add the token in the list
                         self._tokens[tokenId] = token
@@ -395,7 +395,7 @@ public extension SLPWallet {
                     case .error(let error):
                         single(.error(error))
                     }
-                })
+                }
                 .disposed(by: SLPWallet.bag)
             return Disposables.create()
         }
@@ -418,20 +418,20 @@ extension SLPWallet {
         // Add a lock to be sure I am not adding or removing in the same time with the fetchTokens
         semaphore.wait()
         
-        newUTXOs.forEach({ UTXO in
+        newUTXOs.forEach { UTXO in
             guard let newUTXO = UTXO as? SLPTokenUTXO else {
                 return self.addUTXO(UTXO)
             }
             return token.addUTXO(newUTXO)
-        })
+        }
         
         _usedUTXOs.append(contentsOf: usedUTXOs)
-        usedUTXOs.forEach({ UTXO in
+        usedUTXOs.forEach { UTXO in
             guard let newUTXO = UTXO as? SLPTokenUTXO else {
                 return self.removeUTXO(UTXO)
             }
             return token.removeUTXO(newUTXO)
-        })
+        }
         
         semaphore.signal()
     }
